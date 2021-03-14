@@ -6,7 +6,7 @@ import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
-import sk.stu.fiit.validator.EntryValidator;
+import sk.stu.fiit.validator.EntryUserValidator;
 
 /**
  * @see Controller
@@ -14,10 +14,10 @@ import sk.stu.fiit.validator.EntryValidator;
  */
 public class EntryController extends Controller {
 
-    private EntryValidator validator;
+    private EntryUserValidator validator;
 
     public EntryController() {
-        this.validator = new EntryValidator();
+        this.validator = new EntryUserValidator();
     }
 
     public int getPripojenyPouzivatel() {
@@ -40,13 +40,24 @@ public class EntryController extends Controller {
         return true;
     }
 
+    public int registerOrg(String nazovOrg, String adresaOrg, int balikId) {
+        if (!this.entryService.isSpravcaCreated()) {
+            return EntryConstants.SPRAVCA_NEBOL_VYTVORENY;
+        }
+        if (!this.entryService.isOrgNameAvailable(adresaOrg)) {
+            return EntryConstants.MENO_UZ_EXISTUJE;
+        }
+        this.entryService.registerOrg(nazovOrg, adresaOrg, balikId);
+        return EntryConstants.REGISTRACIA_OK;
+    }
+
     public int registerPouzivatel(String meno, String login, char[] password, int typRegistracie) {
         char[] securedPassword = this.validator.securePassword().stringToHash(password);
         if (typRegistracie == EntryConstants.REGISTRUJ_SPRAVCU) {
-            this.entryService.registerSpravca(meno, login, password);
+            this.entryService.registerSpravca(meno, login, securedPassword);
         } else {
             ArrayList<Pouzivatel> userDb = this.entryService.getOrgLoggedIn().getPouzivatelia();
-            boolean usernameTaken = this.validator.checkUsernameRegistration(userDb, login);
+            boolean usernameTaken = this.validator.checkUsernameAvailability(userDb, login);
             if (!usernameTaken) {
                 return EntryConstants.MENO_UZ_EXISTUJE;
             }
@@ -82,6 +93,10 @@ public class EntryController extends Controller {
         Balik vybratyBalik = this.entryService.getBalik(balikId);
         sb.append(vybratyBalik.toString());
         return sb.toString();
+    }
+
+    public void clearSpravca() {
+        this.entryService.setSpravcaTemp(null);
     }
 
     public boolean pripojitOrganizaciu(String adresa) {

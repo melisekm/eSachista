@@ -6,6 +6,7 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
+import sk.stu.fiit.utils.EntryConstants;
 
 /**
  * Služi ako middle man medzi model a controller
@@ -46,8 +47,28 @@ public class EntryService {
         return true;
     }
 
+    public void registerOrg(String nazovOrg, String adresaOrg, int balikId) {
+        Balik b = this.db.getBaliky().get(balikId);
+        Spravca organizator = new Spravca(this.spravcaTemp);
+        Organizacia o = new Organizacia(nazovOrg, adresaOrg, organizator, b);
+        this.db.getOrganizacie().add(o);
+    }
+
     public void registerSpravca(String meno, String login, char[] password) {
         this.spravcaTemp = new Spravca(meno, login, password);
+    }
+
+    public boolean isSpravcaCreated() {
+        return true ? this.spravcaTemp != null : false;
+    }
+
+    public boolean isOrgNameAvailable(String adresaOrg) {
+        for (Organizacia org : this.db.getOrganizacie()) {
+            if (org.getUrlAdresa().equals(adresaOrg)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean pripojOrganizaciu(String adresa) {
@@ -59,8 +80,8 @@ public class EntryService {
         }
         return false;
     }
-    
-    public Balik getBalik(int index){
+
+    public Balik getBalik(int index) {
         return this.db.getBaliky().get(index);
     }
 

@@ -8,9 +8,9 @@ import sk.stu.fiit.model.organisation.clients.Pouzivatel;
  *
  * @author Martin Melisek
  */
-public class EntryValidator {
+public class EntryUserValidator {
 
-    public boolean checkUsernameRegistration(ArrayList<Pouzivatel> userDatabase, String login) {
+    public boolean checkUsernameAvailability(ArrayList<Pouzivatel> userDatabase, String login) {
         for (Pouzivatel p : userDatabase) {
             if (p.getLogin().equals(login)) {
                 return false;

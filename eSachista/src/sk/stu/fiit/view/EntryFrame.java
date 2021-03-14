@@ -15,7 +15,6 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private EntryController controller;
     private javax.swing.JTextField[] registraciaHracaFields;
-    private String[] udajePouzivatela;
     private int registraciaType;
 
     public EntryFrame() {
@@ -66,7 +65,7 @@ public class EntryFrame extends javax.swing.JFrame {
         labelMaxTurnajov = new javax.swing.JLabel();
         labelMaxPrihlHracovData = new javax.swing.JLabel();
         labelmaxTurnajovData = new javax.swing.JLabel();
-        btnVytvorit = new javax.swing.JButton();
+        btnVytvoritOrg = new javax.swing.JButton();
         btnZobrazitDetaily = new javax.swing.JButton();
         dialogRegistrovatHraca = new javax.swing.JDialog();
         panelRegistraciaHraca = new javax.swing.JPanel();
@@ -226,14 +225,14 @@ public class EntryFrame extends javax.swing.JFrame {
         labelmaxTurnajovData.setText("jLabel1");
         panelRegistrovatOrg.add(labelmaxTurnajovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
-        btnVytvorit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnVytvorit.setText("Vytvoriť");
-        btnVytvorit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVytvoritOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVytvoritOrg.setText("Registrovať");
+        btnVytvoritOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVytvoritMouseClicked(evt);
+                btnVytvoritOrgMouseClicked(evt);
             }
         });
-        panelRegistrovatOrg.add(btnVytvorit, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+        panelRegistrovatOrg.add(btnVytvoritOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         btnZobrazitDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnZobrazitDetaily.setText("Detaily registrácie");
@@ -421,33 +420,22 @@ public class EntryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrihlasitOKMouseClicked
 
     private void btnRegistrovatHracaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatHracaMouseClicked
-        ViewUtils.clearFields(fieldLogin, fieldPassword);
         this.registraciaType = EntryConstants.REGISTRUJ_HRACA;
+        ViewUtils.clearFields(fieldLogin, fieldPassword);
         ViewUtils.showDialog(dialogRegistrovatHraca);
     }//GEN-LAST:event_btnRegistrovatHracaMouseClicked
 
     private void btnRegistraciaHracaOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaOKMouseClicked
-        char[] password = fieldRegistraciaHracaPassword.getPassword();
-        this.udajePouzivatela = this.getUdajePouzivatela();
-        if (this.udajePouzivatela == null) {
-            return;
-        }
-        int status = this.controller.registerPouzivatel(
-                udajePouzivatela[0], //login
-                udajePouzivatela[1], //meno
-                password, //pwClearText
-                this.registraciaType
-        );
-        // skontroluj ci je mozne registrovat sa
-        if (!this.skontrolujStatusRegistracie(status)) {
+        int status = this.vykonajRegistraciu(this.registraciaType); // skontroluj ci je mozne registrovat sa
+        if (status == -1 || !this.skontrolujStatusRegistracieHrac(status)) {
             return;
         }
         dialogRegistrovatHraca.dispose();
     }//GEN-LAST:event_btnRegistraciaHracaOKMouseClicked
 
-    private String[] getUdajePouzivatela() {
+    private int vykonajRegistraciu(int registraciaType) {
         if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
-            return null;
+            return -1;
         }
         String meno = fieldRegistraciaMeno.getText();
         String login = fieldRegistraciaLogin.getText();
@@ -458,12 +446,13 @@ public class EntryFrame extends javax.swing.JFrame {
         // skontroluj pw
         if (!Arrays.equals(password, passwordZnovu)) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
-            return null;
+            return -1;
         }
-        return new String[]{meno, login};
+        return this.controller.registerPouzivatel(meno, login, password, registraciaType);
+
     }
 
-    private boolean skontrolujStatusRegistracie(int status) {
+    private boolean skontrolujStatusRegistracieHrac(int status) {
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -485,6 +474,7 @@ public class EntryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
 
     private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
+        this.controller.clearSpravca();
         this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
         ViewUtils.showDialog(dialogRegistrovatOrg);
     }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
@@ -502,15 +492,39 @@ public class EntryFrame extends javax.swing.JFrame {
     private void btnZobrazitDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseClicked
         String nazovOrg = fieldNazovRegOrg.getText();
         String adresaOrg = fieldAdresaRegOrg.getText();
-        int balikid = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
-        String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikid);
+        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
+        String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikId);
         textAreaDetaily.setText(detailyRegistracie);
         ViewUtils.showDialog(dialogDetailyRegistracie);
     }//GEN-LAST:event_btnZobrazitDetailyMouseClicked
 
-    private void btnVytvoritMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVytvoritMouseClicked
+    private void btnVytvoritOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritOrgMouseClicked
+        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldNazovRegOrg, fieldAdresaRegOrg)) {
+            return;
+        }
+        String nazovOrg = fieldNazovRegOrg.getText();
+        String adresaOrg = fieldAdresaRegOrg.getText();
+        int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId);
+        if (!this.skontrolujStatusRegistracieOrg(status)) {
+            return;
+        }
+
+        dialogRegistrovatOrg.dispose();
+    }//GEN-LAST:event_btnVytvoritOrgMouseClicked
+
+    private boolean skontrolujStatusRegistracieOrg(int status) {
+        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Tato organizacia uz existuje", "Invalid input", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (status == EntryConstants.SPRAVCA_NEBOL_VYTVORENY) {
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Spravca organizacie nebol vytvoreny", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
 
     private void btnZavrietDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseClicked
         dialogDetailyRegistracie.dispose();
@@ -565,7 +579,7 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistraciaHracaZrusit;
     private javax.swing.JButton btnRegistrovatHraca;
     private javax.swing.JButton btnRegistrovatOrg;
-    private javax.swing.JButton btnVytvorit;
+    private javax.swing.JButton btnVytvoritOrg;
     private javax.swing.JButton btnVytvoritSpravcu;
     private javax.swing.JButton btnZavrietDetaily;
     private javax.swing.JButton btnZobrazitDetaily;

@@ -9,10 +9,10 @@ public abstract class Pouzivatel {
     protected String login;
     private char[] password; //zahashovane heslo
 
-    public Pouzivatel(String meno, String login, char[] heslo) {
+    public Pouzivatel(String meno, String login, char[] password) {
         this.meno = meno;
         this.login = login;
-        this.password = heslo;
+        this.password = password;
     }
     
 
