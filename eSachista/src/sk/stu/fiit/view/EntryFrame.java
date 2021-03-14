@@ -1,22 +1,25 @@
 package sk.stu.fiit.view;
 
 import java.util.Arrays;
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
-import sk.stu.fiit.controller.LoginController;
-import sk.stu.fiit.utils.LoginConstants;
+import sk.stu.fiit.controller.EntryController;
+import sk.stu.fiit.utils.EntryConstants;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
  *
  * @author Martin Melisek
  */
-public class LoginFrame extends javax.swing.JFrame {
+public class EntryFrame extends javax.swing.JFrame {
 
-    private LoginController controller;
+    private EntryController controller;
     private javax.swing.JTextField[] registraciaHracaFields;
+    private String[] udajePouzivatela;
+    private int registraciaType;
 
-    public LoginFrame() {
-        this.controller = new LoginController();
+    public EntryFrame() {
+        this.controller = new EntryController();
         initComponents();
         this.registraciaHracaFields = new javax.swing.JTextField[]{
             fieldRegistraciaMeno,
@@ -47,6 +50,24 @@ public class LoginFrame extends javax.swing.JFrame {
         labelPrihlasitOrgName = new javax.swing.JLabel();
         dialogRegistrovatOrg = new javax.swing.JDialog();
         panelRegistrovatOrg = new javax.swing.JPanel();
+        labelRegistraciaOrg = new javax.swing.JLabel();
+        btnVytvoritSpravcu = new javax.swing.JButton();
+        labelEmail = new javax.swing.JLabel();
+        fieldEmail = new javax.swing.JTextField();
+        labelNazovRegOrg = new javax.swing.JLabel();
+        fieldNazovRegOrg = new javax.swing.JTextField();
+        labelAdresaRegOrg = new javax.swing.JLabel();
+        fieldAdresaRegOrg = new javax.swing.JTextField();
+        sliderBalik = new javax.swing.JSlider();
+        labelBalik = new javax.swing.JLabel();
+        labelKapacita = new javax.swing.JLabel();
+        labelKapacitaData = new javax.swing.JLabel();
+        labelMaxPrihl = new javax.swing.JLabel();
+        labelMaxTurnajov = new javax.swing.JLabel();
+        labelMaxPrihlHracovData = new javax.swing.JLabel();
+        labelmaxTurnajovData = new javax.swing.JLabel();
+        btnVytvorit = new javax.swing.JButton();
+        btnZobrazitDetaily = new javax.swing.JButton();
         dialogRegistrovatHraca = new javax.swing.JDialog();
         panelRegistraciaHraca = new javax.swing.JPanel();
         labelRegstraciaHraca = new javax.swing.JLabel();
@@ -60,6 +81,11 @@ public class LoginFrame extends javax.swing.JFrame {
         btnRegistraciaHracaZrusit = new javax.swing.JButton();
         fieldRegistraciaHracaPassword = new javax.swing.JPasswordField();
         fieldRegistraciaHracaPasswordZnovu = new javax.swing.JPasswordField();
+        dialogDetailyRegistracie = new javax.swing.JDialog();
+        panelDetailyRegistracie = new javax.swing.JPanel();
+        scrollPaneDetaily = new javax.swing.JScrollPane();
+        textAreaDetaily = new javax.swing.JTextArea();
+        btnZavrietDetaily = new javax.swing.JButton();
         panelConnection = new javax.swing.JPanel();
         labelVitajte = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
@@ -120,10 +146,105 @@ public class LoginFrame extends javax.swing.JFrame {
 
         dialogPripojit.getContentPane().add(panelPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 250));
 
+        dialogRegistrovatOrg.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogRegistrovatOrg.setModal(true);
         dialogRegistrovatOrg.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRegistrovatOrg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        dialogRegistrovatOrg.getContentPane().add(panelRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+
+        labelRegistraciaOrg.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelRegistraciaOrg.setText("Registrácia novej organizácie");
+        panelRegistrovatOrg.add(labelRegistraciaOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        btnVytvoritSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVytvoritSpravcu.setText("Vytvoriť správcu");
+        btnVytvoritSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVytvoritSpravcuMouseClicked(evt);
+            }
+        });
+        panelRegistrovatOrg.add(btnVytvoritSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelEmail.setText("E-mail:");
+        panelRegistrovatOrg.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        fieldEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 140, -1));
+
+        labelNazovRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNazovRegOrg.setText("Názov organizácie: ");
+        panelRegistrovatOrg.add(labelNazovRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        fieldNazovRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldNazovRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 140, -1));
+
+        labelAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelAdresaRegOrg.setText("Adresa organizácie:");
+        panelRegistrovatOrg.add(labelAdresaRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        fieldAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldAdresaRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 140, -1));
+
+        sliderBalik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        sliderBalik.setMaximum(2);
+        sliderBalik.setMinorTickSpacing(1);
+        sliderBalik.setPaintTicks(true);
+        sliderBalik.setSnapToTicks(true);
+        sliderBalik.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderBalikStateChanged(evt);
+            }
+        });
+        panelRegistrovatOrg.add(sliderBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 190, 30));
+
+        labelBalik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalik.setText("Balík");
+        panelRegistrovatOrg.add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        labelKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelKapacita.setText("Kapacita hráčov:");
+        panelRegistrovatOrg.add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
+        labelKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelKapacitaData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
+
+        labelMaxPrihl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMaxPrihl.setText("Maximum hráčov na turnaji:");
+        panelRegistrovatOrg.add(labelMaxPrihl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+
+        labelMaxTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMaxTurnajov.setText("Maximum turnajov:");
+        panelRegistrovatOrg.add(labelMaxTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+
+        labelMaxPrihlHracovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMaxPrihlHracovData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelMaxPrihlHracovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
+
+        labelmaxTurnajovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelmaxTurnajovData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelmaxTurnajovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+
+        btnVytvorit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVytvorit.setText("Vytvoriť");
+        btnVytvorit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVytvoritMouseClicked(evt);
+            }
+        });
+        panelRegistrovatOrg.add(btnVytvorit, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+
+        btnZobrazitDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnZobrazitDetaily.setText("Detaily registrácie");
+        btnZobrazitDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnZobrazitDetailyMouseClicked(evt);
+            }
+        });
+        panelRegistrovatOrg.add(btnZobrazitDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        dialogRegistrovatOrg.getContentPane().add(panelRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 460));
 
         dialogRegistrovatHraca.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogRegistrovatHraca.setModal(true);
@@ -187,6 +308,32 @@ public class LoginFrame extends javax.swing.JFrame {
         panelRegistraciaHraca.add(fieldRegistraciaHracaPasswordZnovu, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 150, -1));
 
         dialogRegistrovatHraca.getContentPane().add(panelRegistraciaHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 300));
+
+        dialogDetailyRegistracie.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogDetailyRegistracie.setModal(true);
+        dialogDetailyRegistracie.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelDetailyRegistracie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textAreaDetaily.setEditable(false);
+        textAreaDetaily.setColumns(20);
+        textAreaDetaily.setLineWrap(true);
+        textAreaDetaily.setRows(5);
+        textAreaDetaily.setWrapStyleWord(true);
+        scrollPaneDetaily.setViewportView(textAreaDetaily);
+
+        panelDetailyRegistracie.add(scrollPaneDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 210));
+
+        btnZavrietDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnZavrietDetaily.setText("Zavrieť");
+        btnZavrietDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnZavrietDetailyMouseClicked(evt);
+            }
+        });
+        panelDetailyRegistracie.add(btnZavrietDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        dialogDetailyRegistracie.getContentPane().add(panelDetailyRegistracie, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista");
@@ -260,11 +407,11 @@ public class LoginFrame extends javax.swing.JFrame {
         }
         System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
         dialogPripojit.dispose();
-        int loggedInId = this.controller.getUserLoggedIn();
-        if (loggedInId == LoginConstants.LOGGED_IN_SPRAVCA) { // asi OK ? XD
+        int loggedInId = this.controller.getPripojenyPouzivatel();
+        if (loggedInId == EntryConstants.LOGGED_IN_SPRAVCA) { // asi OK ? XD
             System.out.println("DEBUG: loggedInId = " + loggedInId);
             SpravcaFrame.main();
-        } else if (loggedInId == LoginConstants.LOGGED_IN_HRAC) {
+        } else if (loggedInId == EntryConstants.LOGGED_IN_HRAC) {
             System.out.println("DEBUG: loggedInId = " + loggedInId);
             HracFrame.main();
         } else {
@@ -274,36 +421,54 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrihlasitOKMouseClicked
 
     private void btnRegistrovatHracaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatHracaMouseClicked
-        this.clearFields(fieldLogin, fieldPassword);
+        ViewUtils.clearFields(fieldLogin, fieldPassword);
+        this.registraciaType = EntryConstants.REGISTRUJ_HRACA;
         ViewUtils.showDialog(dialogRegistrovatHraca);
     }//GEN-LAST:event_btnRegistrovatHracaMouseClicked
 
     private void btnRegistraciaHracaOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaOKMouseClicked
+        char[] password = fieldRegistraciaHracaPassword.getPassword();
+        this.udajePouzivatela = this.getUdajePouzivatela();
+        if (this.udajePouzivatela == null) {
+            return;
+        }
+        int status = this.controller.registerPouzivatel(
+                udajePouzivatela[0], //login
+                udajePouzivatela[1], //meno
+                password, //pwClearText
+                this.registraciaType
+        );
+        // skontroluj ci je mozne registrovat sa
+        if (!this.skontrolujStatusRegistracie(status)) {
+            return;
+        }
+        dialogRegistrovatHraca.dispose();
+    }//GEN-LAST:event_btnRegistraciaHracaOKMouseClicked
+
+    private String[] getUdajePouzivatela() {
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
+            return null;
+        }
         String meno = fieldRegistraciaMeno.getText();
         String login = fieldRegistraciaLogin.getText();
         char[] password = fieldRegistraciaHracaPassword.getPassword();
         char[] passwordZnovu = fieldRegistraciaHracaPasswordZnovu.getPassword();
         fieldRegistraciaHracaPassword.setText("");
         fieldRegistraciaHracaPasswordZnovu.setText("");
+        // skontroluj pw
         if (!Arrays.equals(password, passwordZnovu)) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
-            return;
+            return null;
         }
-        int status = this.controller.registerPlayer(meno, login, password);
-        if (!this.skontrolujStatusRegistracie(status)) {
-            return;
-        }
-        this.clearFields(this.registraciaHracaFields);
-        JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hrac uspesne zaregistrovany", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-        dialogRegistrovatHraca.dispose();
-    }//GEN-LAST:event_btnRegistraciaHracaOKMouseClicked
+        return new String[]{meno, login};
+    }
 
     private boolean skontrolujStatusRegistracie(int status) {
-        if (status == LoginConstants.MENO_UZ_EXISTUJE) {
+        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (status == LoginConstants.KAPACITA_PREKROCENA) {
+        if (status == EntryConstants.KAPACITA_PREKROCENA) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Kapacita bola prekrocena.", "Prekrocena kapacita", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -311,22 +476,45 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     private void btnRegistraciaHracaZrusitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseClicked
-        this.clearFields(this.registraciaHracaFields);
+        ViewUtils.clearFields(this.registraciaHracaFields);
         dialogRegistrovatHraca.dispose();
     }//GEN-LAST:event_btnRegistraciaHracaZrusitMouseClicked
 
     private void dialogRegistrovatHracaWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogRegistrovatHracaWindowClosed
-        this.clearFields(this.registraciaHracaFields);
+        ViewUtils.clearFields(this.registraciaHracaFields);
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
 
     private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
-        JOptionPane.showConfirmDialog(this, "TIKNI NA TO NADTYM"); // TODO
+        this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
+        ViewUtils.showDialog(dialogRegistrovatOrg);
     }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
-    private void clearFields(javax.swing.JTextField... fields) {
-        for (javax.swing.JTextField field : fields) {
-            field.setText("");
-        }
-    }
+
+    private void btnVytvoritSpravcuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritSpravcuMouseClicked
+        ViewUtils.showDialog(dialogRegistrovatHraca);
+
+    }//GEN-LAST:event_btnVytvoritSpravcuMouseClicked
+
+    private void sliderBalikStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderBalikStateChanged
+        DefaultBoundedRangeModel model = (DefaultBoundedRangeModel) sliderBalik.getModel();
+        System.out.println("model.getValue() = " + model.getValue());
+    }//GEN-LAST:event_sliderBalikStateChanged
+
+    private void btnZobrazitDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseClicked
+        String nazovOrg = fieldNazovRegOrg.getText();
+        String adresaOrg = fieldAdresaRegOrg.getText();
+        int balikid = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
+        String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikid);
+        textAreaDetaily.setText(detailyRegistracie);
+        ViewUtils.showDialog(dialogDetailyRegistracie);
+    }//GEN-LAST:event_btnZobrazitDetailyMouseClicked
+
+    private void btnVytvoritMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVytvoritMouseClicked
+
+    private void btnZavrietDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseClicked
+        dialogDetailyRegistracie.dispose();
+    }//GEN-LAST:event_btnZavrietDetailyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -345,14 +533,18 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EntryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -361,7 +553,7 @@ public class LoginFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginFrame().setVisible(true);
+                new EntryFrame().setVisible(true);
             }
         });
     }
@@ -373,19 +565,36 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistraciaHracaZrusit;
     private javax.swing.JButton btnRegistrovatHraca;
     private javax.swing.JButton btnRegistrovatOrg;
+    private javax.swing.JButton btnVytvorit;
+    private javax.swing.JButton btnVytvoritSpravcu;
+    private javax.swing.JButton btnZavrietDetaily;
+    private javax.swing.JButton btnZobrazitDetaily;
+    private javax.swing.JDialog dialogDetailyRegistracie;
     private javax.swing.JDialog dialogPripojit;
     private javax.swing.JDialog dialogRegistrovatHraca;
     private javax.swing.JDialog dialogRegistrovatOrg;
     private javax.swing.JTextField fieldAdresa;
+    private javax.swing.JTextField fieldAdresaRegOrg;
+    private javax.swing.JTextField fieldEmail;
     private javax.swing.JTextField fieldLogin;
+    private javax.swing.JTextField fieldNazovRegOrg;
     private javax.swing.JPasswordField fieldPassword;
     private javax.swing.JPasswordField fieldRegistraciaHracaPassword;
     private javax.swing.JPasswordField fieldRegistraciaHracaPasswordZnovu;
     private javax.swing.JTextField fieldRegistraciaLogin;
     private javax.swing.JTextField fieldRegistraciaMeno;
     private javax.swing.JLabel labelAdresa;
+    private javax.swing.JLabel labelAdresaRegOrg;
+    private javax.swing.JLabel labelBalik;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelKapacita;
+    private javax.swing.JLabel labelKapacitaData;
     private javax.swing.JLabel labelLogin;
+    private javax.swing.JLabel labelMaxPrihl;
+    private javax.swing.JLabel labelMaxPrihlHracovData;
+    private javax.swing.JLabel labelMaxTurnajov;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelNazovRegOrg;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelPopis;
     private javax.swing.JLabel labelPrihlasitName;
@@ -394,12 +603,18 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelRegistraciaHesloZnovu;
     private javax.swing.JLabel labelRegistraciaLogin;
     private javax.swing.JLabel labelRegistraciaMeno;
+    private javax.swing.JLabel labelRegistraciaOrg;
     private javax.swing.JLabel labelRegstraciaHraca;
     private javax.swing.JLabel labelVitajte;
+    private javax.swing.JLabel labelmaxTurnajovData;
     private javax.swing.JPanel panelConnection;
+    private javax.swing.JPanel panelDetailyRegistracie;
     private javax.swing.JPanel panelPripojit;
     private javax.swing.JPanel panelRegistraciaHraca;
     private javax.swing.JPanel panelRegistrovatOrg;
+    private javax.swing.JScrollPane scrollPaneDetaily;
+    private javax.swing.JSlider sliderBalik;
+    private javax.swing.JTextArea textAreaDetaily;
     // End of variables declaration//GEN-END:variables
 
 }

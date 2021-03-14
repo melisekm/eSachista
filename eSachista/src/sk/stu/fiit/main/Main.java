@@ -1,7 +1,7 @@
 package sk.stu.fiit.main;
 
 import sk.stu.fiit.utils.DataLoader;
-import sk.stu.fiit.view.LoginFrame;
+import sk.stu.fiit.view.EntryFrame;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Main {
      */
     public static void main(String[] args) {
         DataLoader.loadData();
-        LoginFrame.main();
+        EntryFrame.main();
     }
     
 }

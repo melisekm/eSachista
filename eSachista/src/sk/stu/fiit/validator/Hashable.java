@@ -4,7 +4,6 @@ package sk.stu.fiit.validator;
  * Rozhranie pre vnorenu triedu, ktore hashuje passwordy
  * 
  * @author Martin Melisek
- * @see AIS
  */
 public interface Hashable {
 	/**

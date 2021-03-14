@@ -16,6 +16,12 @@ public class Balik {
         this.maxHracovTurnaja = MaxPocetPrihlasenych;
     }
 
+    @Override
+    public String toString() {
+        return "Balik\n" + "Kapacita hráčov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
+                + "\nMaximum hráčov na turnaji: " + maxHracovTurnaja;
+    }
+
     public int getKapacitaPouzivatelov() {
         return kapacitaPouzivatelov;
     }
