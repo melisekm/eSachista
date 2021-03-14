@@ -1,13 +1,11 @@
 package sk.stu.fiit.controller;
 
 import java.util.ArrayList;
-import sk.stu.fiit.controller.sevice.Service;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
-import sk.stu.fiit.utils.Constants;
+import sk.stu.fiit.utils.LoginConstants;
 import sk.stu.fiit.validator.EntryValidator;
-import sk.stu.fiit.view.LoginFrame;
 
 /**
  * @see Controller
@@ -32,11 +30,11 @@ public class LoginController extends Controller{
     public int getUserLoggedIn() {
         Pouzivatel loggedIn = this.service.getUserLoggedIn();
         if (loggedIn instanceof Spravca) {
-            return Constants.LOGGED_IN_SPRAVCA;
+            return LoginConstants.LOGGED_IN_SPRAVCA;
         } else if (loggedIn instanceof Hrac) {
-            return Constants.LOGGED_IN_HRAC;
+            return LoginConstants.LOGGED_IN_HRAC;
         }
-        return Constants.LOGGED_IN_NOBODY;
+        return LoginConstants.LOGGED_IN_NOBODY;
     }
 
     public boolean pripojitHraca(String login, char[] password) {
@@ -49,11 +47,17 @@ public class LoginController extends Controller{
         return true;
     }
 
-    public boolean registerPlayer(String meno, String login, char[] password) {
+    public int registerPlayer(String meno, String login, char[] password) {
         ArrayList<Pouzivatel> userDb = this.service.getOrgLoggedIn().getPouzivatelia();
-        boolean status = this.validator.checkUsernameRegistration(userDb, login);
-        this.service.registerUser(meno, login, this.validator.securePassword().stringToHash(password));
-        return status;
+        boolean usernameTaken = this.validator.checkUsernameRegistration(userDb, login);
+        if(!usernameTaken){
+            return LoginConstants.MENO_UZ_EXISTUJE;
+        }
+        boolean kapacita = this.service.registerUser(meno, login, this.validator.securePassword().stringToHash(password));
+        if(!kapacita){
+            return LoginConstants.KAPACITA_PREKROCENA;
+        }
+        return LoginConstants.REGISTRACIA_OK;
     }
 
 }

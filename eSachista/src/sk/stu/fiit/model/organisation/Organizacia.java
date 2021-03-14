@@ -3,6 +3,8 @@ package sk.stu.fiit.model.organisation;
 import java.util.ArrayList;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
+import sk.stu.fiit.model.organisation.platform.Balik;
+import sk.stu.fiit.model.organisation.platform.Turnaj;
 
 /**
  *
@@ -13,13 +15,16 @@ public class Organizacia {
     private String nazov;
     private String urlAdresa;
 
+    private Balik balik;
     private Spravca organizator;
     private ArrayList<Spravca> spravcovia;
     private ArrayList<Pouzivatel> pouzivatelia;
+    private ArrayList<Turnaj> turnaje;
 
-    public Organizacia(String nazov, String adresa, Spravca organizator) {
+    public Organizacia(String nazov, String adresa, Spravca organizator, Balik balik) {
         this.nazov = nazov;
         this.urlAdresa = adresa;
+        this.balik = balik;
         this.organizator = organizator;
         this.spravcovia = new ArrayList<>();
         this.spravcovia.add(organizator);
@@ -66,7 +71,21 @@ public class Organizacia {
     public void setPouzivatelia(ArrayList<Pouzivatel> pouzivatelia) {
         this.pouzivatelia = pouzivatelia;
     }
-    
-    
+
+    public Balik getBalik() {
+        return balik;
+    }
+
+    public void setBalik(Balik balik) {
+        this.balik = balik;
+    }
+
+    public ArrayList<Turnaj> getTurnaje() {
+        return turnaje;
+    }
+
+    public void setTurnaje(ArrayList<Turnaj> turnaje) {
+        this.turnaje = turnaje;
+    }
 
 }

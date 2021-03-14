@@ -3,7 +3,7 @@ package sk.stu.fiit.view;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.controller.LoginController;
-import sk.stu.fiit.utils.Constants;
+import sk.stu.fiit.utils.LoginConstants;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
@@ -118,7 +118,7 @@ public class LoginFrame extends javax.swing.JFrame {
         labelPrihlasitOrgName.setText("orgName");
         panelPripojit.add(labelPrihlasitOrgName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        dialogPripojit.getContentPane().add(panelPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 240));
+        dialogPripojit.getContentPane().add(panelPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 250));
 
         dialogRegistrovatOrg.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -227,6 +227,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         btnRegistrovatOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistrovatOrg.setText("Zaregistrovať organizáciu");
+        btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrovatOrgMouseClicked(evt);
+            }
+        });
         panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 240, 40));
 
         getContentPane().add(panelConnection, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
@@ -256,10 +261,10 @@ public class LoginFrame extends javax.swing.JFrame {
         System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
         dialogPripojit.dispose();
         int loggedInId = this.controller.getUserLoggedIn();
-        if (loggedInId == Constants.LOGGED_IN_SPRAVCA) {
+        if (loggedInId == LoginConstants.LOGGED_IN_SPRAVCA) { // asi OK ? XD
             System.out.println("DEBUG: loggedInId = " + loggedInId);
             SpravcaFrame.main();
-        } else if (loggedInId == Constants.LOGGED_IN_HRAC) {
+        } else if (loggedInId == LoginConstants.LOGGED_IN_HRAC) {
             System.out.println("DEBUG: loggedInId = " + loggedInId);
             HracFrame.main();
         } else {
@@ -284,23 +289,39 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!this.controller.registerPlayer(meno, login, password)) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
+        int status = this.controller.registerPlayer(meno, login, password);
+        if (!this.skontrolujStatusRegistracie(status)) {
             return;
         }
         this.clearFields(this.registraciaHracaFields);
-
         JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hrac uspesne zaregistrovany", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
         dialogRegistrovatHraca.dispose();
     }//GEN-LAST:event_btnRegistraciaHracaOKMouseClicked
 
+    private boolean skontrolujStatusRegistracie(int status) {
+        if (status == LoginConstants.MENO_UZ_EXISTUJE) {
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (status == LoginConstants.KAPACITA_PREKROCENA) {
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Kapacita bola prekrocena.", "Prekrocena kapacita", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
     private void btnRegistraciaHracaZrusitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseClicked
         this.clearFields(this.registraciaHracaFields);
+        dialogRegistrovatHraca.dispose();
     }//GEN-LAST:event_btnRegistraciaHracaZrusitMouseClicked
 
     private void dialogRegistrovatHracaWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogRegistrovatHracaWindowClosed
         this.clearFields(this.registraciaHracaFields);
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
+
+    private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
+        JOptionPane.showConfirmDialog(this, "TIKNI NA TO NADTYM"); // TODO
+    }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
     private void clearFields(javax.swing.JTextField... fields) {
         for (javax.swing.JTextField field : fields) {
             field.setText("");

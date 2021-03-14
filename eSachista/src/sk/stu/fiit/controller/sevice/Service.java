@@ -25,9 +25,13 @@ public class Service {
         return INSTANCE;
     }
 
-    public void registerUser(String meno, String login, char[] password) {
+    public boolean registerUser(String meno, String login, char[] password) {
         Hrac h = new Hrac(meno, login, password);
+        if(this.orgLoggedIn.getPouzivatelia().size() == this.orgLoggedIn.getBalik().getKapacitaPouzivatelov()){
+            return false;
+        }
         this.orgLoggedIn.getPouzivatelia().add(h);
+        return true;
     }
 
     public boolean pripojOrganizaciu(String adresa) {
