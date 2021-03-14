@@ -1,5 +1,8 @@
 package sk.stu.fiit.main;
 
+import sk.stu.fiit.utils.DataLoader;
+import sk.stu.fiit.view.LoginFrame;
+
 /**
  *
  * @author Martin Melisek
@@ -11,7 +14,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DataLoader.loadData();
+        LoginFrame.main(args);
     }
     
 }
