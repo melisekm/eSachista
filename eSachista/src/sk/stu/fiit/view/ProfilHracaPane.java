@@ -61,35 +61,35 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         MenoLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MenoLabel.setForeground(new java.awt.Color(0, 0, 0));
         MenoLabel.setText("Cpavok");
-        add(MenoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 220, 20));
+        add(MenoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 220, 20));
 
         PrezyvkaLabel.setForeground(new java.awt.Color(102, 102, 102));
         PrezyvkaLabel.setText("Tu bude jeho prezývka");
-        add(PrezyvkaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
+        add(PrezyvkaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
 
         MestoLabel.setForeground(new java.awt.Color(0, 0, 0));
         MestoLabel.setText("Mesto, štát?");
-        add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+        add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
-        UpravitButton.setBackground(new java.awt.Color(153, 153, 153));
+        UpravitButton.setBackground(new java.awt.Color(204, 204, 204));
         UpravitButton.setForeground(new java.awt.Color(0, 0, 0));
         UpravitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         UpravitButton.setText("Upraviť");
-        add(UpravitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
+        add(UpravitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        add(Avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        add(Avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Rating:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         RatingLabel.setForeground(new java.awt.Color(0, 0, 0));
         RatingLabel.setText("2641");
-        add(RatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 50, -1));
+        add(RatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 50, -1));
 
         HistoriaZapasov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaZapasov.setForeground(new java.awt.Color(102, 102, 102));
+        HistoriaZapasov.setForeground(new java.awt.Color(51, 51, 51));
         HistoriaZapasov.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Cpavok vs Magnus Carlson 1:0 Mar 6, 2021", "Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021" };
             public int getSize() { return strings.length; }
@@ -97,10 +97,10 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(HistoriaZapasov);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 360, 270));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 360, 270));
 
         HistoriaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaTurnajov.setForeground(new java.awt.Color(102, 102, 102));
+        HistoriaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
         HistoriaTurnajov.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Meltwater 2021" };
             public int getSize() { return strings.length; }
@@ -108,28 +108,30 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(HistoriaTurnajov);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 360, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 360, 270));
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Dátum registrácie:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("ŠTATISTIKA");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 860, 20));
+        jLabel7.setText("ŠTATISTIKY");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 880, 20));
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Zápasy");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        jLabel8.setText("ZÁPASY");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Turnaje");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, -1, -1));
+        jLabel9.setText("TURNAJE");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
 
         DatumRegistracieLabel.setForeground(new java.awt.Color(0, 0, 0));
-        DatumRegistracieLabel.setText("jLabel14");
+        DatumRegistracieLabel.setText("12-3-2021");
         add(DatumRegistracieLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -151,27 +153,27 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         jLabel10.setText("Počet odohratých zápasov:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        PocetZapasovLabel.setForeground(new java.awt.Color(255, 255, 255));
-        PocetZapasovLabel.setText("jLabel15");
+        PocetZapasovLabel.setForeground(new java.awt.Color(102, 102, 102));
+        PocetZapasovLabel.setText("2");
         jPanel1.add(PocetZapasovLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        VyhryLabel.setForeground(new java.awt.Color(255, 255, 255));
-        VyhryLabel.setText("jLabel16");
+        VyhryLabel.setForeground(new java.awt.Color(102, 102, 102));
+        VyhryLabel.setText("2");
         jPanel1.add(VyhryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
-        PrehryLable.setForeground(new java.awt.Color(255, 255, 255));
-        PrehryLable.setText("jLabel17");
+        PrehryLable.setForeground(new java.awt.Color(102, 102, 102));
+        PrehryLable.setText("0");
         jPanel1.add(PrehryLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
-        TurnajeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        TurnajeLabel.setText("jLabel18");
+        TurnajeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        TurnajeLabel.setText("1");
         jPanel1.add(TurnajeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 260, 160));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 230, 160));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 560, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

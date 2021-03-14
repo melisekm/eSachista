@@ -87,14 +87,14 @@ public class EntryFrame extends javax.swing.JFrame {
         textAreaDetaily = new javax.swing.JTextArea();
         btnZavrietDetaily = new javax.swing.JButton();
         panelConnection = new javax.swing.JPanel();
-        labelVitajte = new javax.swing.JLabel();
-        labelName = new javax.swing.JLabel();
         labelAdresa = new javax.swing.JLabel();
         fieldAdresa = new javax.swing.JTextField();
-        labelPopis = new javax.swing.JLabel();
-        btnPripojit = new javax.swing.JButton();
         btnRegistrovatOrg = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnPripojit = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         dialogPripojit.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPripojit.setModal(true);
@@ -344,34 +344,33 @@ public class EntryFrame extends javax.swing.JFrame {
         panelConnection.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelConnection.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelVitajte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelVitajte.setForeground(new java.awt.Color(0, 0, 0));
-        labelVitajte.setText("Vitajte v aplikácií");
-        panelConnection.add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 160, 30));
+        labelAdresa.setBackground(new java.awt.Color(255, 255, 255));
+        labelAdresa.setFont(new java.awt.Font("Candara", 0, 24)); // NOI18N
+        labelAdresa.setForeground(new java.awt.Color(255, 255, 255));
+        labelAdresa.setText("Adresa");
+        panelConnection.add(labelAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
 
-        labelName.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        labelName.setForeground(new java.awt.Color(0, 0, 0));
-        labelName.setText("eSachista");
-        panelConnection.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 75, 110, 40));
-
-        labelAdresa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelAdresa.setForeground(new java.awt.Color(0, 0, 0));
-        labelAdresa.setText("Adresa:");
-        panelConnection.add(labelAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 175, 90, 20));
-
-        fieldAdresa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        fieldAdresa.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         fieldAdresa.setText("sk.stu.fiit.vava");
-        panelConnection.add(fieldAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 250, 40));
+        panelConnection.add(fieldAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 260, 40));
 
-        labelPopis.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        labelPopis.setForeground(new java.awt.Color(153, 153, 153));
-        labelPopis.setText("najmodernejší plánovač šachových turnajov");
-        panelConnection.add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 280, 30));
+        btnRegistrovatOrg.setBackground(new java.awt.Color(118, 155, 108));
+        btnRegistrovatOrg.setFont(new java.awt.Font("Candara", 0, 23)); // NOI18N
+        btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrovatOrg.setText("Zaregistrovať organizáciu");
+        btnRegistrovatOrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 155, 108), 1, true));
+        btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrovatOrgMouseClicked(evt);
+            }
+        });
+        panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 350, 50));
 
-        btnPripojit.setBackground(new java.awt.Color(53, 214, 67));
-        btnPripojit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPripojit.setBackground(new java.awt.Color(102, 102, 102));
+        btnPripojit.setFont(new java.awt.Font("Candara", 0, 23)); // NOI18N
         btnPripojit.setForeground(new java.awt.Color(255, 255, 255));
         btnPripojit.setText("Pripojiť sa");
+        btnPripojit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         btnPripojit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPripojitMouseClicked(evt);
@@ -382,37 +381,30 @@ public class EntryFrame extends javax.swing.JFrame {
                 btnPripojitActionPerformed(evt);
             }
         });
-        panelConnection.add(btnPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, 40));
+        panelConnection.add(btnPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 350, 50));
 
-        btnRegistrovatOrg.setBackground(new java.awt.Color(0, 153, 255));
-        btnRegistrovatOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrovatOrg.setText("Zaregistrovať organizáciu");
-        btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrovatOrgMouseClicked(evt);
-            }
-        });
-        panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 280, 240, 40));
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        panelConnection.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 360, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess.png"))); // NOI18N
-        panelConnection.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        panelConnection.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 360, 30));
 
-        getContentPane().add(panelConnection, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 360));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        panelConnection.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, -10, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelConnection.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 350, 150));
+
+        getContentPane().add(panelConnection, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 520));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPripojitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitMouseClicked
-        String orgAdresa = fieldAdresa.getText();
-        if (!this.controller.pripojitOrganizaciu(orgAdresa)) {
-            JOptionPane.showMessageDialog(this, "Nepodarilo sa pripojit", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        labelPrihlasitOrgName.setText(this.controller.getOrgName());
-        ViewUtils.showDialog(dialogPripojit);
-    }//GEN-LAST:event_btnPripojitMouseClicked
 
     private void btnPrihlasitOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitOKMouseClicked
         String login = fieldLogin.getText();
@@ -495,13 +487,6 @@ public class EntryFrame extends javax.swing.JFrame {
         ViewUtils.clearFields(this.registraciaHracaFields);
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
 
-    private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
-        this.controller.clearSpravca();
-        this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
-        this.updateBalikInfo(2);
-        ViewUtils.showDialog(dialogRegistrovatOrg);
-    }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
-
     private void btnVytvoritSpravcuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritSpravcuMouseClicked
         ViewUtils.showDialog(dialogRegistrovatHraca);
 
@@ -561,6 +546,23 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogDetailyRegistracie.dispose();
     }//GEN-LAST:event_btnZavrietDetailyMouseClicked
 
+    private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
+        this.controller.clearSpravca();
+        this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
+        this.updateBalikInfo(2);
+        ViewUtils.showDialog(dialogRegistrovatOrg);
+    }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
+
+    private void btnPripojitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitMouseClicked
+        String orgAdresa = fieldAdresa.getText();
+        if (!this.controller.pripojitOrganizaciu(orgAdresa)) {
+            JOptionPane.showMessageDialog(this, "Nepodarilo sa pripojit", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        labelPrihlasitOrgName.setText(this.controller.getOrgName());
+        ViewUtils.showDialog(dialogPripojit);
+    }//GEN-LAST:event_btnPripojitMouseClicked
+
     private void btnPripojitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPripojitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPripojitActionPerformed
@@ -573,7 +575,7 @@ public class EntryFrame extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("FlatLaf Light".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -629,7 +631,10 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField fieldRegistraciaHracaPasswordZnovu;
     private javax.swing.JTextField fieldRegistraciaLogin;
     private javax.swing.JTextField fieldRegistraciaMeno;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelAdresa;
     private javax.swing.JLabel labelAdresaRegOrg;
     private javax.swing.JLabel labelBalik;
@@ -641,10 +646,8 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelBalikMaxTurnajovData;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelLogin;
-    private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNazovRegOrg;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelPopis;
     private javax.swing.JLabel labelPrihlasitName;
     private javax.swing.JLabel labelPrihlasitOrgName;
     private javax.swing.JLabel labelRegistraciaHeslo;
@@ -653,7 +656,6 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelRegistraciaMeno;
     private javax.swing.JLabel labelRegistraciaOrg;
     private javax.swing.JLabel labelRegstraciaHraca;
-    private javax.swing.JLabel labelVitajte;
     private javax.swing.JPanel panelConnection;
     private javax.swing.JPanel panelDetailyRegistracie;
     private javax.swing.JPanel panelPripojit;
