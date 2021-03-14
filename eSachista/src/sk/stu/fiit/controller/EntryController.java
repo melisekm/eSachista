@@ -90,9 +90,13 @@ public class EntryController extends Controller {
             sb.append("\nVyplnte všetky udaje o organizácií.\n");
         }
 
-        Balik vybratyBalik = this.entryService.getBalik(balikId);
+        Balik vybratyBalik = this.getBalik(balikId);
         sb.append(vybratyBalik.toString());
         return sb.toString();
+    }
+
+    public Balik getBalik(int index) {
+        return this.entryService.getBalik(index);
     }
 
     public void clearSpravca() {

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
 import sk.stu.fiit.controller.EntryController;
+import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
 import sk.stu.fiit.utils.ViewUtils;
 
@@ -59,12 +60,12 @@ public class EntryFrame extends javax.swing.JFrame {
         fieldAdresaRegOrg = new javax.swing.JTextField();
         sliderBalik = new javax.swing.JSlider();
         labelBalik = new javax.swing.JLabel();
-        labelKapacita = new javax.swing.JLabel();
-        labelKapacitaData = new javax.swing.JLabel();
-        labelMaxPrihl = new javax.swing.JLabel();
-        labelMaxTurnajov = new javax.swing.JLabel();
-        labelMaxPrihlHracovData = new javax.swing.JLabel();
-        labelmaxTurnajovData = new javax.swing.JLabel();
+        labelBalikKapacita = new javax.swing.JLabel();
+        labelBalikKapacitaData = new javax.swing.JLabel();
+        labelBalikMaxPrihl = new javax.swing.JLabel();
+        labelBalikMaxTurnajov = new javax.swing.JLabel();
+        labelBalikMaxPrihlHracovData = new javax.swing.JLabel();
+        labelBalikMaxTurnajovData = new javax.swing.JLabel();
         btnVytvoritOrg = new javax.swing.JButton();
         btnZobrazitDetaily = new javax.swing.JButton();
         dialogRegistrovatHraca = new javax.swing.JDialog();
@@ -201,29 +202,29 @@ public class EntryFrame extends javax.swing.JFrame {
         labelBalik.setText("Balík");
         panelRegistrovatOrg.add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        labelKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelKapacita.setText("Kapacita hráčov:");
-        panelRegistrovatOrg.add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        labelBalikKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikKapacita.setText("Kapacita hráčov:");
+        panelRegistrovatOrg.add(labelBalikKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
-        labelKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelKapacitaData.setText("jLabel1");
-        panelRegistrovatOrg.add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
+        labelBalikKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikKapacitaData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelBalikKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
 
-        labelMaxPrihl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelMaxPrihl.setText("Maximum hráčov na turnaji:");
-        panelRegistrovatOrg.add(labelMaxPrihl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+        labelBalikMaxPrihl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikMaxPrihl.setText("Maximum hráčov na turnaji:");
+        panelRegistrovatOrg.add(labelBalikMaxPrihl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        labelMaxTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelMaxTurnajov.setText("Maximum turnajov:");
-        panelRegistrovatOrg.add(labelMaxTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        labelBalikMaxTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikMaxTurnajov.setText("Maximum turnajov:");
+        panelRegistrovatOrg.add(labelBalikMaxTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        labelMaxPrihlHracovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelMaxPrihlHracovData.setText("jLabel1");
-        panelRegistrovatOrg.add(labelMaxPrihlHracovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
+        labelBalikMaxPrihlHracovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikMaxPrihlHracovData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelBalikMaxPrihlHracovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
 
-        labelmaxTurnajovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelmaxTurnajovData.setText("jLabel1");
-        panelRegistrovatOrg.add(labelmaxTurnajovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+        labelBalikMaxTurnajovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelBalikMaxTurnajovData.setText("jLabel1");
+        panelRegistrovatOrg.add(labelBalikMaxTurnajovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
         btnVytvoritOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVytvoritOrg.setText("Registrovať");
@@ -476,6 +477,7 @@ public class EntryFrame extends javax.swing.JFrame {
     private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
         this.controller.clearSpravca();
         this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
+        this.updateBalikInfo(2);
         ViewUtils.showDialog(dialogRegistrovatOrg);
     }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
 
@@ -486,7 +488,8 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private void sliderBalikStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderBalikStateChanged
         DefaultBoundedRangeModel model = (DefaultBoundedRangeModel) sliderBalik.getModel();
-        System.out.println("model.getValue() = " + model.getValue());
+        int index = model.getValue();
+        this.updateBalikInfo(index);
     }//GEN-LAST:event_sliderBalikStateChanged
 
     private void btnZobrazitDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseClicked
@@ -500,7 +503,7 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private void btnVytvoritOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritOrgMouseClicked
         int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
-        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldNazovRegOrg, fieldAdresaRegOrg)) {
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldEmail, fieldNazovRegOrg, fieldAdresaRegOrg)) {
             return;
         }
         String nazovOrg = fieldNazovRegOrg.getText();
@@ -523,6 +526,13 @@ public class EntryFrame extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+
+    public void updateBalikInfo(int index) {
+        Balik b = this.controller.getBalik(index);
+        labelBalikKapacitaData.setText(String.valueOf(b.getKapacitaPouzivatelov()));
+        labelBalikMaxTurnajovData.setText(String.valueOf(b.getMaxPocetTurnajov()));
+        labelBalikMaxPrihlHracovData.setText(String.valueOf(b.getMaxHracovTurnaja()));
     }
 
 
@@ -600,13 +610,14 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelAdresa;
     private javax.swing.JLabel labelAdresaRegOrg;
     private javax.swing.JLabel labelBalik;
+    private javax.swing.JLabel labelBalikKapacita;
+    private javax.swing.JLabel labelBalikKapacitaData;
+    private javax.swing.JLabel labelBalikMaxPrihl;
+    private javax.swing.JLabel labelBalikMaxPrihlHracovData;
+    private javax.swing.JLabel labelBalikMaxTurnajov;
+    private javax.swing.JLabel labelBalikMaxTurnajovData;
     private javax.swing.JLabel labelEmail;
-    private javax.swing.JLabel labelKapacita;
-    private javax.swing.JLabel labelKapacitaData;
     private javax.swing.JLabel labelLogin;
-    private javax.swing.JLabel labelMaxPrihl;
-    private javax.swing.JLabel labelMaxPrihlHracovData;
-    private javax.swing.JLabel labelMaxTurnajov;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNazovRegOrg;
     private javax.swing.JLabel labelPassword;
@@ -620,7 +631,6 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelRegistraciaOrg;
     private javax.swing.JLabel labelRegstraciaHraca;
     private javax.swing.JLabel labelVitajte;
-    private javax.swing.JLabel labelmaxTurnajovData;
     private javax.swing.JPanel panelConnection;
     private javax.swing.JPanel panelDetailyRegistracie;
     private javax.swing.JPanel panelPripojit;

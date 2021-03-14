@@ -17,6 +17,8 @@ public class EntryConstants {
     
     public static final int REGISTRUJ_SPRAVCU = 0;
     public static final int REGISTRUJ_HRACA = 1;
+    
+    
 
 
     private EntryConstants() {
