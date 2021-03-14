@@ -25,52 +25,39 @@ public class HracFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jpProfilHraca1 = new sk.stu.fiit.view.ProfilHracaPane();
+        mainTabPane = new javax.swing.JTabbedPane();
+        profilHracaPane1 = new sk.stu.fiit.view.ProfilHracaPane();
+        zoznamTurnajovPanel1 = new sk.stu.fiit.view.ZoznamTurnajovPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab1", jPanel2);
-
-        javax.swing.GroupLayout jpProfilHraca1Layout = new javax.swing.GroupLayout(jpProfilHraca1);
-        jpProfilHraca1.setLayout(jpProfilHraca1Layout);
-        jpProfilHraca1Layout.setHorizontalGroup(
-            jpProfilHraca1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        jpProfilHraca1Layout.setVerticalGroup(
-            jpProfilHraca1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab2", jpProfilHraca1);
+        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainTabPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mainTabPaneStateChanged(evt);
+            }
+        });
+        mainTabPane.addTab("Profil", profilHracaPane1);
+        mainTabPane.addTab("Turnaje", zoznamTurnajovPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(mainTabPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(mainTabPane)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainTabPaneStateChanged
 
     /**
      * @param args the command line arguments
@@ -108,8 +95,8 @@ public class HracFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private sk.stu.fiit.view.ProfilHracaPane jpProfilHraca1;
+    private javax.swing.JTabbedPane mainTabPane;
+    private sk.stu.fiit.view.ProfilHracaPane profilHracaPane1;
+    private sk.stu.fiit.view.ZoznamTurnajovPanel zoznamTurnajovPanel1;
     // End of variables declaration//GEN-END:variables
 }
