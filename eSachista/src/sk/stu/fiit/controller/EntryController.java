@@ -14,7 +14,7 @@ import sk.stu.fiit.validator.EntryUserValidator;
  */
 public class EntryController extends Controller {
 
-    private EntryUserValidator validator;
+    private final EntryUserValidator validator;
 
     public EntryController() {
         this.validator = new EntryUserValidator();

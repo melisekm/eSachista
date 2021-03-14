@@ -2,6 +2,7 @@ package sk.stu.fiit.utils;
 
 import sk.stu.fiit.database.Database;
 import sk.stu.fiit.model.organisation.Organizacia;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
 
@@ -18,5 +19,6 @@ public class DataLoader {
         Spravca organizator = new Spravca("Martin Melisek", "test", new char[]{'<','=','>'}, "x@x.sk" );
         Organizacia o = new Organizacia("FIIT STUBA VAVA", "sk.stu.fiit.vava", organizator, b);
         db.getOrganizacie().add(o);
+        db.getOrganizacie().get(0).getPouzivatelia().add(new Hrac("Adam novy", "xuser", new char[]{'<','=','>'}));
     }
 }

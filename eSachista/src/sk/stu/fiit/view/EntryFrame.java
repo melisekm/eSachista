@@ -14,8 +14,8 @@ import sk.stu.fiit.utils.ViewUtils;
  */
 public class EntryFrame extends javax.swing.JFrame {
 
-    private EntryController controller;
-    private javax.swing.JTextField[] registraciaHracaFields;
+    private final EntryController controller;
+    private final javax.swing.JTextField[] registraciaHracaFields;
     private int registraciaType;
 
     public EntryFrame() {
@@ -408,14 +408,18 @@ public class EntryFrame extends javax.swing.JFrame {
         System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
         dialogPripojit.dispose();
         int loggedInId = this.controller.getPripojenyPouzivatel();
-        if (loggedInId == EntryConstants.LOGGED_IN_SPRAVCA) { // asi OK ? XD
-            System.out.println("DEBUG: loggedInId = " + loggedInId);
-            SpravcaFrame.main();
-        } else if (loggedInId == EntryConstants.LOGGED_IN_HRAC) {
-            System.out.println("DEBUG: loggedInId = " + loggedInId);
-            HracFrame.main();
-        } else {
-            System.err.println("DEBUG: NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
+        switch (loggedInId) {
+            case EntryConstants.LOGGED_IN_SPRAVCA:
+                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                SpravcaFrame.main();
+                break;
+            case EntryConstants.LOGGED_IN_HRAC:
+                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                HracFrame.main();
+                break;
+            default:
+                System.err.println("DEBUG: NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
+                break;
         }
         this.setVisible(false);
     }//GEN-LAST:event_btnPrihlasitOKMouseClicked
@@ -540,9 +544,6 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogDetailyRegistracie.dispose();
     }//GEN-LAST:event_btnZavrietDetailyMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
