@@ -94,6 +94,7 @@ public class EntryFrame extends javax.swing.JFrame {
         labelPopis = new javax.swing.JLabel();
         btnPripojit = new javax.swing.JButton();
         btnRegistrovatOrg = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         dialogPripojit.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPripojit.setModal(true);
@@ -339,49 +340,65 @@ public class EntryFrame extends javax.swing.JFrame {
         setTitle("eSachista");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelConnection.setBackground(new java.awt.Color(255, 255, 255));
         panelConnection.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelConnection.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelVitajte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelVitajte.setForeground(new java.awt.Color(0, 0, 0));
         labelVitajte.setText("Vitajte v aplikácií");
-        panelConnection.add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 140, 40));
+        panelConnection.add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 160, 30));
 
         labelName.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        labelName.setForeground(new java.awt.Color(102, 69, 255));
+        labelName.setForeground(new java.awt.Color(0, 0, 0));
         labelName.setText("eSachista");
-        panelConnection.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 110, 40));
+        panelConnection.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 75, 110, 40));
 
         labelAdresa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelAdresa.setForeground(new java.awt.Color(0, 0, 0));
         labelAdresa.setText("Adresa:");
-        panelConnection.add(labelAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, 20));
+        panelConnection.add(labelAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 175, 90, 20));
 
         fieldAdresa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fieldAdresa.setText("sk.stu.fiit.vava");
-        panelConnection.add(fieldAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 240, 40));
+        panelConnection.add(fieldAdresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 250, 40));
 
         labelPopis.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelPopis.setForeground(new java.awt.Color(153, 153, 153));
         labelPopis.setText("najmodernejší plánovač šachových turnajov");
-        panelConnection.add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 280, 30));
+        panelConnection.add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 280, 30));
 
+        btnPripojit.setBackground(new java.awt.Color(53, 214, 67));
         btnPripojit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPripojit.setForeground(new java.awt.Color(255, 255, 255));
         btnPripojit.setText("Pripojiť sa");
         btnPripojit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPripojitMouseClicked(evt);
             }
         });
-        panelConnection.add(btnPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 130, 40));
+        btnPripojit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPripojitActionPerformed(evt);
+            }
+        });
+        panelConnection.add(btnPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, 40));
 
+        btnRegistrovatOrg.setBackground(new java.awt.Color(0, 153, 255));
         btnRegistrovatOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrovatOrg.setText("Zaregistrovať organizáciu");
         btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrovatOrgMouseClicked(evt);
             }
         });
-        panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 240, 40));
+        panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 280, 240, 40));
 
-        getContentPane().add(panelConnection, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess.png"))); // NOI18N
+        panelConnection.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        getContentPane().add(panelConnection, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 360));
 
         pack();
         setLocationRelativeTo(null);
@@ -544,6 +561,10 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogDetailyRegistracie.dispose();
     }//GEN-LAST:event_btnZavrietDetailyMouseClicked
 
+    private void btnPripojitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPripojitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPripojitActionPerformed
+
     public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -608,6 +629,7 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField fieldRegistraciaHracaPasswordZnovu;
     private javax.swing.JTextField fieldRegistraciaLogin;
     private javax.swing.JTextField fieldRegistraciaMeno;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAdresa;
     private javax.swing.JLabel labelAdresaRegOrg;
     private javax.swing.JLabel labelBalik;
