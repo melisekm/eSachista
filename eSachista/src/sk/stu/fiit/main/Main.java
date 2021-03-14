@@ -3,6 +3,7 @@ package sk.stu.fiit.main;
 /**
  *
  * @author Martin Melisek
+ * @author Lucia Rapanova
  */
 public class Main {
 
