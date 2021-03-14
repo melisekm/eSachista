@@ -15,7 +15,7 @@ public class Main {
      */
     public static void main(String[] args) {
         DataLoader.loadData();
-        LoginFrame.main(args);
+        LoginFrame.main();
     }
     
 }

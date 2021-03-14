@@ -1,6 +1,7 @@
 package sk.stu.fiit.validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 
 /**
@@ -18,15 +19,14 @@ public class EntryValidator {
         return true;
     }
 
-    public boolean checkUserLogin(ArrayList<Pouzivatel> userDatabase, String login, String password) {
+    public Pouzivatel checkUserLogin(ArrayList<Pouzivatel> userDatabase, String login, char[] password) {
         password = this.securePassword().stringToHash(password);
         for (Pouzivatel p : userDatabase) {
-            String userPassword = this.securePassword().hashToString(p.getPassword());
-            if (p.getLogin().equals(login) && userPassword.equals(password)) {
-                return true;
+            if (p.getLogin().equals(login) && Arrays.equals(p.getPassword(), password)) {
+                return p;
             }
         }
-        return false;
+        return null;
     }
 
     public Hashable securePassword() {
@@ -36,21 +36,19 @@ public class EntryValidator {
             private final int offset = 11;
 
             @Override
-            public String hashToString(String hashed) {
-                String result = ""; // pomocou posuvania znakov zahashuje
-                for (int i = 0; i < hashed.length(); i++) {
-                    char ch = (char) (hashed.charAt(i) - this.offset);
-                    result += ch;
+            public char[] hashToString(char[] hashed) {
+                char[] result = new char[hashed.length];// pomocou posuvania znakov zahashuje
+                for (int i = 0; i < hashed.length; i++) {
+                    result[i] = (char) (hashed[i] - this.offset);
                 }
                 return result;
             }
 
             @Override
-            public String stringToHash(String original) {
-                String result = ""; // desifruje nakolko pozna aky bol posun
-                for (int i = 0; i < original.length(); i++) {
-                    char ch = (char) (original.charAt(i) + this.offset);
-                    result += ch;
+            public char[] stringToHash(char[] original) {
+                char[] result = new char[original.length]; // desifruje nakolko pozna aky bol posun
+                for (int i = 0; i < original.length; i++) {
+                    result[i] = (char) (original[i] + this.offset);
                 }
                 return result;
             }

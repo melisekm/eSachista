@@ -10,16 +10,16 @@ public interface Hashable {
 	/**
 	 * Pomocou hashovacej techniky zahashuje string
 	 * 
-	 * @param original String, ktory sa ma zahashovat
+	 * @param original Pole znakov, ktory sa ma zahashovat
 	 * @return Zahashovany String
 	 */
-	public String stringToHash(String original);
+	public char[] stringToHash(char[] original);
 
 	/**
 	 * Rozpozna <b>desifruje</b> zahashovany string
 	 * 
-	 * @param hashed String ktory je zahashovany a ma sa rozpoznat
+	 * @param hashed Pole znakov ktory je zahashovany a ma sa rozpoznat
 	 * @return Desifrovany String
 	 */
-	public String hashToString(String hashed);
+	public char[] hashToString(char[] hashed);
 }

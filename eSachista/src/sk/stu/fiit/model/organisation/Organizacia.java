@@ -24,6 +24,7 @@ public class Organizacia {
         this.spravcovia = new ArrayList<>();
         this.spravcovia.add(organizator);
         this.pouzivatelia = new ArrayList<>();
+        this.pouzivatelia.add(organizator);
     }
 
     public String getNazov() {

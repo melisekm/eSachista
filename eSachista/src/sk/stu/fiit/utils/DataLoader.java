@@ -12,7 +12,8 @@ public class DataLoader {
 
     public static void loadData() {
         Database db = Database.getInstance();
-        Spravca organizator = new Spravca("Martin Melisek", "test", "123", "x@x.sk" );
+        char[] pw = new char[]{'<','=','>'}; // "123"
+        Spravca organizator = new Spravca("Martin Melisek", "test", new char[]{'<','=','>'}, "x@x.sk" );
         Organizacia o = new Organizacia("FIIT STUBA VAVA", "sk.stu.fiit.vava", organizator);
         db.getOrganizacie().add(o);
     }

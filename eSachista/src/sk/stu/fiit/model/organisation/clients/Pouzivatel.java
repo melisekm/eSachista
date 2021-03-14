@@ -7,9 +7,9 @@ package sk.stu.fiit.model.organisation.clients;
 public abstract class Pouzivatel {
     private String meno;
     private String login;
-    private String password; //zahashovane heslo
+    private char[] password; //zahashovane heslo
 
-    public Pouzivatel(String meno, String login, String heslo) {
+    public Pouzivatel(String meno, String login, char[] heslo) {
         this.meno = meno;
         this.login = login;
         this.password = heslo;
@@ -31,11 +31,11 @@ public abstract class Pouzivatel {
         this.login = login;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
     
