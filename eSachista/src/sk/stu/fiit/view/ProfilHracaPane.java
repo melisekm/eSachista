@@ -27,10 +27,10 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        MenoLabel = new javax.swing.JLabel();
-        PrezyvkaLabel = new javax.swing.JLabel();
+        labelMenoHraca = new javax.swing.JLabel();
+        labelPrezyvka = new javax.swing.JLabel();
         MestoLabel = new javax.swing.JLabel();
-        UpravitButton = new javax.swing.JButton();
+        btnUpravitProfil = new javax.swing.JButton();
         Avatar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         RatingLabel = new javax.swing.JLabel();
@@ -53,29 +53,29 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         VyhryLabel = new javax.swing.JLabel();
         PrehryLable = new javax.swing.JLabel();
         TurnajeLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogOutHrac = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MenoLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        MenoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        MenoLabel.setText("Cpavok");
-        add(MenoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 220, 20));
+        labelMenoHraca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelMenoHraca.setForeground(new java.awt.Color(0, 0, 0));
+        labelMenoHraca.setText("Cpavok");
+        add(labelMenoHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 220, 20));
 
-        PrezyvkaLabel.setForeground(new java.awt.Color(102, 102, 102));
-        PrezyvkaLabel.setText("Tu bude jeho prezývka");
-        add(PrezyvkaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+        labelPrezyvka.setForeground(new java.awt.Color(102, 102, 102));
+        labelPrezyvka.setText("Tu bude jeho prezývka");
+        add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
 
         MestoLabel.setForeground(new java.awt.Color(0, 0, 0));
         MestoLabel.setText("Mesto, štát?");
         add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
-        UpravitButton.setBackground(new java.awt.Color(204, 204, 204));
-        UpravitButton.setForeground(new java.awt.Color(0, 0, 0));
-        UpravitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        UpravitButton.setText("Upraviť");
-        add(UpravitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+        btnUpravitProfil.setBackground(new java.awt.Color(204, 204, 204));
+        btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpravitProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
+        btnUpravitProfil.setText("Upraviť");
+        add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         add(Avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
@@ -108,7 +108,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(HistoriaTurnajov);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 360, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 360, 270));
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Dátum registrácie:");
@@ -128,7 +128,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("TURNAJE");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
         DatumRegistracieLabel.setForeground(new java.awt.Color(0, 0, 0));
         DatumRegistracieLabel.setText("12-3-2021");
@@ -171,9 +171,9 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 230, 160));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, -1, -1));
+        btnLogOutHrac.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogOutHrac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
+        add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -182,16 +182,14 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private javax.swing.JLabel DatumRegistracieLabel;
     private javax.swing.JList<String> HistoriaTurnajov;
     private javax.swing.JList<String> HistoriaZapasov;
-    private javax.swing.JLabel MenoLabel;
     private javax.swing.JLabel MestoLabel;
     private javax.swing.JLabel PocetZapasovLabel;
     private javax.swing.JLabel PrehryLable;
-    private javax.swing.JLabel PrezyvkaLabel;
     private javax.swing.JLabel RatingLabel;
     private javax.swing.JLabel TurnajeLabel;
-    private javax.swing.JButton UpravitButton;
     private javax.swing.JLabel VyhryLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogOutHrac;
+    private javax.swing.JButton btnUpravitProfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -205,5 +203,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelMenoHraca;
+    private javax.swing.JLabel labelPrezyvka;
     // End of variables declaration//GEN-END:variables
 }

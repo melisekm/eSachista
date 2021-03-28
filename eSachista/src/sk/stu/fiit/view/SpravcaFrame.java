@@ -25,50 +25,34 @@ public class SpravcaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        spravcaPrehladPane2 = new sk.stu.fiit.view.SpravcaPrehladPane();
+        turnajePane1 = new sk.stu.fiit.view.TurnajePane();
+        clenoviaPane1 = new sk.stu.fiit.view.ClenoviaPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(935, 655));
+        setPreferredSize(new java.awt.Dimension(935, 655));
 
-        jLabel1.setText("haf");
-
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
+        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTabbedPane1.addTab("Prehľad", spravcaPrehladPane2);
+        jTabbedPane1.addTab("Turnaje", turnajePane1);
+        jTabbedPane1.addTab("Členovia", clenoviaPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel1)
-                .addContainerGap(260, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(93, 93, 93)
-                .addComponent(jButton1))
+            .addComponent(jTabbedPane1)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        this.dispose();
-        EntryFrame.main();
-    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -107,7 +91,9 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private sk.stu.fiit.view.ClenoviaPane clenoviaPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private sk.stu.fiit.view.SpravcaPrehladPane spravcaPrehladPane2;
+    private sk.stu.fiit.view.TurnajePane turnajePane1;
     // End of variables declaration//GEN-END:variables
 }
