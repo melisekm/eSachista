@@ -35,7 +35,7 @@ public class ClenoviaPane extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -46,7 +46,9 @@ public class ClenoviaPane extends javax.swing.JPanel {
         jLabel2.setText("počet členov");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
-        jList1.setBackground(new java.awt.Color(255, 255, 255));
+        jList1.setBackground(new java.awt.Color(153, 153, 153));
+        jList1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jList1.setForeground(new java.awt.Color(255, 255, 255));
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -54,11 +56,11 @@ public class ClenoviaPane extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 640, 400));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 640, 520));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         jButton1.setText("jButton1");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 140, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "toto by mohlo fungovať ako vyhľadávanie", "look up jcombobox autocomplete", "neviem či naozaj LUL", "možno žiadny regex " }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 50, 170, -1));

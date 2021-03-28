@@ -45,6 +45,7 @@ public class TurnajePane extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jList1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -52,28 +53,31 @@ public class TurnajePane extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, 410));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 380, 410));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Zoznam naplánovaných turnajov");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         jButton1.setText("Upraviť turnaj");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 120, 30));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
 
         jLabel2.setText("len poznámka: keď klikne na turnaj, mohli by sa sem do txt polí načítať info");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
         jLabel3.setText("Názov turnaja");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
 
         jLabel4.setText("Formát turnaja");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
 
         jLabel5.setText("Kapacita: ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, -1));
 
+        jList2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "zoznam prihlásených hráčov..." };
             public int getSize() { return strings.length; }
@@ -81,16 +85,19 @@ public class TurnajePane extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jList2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 290, 260));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 290, 270));
 
         jLabel6.setText("Začiatok");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
 
         jLabel7.setText("......");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(118, 155, 108));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("VYTVORIŤ NOVÝ TURNAJ");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 180, 50));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 

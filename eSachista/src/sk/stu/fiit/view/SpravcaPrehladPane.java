@@ -37,31 +37,35 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         jList1 = new javax.swing.JList<>();
         labelDatumRegOrg = new javax.swing.JLabel();
         labelPocetClenovOrg = new javax.swing.JLabel();
+        btnOdhlasitSpravcu = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLogoOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        add(labelLogoOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 160, 130));
+        add(labelLogoOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 160));
 
         labelNazovOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelNazovOrgPrehlad.setText("Názov organizácie");
-        add(labelNazovOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
+        add(labelNazovOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         jLabel3.setText("Dátum registrácie:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         jLabel4.setText("Počet členov: ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Nadchádzajúce udalosti");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
+        btnUpravitOrgPrehlad.setBackground(new java.awt.Color(204, 204, 204));
+        btnUpravitOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnUpravitOrgPrehlad.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviť");
-        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
+        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "neviem ešte že aký to bude komponent" };
@@ -70,17 +74,25 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 790, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 810, 280));
 
         labelDatumRegOrg.setText("jLabel5");
-        add(labelDatumRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+        add(labelDatumRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         labelPocetClenovOrg.setText("jLabel6");
-        add(labelPocetClenovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        add(labelPocetClenovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+
+        btnOdhlasitSpravcu.setBackground(new java.awt.Color(204, 204, 204));
+        btnOdhlasitSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnOdhlasitSpravcu.setForeground(new java.awt.Color(0, 0, 0));
+        btnOdhlasitSpravcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
+        btnOdhlasitSpravcu.setText("Odhlásiť sa");
+        add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOdhlasitSpravcu;
     private javax.swing.JButton btnUpravitOrgPrehlad;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

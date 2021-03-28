@@ -49,7 +49,6 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         TurnajDialog.setBackground(new java.awt.Color(255, 255, 255));
         TurnajDialog.setMinimumSize(new java.awt.Dimension(660, 560));
         TurnajDialog.setModal(true);
-        TurnajDialog.setPreferredSize(new java.awt.Dimension(660, 560));
         TurnajDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess-chess-board-game-chessboard-icon-wrong.png"))); // NOI18N
@@ -98,14 +97,16 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         TurnajDialog.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(900, 610));
+        setPreferredSize(new java.awt.Dimension(900, 610));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TabulkaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
+        TabulkaTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        TabulkaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
         TabulkaTurnajov.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Pohár dekana", "14.3.2022", "FIIT STU, Bratislava", "Open", "Open", "Konečne sa opät môžeme stretnúť...", "Swiss 10+5", "10/100"},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {"Pohár dekana", "14.3.2022", "FIIT STU, Bratislava", "Open", "Open", "Konečne sa opät môžeme stretnúť...", "Swiss 10+5", "10/100"}
             },
             new String [] {
                 "Názov turnaja", "Dátum a čas", "Miesto konania", "Rating", "Veková kategória", "Opis", "Formát", "Kapacita"
@@ -119,6 +120,7 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        TabulkaTurnajov.setGridColor(new java.awt.Color(51, 51, 51));
         TabulkaTurnajov.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabulkaTurnajovMouseClicked(evt);
@@ -126,16 +128,18 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TabulkaTurnajov);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 21, 770, 440));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Kliknutím na turnaj zobrazíte možnosti a podrobné informácie");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(118, 155, 108));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Prihlásiť sa na turnaj");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 170, 50));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabulkaTurnajovMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabulkaTurnajovMouseClicked

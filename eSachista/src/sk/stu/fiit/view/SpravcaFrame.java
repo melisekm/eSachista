@@ -1,5 +1,6 @@
 package sk.stu.fiit.view;
 
+import java.awt.Color;
 import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 
@@ -34,6 +35,8 @@ public class SpravcaFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(935, 655));
         setPreferredSize(new java.awt.Dimension(935, 655));
 
+        jTabbedPane1.setBackground(new java.awt.Color(0, 166, 172));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTabbedPane1.addTab("Prehľad", spravcaPrehladPane2);
         jTabbedPane1.addTab("Turnaje", turnajePane1);
@@ -65,7 +68,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("FlatLaf Light".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -81,7 +84,8 @@ public class SpravcaFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        Color c = new Color(0,118,121);
+        javax.swing.UIManager.put("TabbedPane.selected", c);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
