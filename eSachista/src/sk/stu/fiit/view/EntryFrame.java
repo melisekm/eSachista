@@ -123,8 +123,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnPrihlasitOK.setForeground(new java.awt.Color(255, 255, 255));
         btnPrihlasitOK.setText("OK");
         btnPrihlasitOK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrihlasitOKMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPrihlasitOKMouseReleased(evt);
             }
         });
         panelPripojit.add(btnPrihlasitOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 60, -1));
@@ -134,8 +134,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatHraca.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrovatHraca.setText("Zaregistrovať sa");
         btnRegistrovatHraca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrovatHracaMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistrovatHracaMouseReleased(evt);
             }
         });
         panelPripojit.add(btnRegistrovatHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
@@ -166,8 +166,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnVytvoritSpravcu.setForeground(new java.awt.Color(255, 255, 255));
         btnVytvoritSpravcu.setText("Vytvoriť správcu");
         btnVytvoritSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVytvoritSpravcuMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVytvoritSpravcuMouseReleased(evt);
             }
         });
         panelRegistrovatOrg.add(btnVytvoritSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
@@ -187,7 +187,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg.add(fieldNazovRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 140, -1));
 
         labelAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelAdresaRegOrg.setText("Adresa organizácie:");
+        labelAdresaRegOrg.setText("Doména organizácie:");
         panelRegistrovatOrg.add(labelAdresaRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         fieldAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -238,8 +238,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnVytvoritOrg.setForeground(new java.awt.Color(255, 255, 255));
         btnVytvoritOrg.setText("Registrovať");
         btnVytvoritOrg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVytvoritOrgMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVytvoritOrgMouseReleased(evt);
             }
         });
         panelRegistrovatOrg.add(btnVytvoritOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 130, -1));
@@ -249,8 +249,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnZobrazitDetaily.setForeground(new java.awt.Color(255, 255, 255));
         btnZobrazitDetaily.setText("Detaily registrácie");
         btnZobrazitDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnZobrazitDetailyMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnZobrazitDetailyMouseReleased(evt);
             }
         });
         panelRegistrovatOrg.add(btnZobrazitDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
@@ -299,8 +299,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistraciaHracaOK.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistraciaHracaOK.setText("OK");
         btnRegistraciaHracaOK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistraciaHracaOKMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistraciaHracaOKMouseReleased(evt);
             }
         });
         panelRegistraciaHraca.add(btnRegistraciaHracaOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 90, -1));
@@ -310,8 +310,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistraciaHracaZrusit.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistraciaHracaZrusit.setText("Zrušiť");
         btnRegistraciaHracaZrusit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistraciaHracaZrusitMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistraciaHracaZrusitMouseReleased(evt);
             }
         });
         panelRegistraciaHraca.add(btnRegistraciaHracaZrusit, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 90, -1));
@@ -342,8 +342,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnZavrietDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnZavrietDetaily.setText("Zavrieť");
         btnZavrietDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnZavrietDetailyMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnZavrietDetailyMouseReleased(evt);
             }
         });
         panelDetailyRegistracie.add(btnZavrietDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
@@ -374,8 +374,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatOrg.setText("Zaregistrovať organizáciu");
         btnRegistrovatOrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 155, 108), 1, true));
         btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrovatOrgMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistrovatOrgMouseReleased(evt);
             }
         });
         panelConnection.add(btnRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 350, 50));
@@ -386,13 +386,8 @@ public class EntryFrame extends javax.swing.JFrame {
         btnPripojit.setText("Pripojiť sa");
         btnPripojit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         btnPripojit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPripojitMouseClicked(evt);
-            }
-        });
-        btnPripojit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPripojitActionPerformed(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPripojitMouseReleased(evt);
             }
         });
         panelConnection.add(btnPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 350, 50));
@@ -419,47 +414,6 @@ public class EntryFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPrihlasitOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitOKMouseClicked
-        String login = fieldLogin.getText();
-        char[] password = fieldPassword.getPassword();
-        fieldPassword.setText("");
-        if (!this.controller.pripojitHraca(login, password)) {
-            JOptionPane.showMessageDialog(dialogPripojit, "Ucet neexistuje", "Invalid User", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
-        dialogPripojit.dispose();
-        int loggedInId = this.controller.getPripojenyPouzivatel();
-        switch (loggedInId) {
-            case EntryConstants.LOGGED_IN_SPRAVCA:
-                System.out.println("DEBUG: loggedInId = " + loggedInId);
-                SpravcaFrame.main();
-                break;
-            case EntryConstants.LOGGED_IN_HRAC:
-                System.out.println("DEBUG: loggedInId = " + loggedInId);
-                HracFrame.main();
-                break;
-            default:
-                System.err.println("DEBUG: NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
-                break;
-        }
-        this.setVisible(false);
-    }//GEN-LAST:event_btnPrihlasitOKMouseClicked
-
-    private void btnRegistrovatHracaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatHracaMouseClicked
-        this.registraciaType = EntryConstants.REGISTRUJ_HRACA;
-        ViewUtils.clearFields(fieldLogin, fieldPassword);
-        ViewUtils.showDialog(dialogRegistrovatHraca);
-    }//GEN-LAST:event_btnRegistrovatHracaMouseClicked
-
-    private void btnRegistraciaHracaOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaOKMouseClicked
-        int status = this.vykonajRegistraciu(this.registraciaType); // skontroluj ci je mozne registrovat sa
-        if (status == -1 || !this.skontrolujStatusRegistracieHrac(status)) {
-            return;
-        }
-        dialogRegistrovatHraca.dispose();
-    }//GEN-LAST:event_btnRegistraciaHracaOKMouseClicked
 
     private int vykonajRegistraciu(int registraciaType) {
         if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
@@ -492,49 +446,15 @@ public class EntryFrame extends javax.swing.JFrame {
         return true;
     }
 
-    private void btnRegistraciaHracaZrusitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseClicked
-        ViewUtils.clearFields(this.registraciaHracaFields);
-        dialogRegistrovatHraca.dispose();
-    }//GEN-LAST:event_btnRegistraciaHracaZrusitMouseClicked
-
     private void dialogRegistrovatHracaWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogRegistrovatHracaWindowClosed
         ViewUtils.clearFields(this.registraciaHracaFields);
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
-
-    private void btnVytvoritSpravcuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritSpravcuMouseClicked
-        ViewUtils.showDialog(dialogRegistrovatHraca);
-
-    }//GEN-LAST:event_btnVytvoritSpravcuMouseClicked
 
     private void sliderBalikStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderBalikStateChanged
         DefaultBoundedRangeModel model = (DefaultBoundedRangeModel) sliderBalik.getModel();
         int index = model.getValue();
         this.updateBalikInfo(index);
     }//GEN-LAST:event_sliderBalikStateChanged
-
-    private void btnZobrazitDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseClicked
-        String nazovOrg = fieldNazovRegOrg.getText();
-        String adresaOrg = fieldAdresaRegOrg.getText();
-        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
-        String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikId);
-        textAreaDetaily.setText(detailyRegistracie);
-        ViewUtils.showDialog(dialogDetailyRegistracie);
-    }//GEN-LAST:event_btnZobrazitDetailyMouseClicked
-
-    private void btnVytvoritOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritOrgMouseClicked
-        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
-        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldEmail, fieldNazovRegOrg, fieldAdresaRegOrg)) {
-            return;
-        }
-        String nazovOrg = fieldNazovRegOrg.getText();
-        String adresaOrg = fieldAdresaRegOrg.getText();
-        int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId);
-        if (!this.skontrolujStatusRegistracieOrg(status)) {
-            return;
-        }
-
-        dialogRegistrovatOrg.dispose();
-    }//GEN-LAST:event_btnVytvoritOrgMouseClicked
 
     private boolean skontrolujStatusRegistracieOrg(int status) {
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
@@ -556,18 +476,92 @@ public class EntryFrame extends javax.swing.JFrame {
     }
 
 
-    private void btnZavrietDetailyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseClicked
-        dialogDetailyRegistracie.dispose();
-    }//GEN-LAST:event_btnZavrietDetailyMouseClicked
-
-    private void btnRegistrovatOrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseClicked
+    private void btnRegistrovatOrgMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseReleased
         this.controller.clearSpravca();
         this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
         this.updateBalikInfo(2);
         ViewUtils.showDialog(dialogRegistrovatOrg);
-    }//GEN-LAST:event_btnRegistrovatOrgMouseClicked
+    }//GEN-LAST:event_btnRegistrovatOrgMouseReleased
 
-    private void btnPripojitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitMouseClicked
+    private void btnRegistrovatHracaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatHracaMouseReleased
+        this.registraciaType = EntryConstants.REGISTRUJ_HRACA;
+        ViewUtils.clearFields(fieldLogin, fieldPassword);
+        ViewUtils.showDialog(dialogRegistrovatHraca);
+    }//GEN-LAST:event_btnRegistrovatHracaMouseReleased
+
+    private void btnPrihlasitOKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitOKMouseReleased
+        String login = fieldLogin.getText();
+        char[] password = fieldPassword.getPassword();
+        fieldPassword.setText("");
+        if (!this.controller.pripojitHraca(login, password)) {
+            JOptionPane.showMessageDialog(dialogPripojit, "Ucet neexistuje", "Invalid User", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
+        dialogPripojit.dispose();
+        int loggedInId = this.controller.getPripojenyPouzivatel();
+        switch (loggedInId) {
+            case EntryConstants.LOGGED_IN_SPRAVCA:
+                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                SpravcaFrame.main();
+                break;
+            case EntryConstants.LOGGED_IN_HRAC:
+                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                HracFrame.main();
+                break;
+            default:
+                System.err.println("DEBUG: NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
+                break;
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPrihlasitOKMouseReleased
+
+    private void btnVytvoritSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritSpravcuMouseReleased
+        ViewUtils.showDialog(dialogRegistrovatHraca);
+    }//GEN-LAST:event_btnVytvoritSpravcuMouseReleased
+
+    private void btnZobrazitDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseReleased
+        String nazovOrg = fieldNazovRegOrg.getText();
+        String adresaOrg = fieldAdresaRegOrg.getText();
+        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
+        String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikId);
+        textAreaDetaily.setText(detailyRegistracie);
+        ViewUtils.showDialog(dialogDetailyRegistracie);
+    }//GEN-LAST:event_btnZobrazitDetailyMouseReleased
+
+    private void btnVytvoritOrgMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritOrgMouseReleased
+        int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldEmail, fieldNazovRegOrg, fieldAdresaRegOrg)) {
+            return;
+        }
+        String nazovOrg = fieldNazovRegOrg.getText();
+        String adresaOrg = fieldAdresaRegOrg.getText();
+        int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId);
+        if (!this.skontrolujStatusRegistracieOrg(status)) {
+            return;
+        }
+        dialogRegistrovatOrg.dispose();
+        JOptionPane.showMessageDialog(this, "Registracia bola úspešná", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnVytvoritOrgMouseReleased
+
+    private void btnRegistraciaHracaZrusitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseReleased
+        ViewUtils.clearFields(this.registraciaHracaFields);
+        dialogRegistrovatHraca.dispose();
+    }//GEN-LAST:event_btnRegistraciaHracaZrusitMouseReleased
+
+    private void btnRegistraciaHracaOKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaOKMouseReleased
+        int status = this.vykonajRegistraciu(this.registraciaType); // skontroluj ci je mozne registrovat sa
+        if (status == -1 || !this.skontrolujStatusRegistracieHrac(status)) {
+            return;
+        }
+        dialogRegistrovatHraca.dispose();
+    }//GEN-LAST:event_btnRegistraciaHracaOKMouseReleased
+
+    private void btnZavrietDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseReleased
+        dialogDetailyRegistracie.dispose();
+    }//GEN-LAST:event_btnZavrietDetailyMouseReleased
+
+    private void btnPripojitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitMouseReleased
         String orgAdresa = fieldAdresa.getText();
         if (!this.controller.pripojitOrganizaciu(orgAdresa)) {
             JOptionPane.showMessageDialog(this, "Nepodarilo sa pripojit", "Invalid Input", JOptionPane.ERROR_MESSAGE);
@@ -575,11 +569,7 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         labelPrihlasitOrgName.setText(this.controller.getOrgName());
         ViewUtils.showDialog(dialogPripojit);
-    }//GEN-LAST:event_btnPripojitMouseClicked
-
-    private void btnPripojitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPripojitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPripojitActionPerformed
+    }//GEN-LAST:event_btnPripojitMouseReleased
 
     public static void main() {
         /* Set the Nimbus look and feel */

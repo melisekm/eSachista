@@ -10,7 +10,6 @@ package sk.stu.fiit.view;
  * @author lucia
  */
 public class AktivneTurnajePanel extends javax.swing.JPanel {
-
     /**
      * Creates new form AktivneTurnajePanel
      */

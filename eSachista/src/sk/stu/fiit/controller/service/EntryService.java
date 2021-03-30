@@ -1,4 +1,4 @@
-package sk.stu.fiit.controller.sevice;
+package sk.stu.fiit.controller.service;
 
 import sk.stu.fiit.database.Database;
 import sk.stu.fiit.model.organisation.Organizacia;
