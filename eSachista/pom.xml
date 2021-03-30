@@ -4,7 +4,7 @@
     <artifactId>eSachista</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eSachista</name>
-    <description>Pl�novac turnajov</description>
+    <description>Planovac turnajov</description>
     <build>
         <sourceDirectory>src</sourceDirectory>
         <resources>
@@ -35,6 +35,11 @@
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 </project>

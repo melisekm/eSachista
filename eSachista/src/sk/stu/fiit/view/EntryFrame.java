@@ -4,6 +4,8 @@ import java.util.Arrays;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.EntryController;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
@@ -14,7 +16,7 @@ import sk.stu.fiit.utils.ViewUtils;
  * @author Martin Melisek
  */
 public class EntryFrame extends javax.swing.JFrame {
-
+    Logger logger = LoggerFactory.getLogger(EntryFrame.class);
     private final EntryController controller;
     private JTextField[] registraciaHracaFields;
     private JTextField[] registraciaOrgFields;
@@ -445,20 +447,20 @@ public class EntryFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(dialogPripojit, "Ucet neexistuje", "Invalid User", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        System.out.println("DEBUG: PRIHLASENIE FAJNOVUCKE"); // TODO CONTINUE.
+        logger.info("PRIHLASENIE FAJNOVUCKE");
         dialogPripojit.dispose();
         int loggedInId = this.controller.getPripojenyPouzivatel();
         switch (loggedInId) {
             case EntryConstants.LOGGED_IN_SPRAVCA:
-                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                logger.info("loggedInId = " + loggedInId);
                 SpravcaFrame.main();
                 break;
             case EntryConstants.LOGGED_IN_HRAC:
-                System.out.println("DEBUG: loggedInId = " + loggedInId);
+                logger.info("loggedInId = " + loggedInId);
                 HracFrame.main();
                 break;
             default:
-                System.err.println("DEBUG: NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
+                logger.error("NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
                 break;
         }
         this.setVisible(false);
