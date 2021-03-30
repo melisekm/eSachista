@@ -55,29 +55,29 @@ public class TurnajePane extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 380, 410));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Zoznam napl√°novan√Ωch turnajov");
+        jLabel1.setText("Zoznam napl·novan˝ch turnajov");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        jButton1.setText("Upravi≈• turnaj");
+        jButton1.setText("Upraviù turnaj");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
 
-        jLabel2.setText("len pozn√°mka: keƒè klikne na turnaj, mohli by sa sem do txt pol√≠ naƒç√≠ta≈• info");
+        jLabel2.setText("len pozn·mka: keÔ klikne na turnaj, mohli by sa sem do txt polÌ naËÌtaù info");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
-        jLabel3.setText("N√°zov turnaja");
+        jLabel3.setText("N·zov turnaja");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
 
-        jLabel4.setText("Form√°t turnaja");
+        jLabel4.setText("Form·t turnaja");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
 
         jLabel5.setText("Kapacita: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, -1));
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "zoznam prihl√°sen√Ωch hr√°ƒçov..." };
+            String[] strings = { "zoznam prihl·sen˝ch hr·Ëov" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -85,7 +85,7 @@ public class TurnajePane extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 290, 270));
 
-        jLabel6.setText("Zaƒçiatok");
+        jLabel6.setText("ZaËiatok");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
 
         jLabel7.setText("......");
@@ -94,7 +94,7 @@ public class TurnajePane extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(118, 155, 108));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("VYTVORI≈§ NOV√ù TURNAJ");
+        jButton2.setText("VYTVORIç NOV› TURNAJ");
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
     }// </editor-fold>//GEN-END:initComponents
 
