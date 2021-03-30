@@ -27,11 +27,12 @@ public class HracFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainTabPane = new javax.swing.JTabbedPane();
-        profilHracaPane1 = new sk.stu.fiit.view.ProfilHracaPane();
-        zoznamTurnajovPanel1 = new sk.stu.fiit.view.ZoznamTurnajovPanel();
-        aktivneTurnajePanel1 = new sk.stu.fiit.view.AktivneTurnajePanel();
+        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane();
+        zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
+        aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("eSachista - Hr·Ë");
 
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
         mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
@@ -43,7 +44,7 @@ public class HracFrame extends javax.swing.JFrame {
         });
         mainTabPane.addTab("Profil", profilHracaPane1);
         mainTabPane.addTab("Turnaje", zoznamTurnajovPanel1);
-        mainTabPane.addTab("Akt√≠vne turnaje", aktivneTurnajePanel1);
+        mainTabPane.addTab("AktÌvne turnaje", aktivneTurnajePanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,9 +103,9 @@ public class HracFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.AktivneTurnajePanel aktivneTurnajePanel1;
+    private sk.stu.fiit.view.panes.AktivneTurnajePanel aktivneTurnajePanel1;
     private javax.swing.JTabbedPane mainTabPane;
-    private sk.stu.fiit.view.ProfilHracaPane profilHracaPane1;
-    private sk.stu.fiit.view.ZoznamTurnajovPanel zoznamTurnajovPanel1;
+    private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane1;
+    private sk.stu.fiit.view.panes.ZoznamTurnajovPanel zoznamTurnajovPanel1;
     // End of variables declaration//GEN-END:variables
 }

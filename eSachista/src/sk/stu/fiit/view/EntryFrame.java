@@ -368,7 +368,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatOrg.setBackground(new java.awt.Color(118, 155, 108));
         btnRegistrovatOrg.setFont(new java.awt.Font("Candara", 0, 23)); // NOI18N
         btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrovatOrg.setText("Zaregistrovaù organiz·ciu");
+        btnRegistrovatOrg.setText("Zaregistrovat organiz·ciu");
         btnRegistrovatOrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 155, 108), 1, true));
         btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -490,7 +490,7 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         ViewUtils.clearFields(this.registraciaOrgFields);
         dialogRegistrovatOrg.dispose();
-        JOptionPane.showMessageDialog(this, "Registracia bola √∫spe≈°n√°", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Registracia bola ˙speön·", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnVytvoritOrgMouseReleased
 
     private void btnRegistraciaHracaZrusitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseReleased

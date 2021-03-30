@@ -80,14 +80,14 @@ public class EntryController extends Controller {
                 sb.append("E-mail: ").append(spravcaOrg.getEmail()).append("\n");
             }
         } else {
-            sb.append("Vyplnte Ãºdaje o sprÃ¡vcovi\n");
+            sb.append("Vyplnte Údaje o správcovi\n");
         }
         if (!nazovOrg.isBlank() && !adresaOrg.isBlank()) {
-            sb.append("\nOrganizÃ¡cia\n");
-            sb.append("NÃ¡zov: ").append(nazovOrg).append("\n");
+            sb.append("\nOrganizácia\n");
+            sb.append("Názov: ").append(nazovOrg).append("\n");
             sb.append("Adresa: ").append(adresaOrg).append("\n\n");
         } else {
-            sb.append("\nVyplnte vÅ¡etky udaje o organizÃ¡ciÃ­.\n");
+            sb.append("\nVyplnte všetky udaje o organizácií­.\n");
         }
 
         Balik vybratyBalik = this.getBalik(balikId);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 /**
  *
@@ -37,8 +37,7 @@ public class AktivneTurnajePanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel1.setText("Moment√°lne neprebieha ≈æiadny turnaj....");
+        jLabel1.setText("Moment·lne neprebieha ûiadny turnaj...");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -51,11 +50,10 @@ public class AktivneTurnajePanel extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nadch√°dzaj√∫ce turnaje");
+        jLabel2.setText("Nadch·dzaj˙ce turnaje");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
 
         jList1.setBackground(new java.awt.Color(153, 153, 153));
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList1.setForeground(new java.awt.Color(0, 0, 0));
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };

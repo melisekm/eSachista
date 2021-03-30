@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 /**
  *
@@ -45,7 +45,6 @@ public class TurnajePane extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -77,7 +76,6 @@ public class TurnajePane extends javax.swing.JPanel {
         jLabel5.setText("Kapacita: ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, -1));
 
-        jList2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "zoznam prihlásených hráčov..." };
             public int getSize() { return strings.length; }

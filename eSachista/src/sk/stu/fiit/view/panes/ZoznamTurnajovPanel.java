@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 /**
  *
@@ -55,10 +55,10 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         TurnajDialog.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("N√°zov turnaja ");
+        jLabel3.setText("N·zov turnaja ");
         TurnajDialog.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
-        jLabel4.setText("Zaƒçiatok: ");
+        jLabel4.setText("ZaËiatok: ");
         TurnajDialog.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,10 +73,10 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         jLabel8.setText("Rating");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        jLabel9.setText("Vekov√° kateg√≥ria");
+        jLabel9.setText("Vekov· kategÛria");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
-        jLabel10.setText("Form√°t");
+        jLabel10.setText("Form·t");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jTextArea1.setColumns(20);
@@ -102,14 +102,13 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TabulkaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
-        TabulkaTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         TabulkaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
         TabulkaTurnajov.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Poh√°r dekana", "14.3.2022", "FIIT STU, Bratislava", "Open", "Open", "Koneƒçne sa op√§t m√¥≈æeme stretn√∫≈•...", "Swiss 10+5", "10/100"}
+                {"Poh·r dekana", "14.3.2022", "FIIT STU, Bratislava", "Open", "Open", "KoneËne sa op‰t mÙûeme stretn˙ù...", "Swiss 10+5", "10/100"}
             },
             new String [] {
-                "N√°zov turnaja", "D√°tum a ƒças", "Miesto konania", "Rating", "Vekov√° kateg√≥ria", "Opis", "Form√°t", "Kapacita"
+                "N·zov turnaja", "D·tum a Ëas", "Miesto konania", "Rating", "Vekov· kategÛria", "Opis", "Form·t", "Kapacita"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -130,15 +129,14 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Kliknut√≠m na turnaj zobraz√≠te mo≈ænosti a podrobn√© inform√°cie");
+        jLabel1.setText("KliknutÌm na turnaj zobrazÌte moûnosti a podrobnÈ inform·cie");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(118, 155, 108));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Prihl√°si≈• sa na turnaj");
+        jButton1.setText("Prihl·siù sa na turnaj");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
 

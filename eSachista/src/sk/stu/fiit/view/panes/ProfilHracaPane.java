@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.view.EntryFrame;
 
 /**
  *
@@ -67,17 +68,17 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         add(labelMenoHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
 
         labelPrezyvka.setForeground(new java.awt.Color(102, 102, 102));
-        labelPrezyvka.setText("Tu bude jeho prez√Ωvka");
+        labelPrezyvka.setText("Tu bude jeho prez˝vka");
         add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         MestoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        MestoLabel.setText("Mesto, ≈°t√°t?");
+        MestoLabel.setText("Mesto, öt·t?");
         add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         btnUpravitProfil.setBackground(new java.awt.Color(204, 204, 204));
         btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        btnUpravitProfil.setText("Upravi≈•");
+        btnUpravitProfil.setText("Upraviù");
         add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
@@ -117,7 +118,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("D√°tum registr√°cie:");
+        jLabel6.setText("D·tum registr·cie:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
@@ -126,7 +127,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Z√ÅPASY");
+        jLabel8.setText("Z·pasy");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,11 +152,11 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("V√Ωhry:");
+        jLabel11.setText("V˝hry:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Poƒçet odohrat√Ωch z√°pasov:");
+        jLabel10.setText("PoËet odohrat˝ch z·pasov:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         PocetZapasovLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -180,7 +181,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("≈†TATISTIKY");
+        jLabel7.setText("äTATISTIKY");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
@@ -188,7 +189,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         btnLogOutHrac.setBackground(new java.awt.Color(204, 204, 204));
         btnLogOutHrac.setForeground(new java.awt.Color(0, 0, 0));
         btnLogOutHrac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        btnLogOutHrac.setText("Odhl√°si≈• sa");
+        btnLogOutHrac.setText("Odhl·siù sa");
         btnLogOutHrac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnLogOutHracMouseReleased(evt);

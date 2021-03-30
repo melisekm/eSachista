@@ -4,7 +4,7 @@
     <artifactId>eSachista</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eSachista</name>
-    <description>Plánovac turnajov</description>
+    <description>Plï¿½novac turnajov</description>
     <build>
         <sourceDirectory>src</sourceDirectory>
         <resources>
@@ -37,8 +37,4 @@
             <version>1.4</version>
         </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
 </project>

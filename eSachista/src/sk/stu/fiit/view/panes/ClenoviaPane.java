@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 /**
  *
@@ -40,14 +40,13 @@ public class ClenoviaPane extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("ƒålenovia");
+        jLabel1.setText("»lenovia");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
-        jLabel2.setText("poƒçet ƒçlenov");
+        jLabel2.setText("poËet Ëlenov");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
         jList1.setBackground(new java.awt.Color(153, 153, 153));
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jList1.setForeground(new java.awt.Color(255, 255, 255));
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -62,7 +61,7 @@ public class ClenoviaPane extends javax.swing.JPanel {
         jButton1.setText("jButton1");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 140, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "toto by mohlo fungova≈• ako vyhƒæad√°vanie", "look up jcombobox autocomplete", "neviem ƒçi naozaj LUL", "mo≈æno ≈æiadny regex " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "toto by mohlo fungovaù ako vyhæad·vanie", "look up jcombobox autocomplete", "neviem Ëi naozaj LUL", "moûno ûiadny regex " }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 50, 170, -1));
 
         jLabel3.setText("read me v");

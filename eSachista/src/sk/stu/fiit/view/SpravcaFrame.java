@@ -2,7 +2,6 @@ package sk.stu.fiit.view;
 
 import java.awt.Color;
 import sk.stu.fiit.controller.SpravcaController;
-import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 
 /**
  *
@@ -27,31 +26,24 @@ public class SpravcaFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainTabPane = new javax.swing.JTabbedPane();
-        spravcaPrehladPane2 = new sk.stu.fiit.view.SpravcaPrehladPane();
-        turnajePane1 = new sk.stu.fiit.view.TurnajePane();
-        clenoviaPane2 = new sk.stu.fiit.view.ClenoviaPane();
+        spravcaPrehladPane1 = new sk.stu.fiit.view.panes.SpravcaPrehladPane();
+        aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
+        clenoviaPane1 = new sk.stu.fiit.view.panes.ClenoviaPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("eSachista - Správca");
         setMinimumSize(new java.awt.Dimension(935, 655));
         setPreferredSize(new java.awt.Dimension(935, 655));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
         mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
         mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mainTabPane.addTab("Preh¾ad", spravcaPrehladPane2);
-        mainTabPane.addTab("Turnaje", turnajePane1);
-        mainTabPane.addTab("Èlenovia", clenoviaPane2);
+        mainTabPane.addTab("Profil", spravcaPrehladPane1);
+        mainTabPane.addTab("Turnaje", aktivneTurnajePanel1);
+        mainTabPane.addTab("Èlenovia", clenoviaPane1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabPane)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabPane)
-        );
+        getContentPane().add(mainTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 670));
 
         pack();
         setLocationRelativeTo(null);
@@ -95,9 +87,9 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.ClenoviaPane clenoviaPane2;
+    private sk.stu.fiit.view.panes.AktivneTurnajePanel aktivneTurnajePanel1;
+    private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane1;
     private javax.swing.JTabbedPane mainTabPane;
-    private sk.stu.fiit.view.SpravcaPrehladPane spravcaPrehladPane2;
-    private sk.stu.fiit.view.TurnajePane turnajePane1;
+    private sk.stu.fiit.view.panes.SpravcaPrehladPane spravcaPrehladPane1;
     // End of variables declaration//GEN-END:variables
 }

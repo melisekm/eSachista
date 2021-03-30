@@ -18,8 +18,8 @@ public class Balik {
 
     @Override
     public String toString() {
-        return "Balik\n" + "Kapacita hrÃ¡Äov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
-                + "\nMaximum hrÃ¡Äov na turnaji: " + maxHracovTurnaja;
+        return "Balik\n" + "Kapacita hráèov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
+                + "\nMaximum hráèov na turnaji: " + maxHracovTurnaja;
     }
 
     public int getKapacitaPouzivatelov() {

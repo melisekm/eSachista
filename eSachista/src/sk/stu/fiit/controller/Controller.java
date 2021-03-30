@@ -1,6 +1,6 @@
 package sk.stu.fiit.controller;
 
-import sk.stu.fiit.controller.service.EntryService;
+import sk.stu.fiit.service.EntryService;
 
 /**
  * Pomocou <i> Service triedy </i> komunikuje s modelom Vracia data pre

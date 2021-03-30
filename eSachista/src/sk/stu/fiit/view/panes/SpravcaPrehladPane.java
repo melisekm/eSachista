@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
+import sk.stu.fiit.view.EntryFrame;
 
 /**
  *
@@ -49,27 +50,27 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         add(labelLogoOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 160));
 
         labelNazovOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelNazovOrgPrehlad.setText("N√°zov organiz√°cie");
+        labelNazovOrgPrehlad.setText("N·zov organiz·cie");
         add(labelNazovOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        jLabel3.setText("D√°tum registr√°cie:");
+        jLabel3.setText("D·tum registr·cie:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        jLabel4.setText("Poƒçet ƒçlenov: ");
+        jLabel4.setText("PoËet Ëlenov: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Nadch√°dzaj√∫ce udalosti");
+        jLabel8.setText("Nadch·dzaj˙ce udalosti");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         btnUpravitOrgPrehlad.setBackground(new java.awt.Color(204, 204, 204));
         btnUpravitOrgPrehlad.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        btnUpravitOrgPrehlad.setText("Upravi≈•");
+        btnUpravitOrgPrehlad.setText("Upraviù");
         add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "neviem e≈°te ≈æe ak√Ω to bude komponent" };
+            String[] strings = { "neviem eöte ûe ak˝ to bude komponent" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -86,7 +87,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         btnOdhlasitSpravcu.setBackground(new java.awt.Color(204, 204, 204));
         btnOdhlasitSpravcu.setForeground(new java.awt.Color(0, 0, 0));
         btnOdhlasitSpravcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        btnOdhlasitSpravcu.setText("Odhl√°si≈• sa");
+        btnOdhlasitSpravcu.setText("Odhl·siù sa");
         btnOdhlasitSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnOdhlasitSpravcuMouseReleased(evt);
