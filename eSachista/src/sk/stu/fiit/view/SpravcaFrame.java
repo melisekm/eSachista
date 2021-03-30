@@ -26,31 +26,31 @@ public class SpravcaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        mainTabPane = new javax.swing.JTabbedPane();
         spravcaPrehladPane2 = new sk.stu.fiit.view.SpravcaPrehladPane();
         turnajePane1 = new sk.stu.fiit.view.TurnajePane();
-        clenoviaPane1 = new sk.stu.fiit.view.ClenoviaPane();
+        clenoviaPane2 = new sk.stu.fiit.view.ClenoviaPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(935, 655));
         setPreferredSize(new java.awt.Dimension(935, 655));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 166, 172));
-        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTabbedPane1.addTab("PrehÄ¾ad", spravcaPrehladPane2);
-        jTabbedPane1.addTab("Turnaje", turnajePane1);
-        jTabbedPane1.addTab("ÄŒlenovia", clenoviaPane1);
+        mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
+        mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
+        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainTabPane.addTab("Preh¾ad", spravcaPrehladPane2);
+        mainTabPane.addTab("Turnaje", turnajePane1);
+        mainTabPane.addTab("Èlenovia", clenoviaPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(mainTabPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(mainTabPane)
         );
 
         pack();
@@ -95,8 +95,8 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.ClenoviaPane clenoviaPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private sk.stu.fiit.view.ClenoviaPane clenoviaPane2;
+    private javax.swing.JTabbedPane mainTabPane;
     private sk.stu.fiit.view.SpravcaPrehladPane spravcaPrehladPane2;
     private sk.stu.fiit.view.TurnajePane turnajePane1;
     // End of variables declaration//GEN-END:variables

@@ -129,7 +129,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatHraca.setBackground(new java.awt.Color(102, 102, 102));
         btnRegistrovatHraca.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistrovatHraca.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrovatHraca.setText("Zaregistrova≈• sa");
+        btnRegistrovatHraca.setText("Zaregistrovaù sa");
         btnRegistrovatHraca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnRegistrovatHracaMouseReleased(evt);
@@ -138,7 +138,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelPripojit.add(btnRegistrovatHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         labelPrihlasitName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelPrihlasitName.setText("Prihl√°senie do organiz√°cie:");
+        labelPrihlasitName.setText("Prihl·senie do organiz·cie:");
         panelPripojit.add(labelPrihlasitName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
         labelPrihlasitOrgName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -155,13 +155,13 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelRegistraciaOrg.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelRegistraciaOrg.setText("Registr√°cia novej organiz√°cie");
+        labelRegistraciaOrg.setText("Registr·cia novej organiz·cie");
         panelRegistrovatOrg.add(labelRegistraciaOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         btnVytvoritSpravcu.setBackground(new java.awt.Color(102, 102, 102));
         btnVytvoritSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVytvoritSpravcu.setForeground(new java.awt.Color(255, 255, 255));
-        btnVytvoritSpravcu.setText("Vytvori≈• spr√°vcu");
+        btnVytvoritSpravcu.setText("Vytvoriù spr·vcu");
         btnVytvoritSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnVytvoritSpravcuMouseReleased(evt);
@@ -177,14 +177,14 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg.add(fieldRegOrgEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 140, -1));
 
         labelRegNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelRegNazovOrg.setText("N√°zov organiz√°cie: ");
+        labelRegNazovOrg.setText("N·zov organiz·cie: ");
         panelRegistrovatOrg.add(labelRegNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         fieldRegNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelRegistrovatOrg.add(fieldRegNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 140, -1));
 
         labelRegDomenaOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelRegDomenaOrg.setText("Dom√©na organiz√°cie:");
+        labelRegDomenaOrg.setText("DomÈna organiz·cie:");
         panelRegistrovatOrg.add(labelRegDomenaOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         fieldRegDomenaOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -203,11 +203,11 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg.add(sliderBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 190, 30));
 
         labelBalik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelBalik.setText("Bal√≠k");
+        labelBalik.setText("BalÌk");
         panelRegistrovatOrg.add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         labelBalikKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelBalikKapacita.setText("Kapacita hr√°ƒçov:");
+        labelBalikKapacita.setText("Kapacita hr·Ëov:");
         panelRegistrovatOrg.add(labelBalikKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         labelBalikKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -215,7 +215,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg.add(labelBalikKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
         labelBalikMaxPrihl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelBalikMaxPrihl.setText("Maximum hr√°ƒçov na turnaji:");
+        labelBalikMaxPrihl.setText("Maximum hr·Ëov na turnaji:");
         panelRegistrovatOrg.add(labelBalikMaxPrihl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         labelBalikMaxTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -233,7 +233,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnVytvoritOrg.setBackground(new java.awt.Color(118, 155, 108));
         btnVytvoritOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVytvoritOrg.setForeground(new java.awt.Color(255, 255, 255));
-        btnVytvoritOrg.setText("Registrova≈•");
+        btnVytvoritOrg.setText("Registrovaù");
         btnVytvoritOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnVytvoritOrgMouseReleased(evt);
@@ -244,7 +244,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnZobrazitDetaily.setBackground(new java.awt.Color(102, 102, 102));
         btnZobrazitDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnZobrazitDetaily.setForeground(new java.awt.Color(255, 255, 255));
-        btnZobrazitDetaily.setText("Detaily registr√°cie");
+        btnZobrazitDetaily.setText("Detaily registr·cie");
         btnZobrazitDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnZobrazitDetailyMouseReleased(evt);
@@ -266,7 +266,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistraciaHraca.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelRegstraciaHraca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelRegstraciaHraca.setText("Registr√°cia hr√°ƒça");
+        labelRegstraciaHraca.setText("Registr·cia hr·Ëa");
         panelRegistraciaHraca.add(labelRegstraciaHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         labelRegistraciaMeno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -305,7 +305,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistraciaHracaZrusit.setBackground(new java.awt.Color(224, 80, 80));
         btnRegistraciaHracaZrusit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistraciaHracaZrusit.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistraciaHracaZrusit.setText("Zru≈°i≈•");
+        btnRegistraciaHracaZrusit.setText("Zruöiù");
         btnRegistraciaHracaZrusit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnRegistraciaHracaZrusitMouseReleased(evt);
@@ -337,7 +337,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelDetailyRegistracie.add(scrollPaneDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 210));
 
         btnZavrietDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnZavrietDetaily.setText("Zavrie≈•");
+        btnZavrietDetaily.setText("Zavrieù");
         btnZavrietDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnZavrietDetailyMouseReleased(evt);
@@ -368,7 +368,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatOrg.setBackground(new java.awt.Color(118, 155, 108));
         btnRegistrovatOrg.setFont(new java.awt.Font("Candara", 0, 23)); // NOI18N
         btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrovatOrg.setText("Zaregistrova≈• organiz√°ciu");
+        btnRegistrovatOrg.setText("Zaregistrovaù organiz·ciu");
         btnRegistrovatOrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 155, 108), 1, true));
         btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -380,7 +380,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnPripojit.setBackground(new java.awt.Color(102, 102, 102));
         btnPripojit.setFont(new java.awt.Font("Candara", 0, 23)); // NOI18N
         btnPripojit.setForeground(new java.awt.Color(255, 255, 255));
-        btnPripojit.setText("Pripoji≈• sa");
+        btnPripojit.setText("Pripojiù sa");
         btnPripojit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         btnPripojit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
