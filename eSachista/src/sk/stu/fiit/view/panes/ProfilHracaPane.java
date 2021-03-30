@@ -57,6 +57,8 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         PrehryLable = new javax.swing.JLabel();
         TurnajeLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         btnLogOutHrac = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -145,11 +147,11 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Turnaje:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Prehry:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Výhry:");
@@ -172,17 +174,27 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         PrehryLable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         PrehryLable.setForeground(new java.awt.Color(238, 79, 79));
         PrehryLable.setText("0");
-        jPanel1.add(PrehryLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        jPanel1.add(PrehryLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         TurnajeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TurnajeLabel.setForeground(new java.awt.Color(0, 153, 255));
         TurnajeLabel.setText("1");
-        jPanel1.add(TurnajeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+        jPanel1.add(TurnajeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("ŠTATISTIKY");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Remízy:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("0");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 20, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
 
@@ -223,6 +235,8 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
