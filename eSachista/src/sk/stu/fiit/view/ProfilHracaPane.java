@@ -5,16 +5,19 @@
  */
 package sk.stu.fiit.view;
 
+import javax.swing.SwingUtilities;
+import sk.stu.fiit.controller.HracController;
+
 /**
  *
  * @author lucia
  */
 public class ProfilHracaPane extends javax.swing.JPanel {
 
-    /**
-     * Creates new form jpProfilHraca
-     */
+    private HracController controller;
+    
     public ProfilHracaPane() {
+        this.controller = new HracController();
         initComponents();
     }
 
@@ -56,7 +59,6 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         btnLogOutHrac = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMenoHraca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -64,18 +66,15 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         labelMenoHraca.setText("Cpavok");
         add(labelMenoHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
 
-        labelPrezyvka.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelPrezyvka.setForeground(new java.awt.Color(102, 102, 102));
         labelPrezyvka.setText("Tu bude jeho prezývka");
         add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
-        MestoLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         MestoLabel.setForeground(new java.awt.Color(0, 0, 0));
         MestoLabel.setText("Mesto, štát?");
         add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         btnUpravitProfil.setBackground(new java.awt.Color(204, 204, 204));
-        btnUpravitProfil.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitProfil.setText("Upraviť");
@@ -95,7 +94,6 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         add(RatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 70, -1));
 
         HistoriaZapasov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaZapasov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         HistoriaZapasov.setForeground(new java.awt.Color(51, 51, 51));
         HistoriaZapasov.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Cpavok vs Magnus Carlson 1:0 Mar 6, 2021", "Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021" };
@@ -107,7 +105,6 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, 270));
 
         HistoriaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         HistoriaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
         HistoriaTurnajov.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Meltwater 2021" };
@@ -145,22 +142,18 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Turnaje:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Prehry:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Výhry:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Počet odohratých zápasov:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
@@ -193,12 +186,22 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
 
         btnLogOutHrac.setBackground(new java.awt.Color(204, 204, 204));
-        btnLogOutHrac.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnLogOutHrac.setForeground(new java.awt.Color(0, 0, 0));
         btnLogOutHrac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
         btnLogOutHrac.setText("Odhlásiť sa");
+        btnLogOutHrac.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnLogOutHracMouseReleased(evt);
+            }
+        });
         add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogOutHracMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutHracMouseReleased
+        this.controller.logOut();
+        SwingUtilities.getWindowAncestor(this).dispose();
+        EntryFrame.main();
+    }//GEN-LAST:event_btnLogOutHracMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

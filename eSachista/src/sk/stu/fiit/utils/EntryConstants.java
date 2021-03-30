@@ -19,7 +19,7 @@ public class EntryConstants {
     public static final int REGISTRUJ_HRACA = 1;
     
     
-
+    public static final int FORM_ERROR = 255;
 
     private EntryConstants() {
     }

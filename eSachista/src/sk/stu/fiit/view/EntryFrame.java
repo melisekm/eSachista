@@ -3,6 +3,7 @@ package sk.stu.fiit.view;
 import java.util.Arrays;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import sk.stu.fiit.controller.EntryController;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
@@ -15,18 +16,14 @@ import sk.stu.fiit.utils.ViewUtils;
 public class EntryFrame extends javax.swing.JFrame {
 
     private final EntryController controller;
-    private final javax.swing.JTextField[] registraciaHracaFields;
+    private JTextField[] registraciaHracaFields;
+    private JTextField[] registraciaOrgFields;
     private int registraciaType;
 
     public EntryFrame() {
         this.controller = new EntryController();
         initComponents();
-        this.registraciaHracaFields = new javax.swing.JTextField[]{
-            fieldRegistraciaMeno,
-            fieldRegistraciaLogin,
-            fieldRegistraciaHracaPassword,
-            fieldRegistraciaHracaPasswordZnovu
-        };
+        this.groupFields();
     }
 
     /**
@@ -52,12 +49,12 @@ public class EntryFrame extends javax.swing.JFrame {
         panelRegistrovatOrg = new javax.swing.JPanel();
         labelRegistraciaOrg = new javax.swing.JLabel();
         btnVytvoritSpravcu = new javax.swing.JButton();
-        labelEmail = new javax.swing.JLabel();
-        fieldEmail = new javax.swing.JTextField();
-        labelNazovRegOrg = new javax.swing.JLabel();
-        fieldNazovRegOrg = new javax.swing.JTextField();
-        labelAdresaRegOrg = new javax.swing.JLabel();
-        fieldAdresaRegOrg = new javax.swing.JTextField();
+        labelRegOrgEmail = new javax.swing.JLabel();
+        fieldRegOrgEmail = new javax.swing.JTextField();
+        labelRegNazovOrg = new javax.swing.JLabel();
+        fieldRegNazovOrg = new javax.swing.JTextField();
+        labelRegDomenaOrg = new javax.swing.JLabel();
+        fieldRegDomenaOrg = new javax.swing.JTextField();
         sliderBalik = new javax.swing.JSlider();
         labelBalik = new javax.swing.JLabel();
         labelBalikKapacita = new javax.swing.JLabel();
@@ -172,26 +169,26 @@ public class EntryFrame extends javax.swing.JFrame {
         });
         panelRegistrovatOrg.add(btnVytvoritSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        labelEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelEmail.setText("E-mail:");
-        panelRegistrovatOrg.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        labelRegOrgEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRegOrgEmail.setText("E-mail:");
+        panelRegistrovatOrg.add(labelRegOrgEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        fieldEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelRegistrovatOrg.add(fieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 140, -1));
+        fieldRegOrgEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldRegOrgEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 140, -1));
 
-        labelNazovRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelNazovRegOrg.setText("Názov organizácie: ");
-        panelRegistrovatOrg.add(labelNazovRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        labelRegNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRegNazovOrg.setText("Názov organizácie: ");
+        panelRegistrovatOrg.add(labelRegNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        fieldNazovRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelRegistrovatOrg.add(fieldNazovRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 140, -1));
+        fieldRegNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldRegNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 140, -1));
 
-        labelAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelAdresaRegOrg.setText("Doména organizácie:");
-        panelRegistrovatOrg.add(labelAdresaRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        labelRegDomenaOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRegDomenaOrg.setText("Doména organizácie:");
+        panelRegistrovatOrg.add(labelRegDomenaOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        fieldAdresaRegOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelRegistrovatOrg.add(fieldAdresaRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 140, -1));
+        fieldRegDomenaOrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRegistrovatOrg.add(fieldRegDomenaOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 140, -1));
 
         sliderBalik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sliderBalik.setMaximum(2);
@@ -415,37 +412,6 @@ public class EntryFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private int vykonajRegistraciu(int registraciaType) {
-        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
-            return -1;
-        }
-        String meno = fieldRegistraciaMeno.getText();
-        String login = fieldRegistraciaLogin.getText();
-        char[] password = fieldRegistraciaHracaPassword.getPassword();
-        char[] passwordZnovu = fieldRegistraciaHracaPasswordZnovu.getPassword();
-        fieldRegistraciaHracaPassword.setText("");
-        fieldRegistraciaHracaPasswordZnovu.setText("");
-        // skontroluj pw
-        if (!Arrays.equals(password, passwordZnovu)) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
-            return -1;
-        }
-        return this.controller.registerPouzivatel(meno, login, password, registraciaType);
-
-    }
-
-    private boolean skontrolujStatusRegistracieHrac(int status) {
-        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (status == EntryConstants.KAPACITA_PREKROCENA) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Kapacita bola prekrocena.", "Prekrocena kapacita", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
-
     private void dialogRegistrovatHracaWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogRegistrovatHracaWindowClosed
         ViewUtils.clearFields(this.registraciaHracaFields);
     }//GEN-LAST:event_dialogRegistrovatHracaWindowClosed
@@ -456,30 +422,12 @@ public class EntryFrame extends javax.swing.JFrame {
         this.updateBalikInfo(index);
     }//GEN-LAST:event_sliderBalikStateChanged
 
-    private boolean skontrolujStatusRegistracieOrg(int status) {
-        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
-            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Tato organizacia uz existuje", "Invalid input", JOptionPane.INFORMATION_MESSAGE);
-            return false;
-        }
-        if (status == EntryConstants.SPRAVCA_NEBOL_VYTVORENY) {
-            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Spravca organizacie nebol vytvoreny", "Invalid input", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
-
-    public void updateBalikInfo(int index) {
-        Balik b = this.controller.getBalik(index);
-        labelBalikKapacitaData.setText(String.valueOf(b.getKapacitaPouzivatelov()));
-        labelBalikMaxTurnajovData.setText(String.valueOf(b.getMaxPocetTurnajov()));
-        labelBalikMaxPrihlHracovData.setText(String.valueOf(b.getMaxHracovTurnaja()));
-    }
-
-
     private void btnRegistrovatOrgMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrovatOrgMouseReleased
+        int DEFAULT_BALIK_OPTION = 2;
         this.controller.clearSpravca();
+        ViewUtils.clearFields(this.registraciaOrgFields);
         this.registraciaType = EntryConstants.REGISTRUJ_SPRAVCU;
-        this.updateBalikInfo(2);
+        this.updateBalikInfo(DEFAULT_BALIK_OPTION);
         ViewUtils.showDialog(dialogRegistrovatOrg);
     }//GEN-LAST:event_btnRegistrovatOrgMouseReleased
 
@@ -521,8 +469,8 @@ public class EntryFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVytvoritSpravcuMouseReleased
 
     private void btnZobrazitDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitDetailyMouseReleased
-        String nazovOrg = fieldNazovRegOrg.getText();
-        String adresaOrg = fieldAdresaRegOrg.getText();
+        String nazovOrg = fieldRegNazovOrg.getText();
+        String adresaOrg = fieldRegDomenaOrg.getText();
         int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
         String detailyRegistracie = this.controller.getDetailyRegistracieOrg(nazovOrg, adresaOrg, balikId);
         textAreaDetaily.setText(detailyRegistracie);
@@ -531,15 +479,16 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private void btnVytvoritOrgMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritOrgMouseReleased
         int balikId = ((DefaultBoundedRangeModel) sliderBalik.getModel()).getValue();
-        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldEmail, fieldNazovRegOrg, fieldAdresaRegOrg)) {
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatOrg, fieldRegOrgEmail, fieldRegNazovOrg, fieldRegDomenaOrg)) {
             return;
         }
-        String nazovOrg = fieldNazovRegOrg.getText();
-        String adresaOrg = fieldAdresaRegOrg.getText();
+        String nazovOrg = fieldRegNazovOrg.getText();
+        String adresaOrg = fieldRegDomenaOrg.getText();
         int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId);
         if (!this.skontrolujStatusRegistracieOrg(status)) {
             return;
         }
+        ViewUtils.clearFields(this.registraciaOrgFields);
         dialogRegistrovatOrg.dispose();
         JOptionPane.showMessageDialog(this, "Registracia bola úspešná", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnVytvoritOrgMouseReleased
@@ -551,7 +500,7 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private void btnRegistraciaHracaOKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaOKMouseReleased
         int status = this.vykonajRegistraciu(this.registraciaType); // skontroluj ci je mozne registrovat sa
-        if (status == -1 || !this.skontrolujStatusRegistracieHrac(status)) {
+        if (status == EntryConstants.FORM_ERROR || !this.skontrolujStatusRegistracieHrac(status)) {
             return;
         }
         dialogRegistrovatHraca.dispose();
@@ -595,12 +544,7 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -609,7 +553,7 @@ public class EntryFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    //<editor-fold defaultstate="collapsed" desc=" Variables declaration ">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrihlasitOK;
     private javax.swing.JButton btnPripojit;
@@ -626,11 +570,11 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JDialog dialogRegistrovatHraca;
     private javax.swing.JDialog dialogRegistrovatOrg;
     private javax.swing.JTextField fieldAdresa;
-    private javax.swing.JTextField fieldAdresaRegOrg;
-    private javax.swing.JTextField fieldEmail;
     private javax.swing.JTextField fieldLogin;
-    private javax.swing.JTextField fieldNazovRegOrg;
     private javax.swing.JPasswordField fieldPassword;
+    private javax.swing.JTextField fieldRegDomenaOrg;
+    private javax.swing.JTextField fieldRegNazovOrg;
+    private javax.swing.JTextField fieldRegOrgEmail;
     private javax.swing.JPasswordField fieldRegistraciaHracaPassword;
     private javax.swing.JPasswordField fieldRegistraciaHracaPasswordZnovu;
     private javax.swing.JTextField fieldRegistraciaLogin;
@@ -640,7 +584,6 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelAdresa;
-    private javax.swing.JLabel labelAdresaRegOrg;
     private javax.swing.JLabel labelBalik;
     private javax.swing.JLabel labelBalikKapacita;
     private javax.swing.JLabel labelBalikKapacitaData;
@@ -648,12 +591,13 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelBalikMaxPrihlHracovData;
     private javax.swing.JLabel labelBalikMaxTurnajov;
     private javax.swing.JLabel labelBalikMaxTurnajovData;
-    private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelLogin;
-    private javax.swing.JLabel labelNazovRegOrg;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelPrihlasitName;
     private javax.swing.JLabel labelPrihlasitOrgName;
+    private javax.swing.JLabel labelRegDomenaOrg;
+    private javax.swing.JLabel labelRegNazovOrg;
+    private javax.swing.JLabel labelRegOrgEmail;
     private javax.swing.JLabel labelRegistraciaHeslo;
     private javax.swing.JLabel labelRegistraciaHesloZnovu;
     private javax.swing.JLabel labelRegistraciaLogin;
@@ -669,5 +613,68 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JSlider sliderBalik;
     private javax.swing.JTextArea textAreaDetaily;
     // End of variables declaration//GEN-END:variables
+ //</editor-fold>
 
+    private int vykonajRegistraciu(int registraciaType) {
+        if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
+            return EntryConstants.FORM_ERROR;
+        }
+        String meno = fieldRegistraciaMeno.getText();
+        String login = fieldRegistraciaLogin.getText();
+        char[] password = fieldRegistraciaHracaPassword.getPassword();
+        char[] passwordZnovu = fieldRegistraciaHracaPasswordZnovu.getPassword();
+        fieldRegistraciaHracaPassword.setText("");
+        fieldRegistraciaHracaPasswordZnovu.setText("");
+        // skontroluj pw
+        if (!Arrays.equals(password, passwordZnovu)) {
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
+            return EntryConstants.FORM_ERROR;
+        }
+        return this.controller.registerPouzivatel(meno, login, password, registraciaType);
+    }
+
+    public void updateBalikInfo(int index) {
+        Balik b = this.controller.getBalik(index);
+        labelBalikKapacitaData.setText(String.valueOf(b.getKapacitaPouzivatelov()));
+        labelBalikMaxTurnajovData.setText(String.valueOf(b.getMaxPocetTurnajov()));
+        labelBalikMaxPrihlHracovData.setText(String.valueOf(b.getMaxHracovTurnaja()));
+    }
+
+    private boolean skontrolujStatusRegistracieOrg(int status) {
+        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Tato organizacia uz existuje", "Invalid input", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (status == EntryConstants.SPRAVCA_NEBOL_VYTVORENY) {
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Spravca organizacie nebol vytvoreny", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean skontrolujStatusRegistracieHrac(int status) {
+        if (status == EntryConstants.MENO_UZ_EXISTUJE) {
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (status == EntryConstants.KAPACITA_PREKROCENA) {
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Kapacita bola prekrocena.", "Prekrocena kapacita", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private void groupFields() {
+        this.registraciaHracaFields = new JTextField[]{
+            fieldRegistraciaMeno,
+            fieldRegistraciaLogin,
+            fieldRegistraciaHracaPassword,
+            fieldRegistraciaHracaPasswordZnovu
+        };
+        this.registraciaOrgFields = new JTextField[]{
+            fieldRegOrgEmail,
+            fieldRegNazovOrg,
+            fieldRegDomenaOrg
+        };
+    }
 }

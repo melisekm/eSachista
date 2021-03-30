@@ -6,7 +6,6 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
-import sk.stu.fiit.utils.EntryConstants;
 
 /**
  * Služi ako middle man medzi model a controller
@@ -79,6 +78,12 @@ public class EntryService {
             }
         }
         return false;
+    }
+
+    public void logOut() {
+        this.orgLoggedIn = null;
+        this.userLoggedIn = null;
+        this.spravcaTemp = null;
     }
 
     public Balik getBalik(int index) {

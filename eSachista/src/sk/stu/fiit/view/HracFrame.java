@@ -61,7 +61,7 @@ public class HracFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
-        // TODO add your handling code here:
+        // tu sa budu aktualizovat zaležitosti z panelov ak je to treba.
     }//GEN-LAST:event_mainTabPaneStateChanged
 
     /**

@@ -5,6 +5,8 @@
  */
 package sk.stu.fiit.view;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author lucia
@@ -61,7 +63,6 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         btnUpravitOrgPrehlad.setBackground(new java.awt.Color(204, 204, 204));
-        btnUpravitOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUpravitOrgPrehlad.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviť");
@@ -83,12 +84,21 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         add(labelPocetClenovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         btnOdhlasitSpravcu.setBackground(new java.awt.Color(204, 204, 204));
-        btnOdhlasitSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnOdhlasitSpravcu.setForeground(new java.awt.Color(0, 0, 0));
         btnOdhlasitSpravcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
         btnOdhlasitSpravcu.setText("Odhlásiť sa");
+        btnOdhlasitSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnOdhlasitSpravcuMouseReleased(evt);
+            }
+        });
         add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOdhlasitSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOdhlasitSpravcuMouseReleased
+        SwingUtilities.getWindowAncestor(this).dispose();
+        EntryFrame.main();
+    }//GEN-LAST:event_btnOdhlasitSpravcuMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

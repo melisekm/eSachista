@@ -10,6 +10,9 @@ import sk.stu.fiit.controller.service.EntryService;
  */
 public abstract class Controller {
 
-    EntryService entryService = EntryService.getInstance();
+    protected EntryService entryService = EntryService.getInstance();
 
+    public void logOut(){
+        this.entryService.logOut();
+    }
 }
