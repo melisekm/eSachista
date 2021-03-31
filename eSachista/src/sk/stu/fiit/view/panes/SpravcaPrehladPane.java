@@ -7,6 +7,8 @@ package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.SpravcaController;
+import sk.stu.fiit.model.organisation.clients.Pouzivatel;
+import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.view.EntryFrame;
 
 /**
@@ -25,6 +27,16 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
     public SpravcaPrehladPane() {
         initComponents();
     }
+    
+    private void setSpravcaInfo() {
+        Pouzivatel p = this.controller.getUserLoggedIn();
+        labelNazovOrgPrehlad.setText(p.getOrg().getNazov());
+        
+    }
+    
+    public void refresh() {
+        this.setSpravcaInfo();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,12 +51,12 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         labelNazovOrgPrehlad = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btnUpravitOrgPrehlad = new javax.swing.JButton();
         labelDatumRegOrg = new javax.swing.JLabel();
         labelPocetClenovOrg = new javax.swing.JLabel();
         btnOdhlasitSpravcu = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -63,15 +75,11 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         jLabel4.setText("PoËet Ëlenov: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Nadch·dzaj˙ce udalosti");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
-
         btnUpravitOrgPrehlad.setBackground(new java.awt.Color(204, 204, 204));
         btnUpravitOrgPrehlad.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviù");
-        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
         labelDatumRegOrg.setText("jLabel5");
         add(labelDatumRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
@@ -88,10 +96,13 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
                 btnOdhlasitSpravcuMouseReleased(evt);
             }
         });
-        add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, -1, -1));
+        add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
-        jLabel1.setText("tu budu informacie o org a informacie o spravcovi");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        jLabel2.setText("Vitajte, ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+
+        jLabel5.setText("jLabel5");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOdhlasitSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOdhlasitSpravcuMouseReleased
@@ -104,10 +115,10 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOdhlasitSpravcu;
     private javax.swing.JButton btnUpravitOrgPrehlad;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel labelDatumRegOrg;
     private javax.swing.JLabel labelLogoOrgPrehlad;
     private javax.swing.JLabel labelNazovOrgPrehlad;

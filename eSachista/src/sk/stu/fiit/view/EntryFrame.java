@@ -4,6 +4,7 @@ import java.util.Arrays;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.EntryController;
@@ -373,6 +374,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnRegistrovatOrg.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrovatOrg.setText("Zaregistrovat organiz·ciu");
         btnRegistrovatOrg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 155, 108), 1, true));
+        btnRegistrovatOrg.setFocusPainted(false);
         btnRegistrovatOrg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnRegistrovatOrgMouseReleased(evt);
@@ -385,6 +387,7 @@ public class EntryFrame extends javax.swing.JFrame {
         btnPripojit.setForeground(new java.awt.Color(255, 255, 255));
         btnPripojit.setText("Pripojiù sa");
         btnPripojit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        btnPripojit.setFocusPainted(false);
         btnPripojit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnPripojitMouseReleased(evt);
@@ -546,6 +549,7 @@ public class EntryFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EntryFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        UIManager.put("Button.select", new java.awt.Color(188, 188, 188));
         //</editor-fold>
         //</editor-fold>
 

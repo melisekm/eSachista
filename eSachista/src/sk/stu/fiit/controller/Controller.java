@@ -1,6 +1,7 @@
 package sk.stu.fiit.controller;
 
 import java.util.ArrayList;
+import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
 import sk.stu.fiit.service.EntryService;
@@ -17,6 +18,10 @@ public abstract class Controller {
 
     public void logOut() {
         this.entryService.logOut();
+    }
+    
+    public Pouzivatel getUserLoggedIn() {
+        return this.entryService.getUserLoggedIn();
     }
 
     public ArrayList<Turnaj> getTurnaje() {

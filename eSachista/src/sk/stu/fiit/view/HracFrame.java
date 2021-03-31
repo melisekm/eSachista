@@ -1,7 +1,10 @@
 package sk.stu.fiit.view;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
+import javax.swing.ImageIcon;
 import sk.stu.fiit.controller.HracController;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 /**
  *
@@ -25,31 +28,52 @@ public class HracFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        final String PRE_HTML = "<html><p style=\"text-align: left; width: 80px;\">";
+        final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
-        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
+        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane();
         zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
         aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Hráè");
 
+        mainTabPane.setUI(new BasicTabbedPaneUI(){
+            @Override
+            protected int calculateTabWidth(
+                int tabPlacement, int tabIndex, FontMetrics metrics) {
+                return 150;
+            }
+
+            @Override
+            protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
+                return 45;
+            }
+        });
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
-        mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
-        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
+        mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 15));
         mainTabPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 mainTabPaneStateChanged(evt);
             }
         });
         mainTabPane.addTab("Profil", profilHracaPane1);
+        mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/user2.png")));
+        mainTabPane.setTitleAt(0, PRE_HTML + "Profil" + POST_HTML);
         mainTabPane.addTab("Turnaje", zoznamTurnajovPanel1);
+        mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
+        mainTabPane.setTitleAt(1, PRE_HTML + "Turnaje" + POST_HTML);
         mainTabPane.addTab("Aktívne turnaje", aktivneTurnajePanel1);
+        mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
+        mainTabPane.setTitleAt(2, PRE_HTML + "Aktívne turnaje" + POST_HTML);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
+            .addComponent(mainTabPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,6 +86,9 @@ public class HracFrame extends javax.swing.JFrame {
 
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         // tu sa budu aktualizovat zaleÅ¾itosti z panelov ak je to treba.
+        if(mainTabPane.getSelectedIndex() == 0) {
+            profilHracaPane1.refresh();
+        }
     }//GEN-LAST:event_mainTabPaneStateChanged
 
     /**

@@ -90,11 +90,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         });
         jScrollPane1.setViewportView(listTurnaje);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 380, 410));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 380, 410));
 
         labelTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelTurnaje.setText("Zoznam naplánovaných turnajov");
-        add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         btnUpravit.setBackground(new java.awt.Color(204, 204, 204));
         btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
@@ -105,32 +105,32 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
                 btnUpravitMouseReleased(evt);
             }
         });
-        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
+        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 160, 30));
 
         labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNazov.setText("Názov turnaja:");
-        add(labelNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+        add(labelNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
         labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelFormat.setText("Formát turnaja:");
-        add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+        add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, -1));
 
         labelKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelKapacita.setText("Kapacita: ");
-        add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, -1, -1));
+        add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
 
         listHraciNaTurnaji.setModel(new DefaultListModel<Hrac>());
         jScrollPane2.setViewportView(listHraciNaTurnaji);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 290, 210));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 290, 210));
 
         labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMiestoKonania.setText("Miesto Konania:");
-        add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
+        add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
 
         labelTempo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelTempo.setText("Tempo hry: ");
-        add(labelTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
+        add(labelTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, -1));
 
         btnVytvoritTurnaj.setBackground(new java.awt.Color(118, 155, 108));
         btnVytvoritTurnaj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -141,43 +141,43 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
                 btnVytvoritTurnajMouseReleased(evt);
             }
         });
-        add(btnVytvoritTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
+        add(btnVytvoritTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 380, 40));
 
         labelNazovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNazovData.setText("--");
-        add(labelNazovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 210, -1));
+        add(labelNazovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 210, -1));
 
         labelKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelKapacitaData.setText("0/0");
-        add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 70, -1));
+        add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 70, -1));
 
         labelFormatData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelFormatData.setText("--");
-        add(labelFormatData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 210, -1));
+        add(labelFormatData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 210, -1));
 
         labelMiestoKonaniaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMiestoKonaniaData.setText("---");
-        add(labelMiestoKonaniaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, 210, -1));
+        add(labelMiestoKonaniaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 210, -1));
 
         labelTempoData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelTempoData.setText("--");
-        add(labelTempoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 210, -1));
+        add(labelTempoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 210, -1));
 
         labelRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelRating.setText("Rating:");
-        add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
+        add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, -1, -1));
 
         labelMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMaxVek.setText("Vek:");
-        add(labelMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, -1, -1));
+        add(labelMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, -1, -1));
 
         labelMaxVekData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMaxVekData.setText("--");
-        add(labelMaxVekData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 210, -1));
+        add(labelMaxVekData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 210, -1));
 
         labelRatingData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelRatingData.setText("--");
-        add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 210, -1));
+        add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased

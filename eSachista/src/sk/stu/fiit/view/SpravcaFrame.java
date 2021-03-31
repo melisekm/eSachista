@@ -1,6 +1,8 @@
 package sk.stu.fiit.view;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import sk.stu.fiit.controller.SpravcaController;
 
 /**
@@ -25,6 +27,8 @@ public class SpravcaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        final String PRE_HTML = "<html><p style=\"text-align: left; width: 80px;\">";
+        final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
         spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
         clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane();
@@ -36,17 +40,36 @@ public class SpravcaFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(935, 655));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mainTabPane.setUI(new BasicTabbedPaneUI(){
+            @Override
+            protected int calculateTabWidth(
+                int tabPlacement, int tabIndex, FontMetrics metrics) {
+                return 150;
+            }
+
+            @Override
+            protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
+                return 45;
+            }
+        });
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
-        mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
-        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
+        mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 15));
         mainTabPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 mainTabPaneStateChanged(evt);
             }
         });
         mainTabPane.addTab("Profil", spravcaPrehladPane);
+        mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/user2.png")));
+        mainTabPane.setTitleAt(0, PRE_HTML + "Profil" + POST_HTML);
         mainTabPane.addTab("Èlenovia", clenoviaPane);
+        mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/group2.png")));
+        mainTabPane.setTitleAt(1, PRE_HTML + "Èlenovia" + POST_HTML);
         mainTabPane.addTab("Turnaje", turnajePane);
+        mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
+        mainTabPane.setTitleAt(2, PRE_HTML + "Turnaje" + POST_HTML);
 
         getContentPane().add(mainTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 670));
 
@@ -55,9 +78,13 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
-        if(mainTabPane.getSelectedIndex() == 2){
+        if(mainTabPane.getSelectedIndex() == 0) {
+            spravcaPrehladPane.refresh();
+        }
+        else if(mainTabPane.getSelectedIndex() == 2){
             turnajePane.refresh();
         }
+
     }//GEN-LAST:event_mainTabPaneStateChanged
 
     /**

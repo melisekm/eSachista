@@ -41,10 +41,10 @@ public class ClenoviaPane extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("»lenovia");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jLabel2.setText("poËet Ëlenov");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         jList1.setBackground(new java.awt.Color(153, 153, 153));
         jList1.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,17 +55,17 @@ public class ClenoviaPane extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 640, 520));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 640, 240));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         jButton1.setText("jButton1");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 140, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "toto by mohlo fungovaù ako vyhæad·vanie", "look up jcombobox autocomplete", "neviem Ëi naozaj LUL", "moûno ûiadny regex " }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 50, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 170, -1));
 
         jLabel3.setText("read me v");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

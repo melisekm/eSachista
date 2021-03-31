@@ -785,6 +785,7 @@
                 </LineBorder>
               </Border>
             </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRegistrovatOrgMouseReleased"/>
@@ -814,6 +815,7 @@
                 </LineBorder>
               </Border>
             </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPripojitMouseReleased"/>

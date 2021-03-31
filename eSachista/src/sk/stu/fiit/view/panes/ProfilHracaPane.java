@@ -7,6 +7,8 @@ package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.view.EntryFrame;
 
 /**
@@ -24,6 +26,16 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
     public ProfilHracaPane() {
         initComponents();
+    }
+    
+        private void setHracInfo() {
+        Hrac h = (Hrac) this.controller.getUserLoggedIn();
+        //labelMenoHraca.setText(h.getMeno());
+        
+    }
+    
+    public void refresh() {
+        this.setHracInfo();
     }
 
     /**
@@ -214,7 +226,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
                 btnLogOutHracMouseReleased(evt);
             }
         });
-        add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, -1, 40));
+        add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutHracMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutHracMouseReleased
