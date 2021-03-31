@@ -2,10 +2,13 @@ package sk.stu.fiit.utils;
 
 import java.awt.Component;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
+ * Library pre View
  *
  * @author Martin Melisek
  */
@@ -30,9 +33,15 @@ public class ViewUtils {
         return true;
     }
 
-    public static void clearFields(JTextField... fields) {
-        for (JTextField field : fields) {
+    public static void clearFields(JTextComponent... fields) {
+        for (JTextComponent field : fields) {
             field.setText("");
+        }
+    }
+
+    public static void clearFields(JLabel... labels) {
+        for (JLabel label : labels) {
+            label.setText("");
         }
     }
 }

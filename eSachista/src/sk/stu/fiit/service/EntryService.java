@@ -12,17 +12,15 @@ import sk.stu.fiit.model.organisation.platform.Balik;
  *
  * @author Martin Melisek
  */
-public class EntryService {
+public class EntryService extends Service{
 
     private static EntryService INSTANCE = new EntryService();
 
-    private Database db;
     private Organizacia orgLoggedIn;
     private Pouzivatel userLoggedIn;
     private Spravca spravcaTemp;
 
     private EntryService() {
-        this.db = Database.getInstance();
     }
 
     public static EntryService getInstance() {
@@ -38,7 +36,7 @@ public class EntryService {
      * @return true ak sa to podarilo, false ak nie je uz kapacita
      */
     public boolean registerHrac(String meno, String login, char[] password) {
-        Hrac h = new Hrac(meno, login, password);
+        Hrac h = new Hrac(this.getOrgLoggedIn(), meno, login, password);
         if (this.orgLoggedIn.getPouzivatelia().size() == this.orgLoggedIn.getBalik().getKapacitaPouzivatelov()) {
             return false;
         }
@@ -50,6 +48,7 @@ public class EntryService {
         Balik b = this.db.getBaliky().get(balikId);
         Spravca organizator = new Spravca(this.spravcaTemp);
         Organizacia o = new Organizacia(nazovOrg, adresaOrg, organizator, b);
+        organizator.setOrg(o);
         this.db.getOrganizacie().add(o);
     }
 
@@ -86,6 +85,9 @@ public class EntryService {
         this.spravcaTemp = null;
     }
 
+    /**
+     * Z databazy vrati balik na zaklade ID
+     */
     public Balik getBalik(int index) {
         return this.db.getBaliky().get(index);
     }

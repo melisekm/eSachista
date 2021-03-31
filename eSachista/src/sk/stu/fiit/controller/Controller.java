@@ -1,10 +1,12 @@
 package sk.stu.fiit.controller;
 
+import java.util.ArrayList;
+import sk.stu.fiit.model.organisation.platform.Turnaj;
 import sk.stu.fiit.service.EntryService;
 
 /**
- * Pomocou <i> Service triedy </i> komunikuje s modelom Vracia data pre
- * view, ktory ich zobrazuje
+ * Pomocou <i> Service triedy </i> komunikuje s modelom Vracia data pre view,
+ * ktory ich zobrazuje
  *
  * @author Martin Melisek
  */
@@ -12,7 +14,19 @@ public abstract class Controller {
 
     protected EntryService entryService = EntryService.getInstance();
 
-    public void logOut(){
+    public void logOut() {
         this.entryService.logOut();
+    }
+
+    public ArrayList<Turnaj> getTurnaje() {
+        return this.entryService.getOrgLoggedIn().getTurnaje();
+    }
+
+    public String getTurnajKapacita(Turnaj t) {
+        return String.format("%d/%d", t.getHraci().size(), this.entryService.getOrgLoggedIn().getBalik().getMaxHracovTurnaja());
+    }
+    
+    public String getTurnajTempo(Turnaj t){
+        return String.format("%d min %d sec + %d sec", t.getLimitMins(), t.getLimitSec(), t.getIncrement());
     }
 }

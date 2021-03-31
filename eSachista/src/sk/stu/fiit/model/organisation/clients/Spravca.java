@@ -1,5 +1,7 @@
 package sk.stu.fiit.model.organisation.clients;
 
+import sk.stu.fiit.model.organisation.Organizacia;
+
 /**
  *
  * @author Martin Melisek

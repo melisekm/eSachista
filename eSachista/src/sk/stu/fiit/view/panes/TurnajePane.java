@@ -5,17 +5,37 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sk.stu.fiit.controller.TurnajController;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Turnaj;
+import sk.stu.fiit.utils.ViewUtils;
+import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
+
 /**
  *
  * @author lucia
+ * @author Martin Melisek
  */
 public class TurnajePane extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TurnajePanel
-     */
+    private static final Logger logger = LoggerFactory.getLogger(TurnajePane.class);
+    private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+    private TurnajController controller = new TurnajController();
+    private JLabel[] turnajLabels;
+
     public TurnajePane() {
         initComponents();
+        this.turnajLabels = new JLabel[]{
+            labelFormatData, labelKapacitaData, labelMiestoKonaniaData, labelNazovData, labelTempoData
+        };
+        this.naplnTurnajList();
     }
 
     /**
@@ -27,91 +47,182 @@ public class TurnajePane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelZiadneTurnaje = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        listTurnaje = new javax.swing.JList<>();
+        labelTurnaje = new javax.swing.JLabel();
+        btnUpravit = new javax.swing.JButton();
+        labelNazov = new javax.swing.JLabel();
+        labelFormat = new javax.swing.JLabel();
+        labelKapacita = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        listHraciNaTurnaji = new javax.swing.JList<>();
+        labelMiestoKonania = new javax.swing.JLabel();
+        labelTempo = new javax.swing.JLabel();
+        btnVytvoritTurnaj = new javax.swing.JButton();
+        labelNazovData = new javax.swing.JLabel();
+        labelKapacitaData = new javax.swing.JLabel();
+        labelFormatData = new javax.swing.JLabel();
+        labelMiestoKonaniaData = new javax.swing.JLabel();
+        labelTempoData = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        labelZiadneTurnaje.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        labelZiadneTurnaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZiadneTurnaje.setText("Pr·ve nie je napl·novan˝ ûiaden turnaj");
+        add(labelZiadneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 340, -1));
+
+        listTurnaje.setModel(new DefaultListModel<Turnaj>());
+        listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listTurnaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listTurnajeMouseReleased(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listTurnaje);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 380, 410));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Zoznam napl·novan˝ch turnajov");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        labelTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTurnaje.setText("Zoznam napl·novan˝ch turnajov");
+        add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        jButton1.setText("Upraviù turnaj");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
+        btnUpravit.setBackground(new java.awt.Color(204, 204, 204));
+        btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
+        btnUpravit.setText("Upraviù turnaj");
+        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
 
-        jLabel2.setText("len pozn·mka: keÔ klikne na turnaj, mohli by sa sem do txt polÌ naËÌtaù info");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+        labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNazov.setText("N·zov turnaja:");
+        add(labelNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
-        jLabel3.setText("N·zov turnaja");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
+        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFormat.setText("Form·t turnaja:");
+        add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
 
-        jLabel4.setText("Form·t turnaja");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
+        labelKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelKapacita.setText("Kapacita: ");
+        add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
-        jLabel5.setText("Kapacita: ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, -1, -1));
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "zoznam prihl·sen˝ch hr·Ëov" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        listHraciNaTurnaji.setModel(new DefaultListModel<Hrac>());
+        jScrollPane2.setViewportView(listHraciNaTurnaji);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 290, 270));
 
-        jLabel6.setText("ZaËiatok");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
+        labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMiestoKonania.setText("Miesto Konania:");
+        add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
 
-        jLabel7.setText("......");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
+        labelTempo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelTempo.setText("Tempo hry: ");
+        add(labelTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(118, 155, 108));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("VYTVORIç NOV› TURNAJ");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
+        btnVytvoritTurnaj.setBackground(new java.awt.Color(118, 155, 108));
+        btnVytvoritTurnaj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVytvoritTurnaj.setForeground(new java.awt.Color(255, 255, 255));
+        btnVytvoritTurnaj.setText("VYTVORIç NOV› TURNAJ");
+        btnVytvoritTurnaj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVytvoritTurnajMouseReleased(evt);
+            }
+        });
+        add(btnVytvoritTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
+
+        labelNazovData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNazovData.setText("--");
+        add(labelNazovData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 210, -1));
+
+        labelKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelKapacitaData.setText("0/0");
+        add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 70, -1));
+
+        labelFormatData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFormatData.setText("--");
+        add(labelFormatData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 210, -1));
+
+        labelMiestoKonaniaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMiestoKonaniaData.setText("---");
+        add(labelMiestoKonaniaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, 210, -1));
+
+        labelTempoData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelTempoData.setText("--");
+        add(labelTempoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
+        VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller);
+        Turnaj t = dialog.showDialog();
+        if (t == null) {
+            return;
+        }
+        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).addElement(t);
+        logger.info(t.getNazov() + " bol ulozeny do listu Turnajov");
+
+    }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
+
+    private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
+        this.setTurnajInfo();
+    }//GEN-LAST:event_listTurnajeMouseReleased
+
+    private void naplnTurnajList() {
+        DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
+        model.setSize(0);
+        ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
+        for (Turnaj t : turnaje) {
+            model.addElement(t);
+        }
+        listTurnaje.setSelectedIndex(0);
+        this.setTurnajInfo();
+
+    }
+
+    private void setTurnajInfo() {
+        Turnaj t = listTurnaje.getSelectedValue();
+        if (listTurnaje.getModel().getSize() == 0) {
+            ViewUtils.clearFields(turnajLabels);
+            labelZiadneTurnaje.setVisible(true);
+            return;
+        }
+        labelZiadneTurnaje.setVisible(false);
+        labelFormatData.setText(t.getFormat().toString());
+        labelKapacitaData.setText(this.controller.getTurnajKapacita(t));
+        labelMiestoKonaniaData.setText(t.getMiestoKonania());
+        labelNazovData.setText(t.getNazov());
+        labelTempoData.setText(this.controller.getTurnajTempo(t));
+        this.naplnHracovTurnaja(t);
+    }
+
+    private void naplnHracovTurnaja(Turnaj t) {
+        DefaultListModel<Hrac> model = (DefaultListModel<Hrac>) listHraciNaTurnaji.getModel();
+        model.setSize(0);
+        for (Hrac hrac : t.getHraci()) {
+            model.addElement(hrac);
+        }
+        listHraciNaTurnaji.setSelectedIndex(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JButton btnUpravit;
+    private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelFormat;
+    private javax.swing.JLabel labelFormatData;
+    private javax.swing.JLabel labelKapacita;
+    private javax.swing.JLabel labelKapacitaData;
+    private javax.swing.JLabel labelMiestoKonania;
+    private javax.swing.JLabel labelMiestoKonaniaData;
+    private javax.swing.JLabel labelNazov;
+    private javax.swing.JLabel labelNazovData;
+    private javax.swing.JLabel labelTempo;
+    private javax.swing.JLabel labelTempoData;
+    private javax.swing.JLabel labelTurnaje;
+    private javax.swing.JLabel labelZiadneTurnaje;
+    private javax.swing.JList<Hrac> listHraciNaTurnaji;
+    private javax.swing.JList<Turnaj> listTurnaje;
     // End of variables declaration//GEN-END:variables
 }

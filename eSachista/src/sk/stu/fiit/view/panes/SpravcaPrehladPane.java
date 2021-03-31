@@ -6,6 +6,7 @@
 package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
+import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.view.EntryFrame;
 
 /**
@@ -14,9 +15,13 @@ import sk.stu.fiit.view.EntryFrame;
  */
 public class SpravcaPrehladPane extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SpravcaPrehladPane
-     */
+    SpravcaController controller;
+    
+    public SpravcaPrehladPane(SpravcaController controller) {
+        this.controller = controller;
+        initComponents();
+    }
+
     public SpravcaPrehladPane() {
         initComponents();
     }
@@ -97,6 +102,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOdhlasitSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOdhlasitSpravcuMouseReleased
+        this.controller.logOut();
         SwingUtilities.getWindowAncestor(this).dispose();
         EntryFrame.main();
     }//GEN-LAST:event_btnOdhlasitSpravcuMouseReleased

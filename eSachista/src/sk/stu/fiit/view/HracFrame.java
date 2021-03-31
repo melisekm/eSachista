@@ -13,7 +13,6 @@ public class HracFrame extends javax.swing.JFrame {
 
     public HracFrame() {
         this.controller = new HracController();
-
         initComponents();
     }
 

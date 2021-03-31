@@ -30,6 +30,7 @@ public class Organizacia {
         this.spravcovia.add(organizator);
         this.pouzivatelia = new ArrayList<>();
         this.pouzivatelia.add(organizator);
+        this.turnaje = new ArrayList<>();
     }
 
     public String getNazov() {

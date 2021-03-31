@@ -16,9 +16,13 @@ import sk.stu.fiit.view.EntryFrame;
 public class ProfilHracaPane extends javax.swing.JPanel {
 
     private HracController controller;
-    
+
+    public ProfilHracaPane(HracController controller) {
+        this.controller = controller;
+        initComponents();
+    }
+
     public ProfilHracaPane() {
-        this.controller = new HracController();
         initComponents();
     }
 
