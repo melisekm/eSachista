@@ -61,7 +61,7 @@ public class TurnajController extends Controller {
     }
     
     public void upravTurnaj(Turnaj povodny, Turnaj novy){
-        this.getTurnaje().set(this.getTurnaje().indexOf(povodny), novy);
+        povodny.updateDetails(novy);
     }
 
     public Turnaj getNovyTurnaj() {

@@ -243,6 +243,11 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
 
         int minRating = (Integer) spinnerMinRating.getValue();
         int maxRating = (Integer) spinnerMaxRating.getValue();
+        if (minRating > maxRating) {
+            logger.warn("Minimalny rating na turnaji bol nastaveny vyssi nez maximalny");
+            JOptionPane.showMessageDialog(this, "Minimalny rating musi byt nizsi nez maximalny");
+            return;
+        }
         int maxVek = (Integer) spinnerMaxVek.getValue();
         String popis = textAreaOpis.getText();
 

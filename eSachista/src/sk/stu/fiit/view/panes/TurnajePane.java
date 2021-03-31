@@ -79,7 +79,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelZiadneTurnaje.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         labelZiadneTurnaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelZiadneTurnaje.setText("Práve nie je naplánovaný žiaden turnaj");
-        add(labelZiadneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 340, -1));
+        add(labelZiadneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 340, -1));
 
         listTurnaje.setModel(new DefaultListModel<Turnaj>());
         listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -204,7 +204,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             return;
         }
         this.controller.upravTurnaj(povodny, novy);
-        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).setElementAt(novy, listTurnaje.getSelectedIndex());
+        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).setElementAt(povodny, listTurnaje.getSelectedIndex());
         logger.info(novy.getNazov() + " bol upraveny v zozname turnajov");
         this.setTurnajInfo();
     }//GEN-LAST:event_btnUpravitMouseReleased

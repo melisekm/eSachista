@@ -30,6 +30,16 @@ public class Turnaj {
         this.hraci = new ArrayList<>();
     }
 
+    public void updateDetails(Turnaj other) {
+        this.format = other.format;
+        this.nazov = other.nazov;
+        this.miestoKonania = other.miestoKonania;
+        this.datumKonania = other.datumKonania;
+        this.popis = other.popis;
+        this.tempoHry = other.tempoHry;
+        this.obmedzenia = other.obmedzenia;
+    }
+
     @Override
     public String toString() {
         return nazov + " - " + datumKonania.toString();
@@ -98,5 +108,5 @@ public class Turnaj {
     public void setObmedzenia(TurnajObmedzenia obmedzenia) {
         this.obmedzenia = obmedzenia;
     }
-    
+
 }

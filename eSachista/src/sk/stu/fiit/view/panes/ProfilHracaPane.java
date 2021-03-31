@@ -118,7 +118,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         HistoriaZapasov.setBackground(new java.awt.Color(204, 204, 204));
         HistoriaZapasov.setForeground(new java.awt.Color(51, 51, 51));
         HistoriaZapasov.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Cpavok vs Magnus Carlson 1:0 Mar 6, 2021", "Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021" };
+            String[] strings = { "Cpavok vs Magnus Carlson 1:0 Mar 6, 2021", "Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021", "new DefaultListModel<Zapas>", "^^ do custom code v modeli", "a este v Code TypeParameters na Zapas" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

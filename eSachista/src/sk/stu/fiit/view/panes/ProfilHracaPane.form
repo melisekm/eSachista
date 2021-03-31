@@ -157,9 +157,12 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="2">
+              <StringArray count="5">
                 <StringItem index="0" value="Cpavok vs Magnus Carlson 1:0 Mar 6, 2021"/>
                 <StringItem index="1" value="Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021"/>
+                <StringItem index="2" value="new DefaultListModel&lt;Zapas&gt;"/>
+                <StringItem index="3" value="^^ do custom code v modeli"/>
+                <StringItem index="4" value="a este v Code TypeParameters na Zapas"/>
               </StringArray>
             </Property>
           </Properties>
