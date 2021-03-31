@@ -351,6 +351,7 @@ public class EntryFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelConnection.setBackground(new java.awt.Color(255, 255, 255));
@@ -506,6 +507,7 @@ public class EntryFrame extends javax.swing.JFrame {
             return;
         }
         dialogRegistrovatHraca.dispose();
+        JOptionPane.showMessageDialog(this, "Registracia uspesna");
     }//GEN-LAST:event_btnRegistraciaHracaOKMouseReleased
 
     private void btnZavrietDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseReleased

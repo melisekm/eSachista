@@ -5,6 +5,8 @@
  */
 package sk.stu.fiit.view.panes;
 
+import sk.stu.fiit.utils.ViewUtils;
+
 /**
  *
  * @author lucia
@@ -27,7 +29,7 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TurnajDialog = new javax.swing.JDialog();
+        dialogTurnaj = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,20 +48,20 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        TurnajDialog.setBackground(new java.awt.Color(255, 255, 255));
-        TurnajDialog.setMinimumSize(new java.awt.Dimension(660, 560));
-        TurnajDialog.setModal(true);
-        TurnajDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        dialogTurnaj.setBackground(new java.awt.Color(255, 255, 255));
+        dialogTurnaj.setMinimumSize(new java.awt.Dimension(660, 560));
+        dialogTurnaj.setModal(true);
+        dialogTurnaj.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess-chess-board-game-chessboard-icon-wrong.png"))); // NOI18N
-        TurnajDialog.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        dialogTurnaj.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Názov turnaja ");
-        TurnajDialog.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
+        dialogTurnaj.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         jLabel4.setText("Zaèiatok: ");
-        TurnajDialog.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        dialogTurnaj.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,10 +93,10 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         jLabel11.setText("Opis");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        TurnajDialog.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 590, 220));
+        dialogTurnaj.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 590, 220));
 
         jLabel7.setText("Miesto konania:");
-        TurnajDialog.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        dialogTurnaj.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 610));
@@ -141,16 +143,14 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabulkaTurnajovMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabulkaTurnajovMouseClicked
-        // TODO add your handling code here:
         int indexRow = TabulkaTurnajov.getSelectedRow();
-        TurnajDialog.pack();
-        TurnajDialog.setVisible(true);
+        ViewUtils.showDialog(dialogTurnaj);
     }//GEN-LAST:event_TabulkaTurnajovMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabulkaTurnajov;
-    private javax.swing.JDialog TurnajDialog;
+    private javax.swing.JDialog dialogTurnaj;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

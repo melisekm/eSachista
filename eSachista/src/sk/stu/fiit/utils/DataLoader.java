@@ -34,7 +34,7 @@ public class DataLoader {
 
     private static void pridajHraca(Database db, int orgId) {
         Organizacia org = db.getOrganizacie().get(orgId);
-        org.getPouzivatelia().add(new Hrac(org, "Adam Novy", "xuser", new char[]{'<', '=', '>'}));
+        org.getPouzivatelia().add(new Hrac(org, "Adam Novy", "aa", new char[]{'<', '=', '>'}));
     }
 
     private static void pridajTurnaj(Database db, int orgId) {

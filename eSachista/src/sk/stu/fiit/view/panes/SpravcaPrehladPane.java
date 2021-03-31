@@ -41,11 +41,10 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnUpravitOrgPrehlad = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         labelDatumRegOrg = new javax.swing.JLabel();
         labelPocetClenovOrg = new javax.swing.JLabel();
         btnOdhlasitSpravcu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -74,15 +73,6 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         btnUpravitOrgPrehlad.setText("Upraviù");
         add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "neviem eöte ûe ak˝ to bude komponent" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 810, 280));
-
         labelDatumRegOrg.setText("jLabel5");
         add(labelDatumRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
@@ -99,6 +89,9 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
             }
         });
         add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, -1, -1));
+
+        jLabel1.setText("tu budu informacie o org a informacie o spravcovi");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOdhlasitSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOdhlasitSpravcuMouseReleased
@@ -111,11 +104,10 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOdhlasitSpravcu;
     private javax.swing.JButton btnUpravitOrgPrehlad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDatumRegOrg;
     private javax.swing.JLabel labelLogoOrgPrehlad;
     private javax.swing.JLabel labelNazovOrgPrehlad;

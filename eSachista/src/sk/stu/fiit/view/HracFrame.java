@@ -26,7 +26,7 @@ public class HracFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainTabPane = new javax.swing.JTabbedPane();
-        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane();
+        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
         zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
         aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
 

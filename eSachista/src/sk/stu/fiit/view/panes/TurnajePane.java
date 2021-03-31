@@ -27,15 +27,15 @@ public class TurnajePane extends javax.swing.JPanel {
 
     private static final Logger logger = LoggerFactory.getLogger(TurnajePane.class);
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
-    private TurnajController controller = new TurnajController();
+    private TurnajController controller;
     private JLabel[] turnajLabels;
 
     public TurnajePane() {
         initComponents();
+        controller = new TurnajController();
         this.turnajLabels = new JLabel[]{
             labelFormatData, labelKapacitaData, labelMiestoKonaniaData, labelNazovData, labelTempoData
         };
-        this.naplnTurnajList();
     }
 
     /**
@@ -203,6 +203,10 @@ public class TurnajePane extends javax.swing.JPanel {
             model.addElement(hrac);
         }
         listHraciNaTurnaji.setSelectedIndex(0);
+    }
+
+    public void refresh() {
+        this.naplnTurnajList();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

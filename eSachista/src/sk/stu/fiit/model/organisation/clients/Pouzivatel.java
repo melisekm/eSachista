@@ -8,6 +8,7 @@ import sk.stu.fiit.model.organisation.Organizacia;
  */
 public abstract class Pouzivatel {
 
+    protected boolean firstLogin = false;
     protected Organizacia org;
     protected String meno;
     protected String login;

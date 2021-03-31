@@ -138,7 +138,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(comboboxFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 180, -1));
 
         spinnerLimitSec.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spinnerLimitSec.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spinnerLimitSec.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         mainPane.add(spinnerLimitSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 80, -1));
 
         labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

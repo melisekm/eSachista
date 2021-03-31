@@ -20,7 +20,9 @@ public class TurnajController extends Controller {
     private Turnaj novyTurnaj;
 
     public TurnajController() {
-        this.org = this.entryService.getOrgLoggedIn();
+        if (this.entryService != null) {
+            this.org = this.entryService.getOrgLoggedIn();
+        }
     }
 
     public void saveTurnaj(TurnajFormat format, String nazov, String miestoKonania,

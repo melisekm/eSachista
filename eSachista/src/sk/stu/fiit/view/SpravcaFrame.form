@@ -44,6 +44,9 @@
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="mainTabPaneStateChanged"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="940" height="670"/>
@@ -52,7 +55,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="sk.stu.fiit.view.panes.SpravcaPrehladPane" name="spravcaPrehladPane1">
+        <Component class="sk.stu.fiit.view.panes.SpravcaPrehladPane" name="spravcaPrehladPane">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller)"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Profil">
@@ -61,7 +67,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.ClenoviaPane" name="clenoviaPane1">
+        <Component class="sk.stu.fiit.view.panes.ClenoviaPane" name="clenoviaPane">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#x10c;lenovia">
@@ -70,7 +76,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.TurnajePane" name="turnajePane1">
+        <Component class="sk.stu.fiit.view.panes.TurnajePane" name="turnajePane">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Turnaje">

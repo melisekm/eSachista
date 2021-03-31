@@ -35,6 +35,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogUpravit = new javax.swing.JDialog();
         labelMenoHraca = new javax.swing.JLabel();
         labelPrezyvka = new javax.swing.JLabel();
         MestoLabel = new javax.swing.JLabel();
@@ -64,6 +65,8 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnLogOutHrac = new javax.swing.JButton();
+
+        dialogUpravit.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -234,6 +237,7 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private javax.swing.JLabel VyhryLabel;
     private javax.swing.JButton btnLogOutHrac;
     private javax.swing.JButton btnUpravitProfil;
+    private javax.swing.JDialog dialogUpravit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

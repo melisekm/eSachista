@@ -26,9 +26,9 @@ public class SpravcaFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainTabPane = new javax.swing.JTabbedPane();
-        spravcaPrehladPane1 = new sk.stu.fiit.view.panes.SpravcaPrehladPane();
-        clenoviaPane1 = new sk.stu.fiit.view.panes.ClenoviaPane();
-        turnajePane1 = new sk.stu.fiit.view.panes.TurnajePane();
+        spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
+        clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane();
+        turnajePane = new sk.stu.fiit.view.panes.TurnajePane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Správca");
@@ -39,15 +39,26 @@ public class SpravcaFrame extends javax.swing.JFrame {
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
         mainTabPane.setForeground(new java.awt.Color(255, 255, 255));
         mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mainTabPane.addTab("Profil", spravcaPrehladPane1);
-        mainTabPane.addTab("Èlenovia", clenoviaPane1);
-        mainTabPane.addTab("Turnaje", turnajePane1);
+        mainTabPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mainTabPaneStateChanged(evt);
+            }
+        });
+        mainTabPane.addTab("Profil", spravcaPrehladPane);
+        mainTabPane.addTab("Èlenovia", clenoviaPane);
+        mainTabPane.addTab("Turnaje", turnajePane);
 
         getContentPane().add(mainTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 670));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
+        if(mainTabPane.getSelectedIndex() == 2){
+            turnajePane.refresh();
+        }
+    }//GEN-LAST:event_mainTabPaneStateChanged
 
     /**
      * @param args the command line arguments
@@ -87,9 +98,9 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane1;
+    private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane;
     private javax.swing.JTabbedPane mainTabPane;
-    private sk.stu.fiit.view.panes.SpravcaPrehladPane spravcaPrehladPane1;
-    private sk.stu.fiit.view.panes.TurnajePane turnajePane1;
+    private sk.stu.fiit.view.panes.SpravcaPrehladPane spravcaPrehladPane;
+    private sk.stu.fiit.view.panes.TurnajePane turnajePane;
     // End of variables declaration//GEN-END:variables
 }
