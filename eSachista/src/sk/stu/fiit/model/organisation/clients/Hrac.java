@@ -2,7 +2,7 @@ package sk.stu.fiit.model.organisation.clients;
 
 import java.util.ArrayList;
 import sk.stu.fiit.model.organisation.Organizacia;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
  *

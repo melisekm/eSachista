@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.exceptions.MaxPocetTurnajovException;
 import sk.stu.fiit.model.organisation.Organizacia;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
-import sk.stu.fiit.model.organisation.platform.TurnajFormat;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
 
 /**
  *
@@ -27,7 +29,8 @@ public class TurnajController extends Controller {
 
     public void saveTurnaj(TurnajFormat format, String nazov, String miestoKonania,
             Date datum, int casZaciatkuHrs, int casZaciatkuMin,
-            int limitMin, int limitSec, int increment) throws MaxPocetTurnajovException {
+            int limitMin, int limitSec, int increment, String popis, int minRating,
+            int maxRating, int maxVek) throws MaxPocetTurnajovException {
         boolean bolaPrekrocenaKapacita = this.org.getTurnaje().size() >= this.org.getBalik().getMaxPocetTurnajov();
         if (bolaPrekrocenaKapacita) {
             logger.error("Bol presiahnuty maximalny pocet turnajov - " + this.org.getNazov() + " - " + this.org.getTurnaje().size());
@@ -35,7 +38,9 @@ public class TurnajController extends Controller {
         }
         long casKonania = casZaciatkuHrs * 3600 + casZaciatkuMin * 60;
         Date datumKonania = Date.from(datum.toInstant().plusSeconds(casKonania));
-        Turnaj turnaj = new Turnaj(format, nazov, miestoKonania, datumKonania, limitMin, limitSec, increment);
+        TurnajTempoHry tempoHry = new TurnajTempoHry(limitMin, limitSec, increment);
+        TurnajObmedzenia obmedzenia = new TurnajObmedzenia(minRating, maxRating, maxVek);
+        Turnaj turnaj = new Turnaj(format, nazov, miestoKonania, datumKonania, popis, tempoHry, obmedzenia);
         this.novyTurnaj = turnaj;
         this.org.getTurnaje().add(novyTurnaj);
     }

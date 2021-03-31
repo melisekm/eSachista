@@ -507,7 +507,7 @@ public class EntryFrame extends javax.swing.JFrame {
             return;
         }
         dialogRegistrovatHraca.dispose();
-        JOptionPane.showMessageDialog(this, "Registracia uspesna");
+        JOptionPane.showMessageDialog(dialogPripojit, "Registracia uspesna");
     }//GEN-LAST:event_btnRegistraciaHracaOKMouseReleased
 
     private void btnZavrietDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseReleased

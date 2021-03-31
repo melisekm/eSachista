@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
@@ -34,7 +34,8 @@ public class TurnajePane extends javax.swing.JPanel {
         initComponents();
         controller = new TurnajController();
         this.turnajLabels = new JLabel[]{
-            labelFormatData, labelKapacitaData, labelMiestoKonaniaData, labelNazovData, labelTempoData
+            labelFormatData, labelKapacitaData, labelMiestoKonaniaData, labelNazovData, labelTempoData,
+            labelMaxVekData, labelRatingData
         };
     }
 
@@ -65,6 +66,10 @@ public class TurnajePane extends javax.swing.JPanel {
         labelFormatData = new javax.swing.JLabel();
         labelMiestoKonaniaData = new javax.swing.JLabel();
         labelTempoData = new javax.swing.JLabel();
+        labelRating = new javax.swing.JLabel();
+        labelMaxVek = new javax.swing.JLabel();
+        labelMaxVekData = new javax.swing.JLabel();
+        labelRatingData = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -106,12 +111,12 @@ public class TurnajePane extends javax.swing.JPanel {
 
         labelKapacita.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelKapacita.setText("Kapacita: ");
-        add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
+        add(labelKapacita, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, -1, -1));
 
         listHraciNaTurnaji.setModel(new DefaultListModel<Hrac>());
         jScrollPane2.setViewportView(listHraciNaTurnaji);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 290, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 290, 210));
 
         labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMiestoKonania.setText("Miesto Konania:");
@@ -138,7 +143,7 @@ public class TurnajePane extends javax.swing.JPanel {
 
         labelKapacitaData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelKapacitaData.setText("0/0");
-        add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 70, -1));
+        add(labelKapacitaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 70, -1));
 
         labelFormatData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelFormatData.setText("--");
@@ -151,6 +156,22 @@ public class TurnajePane extends javax.swing.JPanel {
         labelTempoData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelTempoData.setText("--");
         add(labelTempoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 210, -1));
+
+        labelRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRating.setText("Rating:");
+        add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
+
+        labelMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMaxVek.setText("Vek:");
+        add(labelMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, -1, -1));
+
+        labelMaxVekData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMaxVekData.setText("--");
+        add(labelMaxVekData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 210, -1));
+
+        labelRatingData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRatingData.setText("--");
+        add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -192,7 +213,9 @@ public class TurnajePane extends javax.swing.JPanel {
         labelKapacitaData.setText(this.controller.getTurnajKapacita(t));
         labelMiestoKonaniaData.setText(t.getMiestoKonania());
         labelNazovData.setText(t.getNazov());
-        labelTempoData.setText(this.controller.getTurnajTempo(t));
+        labelTempoData.setText(t.getTempoHry().toString());
+        labelRatingData.setText(t.getObmedzenia().getRatingObmedzenie());
+        labelMaxVekData.setText(String.valueOf(t.getObmedzenia().getMaxVek()));
         this.naplnHracovTurnaja(t);
     }
 
@@ -218,10 +241,14 @@ public class TurnajePane extends javax.swing.JPanel {
     private javax.swing.JLabel labelFormatData;
     private javax.swing.JLabel labelKapacita;
     private javax.swing.JLabel labelKapacitaData;
+    private javax.swing.JLabel labelMaxVek;
+    private javax.swing.JLabel labelMaxVekData;
     private javax.swing.JLabel labelMiestoKonania;
     private javax.swing.JLabel labelMiestoKonaniaData;
     private javax.swing.JLabel labelNazov;
     private javax.swing.JLabel labelNazovData;
+    private javax.swing.JLabel labelRating;
+    private javax.swing.JLabel labelRatingData;
     private javax.swing.JLabel labelTempo;
     private javax.swing.JLabel labelTempoData;
     private javax.swing.JLabel labelTurnaje;

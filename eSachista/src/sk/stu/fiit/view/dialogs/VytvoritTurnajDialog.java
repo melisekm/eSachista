@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.exceptions.MaxPocetTurnajovException;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
-import sk.stu.fiit.model.organisation.platform.TurnajFormat;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
@@ -45,7 +45,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane = new javax.swing.JPanel();
         btnVytvorit = new javax.swing.JButton();
         labelCasovyLimit = new javax.swing.JLabel();
-        spinnerMin = new javax.swing.JSpinner();
+        spinnerMinutes = new javax.swing.JSpinner();
         labelMin = new javax.swing.JLabel();
         fieldMiestoKonania = new javax.swing.JTextField();
         labelVytvoritTurnaj = new javax.swing.JLabel();
@@ -64,10 +64,22 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         labelNazov = new javax.swing.JLabel();
         spinnerLimitInc = new javax.swing.JSpinner();
         labelOddelovac = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaOpis = new javax.swing.JTextArea();
+        labelPopis = new javax.swing.JLabel();
+        labelRating = new javax.swing.JLabel();
+        labelVek = new javax.swing.JLabel();
+        spinnerMaxRating = new javax.swing.JSpinner();
+        labelOddelovac2 = new javax.swing.JLabel();
+        spinnerMaxVek = new javax.swing.JSpinner();
+        spinnerMinRating = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("Nov˝ turnaj");
+        setPreferredSize(new java.awt.Dimension(710, 480));
+        setResizable(false);
 
+        mainPane.setPreferredSize(new java.awt.Dimension(710, 480));
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVytvorit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -77,22 +89,22 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
                 btnVytvoritMouseReleased(evt);
             }
         });
-        mainPane.add(btnVytvorit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
+        mainPane.add(btnVytvorit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
 
         labelCasovyLimit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCasovyLimit.setText("»asov˝ limit:");
-        mainPane.add(labelCasovyLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        mainPane.add(labelCasovyLimit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 30));
 
-        spinnerMin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spinnerMin.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        mainPane.add(spinnerMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 80, -1));
+        spinnerMinutes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        spinnerMinutes.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        mainPane.add(spinnerMinutes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 80, -1));
 
         labelMin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMin.setText("min");
-        mainPane.add(labelMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        mainPane.add(labelMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         fieldMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mainPane.add(fieldMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 180, -1));
+        mainPane.add(fieldMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 180, -1));
 
         labelVytvoritTurnaj.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelVytvoritTurnaj.setText("Vytvoriù turnaj");
@@ -100,71 +112,106 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
 
         labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelFormat.setText("Form·t:");
-        mainPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        mainPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, 30));
 
         datePicker.setDateFormatString("dd.MM.yyyy");
         datePicker.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mainPane.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 162, 180, 30));
+        mainPane.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 180, 30));
 
         spinnerLimitMin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         spinnerLimitMin.setModel(new javax.swing.SpinnerNumberModel(10, 1, null, 1));
-        mainPane.add(spinnerLimitMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 80, -1));
+        mainPane.add(spinnerLimitMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 80, -1));
 
         fieldNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        mainPane.add(fieldNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 180, -1));
+        mainPane.add(fieldNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 180, -1));
 
         spinnerHrs.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         spinnerHrs.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        mainPane.add(spinnerHrs, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 80, -1));
+        mainPane.add(spinnerHrs, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 80, -1));
 
         labelSec.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelSec.setText("sec");
-        mainPane.add(labelSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        mainPane.add(labelSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
 
         labelInc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelInc.setText("inkrement");
-        mainPane.add(labelInc, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+        mainPane.add(labelInc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
 
         labelDatum.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDatum.setText("D·tum konania:");
-        mainPane.add(labelDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        mainPane.add(labelDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         labelCas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCas.setText("»as zaËiatku:");
-        mainPane.add(labelCas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        mainPane.add(labelCas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 30));
 
         comboboxFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboboxFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Round Robin", "Swiss", "Single Elimination" }));
-        mainPane.add(comboboxFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 180, -1));
+        mainPane.add(comboboxFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 180, -1));
 
         spinnerLimitSec.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         spinnerLimitSec.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        mainPane.add(spinnerLimitSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 80, -1));
+        mainPane.add(spinnerLimitSec, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 80, -1));
 
         labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMiestoKonania.setText("Miesto konania:");
-        mainPane.add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        mainPane.add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
         labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNazov.setText("N·zov turnaja:");
-        mainPane.add(labelNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        mainPane.add(labelNazov, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
 
         spinnerLimitInc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         spinnerLimitInc.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        mainPane.add(spinnerLimitInc, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 80, -1));
+        mainPane.add(spinnerLimitInc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 80, -1));
 
         labelOddelovac.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelOddelovac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelOddelovac.setText(":");
-        mainPane.add(labelOddelovac, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 20, 30));
+        mainPane.add(labelOddelovac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 20, 30));
 
-        getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 460));
+        textAreaOpis.setColumns(20);
+        textAreaOpis.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textAreaOpis.setLineWrap(true);
+        textAreaOpis.setRows(5);
+        textAreaOpis.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(textAreaOpis);
+
+        mainPane.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 290, 110));
+
+        labelPopis.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelPopis.setText("Popis:");
+        mainPane.add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, 30));
+
+        labelRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelRating.setText("Rating:");
+        mainPane.add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, 30));
+
+        labelVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelVek.setText("Max vek:");
+        mainPane.add(labelVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, 30));
+
+        spinnerMaxRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainPane.add(spinnerMaxRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 80, -1));
+
+        labelOddelovac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelOddelovac2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelOddelovac2.setText("-");
+        mainPane.add(labelOddelovac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 20, -1));
+
+        spinnerMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainPane.add(spinnerMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 80, -1));
+
+        spinnerMinRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mainPane.add(spinnerMinRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 80, -1));
+
+        getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritMouseReleased
-        if (!ViewUtils.validateFieldsNotBlank(this, fieldNazov, fieldMiestoKonania)) {
+        if (!ViewUtils.validateFieldsNotBlank(this, fieldNazov, fieldMiestoKonania, textAreaOpis)) {
             logger.warn("Neboli vyplnene vsetky fieldy");
             return;
         }
@@ -172,21 +219,28 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         String miesto = fieldMiestoKonania.getText();
         try {
             spinnerHrs.commitEdit();
-            spinnerMin.commitEdit();
+            spinnerMinutes.commitEdit();
         } catch (java.text.ParseException e) {
             logger.warn("Hodnota v poli cas zacatia bola mimo rozsahu");
         }
         int zaciatokHrs = (Integer) spinnerHrs.getValue();
-        int zaciatokMin = (Integer) spinnerMin.getValue();
+        int zaciatokMin = (Integer) spinnerMinutes.getValue();
         
         int formatIndex = comboboxFormat.getSelectedIndex();
         TurnajFormat format = TurnajFormat.values()[formatIndex];
         int limitMin = (Integer) spinnerLimitMin.getValue();
         int limitSec = (Integer) spinnerLimitSec.getValue();
         int increment = (Integer) spinnerLimitInc.getValue();
+        
+        int minRating = (Integer) spinnerMinRating.getValue();
+        int maxRating = (Integer) spinnerMaxRating.getValue();
+        int maxVek = (Integer) spinnerMaxVek.getValue();
+        String popis = textAreaOpis.getText();
+        
         try {
             logger.info("Ukladam turnaj");
-            this.controller.saveTurnaj(format, nazov, miesto, datePicker.getDate(), zaciatokHrs, zaciatokMin, limitMin, limitSec, increment);
+            this.controller.saveTurnaj(format, nazov, miesto, datePicker.getDate(),
+                    zaciatokHrs, zaciatokMin, limitMin, limitSec, increment, popis, minRating, maxRating, maxVek);
             logger.info("Turnaj " + nazov + " ulozeny");
         } catch (NullPointerException ex) {
             logger.error("NEPLATNY DATUM");
@@ -254,6 +308,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser datePicker;
     private javax.swing.JTextField fieldMiestoKonania;
     private javax.swing.JTextField fieldNazov;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCas;
     private javax.swing.JLabel labelCasovyLimit;
     private javax.swing.JLabel labelDatum;
@@ -263,13 +318,21 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelMin;
     private javax.swing.JLabel labelNazov;
     private javax.swing.JLabel labelOddelovac;
+    private javax.swing.JLabel labelOddelovac2;
+    private javax.swing.JLabel labelPopis;
+    private javax.swing.JLabel labelRating;
     private javax.swing.JLabel labelSec;
+    private javax.swing.JLabel labelVek;
     private javax.swing.JLabel labelVytvoritTurnaj;
     private javax.swing.JPanel mainPane;
     private javax.swing.JSpinner spinnerHrs;
     private javax.swing.JSpinner spinnerLimitInc;
     private javax.swing.JSpinner spinnerLimitMin;
     private javax.swing.JSpinner spinnerLimitSec;
-    private javax.swing.JSpinner spinnerMin;
+    private javax.swing.JSpinner spinnerMaxRating;
+    private javax.swing.JSpinner spinnerMaxVek;
+    private javax.swing.JSpinner spinnerMinRating;
+    private javax.swing.JSpinner spinnerMinutes;
+    private javax.swing.JTextArea textAreaOpis;
     // End of variables declaration//GEN-END:variables
 }

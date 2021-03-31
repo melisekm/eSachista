@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
  *

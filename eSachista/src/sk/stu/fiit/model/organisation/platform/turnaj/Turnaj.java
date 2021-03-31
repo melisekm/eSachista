@@ -1,4 +1,4 @@
-package sk.stu.fiit.model.organisation.platform;
+package sk.stu.fiit.model.organisation.platform.turnaj;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,19 +14,19 @@ public class Turnaj {
     private String nazov;
     private String miestoKonania;
     private Date datumKonania;
-    private int limitMins;
-    private int limitSec;
-    private int increment;
     private ArrayList<Hrac> hraci;
+    private String popis;
+    private TurnajTempoHry tempoHry;
+    private TurnajObmedzenia obmedzenia;
 
-    public Turnaj(TurnajFormat format, String nazov, String miestoKonania, Date datumKonania, int limitHrs, int limitSec, int increment) {
+    public Turnaj(TurnajFormat format, String nazov, String miestoKonania, Date datumKonania, String popis, TurnajTempoHry tempoHry, TurnajObmedzenia obmedzenia) {
         this.format = format;
         this.nazov = nazov;
         this.miestoKonania = miestoKonania;
         this.datumKonania = datumKonania;
-        this.limitMins = limitHrs;
-        this.limitSec = limitSec;
-        this.increment = increment;
+        this.popis = popis;
+        this.tempoHry = tempoHry;
+        this.obmedzenia = obmedzenia;
         this.hraci = new ArrayList<>();
     }
 
@@ -41,14 +41,6 @@ public class Turnaj {
 
     public void setHraci(ArrayList<Hrac> hraci) {
         this.hraci = hraci;
-    }
-
-    public int getIncrement() {
-        return increment;
-    }
-
-    public void setIncrement(int increment) {
-        this.increment = increment;
     }
 
     public TurnajFormat getFormat() {
@@ -83,20 +75,28 @@ public class Turnaj {
         this.datumKonania = datumKonania;
     }
 
-    public int getLimitMins() {
-        return limitMins;
+    public String getPopis() {
+        return popis;
     }
 
-    public void setLimitMins(int limitMins) {
-        this.limitMins = limitMins;
+    public void setPopis(String popis) {
+        this.popis = popis;
     }
 
-    public int getLimitSec() {
-        return limitSec;
+    public TurnajTempoHry getTempoHry() {
+        return tempoHry;
     }
 
-    public void setLimitSec(int limitSec) {
-        this.limitSec = limitSec;
+    public void setTempoHry(TurnajTempoHry tempoHry) {
+        this.tempoHry = tempoHry;
     }
 
+    public TurnajObmedzenia getObmedzenia() {
+        return obmedzenia;
+    }
+
+    public void setObmedzenia(TurnajObmedzenia obmedzenia) {
+        this.obmedzenia = obmedzenia;
+    }
+    
 }

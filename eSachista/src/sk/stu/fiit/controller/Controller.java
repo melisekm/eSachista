@@ -1,7 +1,8 @@
 package sk.stu.fiit.controller;
 
 import java.util.ArrayList;
-import sk.stu.fiit.model.organisation.platform.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
 import sk.stu.fiit.service.EntryService;
 
 /**
@@ -24,9 +25,5 @@ public abstract class Controller {
 
     public String getTurnajKapacita(Turnaj t) {
         return String.format("%d/%d", t.getHraci().size(), this.entryService.getOrgLoggedIn().getBalik().getMaxHracovTurnaja());
-    }
-    
-    public String getTurnajTempo(Turnaj t){
-        return String.format("%d min %d sec + %d sec", t.getLimitMins(), t.getLimitSec(), t.getIncrement());
     }
 }

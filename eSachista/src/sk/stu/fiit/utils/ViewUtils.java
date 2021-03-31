@@ -23,8 +23,8 @@ public class ViewUtils {
         dialog.setVisible(true);
     }
 
-    public static boolean validateFieldsNotBlank(Component parent, JTextField... fields) {
-        for (JTextField field : fields) {
+    public static boolean validateFieldsNotBlank(Component parent, JTextComponent... fields) {
+        for (JTextComponent field : fields) {
             if (field.getText().isBlank()) {
                 JOptionPane.showMessageDialog(parent, "Vsetky polia musia byt vyplnene", "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 return false;

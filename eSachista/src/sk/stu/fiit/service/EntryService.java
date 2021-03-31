@@ -37,7 +37,7 @@ public class EntryService extends Service{
      */
     public boolean registerHrac(String meno, String login, char[] password) {
         Hrac h = new Hrac(this.getOrgLoggedIn(), meno, login, password);
-        if (this.orgLoggedIn.getPouzivatelia().size() == this.orgLoggedIn.getBalik().getKapacitaPouzivatelov()) {
+        if (this.orgLoggedIn.getPouzivatelia().size() >= this.orgLoggedIn.getBalik().getKapacitaPouzivatelov()) {
             return false;
         }
         this.orgLoggedIn.getPouzivatelia().add(h);

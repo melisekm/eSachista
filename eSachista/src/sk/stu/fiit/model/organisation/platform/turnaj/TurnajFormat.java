@@ -1,4 +1,4 @@
-package sk.stu.fiit.model.organisation.platform;
+package sk.stu.fiit.model.organisation.platform.turnaj;
 
 /**
  *
