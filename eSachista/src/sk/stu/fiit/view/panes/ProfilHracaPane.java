@@ -8,7 +8,6 @@ package sk.stu.fiit.view.panes;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
-import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.view.EntryFrame;
 
 /**
@@ -27,14 +26,14 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     public ProfilHracaPane() {
         initComponents();
     }
-    
-        private void setHracInfo() {
+
+    private void setHracInfo() {
         Hrac h = (Hrac) this.controller.getUserLoggedIn();
         labelMenoHraca.setText(h.getMeno());
         labelPrezyvka.setText(h.getLogin());
-        
+
     }
-    
+
     public void refresh() {
         this.setHracInfo();
     }
