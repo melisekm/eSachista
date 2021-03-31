@@ -30,7 +30,8 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     
         private void setHracInfo() {
         Hrac h = (Hrac) this.controller.getUserLoggedIn();
-        //labelMenoHraca.setText(h.getMeno());
+        labelMenoHraca.setText(h.getMeno());
+        labelPrezyvka.setText(h.getLogin());
         
     }
     

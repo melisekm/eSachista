@@ -31,7 +31,7 @@ public class HracFrame extends javax.swing.JFrame {
         final String PRE_HTML = "<html><p style=\"text-align: left; width: 80px;\">";
         final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
-        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane();
+        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
         zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
         aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
 

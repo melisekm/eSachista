@@ -60,6 +60,7 @@
         <Component class="sk.stu.fiit.view.panes.ProfilHracaPane" name="profilHracaPane1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/user2.png&quot;)));&#xa;mainTabPane.setTitleAt(0, PRE_HTML + &quot;Profil&quot; + POST_HTML);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller)"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
