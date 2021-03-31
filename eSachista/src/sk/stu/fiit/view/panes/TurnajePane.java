@@ -16,6 +16,7 @@ import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.ViewUtils;
+import sk.stu.fiit.view.IViewRefresh;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
 /**
@@ -23,7 +24,7 @@ import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
  * @author lucia
  * @author Martin Melisek
  */
-public class TurnajePane extends javax.swing.JPanel {
+public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     private static final Logger logger = LoggerFactory.getLogger(TurnajePane.class);
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -99,6 +100,11 @@ public class TurnajePane extends javax.swing.JPanel {
         btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravit.setText("Upraviù turnaj");
+        btnUpravit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUpravitMouseReleased(evt);
+            }
+        });
         add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 160, 30));
 
         labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -175,19 +181,33 @@ public class TurnajePane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
-        VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller);
-        Turnaj t = dialog.showDialog();
-        if (t == null) {
+        VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, null);
+        Turnaj novy = dialog.showDialog();
+        if (novy == null) {
             return;
         }
-        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).addElement(t);
-        logger.info(t.getNazov() + " bol ulozeny do listu Turnajov");
+        this.controller.saveTurnaj(novy);
+        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).addElement(novy);
+        logger.info(novy.getNazov() + " bol ulozeny do listu Turnajov");
 
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
 
     private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
         this.setTurnajInfo();
     }//GEN-LAST:event_listTurnajeMouseReleased
+
+    private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
+        Turnaj povodny = listTurnaje.getSelectedValue();
+        VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, povodny);
+        Turnaj novy = dialog.showDialog();
+        if (novy == null) {
+            return;
+        }
+        this.controller.upravTurnaj(povodny, novy);
+        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).setElementAt(novy, listTurnaje.getSelectedIndex());
+        logger.info(novy.getNazov() + " bol upraveny v zozname turnajov");
+        this.setTurnajInfo();
+    }//GEN-LAST:event_btnUpravitMouseReleased
 
     private void naplnTurnajList() {
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();

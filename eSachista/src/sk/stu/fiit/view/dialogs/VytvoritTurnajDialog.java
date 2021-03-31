@@ -1,10 +1,13 @@
 package sk.stu.fiit.view.dialogs;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.TurnajController;
+import sk.stu.fiit.exceptions.InvalidDateException;
 import sk.stu.fiit.exceptions.MaxPocetTurnajovException;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
@@ -20,12 +23,15 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
 
     private TurnajController controller;
 
-    public VytvoritTurnajDialog(java.awt.Frame parent, boolean modal, TurnajController controller) {
+    public VytvoritTurnajDialog(java.awt.Frame parent, boolean modal, TurnajController controller, Turnaj povodny) {
         super(parent, modal);
         this.controller = controller;
         this.controller.setNovyTurnaj(null);
         initComponents();
         datePicker.setMinSelectableDate(new Date());
+        if (povodny != null) {
+            this.setTurnajInfo(povodny);
+        }
     }
 
     public VytvoritTurnajDialog(java.awt.Frame parent, boolean modal) {
@@ -43,7 +49,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         mainPane = new javax.swing.JPanel();
-        btnVytvorit = new javax.swing.JButton();
+        btnUlozit = new javax.swing.JButton();
         labelCasovyLimit = new javax.swing.JLabel();
         spinnerMinutes = new javax.swing.JSpinner();
         labelMin = new javax.swing.JLabel();
@@ -82,14 +88,14 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.setPreferredSize(new java.awt.Dimension(710, 480));
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnVytvorit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnVytvorit.setText("Vytvoriù");
-        btnVytvorit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUlozit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnUlozit.setText("Uloûiù");
+        btnUlozit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnVytvoritMouseReleased(evt);
+                btnUlozitMouseReleased(evt);
             }
         });
-        mainPane.add(btnVytvorit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+        mainPane.add(btnUlozit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
 
         labelCasovyLimit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCasovyLimit.setText("»asov˝ limit:");
@@ -143,7 +149,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
 
         labelCas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCas.setText("»as zaËiatku:");
-        mainPane.add(labelCas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 30));
+        mainPane.add(labelCas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
 
         comboboxFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboboxFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Round Robin", "Swiss", "Single Elimination" }));
@@ -192,6 +198,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(labelVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, 30));
 
         spinnerMaxRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        spinnerMaxRating.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5000, 1));
         mainPane.add(spinnerMaxRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 80, -1));
 
         labelOddelovac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -200,9 +207,11 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(labelOddelovac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 20, -1));
 
         spinnerMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        spinnerMaxVek.setModel(new javax.swing.SpinnerNumberModel(0, 0, 99, 1));
         mainPane.add(spinnerMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 80, -1));
 
         spinnerMinRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        spinnerMinRating.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5000, 1));
         mainPane.add(spinnerMinRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 80, -1));
 
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
@@ -210,7 +219,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVytvoritMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritMouseReleased
+    private void btnUlozitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitMouseReleased
         if (!ViewUtils.validateFieldsNotBlank(this, fieldNazov, fieldMiestoKonania, textAreaOpis)) {
             logger.warn("Neboli vyplnene vsetky fieldy");
             return;
@@ -225,85 +234,64 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         }
         int zaciatokHrs = (Integer) spinnerHrs.getValue();
         int zaciatokMin = (Integer) spinnerMinutes.getValue();
-        
+
         int formatIndex = comboboxFormat.getSelectedIndex();
         TurnajFormat format = TurnajFormat.values()[formatIndex];
         int limitMin = (Integer) spinnerLimitMin.getValue();
         int limitSec = (Integer) spinnerLimitSec.getValue();
         int increment = (Integer) spinnerLimitInc.getValue();
-        
+
         int minRating = (Integer) spinnerMinRating.getValue();
         int maxRating = (Integer) spinnerMaxRating.getValue();
         int maxVek = (Integer) spinnerMaxVek.getValue();
         String popis = textAreaOpis.getText();
-        
+
         try {
             logger.info("Ukladam turnaj");
-            this.controller.saveTurnaj(format, nazov, miesto, datePicker.getDate(),
+            this.controller.vytvorTurnaj(format, nazov, miesto, datePicker.getDate(),
                     zaciatokHrs, zaciatokMin, limitMin, limitSec, increment, popis, minRating, maxRating, maxVek);
             logger.info("Turnaj " + nazov + " ulozeny");
         } catch (NullPointerException ex) {
             logger.error("NEPLATNY DATUM");
             JOptionPane.showMessageDialog(this, "Neplatny datum");
             return;
-        } catch (MaxPocetTurnajovException e){
+        } catch (MaxPocetTurnajovException e) {
             JOptionPane.showMessageDialog(this, "Bol prekroceny maximalny pocet turnajov");
+            return;
+        } catch (InvalidDateException e) {
+            JOptionPane.showMessageDialog(this, "Datum turnaja nemoze byt v minulosti");
             return;
         }
         this.setVisible(false);
         this.dispose();
+    }//GEN-LAST:event_btnUlozitMouseReleased
 
-    }//GEN-LAST:event_btnVytvoritMouseReleased
+    private void setTurnajInfo(Turnaj povodny) {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Bratislava"));
+        cal.setTime(povodny.getDatumKonania());
+        fieldNazov.setText(povodny.getNazov());
+        fieldMiestoKonania.setText(povodny.getMiestoKonania());
+        textAreaOpis.setText(povodny.getPopis());
+        datePicker.setDate(cal.getTime());
+        spinnerMinutes.setValue(cal.get(Calendar.MINUTE));
+        spinnerHrs.setValue(cal.get(Calendar.HOUR_OF_DAY));
+        spinnerLimitInc.setValue(povodny.getTempoHry().getIncrement());
+        spinnerLimitMin.setValue(povodny.getTempoHry().getLimitMins());
+        spinnerLimitSec.setValue(povodny.getTempoHry().getLimitSec());
+        spinnerMinRating.setValue(povodny.getObmedzenia().getMinRating());
+        spinnerMaxRating.setValue(povodny.getObmedzenia().getMaxRating());
+        spinnerMaxVek.setValue(povodny.getObmedzenia().getMaxVek());
+        comboboxFormat.setSelectedIndex(povodny.getFormat().ordinal());
+    }
 
     public Turnaj showDialog() {
         ViewUtils.showDialog(this);
         return this.controller.getNovyTurnaj();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VytvoritTurnajDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VytvoritTurnajDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VytvoritTurnajDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VytvoritTurnajDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVytvorit;
+    private javax.swing.JButton btnUlozit;
     private javax.swing.JComboBox<String> comboboxFormat;
     private com.toedter.calendar.JDateChooser datePicker;
     private javax.swing.JTextField fieldMiestoKonania;
