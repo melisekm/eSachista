@@ -48,6 +48,23 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private void initComponents() {
 
         dialogUpravit = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfMenoDialog = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tfPriezviskoDialog = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        tfMestoDialog = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        tfStatDialog = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        calDatumNarodenia = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        cbPohlavie = new javax.swing.JComboBox<>();
+        btnVybratAvatar = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        btnUlozitDialog = new javax.swing.JButton();
         labelMenoHraca = new javax.swing.JLabel();
         labelPrezyvka = new javax.swing.JLabel();
         MestoLabel = new javax.swing.JLabel();
@@ -80,6 +97,83 @@ public class ProfilHracaPane extends javax.swing.JPanel {
 
         dialogUpravit.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Upraviù ˙daje");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 100, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Meno");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        tfMenoDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(tfMenoDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 130, -1));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Priezvisko");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        tfPriezviskoDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(tfPriezviskoDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 130, -1));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Mesto");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
+        tfMestoDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(tfMestoDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, -1));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("ät·t");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+
+        tfStatDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel2.add(tfStatDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 130, -1));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("D·tum narodenia");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+        jPanel2.add(calDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 130, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Pohlavie");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+
+        cbPohlavie.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        cbPohlavie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Muû", "éena", "InÈ" }));
+        jPanel2.add(cbPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 130, -1));
+
+        btnVybratAvatar.setBackground(new java.awt.Color(102, 102, 102));
+        btnVybratAvatar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVybratAvatar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVybratAvatar.setText("Vybraù avatar");
+        jPanel2.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 130, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, 160));
+
+        btnUlozitDialog.setBackground(new java.awt.Color(118, 155, 108));
+        btnUlozitDialog.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUlozitDialog.setForeground(new java.awt.Color(255, 255, 255));
+        btnUlozitDialog.setText("Uloûiù");
+        btnUlozitDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUlozitDialogMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btnUlozitDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 140, 30));
+
+        dialogUpravit.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 550));
+
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -100,6 +194,11 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravitProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitProfil.setText("Upraviù");
+        btnUpravitProfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpravitProfilMouseClicked(evt);
+            }
+        });
         add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
@@ -235,6 +334,16 @@ public class ProfilHracaPane extends javax.swing.JPanel {
         EntryFrame.main();
     }//GEN-LAST:event_btnLogOutHracMouseReleased
 
+    private void btnUpravitProfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitProfilMouseClicked
+        dialogUpravit.pack();
+        dialogUpravit.setLocationRelativeTo(this);
+        dialogUpravit.setVisible(true);
+    }//GEN-LAST:event_btnUpravitProfilMouseClicked
+
+    private void btnUlozitDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitDialogMouseClicked
+       
+    }//GEN-LAST:event_btnUlozitDialogMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Avatar;
@@ -248,24 +357,41 @@ public class ProfilHracaPane extends javax.swing.JPanel {
     private javax.swing.JLabel TurnajeLabel;
     private javax.swing.JLabel VyhryLabel;
     private javax.swing.JButton btnLogOutHrac;
+    private javax.swing.JButton btnUlozitDialog;
     private javax.swing.JButton btnUpravitProfil;
+    private javax.swing.JButton btnVybratAvatar;
+    private com.toedter.calendar.JDateChooser calDatumNarodenia;
+    private javax.swing.JComboBox<String> cbPohlavie;
     private javax.swing.JDialog dialogUpravit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelMenoHraca;
     private javax.swing.JLabel labelPrezyvka;
+    private javax.swing.JTextField tfMenoDialog;
+    private javax.swing.JTextField tfMestoDialog;
+    private javax.swing.JTextField tfPriezviskoDialog;
+    private javax.swing.JTextField tfStatDialog;
     // End of variables declaration//GEN-END:variables
 }
