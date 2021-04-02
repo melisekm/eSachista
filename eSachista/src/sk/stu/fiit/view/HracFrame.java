@@ -2,6 +2,7 @@ package sk.stu.fiit.view;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
+import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import sk.stu.fiit.model.organisation.clients.Hrac;
@@ -36,6 +37,7 @@ public class HracFrame extends javax.swing.JFrame {
         profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
         zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
         aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
+        odhlaseniePane1 = new sk.stu.fiit.view.panes.OdhlaseniePane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Hr·Ë");
@@ -71,6 +73,19 @@ public class HracFrame extends javax.swing.JFrame {
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "AktÌvne turnaje" + POST_HTML);
 
+        javax.swing.GroupLayout odhlaseniePane1Layout = new javax.swing.GroupLayout(odhlaseniePane1);
+        odhlaseniePane1.setLayout(odhlaseniePane1Layout);
+        odhlaseniePane1Layout.setHorizontalGroup(
+            odhlaseniePane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        odhlaseniePane1Layout.setVerticalGroup(
+            odhlaseniePane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 651, Short.MAX_VALUE)
+        );
+
+        mainTabPane.addTab("Odhl·siù sa", odhlaseniePane1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +94,7 @@ public class HracFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+            .addComponent(mainTabPane)
         );
 
         pack();
@@ -99,6 +114,8 @@ public class HracFrame extends javax.swing.JFrame {
             case 2:
                 aktivneTurnajePanel1.refresh();
                 break;
+            case 3:
+                
             default:
                 throw new AssertionError();
         }
@@ -111,6 +128,7 @@ public class HracFrame extends javax.swing.JFrame {
             profilHracaPane1.refresh();
         }
     }
+    
 
     public static void main() {
         /* Set the Nimbus look and feel */
@@ -149,6 +167,7 @@ public class HracFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sk.stu.fiit.view.panes.AktivneTurnajePanel aktivneTurnajePanel1;
     private javax.swing.JTabbedPane mainTabPane;
+    private sk.stu.fiit.view.panes.OdhlaseniePane odhlaseniePane1;
     private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane1;
     private sk.stu.fiit.view.panes.ZoznamTurnajovPanel zoznamTurnajovPanel1;
     // End of variables declaration//GEN-END:variables

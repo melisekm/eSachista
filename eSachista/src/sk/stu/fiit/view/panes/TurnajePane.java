@@ -104,7 +104,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
                 btnUpravitMouseReleased(evt);
             }
         });
-        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 160, 30));
+        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, 160, 30));
 
         labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNazov.setText("Názov turnaja:");
