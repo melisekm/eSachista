@@ -10,12 +10,10 @@ import sk.stu.fiit.view.ViewUtils;
 /**
  *
  * @author lucia
+ * @author Martin Melisek
  */
-public class ZoznamTurnajovPanel extends javax.swing.JPanel {
+public class ZoznamTurnajovPanel extends javax.swing.JPanel implements IViewRefresh {
 
-    /**
-     * Creates new form ZoznamTurnajovPanel
-     */
     public ZoznamTurnajovPanel() {
         initComponents();
     }
@@ -146,6 +144,11 @@ public class ZoznamTurnajovPanel extends javax.swing.JPanel {
         int indexRow = TabulkaTurnajov.getSelectedRow();
         ViewUtils.showDialog(dialogTurnaj);
     }//GEN-LAST:event_TabulkaTurnajovMouseClicked
+
+    @Override
+    public void refresh() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,7 +9,8 @@ package sk.stu.fiit.view.panes;
  *
  * @author lucia
  */
-public class AktivneTurnajePanel extends javax.swing.JPanel {
+public class AktivneTurnajePanel extends javax.swing.JPanel implements IViewRefresh {
+
     /**
      * Creates new form AktivneTurnajePanel
      */
@@ -67,6 +68,10 @@ public class AktivneTurnajePanel extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 370, 480));
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void refresh() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JCalendar jCalendar1;

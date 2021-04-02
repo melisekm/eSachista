@@ -88,8 +88,19 @@ public class HracFrame extends javax.swing.JFrame {
 
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         // tu sa budu aktualizovat zaležitosti z panelov ak je to treba.
-        if (mainTabPane.getSelectedIndex() == 0) {
-            profilHracaPane1.refresh();
+        int selectedPane = mainTabPane.getSelectedIndex();
+        switch (selectedPane) {
+            case 0:
+                profilHracaPane1.refresh();
+                break;
+            case 1:
+                zoznamTurnajovPanel1.refresh();
+                break;
+            case 2:
+                aktivneTurnajePanel1.refresh();
+                break;
+            default:
+                throw new AssertionError();
         }
     }//GEN-LAST:event_mainTabPaneStateChanged
 
