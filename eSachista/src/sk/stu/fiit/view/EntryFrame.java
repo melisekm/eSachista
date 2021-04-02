@@ -16,7 +16,9 @@ import sk.stu.fiit.utils.EntryConstants;
  * @author Martin Melisek
  */
 public class EntryFrame extends javax.swing.JFrame {
+
     Logger logger = LoggerFactory.getLogger(EntryFrame.class);
+    
     private final EntryController controller;
     private JTextField[] registraciaHracaFields;
     private JTextField[] registraciaOrgFields;
@@ -452,6 +454,8 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         logger.info("PRIHLASENIE FAJNOVUCKE");
         dialogPripojit.dispose();
+        this.setVisible(false);
+        this.dispose();
         int loggedInId = this.controller.getPripojenyPouzivatel();
         switch (loggedInId) {
             case EntryConstants.LOGGED_IN_SPRAVCA:
@@ -466,7 +470,6 @@ public class EntryFrame extends javax.swing.JFrame {
                 logger.error("NEOCAKAVANA CHYBA PRI PRIHLASOVANI");
                 break;
         }
-        this.setVisible(false);
     }//GEN-LAST:event_btnPrihlasitOKMouseReleased
 
     private void btnVytvoritSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritSpravcuMouseReleased

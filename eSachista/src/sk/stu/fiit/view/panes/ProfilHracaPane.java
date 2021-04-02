@@ -16,6 +16,7 @@ import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 /**
  *
  * @author lucia
+ * @author Martin Melisek
  */
 public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh {
 
@@ -96,7 +97,6 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         jLabel7 = new javax.swing.JLabel();
         labelRemizy = new javax.swing.JLabel();
         labelRemizyData = new javax.swing.JLabel();
-        btnLogOutHrac = new javax.swing.JButton();
         labelMesto = new javax.swing.JLabel();
         labelOrg = new javax.swing.JLabel();
         labelStat = new javax.swing.JLabel();
@@ -249,17 +249,6 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         add(paneStatistiky, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
 
-        btnLogOutHrac.setBackground(new java.awt.Color(204, 204, 204));
-        btnLogOutHrac.setForeground(new java.awt.Color(0, 0, 0));
-        btnLogOutHrac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        btnLogOutHrac.setText("Odhl·siù sa");
-        btnLogOutHrac.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnLogOutHracMouseReleased(evt);
-            }
-        });
-        add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, -1, 40));
-
         labelMesto.setForeground(new java.awt.Color(0, 0, 0));
         labelMesto.setText("Mesto:");
         add(labelMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
@@ -297,12 +286,6 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         add(labelPohlavieData, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogOutHracMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutHracMouseReleased
-        this.controller.logOut();
-        SwingUtilities.getWindowAncestor(this).dispose();
-        EntryFrame.main();
-    }//GEN-LAST:event_btnLogOutHracMouseReleased
-
     private void btnUpravitProfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitProfilMouseReleased
         EditovatHracaDialog dialog = new EditovatHracaDialog(this.parent, true, this.controller.getPrihlasenyHrac());
         dialog.showDialog();
@@ -312,7 +295,6 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MestoLabel;
-    private javax.swing.JButton btnLogOutHrac;
     private javax.swing.JButton btnUpravitProfil;
     private javax.swing.JLabel iconAvatar;
     private javax.swing.JLabel jLabel7;

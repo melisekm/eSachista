@@ -198,7 +198,6 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 column_width = small_column_width;
             }
             columnModel.getColumn(i).setPreferredWidth(column_width);
-            //columnModel.getColumn(i).setMaxWidth(column_width);
             columnModel.getColumn(i).setCellRenderer(centerRenderer);
         }
     }

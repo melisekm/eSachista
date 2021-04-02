@@ -2,11 +2,13 @@ package sk.stu.fiit.view;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
-import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
 import sk.stu.fiit.controller.HracController;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-import sk.stu.fiit.model.organisation.clients.Hrac;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
+import sk.stu.fiit.view.panes.IViewRefresh;
 
 /**
  *
@@ -14,7 +16,15 @@ import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
  */
 public class HracFrame extends javax.swing.JFrame {
 
+    Logger logger = LoggerFactory.getLogger(HracFrame.class);
+
     private HracController controller;
+    
+    private int PANE_COUNT = 3;
+    private int LOGOUT_ID = 3;
+    
+    private IViewRefresh[] paneSwapContext = new IViewRefresh[PANE_COUNT];
+    private int tab = 0;
 
     public HracFrame() {
         this.controller = new HracController();
@@ -37,6 +47,7 @@ public class HracFrame extends javax.swing.JFrame {
         profilHracaPane = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
         zoznamTurnajovPanel = new sk.stu.fiit.view.panes.ZoznamTurnajovPane(this.controller);
         aktivneTurnajePanel = new sk.stu.fiit.view.panes.AktivneTurnajePane(this.controller);
+        logoutPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Hr·Ë");
@@ -53,6 +64,7 @@ public class HracFrame extends javax.swing.JFrame {
                 return 45;
             }
         });
+        this.registerPanes();
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
         mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
         mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
@@ -72,6 +84,19 @@ public class HracFrame extends javax.swing.JFrame {
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "AktÌvne turnaje" + POST_HTML);
 
+        javax.swing.GroupLayout logoutPaneLayout = new javax.swing.GroupLayout(logoutPane);
+        logoutPane.setLayout(logoutPaneLayout);
+        logoutPaneLayout.setHorizontalGroup(
+            logoutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        logoutPaneLayout.setVerticalGroup(
+            logoutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 610, Short.MAX_VALUE)
+        );
+
+        mainTabPane.addTab("Odhl·senie", logoutPane);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,25 +112,33 @@ public class HracFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void registerPanes() {
+        this.paneSwapContext[0] = profilHracaPane;
+        this.paneSwapContext[1] = zoznamTurnajovPanel;
+        this.paneSwapContext[2] = aktivneTurnajePanel;
+    }
+
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         // tu sa budu aktualizovat zale≈æitosti z panelov ak je to treba.
         int selectedPane = mainTabPane.getSelectedIndex();
-        switch (selectedPane) {
-            case 0:
-                profilHracaPane.refresh();
-                break;
-            case 1:
-                zoznamTurnajovPanel.refresh();
-                break;
-            case 2:
-                aktivneTurnajePanel.refresh();
-                break;
-            case 3:
-                
-            default:
-                throw new AssertionError();
+        if (selectedPane == LOGOUT_ID) {
+            mainTabPane.setSelectedIndex(this.tab);
+            int res = JOptionPane.showConfirmDialog(this, "Chcete sa odhl·siù?", "LOGOUT", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                this.logOut();
+            }
+        } else {
+            this.tab = selectedPane;
+            paneSwapContext[selectedPane].refresh();
         }
     }//GEN-LAST:event_mainTabPaneStateChanged
+
+    private void logOut() {
+        logger.info("Hrac " + this.controller.getPrihlasenyHrac().getLogin() + " sa odhlasil.");
+        this.setVisible(false);
+        this.dispose();
+        EntryFrame.main();
+    }
 
     private void editInfo() {
         if (this.controller.getPrihlasenyHrac().isFirstLogin()) {
@@ -114,7 +147,6 @@ public class HracFrame extends javax.swing.JFrame {
             profilHracaPane.refresh();
         }
     }
-    
 
     public static void main() {
         /* Set the Nimbus look and feel */
@@ -152,6 +184,7 @@ public class HracFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sk.stu.fiit.view.panes.AktivneTurnajePane aktivneTurnajePanel;
+    private javax.swing.JPanel logoutPane;
     private javax.swing.JTabbedPane mainTabPane;
     private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane;
     private sk.stu.fiit.view.panes.ZoznamTurnajovPane zoznamTurnajovPanel;
