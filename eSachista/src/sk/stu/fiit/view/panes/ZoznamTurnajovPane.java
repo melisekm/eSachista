@@ -12,9 +12,9 @@ import sk.stu.fiit.view.ViewUtils;
  * @author lucia
  * @author Martin Melisek
  */
-public class ZoznamTurnajovPanel extends javax.swing.JPanel implements IViewRefresh {
+public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefresh {
 
-    public ZoznamTurnajovPanel() {
+    public ZoznamTurnajovPane() {
         initComponents();
     }
 

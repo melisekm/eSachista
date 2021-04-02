@@ -35,9 +35,8 @@ public class HracFrame extends javax.swing.JFrame {
         final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
         profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
-        zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPanel();
-        aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePanel();
-        odhlaseniePane1 = new sk.stu.fiit.view.panes.OdhlaseniePane();
+        zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPane();
+        aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Hr·Ë");
@@ -72,19 +71,6 @@ public class HracFrame extends javax.swing.JFrame {
         mainTabPane.addTab("AktÌvne turnaje", aktivneTurnajePanel1);
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "AktÌvne turnaje" + POST_HTML);
-
-        javax.swing.GroupLayout odhlaseniePane1Layout = new javax.swing.GroupLayout(odhlaseniePane1);
-        odhlaseniePane1.setLayout(odhlaseniePane1Layout);
-        odhlaseniePane1Layout.setHorizontalGroup(
-            odhlaseniePane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        odhlaseniePane1Layout.setVerticalGroup(
-            odhlaseniePane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
-        );
-
-        mainTabPane.addTab("Odhl·siù sa", odhlaseniePane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,10 +151,9 @@ public class HracFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.panes.AktivneTurnajePanel aktivneTurnajePanel1;
+    private sk.stu.fiit.view.panes.AktivneTurnajePane aktivneTurnajePanel1;
     private javax.swing.JTabbedPane mainTabPane;
-    private sk.stu.fiit.view.panes.OdhlaseniePane odhlaseniePane1;
     private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane1;
-    private sk.stu.fiit.view.panes.ZoznamTurnajovPanel zoznamTurnajovPanel1;
+    private sk.stu.fiit.view.panes.ZoznamTurnajovPane zoznamTurnajovPanel1;
     // End of variables declaration//GEN-END:variables
 }

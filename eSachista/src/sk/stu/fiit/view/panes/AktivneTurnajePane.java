@@ -9,12 +9,12 @@ package sk.stu.fiit.view.panes;
  *
  * @author lucia
  */
-public class AktivneTurnajePanel extends javax.swing.JPanel implements IViewRefresh {
+public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     /**
      * Creates new form AktivneTurnajePanel
      */
-    public AktivneTurnajePanel() {
+    public AktivneTurnajePane() {
         initComponents();
     }
 

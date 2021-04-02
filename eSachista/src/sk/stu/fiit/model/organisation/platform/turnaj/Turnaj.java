@@ -18,6 +18,7 @@ public class Turnaj {
     private String popis;
     private TurnajTempoHry tempoHry;
     private TurnajObmedzenia obmedzenia;
+    private boolean finished = false; // TODO dopisat do panelov
 
     public Turnaj(TurnajFormat format, String nazov, String miestoKonania, Date datumKonania, String popis, TurnajTempoHry tempoHry, TurnajObmedzenia obmedzenia) {
         this.format = format;
@@ -107,6 +108,14 @@ public class Turnaj {
 
     public void setObmedzenia(TurnajObmedzenia obmedzenia) {
         this.obmedzenia = obmedzenia;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
 }

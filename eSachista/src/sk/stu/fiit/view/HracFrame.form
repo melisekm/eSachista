@@ -70,7 +70,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.ZoznamTurnajovPanel" name="zoznamTurnajovPanel1">
+        <Component class="sk.stu.fiit.view.panes.ZoznamTurnajovPane" name="zoznamTurnajovPanel1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/trophy2.png&quot;)));&#xa;mainTabPane.setTitleAt(1, PRE_HTML + &quot;Turnaje&quot; + POST_HTML);"/>
           </AuxValues>
@@ -82,7 +82,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.AktivneTurnajePanel" name="aktivneTurnajePanel1">
+        <Component class="sk.stu.fiit.view.panes.AktivneTurnajePane" name="aktivneTurnajePanel1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/chess2.png&quot;)));&#xa;mainTabPane.setTitleAt(2, PRE_HTML + &quot;Akt&#xed;vne turnaje&quot; + POST_HTML);"/>
           </AuxValues>
@@ -94,28 +94,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Container class="sk.stu.fiit.view.panes.OdhlaseniePane" name="odhlaseniePane1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Odhl&#xe1;si&#x165; sa">
-                <Property name="tabTitle" type="java.lang.String" value="Odhl&#xe1;si&#x165; sa"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="651" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
