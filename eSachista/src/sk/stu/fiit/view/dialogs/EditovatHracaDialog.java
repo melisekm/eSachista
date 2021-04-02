@@ -62,8 +62,6 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         labelUpravitUdaje = new javax.swing.JLabel();
         labelMeno = new javax.swing.JLabel();
         fieldMeno = new javax.swing.JTextField();
-        labelPriezvisko = new javax.swing.JLabel();
-        fieldPriezvisko = new javax.swing.JTextField();
         labelMesto = new javax.swing.JLabel();
         fieldMesto = new javax.swing.JTextField();
         labelStat = new javax.swing.JLabel();
@@ -158,44 +156,38 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         labelMeno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMeno.setForeground(new java.awt.Color(0, 0, 0));
         labelMeno.setText("Meno:");
-        mainPane.add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
-        mainPane.add(fieldMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 130, -1));
-
-        labelPriezvisko.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelPriezvisko.setForeground(new java.awt.Color(0, 0, 0));
-        labelPriezvisko.setText("Priezvisko:");
-        mainPane.add(labelPriezvisko, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
-        mainPane.add(fieldPriezvisko, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 130, -1));
+        mainPane.add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        mainPane.add(fieldMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 130, -1));
 
         labelMesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMesto.setForeground(new java.awt.Color(0, 0, 0));
         labelMesto.setText("Mesto:");
-        mainPane.add(labelMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
-        mainPane.add(fieldMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, -1));
+        mainPane.add(labelMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        mainPane.add(fieldMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 130, -1));
 
         labelStat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelStat.setForeground(new java.awt.Color(0, 0, 0));
         labelStat.setText("Štát:");
-        mainPane.add(labelStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
-        mainPane.add(fieldStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 130, -1));
+        mainPane.add(labelStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+        mainPane.add(fieldStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 130, -1));
 
         labelDatumNarodenia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelDatumNarodenia.setForeground(new java.awt.Color(0, 0, 0));
         labelDatumNarodenia.setText("Dátum narodenia:");
-        mainPane.add(labelDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+        mainPane.add(labelDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         datePickerDatumNarodenia.setDateFormatString("d.M.yyyy");
         datePickerDatumNarodenia.setMaxSelectableDate(new Date());
         datePickerDatumNarodenia.setMinSelectableDate(new java.util.Date(-2208992400000L));
-        mainPane.add(datePickerDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 130, -1));
+        mainPane.add(datePickerDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 130, -1));
 
         labelPohlavie.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelPohlavie.setForeground(new java.awt.Color(0, 0, 0));
         labelPohlavie.setText("Pohlavie:");
-        mainPane.add(labelPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        mainPane.add(labelPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
         comboBoxPohlavie.setModel(new DefaultComboBoxModel<>(Pohlavie.values()));
-        mainPane.add(comboBoxPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 130, -1));
+        mainPane.add(comboBoxPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 130, -1));
 
         btnVybratAvatar.setBackground(new java.awt.Color(102, 102, 102));
         btnVybratAvatar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -206,10 +198,10 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
                 btnVybratAvatarMouseReleased(evt);
             }
         });
-        mainPane.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 130, -1));
+        mainPane.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 130, -1));
 
         imageAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        mainPane.add(imageAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, 160));
+        mainPane.add(imageAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, 150));
 
         btnUlozitUdaje.setBackground(new java.awt.Color(118, 155, 108));
         btnUlozitUdaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -348,7 +340,6 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
     private javax.swing.JDialog dialogSkillSelect;
     private javax.swing.JTextField fieldMeno;
     private javax.swing.JTextField fieldMesto;
-    private javax.swing.JTextField fieldPriezvisko;
     private javax.swing.JTextField fieldStat;
     private javax.swing.JLabel imageAvatar;
     private javax.swing.JFileChooser imgChooser;
@@ -356,7 +347,6 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
     private javax.swing.JLabel labelMeno;
     private javax.swing.JLabel labelMesto;
     private javax.swing.JLabel labelPohlavie;
-    private javax.swing.JLabel labelPriezvisko;
     private javax.swing.JLabel labelPrvotnePrihlasenie;
     private javax.swing.JLabel labelSkill;
     private javax.swing.JLabel labelStat;

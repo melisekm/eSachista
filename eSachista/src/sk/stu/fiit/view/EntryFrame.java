@@ -137,7 +137,7 @@ public class EntryFrame extends javax.swing.JFrame {
                 btnRegistrovatHracaMouseReleased(evt);
             }
         });
-        panelPripojit.add(btnRegistrovatHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        panelPripojit.add(btnRegistrovatHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 170, -1));
 
         labelPrihlasitName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPrihlasitName.setText("Prihlásenie do organizácie:");
