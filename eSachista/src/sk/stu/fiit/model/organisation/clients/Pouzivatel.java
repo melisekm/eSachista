@@ -14,14 +14,13 @@ public abstract class Pouzivatel {
     protected String meno;
     protected String login;
     private char[] password; //zahashovane heslo
-    private Date datumRegistracie;
+    private Date datumRegistracie = new Date();
     private Avatar avatar;
 
     public Pouzivatel(String meno, String login, char[] password) {
         this.meno = meno;
         this.login = login;
         this.password = password;
-        this.datumRegistracie = new Date();
     }
 
     public Pouzivatel(Organizacia org, String meno, String login, char[] password) {
@@ -36,8 +35,6 @@ public abstract class Pouzivatel {
         this.org = other.org;
         this.avatar = other.avatar;
     }
-
-
 
     public Date getDatumRegistracie() {
         return datumRegistracie;

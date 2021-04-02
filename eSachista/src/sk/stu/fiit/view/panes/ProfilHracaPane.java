@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
@@ -33,8 +34,25 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
     private void setHracInfo() {
         Hrac h = this.controller.getPrihlasenyHrac();
-        labelMenoHraca.setText(h.getMeno());
+        if(h.isFirstLogin()){
+            return;
+        }
+        labelMeno.setText(h.getMeno());
         labelPrezyvka.setText(h.getLogin());
+        labelMestoData.setText(h.getMesto());
+        labelStatData.setText(h.getStat());
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        labelDatumRegData.setText(sdf.format(h.getDatumRegistracie()));
+        labelDatumNarodeniaData.setText(sdf.format(h.getDatumNarodenia()));
+        
+        labelPohlavieData.setText(h.getPohlavie().toString());
+        labelOrgData.setText(h.getOrg().getNazov());
+        labelRatingData.setText(String.valueOf(h.getELO()));
+        iconAvatar.setIcon(h.getAvatar().getImage());
+        
+
+        //TODO vypocty zapasov z turnajov, dal by som to do controllera lebo to bude treba aj do listov
     }
 
     public void refresh() {
@@ -50,51 +68,60 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelMenoHraca = new javax.swing.JLabel();
+        labelMeno = new javax.swing.JLabel();
         labelPrezyvka = new javax.swing.JLabel();
         MestoLabel = new javax.swing.JLabel();
         btnUpravitProfil = new javax.swing.JButton();
-        Avatar = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        RatingLabel = new javax.swing.JLabel();
+        iconAvatar = new javax.swing.JLabel();
+        labelRating = new javax.swing.JLabel();
+        labelRatingData = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HistoriaZapasov = new javax.swing.JList<>();
+        listZapasy = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        HistoriaTurnajov = new javax.swing.JList<>();
-        jLabel6 = new javax.swing.JLabel();
+        listTurnaje = new javax.swing.JList<>();
+        labelDatumReg = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        DatumRegistracieLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        PocetZapasovLabel = new javax.swing.JLabel();
-        VyhryLabel = new javax.swing.JLabel();
-        PrehryLable = new javax.swing.JLabel();
-        TurnajeLabel = new javax.swing.JLabel();
+        labelZapasy = new javax.swing.JLabel();
+        labelTurnaje = new javax.swing.JLabel();
+        labelDatumRegData = new javax.swing.JLabel();
+        paneStatistiky = new javax.swing.JPanel();
+        labelTurnajeStat = new javax.swing.JLabel();
+        labelPrehry = new javax.swing.JLabel();
+        labelVyhry = new javax.swing.JLabel();
+        labelPocetZap = new javax.swing.JLabel();
+        labelPocetZapData = new javax.swing.JLabel();
+        labelVyhryData = new javax.swing.JLabel();
+        labelPrehryData = new javax.swing.JLabel();
+        labelTurnajeData = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelRemizy = new javax.swing.JLabel();
+        labelRemizyData = new javax.swing.JLabel();
         btnLogOutHrac = new javax.swing.JButton();
+        labelMesto = new javax.swing.JLabel();
+        labelOrg = new javax.swing.JLabel();
+        labelStat = new javax.swing.JLabel();
+        labelPohlavie = new javax.swing.JLabel();
+        labelOrgData = new javax.swing.JLabel();
+        labelMestoData = new javax.swing.JLabel();
+        labelStatData = new javax.swing.JLabel();
+        labelDatumNarodeniaData = new javax.swing.JLabel();
+        labelPohlavieData = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelMenoHraca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelMenoHraca.setForeground(new java.awt.Color(0, 0, 0));
-        labelMenoHraca.setText("Cpavok");
-        add(labelMenoHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
+        labelMeno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelMeno.setForeground(new java.awt.Color(0, 0, 0));
+        labelMeno.setText("Cpavok");
+        add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
 
         labelPrezyvka.setForeground(new java.awt.Color(102, 102, 102));
-        labelPrezyvka.setText("Tu bude jeho prezývka");
+        labelPrezyvka.setText("Prezyvka");
         add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         MestoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        MestoLabel.setText("Mesto, štát?");
-        add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+        MestoLabel.setText("Dátum narodenia:");
+        add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
         btnUpravitProfil.setBackground(new java.awt.Color(204, 204, 204));
         btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,120 +134,120 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         });
         add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
-        Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        add(Avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 170));
+        iconAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
+        add(iconAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 170));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Rating:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        labelRating.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelRating.setForeground(new java.awt.Color(0, 0, 0));
+        labelRating.setText("Rating:");
+        add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        RatingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        RatingLabel.setForeground(new java.awt.Color(0, 0, 0));
-        RatingLabel.setText("2641");
-        add(RatingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 70, -1));
+        labelRatingData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelRatingData.setForeground(new java.awt.Color(0, 0, 0));
+        labelRatingData.setText("2641");
+        add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 70, -1));
 
-        HistoriaZapasov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaZapasov.setForeground(new java.awt.Color(51, 51, 51));
-        HistoriaZapasov.setModel(new javax.swing.AbstractListModel<String>() {
+        listZapasy.setBackground(new java.awt.Color(204, 204, 204));
+        listZapasy.setForeground(new java.awt.Color(51, 51, 51));
+        listZapasy.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Cpavok vs Magnus Carlson 1:0 Mar 6, 2021", "Cpavok vs Hikaru Nakamura 1:0 Mar 5, 2021", "new DefaultListModel<Zapas>", "^^ do custom code v modeli", "a este v Code TypeParameters na Zapas" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(HistoriaZapasov);
+        jScrollPane1.setViewportView(listZapasy);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, 270));
 
-        HistoriaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
-        HistoriaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
-        HistoriaTurnajov.setModel(new javax.swing.AbstractListModel<String>() {
+        listTurnaje.setBackground(new java.awt.Color(204, 204, 204));
+        listTurnaje.setForeground(new java.awt.Color(51, 51, 51));
+        listTurnaje.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Meltwater 2021" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(HistoriaTurnajov);
+        jScrollPane2.setViewportView(listTurnaje);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 360, 270));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Dátum registrácie:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+        labelDatumReg.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelDatumReg.setForeground(new java.awt.Color(0, 0, 0));
+        labelDatumReg.setText("Dátum registrácie:");
+        add(labelDatumReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 880, 20));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Zápasy");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        labelZapasy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelZapasy.setForeground(new java.awt.Color(204, 204, 204));
+        labelZapasy.setText("Zápasy");
+        add(labelZapasy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("TURNAJE");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+        labelTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTurnaje.setForeground(new java.awt.Color(204, 204, 204));
+        labelTurnaje.setText("TURNAJE");
+        add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
-        DatumRegistracieLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        DatumRegistracieLabel.setForeground(new java.awt.Color(0, 0, 0));
-        DatumRegistracieLabel.setText("12-3-2021");
-        add(DatumRegistracieLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, -1, -1));
+        labelDatumRegData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDatumRegData.setForeground(new java.awt.Color(0, 0, 0));
+        labelDatumRegData.setText("12-3-2021");
+        add(labelDatumRegData, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        paneStatistiky.setBackground(new java.awt.Color(204, 204, 204));
+        paneStatistiky.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Turnaje:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        labelTurnajeStat.setForeground(new java.awt.Color(0, 0, 0));
+        labelTurnajeStat.setText("Turnaje:");
+        paneStatistiky.add(labelTurnajeStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Prehry:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        labelPrehry.setForeground(new java.awt.Color(0, 0, 0));
+        labelPrehry.setText("Prehry:");
+        paneStatistiky.add(labelPrehry, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Výhry:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        labelVyhry.setForeground(new java.awt.Color(0, 0, 0));
+        labelVyhry.setText("Výhry:");
+        paneStatistiky.add(labelVyhry, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Poèet odohratých zápasov:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        labelPocetZap.setForeground(new java.awt.Color(0, 0, 0));
+        labelPocetZap.setText("Poèet odohratých zápasov:");
+        paneStatistiky.add(labelPocetZap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        PocetZapasovLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PocetZapasovLabel.setForeground(new java.awt.Color(0, 153, 255));
-        PocetZapasovLabel.setText("2");
-        jPanel1.add(PocetZapasovLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        labelPocetZapData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelPocetZapData.setForeground(new java.awt.Color(0, 153, 255));
+        labelPocetZapData.setText("2");
+        paneStatistiky.add(labelPocetZapData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
-        VyhryLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        VyhryLabel.setForeground(new java.awt.Color(107, 179, 107));
-        VyhryLabel.setText("2");
-        jPanel1.add(VyhryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+        labelVyhryData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelVyhryData.setForeground(new java.awt.Color(107, 179, 107));
+        labelVyhryData.setText("2");
+        paneStatistiky.add(labelVyhryData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        PrehryLable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PrehryLable.setForeground(new java.awt.Color(238, 79, 79));
-        PrehryLable.setText("0");
-        jPanel1.add(PrehryLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+        labelPrehryData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelPrehryData.setForeground(new java.awt.Color(238, 79, 79));
+        labelPrehryData.setText("0");
+        paneStatistiky.add(labelPrehryData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
-        TurnajeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        TurnajeLabel.setForeground(new java.awt.Color(0, 153, 255));
-        TurnajeLabel.setText("1");
-        jPanel1.add(TurnajeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+        labelTurnajeData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelTurnajeData.setForeground(new java.awt.Color(0, 153, 255));
+        labelTurnajeData.setText("1");
+        paneStatistiky.add(labelTurnajeData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("ŠTATISTIKY");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        paneStatistiky.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Remízy:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        labelRemizy.setBackground(new java.awt.Color(0, 0, 0));
+        labelRemizy.setForeground(new java.awt.Color(0, 0, 0));
+        labelRemizy.setText("Remízy:");
+        paneStatistiky.add(labelRemizy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("0");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 20, -1));
+        labelRemizyData.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        labelRemizyData.setForeground(new java.awt.Color(102, 102, 102));
+        labelRemizyData.setText("0");
+        paneStatistiky.add(labelRemizyData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 20, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
+        add(paneStatistiky, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 230, 170));
 
         btnLogOutHrac.setBackground(new java.awt.Color(204, 204, 204));
         btnLogOutHrac.setForeground(new java.awt.Color(0, 0, 0));
@@ -232,6 +259,42 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
             }
         });
         add(btnLogOutHrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, -1, 40));
+
+        labelMesto.setForeground(new java.awt.Color(0, 0, 0));
+        labelMesto.setText("Mesto:");
+        add(labelMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        labelOrg.setForeground(new java.awt.Color(0, 0, 0));
+        labelOrg.setText("Organizacia:");
+        add(labelOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
+
+        labelStat.setForeground(new java.awt.Color(0, 0, 0));
+        labelStat.setText("Štát:");
+        add(labelStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+
+        labelPohlavie.setForeground(new java.awt.Color(0, 0, 0));
+        labelPohlavie.setText("Pohlavie:");
+        add(labelPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
+
+        labelOrgData.setForeground(new java.awt.Color(0, 0, 0));
+        labelOrgData.setText("Orga");
+        add(labelOrgData, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, -1, -1));
+
+        labelMestoData.setForeground(new java.awt.Color(0, 0, 0));
+        labelMestoData.setText("Dolné Èpavkovce");
+        add(labelMestoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+
+        labelStatData.setForeground(new java.awt.Color(0, 0, 0));
+        labelStatData.setText("Európa");
+        add(labelStatData, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+
+        labelDatumNarodeniaData.setForeground(new java.awt.Color(0, 0, 0));
+        labelDatumNarodeniaData.setText("01.04.2021");
+        add(labelDatumNarodeniaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
+
+        labelPohlavieData.setForeground(new java.awt.Color(0, 0, 0));
+        labelPohlavieData.setText("Dog");
+        add(labelPohlavieData, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutHracMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutHracMouseReleased
@@ -248,34 +311,43 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Avatar;
-    private javax.swing.JLabel DatumRegistracieLabel;
-    private javax.swing.JList<String> HistoriaTurnajov;
-    private javax.swing.JList<String> HistoriaZapasov;
     private javax.swing.JLabel MestoLabel;
-    private javax.swing.JLabel PocetZapasovLabel;
-    private javax.swing.JLabel PrehryLable;
-    private javax.swing.JLabel RatingLabel;
-    private javax.swing.JLabel TurnajeLabel;
-    private javax.swing.JLabel VyhryLabel;
     private javax.swing.JButton btnLogOutHrac;
     private javax.swing.JButton btnUpravitProfil;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel iconAvatar;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelMenoHraca;
+    private javax.swing.JLabel labelDatumNarodeniaData;
+    private javax.swing.JLabel labelDatumReg;
+    private javax.swing.JLabel labelDatumRegData;
+    private javax.swing.JLabel labelMeno;
+    private javax.swing.JLabel labelMesto;
+    private javax.swing.JLabel labelMestoData;
+    private javax.swing.JLabel labelOrg;
+    private javax.swing.JLabel labelOrgData;
+    private javax.swing.JLabel labelPocetZap;
+    private javax.swing.JLabel labelPocetZapData;
+    private javax.swing.JLabel labelPohlavie;
+    private javax.swing.JLabel labelPohlavieData;
+    private javax.swing.JLabel labelPrehry;
+    private javax.swing.JLabel labelPrehryData;
     private javax.swing.JLabel labelPrezyvka;
+    private javax.swing.JLabel labelRating;
+    private javax.swing.JLabel labelRatingData;
+    private javax.swing.JLabel labelRemizy;
+    private javax.swing.JLabel labelRemizyData;
+    private javax.swing.JLabel labelStat;
+    private javax.swing.JLabel labelStatData;
+    private javax.swing.JLabel labelTurnaje;
+    private javax.swing.JLabel labelTurnajeData;
+    private javax.swing.JLabel labelTurnajeStat;
+    private javax.swing.JLabel labelVyhry;
+    private javax.swing.JLabel labelVyhryData;
+    private javax.swing.JLabel labelZapasy;
+    private javax.swing.JList<String> listTurnaje;
+    private javax.swing.JList<String> listZapasy;
+    private javax.swing.JPanel paneStatistiky;
     // End of variables declaration//GEN-END:variables
 }

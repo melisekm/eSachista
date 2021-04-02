@@ -186,6 +186,7 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
 
         datePickerDatumNarodenia.setDateFormatString("d.M.yyyy");
         datePickerDatumNarodenia.setMaxSelectableDate(new Date());
+        datePickerDatumNarodenia.setMinSelectableDate(new java.util.Date(-2208992400000L));
         mainPane.add(datePickerDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 130, -1));
 
         labelPohlavie.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -278,21 +279,20 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
             logger.warn("Neboli vyplnene vsetky fieldy");
             return;
         }
+        Date datumNarodenia = datePickerDatumNarodenia.getDate();
+        if (datumNarodenia == null) {
+            logger.error("Pouzivatel zadal NEPLATNY DATUM");
+            JOptionPane.showMessageDialog(this, "Neplatny datum", "INVALID DATE", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String meno = fieldMeno.getText();
         String mesto = fieldMesto.getText();
         String stat = fieldStat.getText();
-        Date datumNarodenia = datePickerDatumNarodenia.getDate();
         Pohlavie pohlavie = (Pohlavie) comboBoxPohlavie.getSelectedItem();
         Avatar avatar = new Avatar(imageAvatar.getIcon());
-        try {
-            logger.info("Ukladam informacie o hracovi.");
-            this.controller.updateHrac(meno, mesto, stat, datumNarodenia, pohlavie, avatar);
-            logger.info("Hrac " + this.controller.getEditovanyHrac().getMeno() + " ulozeny");
-        } catch (NullPointerException e) {
-            logger.error("NEPLATNY DATUM");
-            JOptionPane.showMessageDialog(this, "Neplatny datum");
-            return;
-        }
+        logger.info("Ukladam informacie o hracovi.");
+        this.controller.updateHrac(meno, mesto, stat, datumNarodenia, pohlavie, avatar);
+        logger.info("Hrac " + this.controller.getEditovanyHrac().getMeno() + " ulozeny");
         this.controller.getEditovanyHrac().setFirstLogin(false);
         this.setVisible(false);
         this.dispose();
