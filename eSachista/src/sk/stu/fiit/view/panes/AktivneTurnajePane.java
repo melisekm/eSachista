@@ -5,15 +5,22 @@
  */
 package sk.stu.fiit.view.panes;
 
+import sk.stu.fiit.controller.HracController;
+
 /**
  *
  * @author lucia
+ * @author Martin Melisek
  */
 public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
-    /**
-     * Creates new form AktivneTurnajePanel
-     */
+    private HracController controller;
+
+    public AktivneTurnajePane(HracController controller) {
+        this.controller = controller;
+        initComponents();
+    }
+
     public AktivneTurnajePane() {
         initComponents();
     }

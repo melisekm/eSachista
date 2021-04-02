@@ -5,6 +5,13 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.view.ViewUtils;
 
 /**
@@ -13,6 +20,13 @@ import sk.stu.fiit.view.ViewUtils;
  * @author Martin Melisek
  */
 public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefresh {
+
+    private HracController controller;
+
+    public ZoznamTurnajovPane(HracController controller) {
+        this.controller = controller;
+        initComponents();
+    }
 
     public ZoznamTurnajovPane() {
         initComponents();
@@ -41,10 +55,10 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         jTextArea1 = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabulkaTurnajov = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        scrollPaneTurnaje = new javax.swing.JScrollPane();
+        tableTurnaje = new javax.swing.JTable();
+        labelPopis = new javax.swing.JLabel();
+        btnPrihlasitSa = new javax.swing.JButton();
 
         dialogTurnaj.setBackground(new java.awt.Color(255, 255, 255));
         dialogTurnaj.setMinimumSize(new java.awt.Dimension(660, 560));
@@ -101,61 +115,104 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         setPreferredSize(new java.awt.Dimension(900, 610));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TabulkaTurnajov.setBackground(new java.awt.Color(204, 204, 204));
-        TabulkaTurnajov.setForeground(new java.awt.Color(51, 51, 51));
-        TabulkaTurnajov.setModel(new javax.swing.table.DefaultTableModel(
+        tableTurnaje.setBackground(new java.awt.Color(204, 204, 204));
+        tableTurnaje.setForeground(new java.awt.Color(51, 51, 51));
+        tableTurnaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Poh·r dekana", "14.3.2022", "FIIT STU, Bratislava", "Open", "Open", "KoneËne sa op‰t mÙûeme stretn˙ù...", "Swiss 10+5", "10/100"}
+                {"Poh·r dekana", "Swiss 10+5", "FIIT STU, Bratislava", "Open", "Open", "10/100"}
             },
             new String [] {
-                "N·zov turnaja", "D·tum a Ëas", "Miesto konania", "Rating", "Vekov· kategÛria", "Opis", "Form·t", "Kapacita"
+                "N·zov a termÌn", "Form·t", "Miesto konania", "Rating", "Max Vek", "Kapacita"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        TabulkaTurnajov.setGridColor(new java.awt.Color(51, 51, 51));
-        TabulkaTurnajov.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableTurnaje.setGridColor(new java.awt.Color(51, 51, 51));
+        tableTurnaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabulkaTurnajovMouseClicked(evt);
+                tableTurnajeMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TabulkaTurnajov);
+        scrollPaneTurnaje.setViewportView(tableTurnaje);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
+        add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("KliknutÌm na turnaj zobrazÌte moûnosti a podrobnÈ inform·cie");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
+        labelPopis.setForeground(new java.awt.Color(0, 0, 0));
+        labelPopis.setText("KliknutÌm na turnaj zobrazÌte moûnosti a podrobnÈ inform·cie");
+        add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(118, 155, 108));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Prihl·siù sa na turnaj");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
+        btnPrihlasitSa.setBackground(new java.awt.Color(118, 155, 108));
+        btnPrihlasitSa.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        btnPrihlasitSa.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrihlasitSa.setText("Prihl·siù sa na turnaj");
+        add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TabulkaTurnajovMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabulkaTurnajovMouseClicked
-        int indexRow = TabulkaTurnajov.getSelectedRow();
+    private void tableTurnajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTurnajeMouseClicked
+        int indexRow = tableTurnaje.getSelectedRow();
         ViewUtils.showDialog(dialogTurnaj);
-    }//GEN-LAST:event_TabulkaTurnajovMouseClicked
+    }//GEN-LAST:event_tableTurnajeMouseClicked
+
+    private void vyplnTabulkuTurnajov() {
+        DefaultTableModel model = (DefaultTableModel) tableTurnaje.getModel();
+        model.setRowCount(0);
+        ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
+        for (Turnaj t : turnaje) {
+            if(t.isFinished()){
+                continue;
+            }
+            model.addRow(new Object[]{
+                t,
+                t.getFormat().toString() + " " + t.getTempoHry().getLimitMins() + "+" + t.getTempoHry().getIncrement(),
+                t.getMiestoKonania(),
+                t.getObmedzenia().getRatingObmedzenie(),
+                t.getObmedzenia().getMaxVek(),
+                this.controller.getTurnajKapacita(t)
+            });
+        }
+
+    }
+
+    private void nastavTabulkuTurnajov() {
+        TableColumnModel columnModel = tableTurnaje.getColumnModel();
+        ((DefaultTableCellRenderer) tableTurnaje.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER); // algin na stred column headery
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER); // align na stred values
+        tableTurnaje.getTableHeader().setResizingAllowed(true);
+        columnModel.getColumn(0).setPreferredWidth(300);
+        columnModel.getColumn(0).setCellRenderer(centerRenderer);
+        int long_column_width = 150;
+        int small_column_width = 80;
+        int column_width;
+        for (int i = 1; i < 6; i++) {
+            if (i < 2) {
+                column_width = long_column_width;
+            } else {
+                column_width = small_column_width;
+            }
+            columnModel.getColumn(i).setPreferredWidth(column_width);
+            //columnModel.getColumn(i).setMaxWidth(column_width);
+            columnModel.getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
 
     @Override
     public void refresh() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nastavTabulkuTurnajov();
+        this.vyplnTabulkuTurnajov();
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabulkaTurnajov;
+    private javax.swing.JButton btnPrihlasitSa;
     private javax.swing.JDialog dialogTurnaj;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -167,8 +224,10 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelPopis;
+    private javax.swing.JScrollPane scrollPaneTurnaje;
+    private javax.swing.JTable tableTurnaje;
     // End of variables declaration//GEN-END:variables
 }

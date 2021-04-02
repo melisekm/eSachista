@@ -34,9 +34,9 @@ public class HracFrame extends javax.swing.JFrame {
         final String PRE_HTML = "<html><p style=\"text-align: left; width: 80px;\">";
         final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
-        profilHracaPane1 = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
-        zoznamTurnajovPanel1 = new sk.stu.fiit.view.panes.ZoznamTurnajovPane();
-        aktivneTurnajePanel1 = new sk.stu.fiit.view.panes.AktivneTurnajePane();
+        profilHracaPane = new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller);
+        zoznamTurnajovPanel = new sk.stu.fiit.view.panes.ZoznamTurnajovPane(this.controller);
+        aktivneTurnajePanel = new sk.stu.fiit.view.panes.AktivneTurnajePane(this.controller);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Hráè");
@@ -62,13 +62,13 @@ public class HracFrame extends javax.swing.JFrame {
                 mainTabPaneStateChanged(evt);
             }
         });
-        mainTabPane.addTab("Profil", profilHracaPane1);
+        mainTabPane.addTab("Profil", profilHracaPane);
         mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/user2.png")));
         mainTabPane.setTitleAt(0, PRE_HTML + "Profil" + POST_HTML);
-        mainTabPane.addTab("Turnaje", zoznamTurnajovPanel1);
+        mainTabPane.addTab("Turnaje", zoznamTurnajovPanel);
         mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
         mainTabPane.setTitleAt(1, PRE_HTML + "Turnaje" + POST_HTML);
-        mainTabPane.addTab("Aktívne turnaje", aktivneTurnajePanel1);
+        mainTabPane.addTab("Aktívne turnaje", aktivneTurnajePanel);
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "Aktívne turnaje" + POST_HTML);
 
@@ -92,13 +92,13 @@ public class HracFrame extends javax.swing.JFrame {
         int selectedPane = mainTabPane.getSelectedIndex();
         switch (selectedPane) {
             case 0:
-                profilHracaPane1.refresh();
+                profilHracaPane.refresh();
                 break;
             case 1:
-                zoznamTurnajovPanel1.refresh();
+                zoznamTurnajovPanel.refresh();
                 break;
             case 2:
-                aktivneTurnajePanel1.refresh();
+                aktivneTurnajePanel.refresh();
                 break;
             case 3:
                 
@@ -111,7 +111,7 @@ public class HracFrame extends javax.swing.JFrame {
         if (this.controller.getPrihlasenyHrac().isFirstLogin()) {
             EditovatHracaDialog dialog = new EditovatHracaDialog(this, true, this.controller.getPrihlasenyHrac());
             dialog.showDialog();
-            profilHracaPane1.refresh();
+            profilHracaPane.refresh();
         }
     }
     
@@ -151,9 +151,9 @@ public class HracFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.panes.AktivneTurnajePane aktivneTurnajePanel1;
+    private sk.stu.fiit.view.panes.AktivneTurnajePane aktivneTurnajePanel;
     private javax.swing.JTabbedPane mainTabPane;
-    private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane1;
-    private sk.stu.fiit.view.panes.ZoznamTurnajovPane zoznamTurnajovPanel1;
+    private sk.stu.fiit.view.panes.ProfilHracaPane profilHracaPane;
+    private sk.stu.fiit.view.panes.ZoznamTurnajovPane zoznamTurnajovPanel;
     // End of variables declaration//GEN-END:variables
 }

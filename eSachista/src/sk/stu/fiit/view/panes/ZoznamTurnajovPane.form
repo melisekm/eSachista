@@ -194,7 +194,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="scrollPaneTurnaje">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -206,7 +206,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="TabulkaTurnajov">
+        <Component class="javax.swing.JTable" name="tableTurnaje">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -215,12 +215,12 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="1">
-                <Column editable="false" title="N&#xe1;zov turnaja" type="java.lang.Object">
+              <Table columnCount="6" rowCount="1">
+                <Column editable="false" title="N&#xe1;zov a term&#xed;n" type="java.lang.Object">
                   <Data value="Poh&#xe1;r dekana"/>
                 </Column>
-                <Column editable="false" title="D&#xe1;tum a &#x10d;as" type="java.lang.Object">
-                  <Data value="14.3.2022"/>
+                <Column editable="false" title="Form&#xe1;t" type="java.lang.Object">
+                  <Data value="Swiss 10+5"/>
                 </Column>
                 <Column editable="false" title="Miesto konania" type="java.lang.Object">
                   <Data value="FIIT STU, Bratislava"/>
@@ -228,14 +228,8 @@
                 <Column editable="false" title="Rating" type="java.lang.Object">
                   <Data value="Open"/>
                 </Column>
-                <Column editable="false" title="Vekov&#xe1; kateg&#xf3;ria" type="java.lang.Object">
+                <Column editable="false" title="Max Vek" type="java.lang.Object">
                   <Data value="Open"/>
-                </Column>
-                <Column editable="false" title="Opis" type="java.lang.Object">
-                  <Data value="Kone&#x10d;ne sa op&#xe4;t m&#xf4;&#x17e;eme stretn&#xfa;&#x165;..."/>
-                </Column>
-                <Column editable="false" title="Form&#xe1;t" type="java.lang.Object">
-                  <Data value="Swiss 10+5"/>
                 </Column>
                 <Column editable="false" title="Kapacita" type="java.lang.Object">
                   <Data value="10/100"/>
@@ -294,12 +288,12 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TabulkaTurnajovMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableTurnajeMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labelPopis">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -312,7 +306,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnPrihlasitSa">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="6c" green="9b" red="76" type="rgb"/>

@@ -57,7 +57,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="sk.stu.fiit.view.panes.ProfilHracaPane" name="profilHracaPane1">
+        <Component class="sk.stu.fiit.view.panes.ProfilHracaPane" name="profilHracaPane">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/user2.png&quot;)));&#xa;mainTabPane.setTitleAt(0, PRE_HTML + &quot;Profil&quot; + POST_HTML);"/>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.ProfilHracaPane(this.controller)"/>
@@ -70,9 +70,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.ZoznamTurnajovPane" name="zoznamTurnajovPanel1">
+        <Component class="sk.stu.fiit.view.panes.ZoznamTurnajovPane" name="zoznamTurnajovPanel">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/trophy2.png&quot;)));&#xa;mainTabPane.setTitleAt(1, PRE_HTML + &quot;Turnaje&quot; + POST_HTML);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.ZoznamTurnajovPane(this.controller)"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -82,9 +83,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="sk.stu.fiit.view.panes.AktivneTurnajePane" name="aktivneTurnajePanel1">
+        <Component class="sk.stu.fiit.view.panes.AktivneTurnajePane" name="aktivneTurnajePanel">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/chess2.png&quot;)));&#xa;mainTabPane.setTitleAt(2, PRE_HTML + &quot;Akt&#xed;vne turnaje&quot; + POST_HTML);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.AktivneTurnajePane(this.controller)"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
