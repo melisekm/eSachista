@@ -2,9 +2,10 @@ package sk.stu.fiit.view;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
-import javax.swing.ImageIcon;
 import sk.stu.fiit.controller.HracController;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 
 /**
  *
@@ -17,6 +18,7 @@ public class HracFrame extends javax.swing.JFrame {
     public HracFrame() {
         this.controller = new HracController();
         initComponents();
+        this.editInfo();
     }
 
     /**
@@ -86,10 +88,18 @@ public class HracFrame extends javax.swing.JFrame {
 
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         // tu sa budu aktualizovat zaležitosti z panelov ak je to treba.
-        if(mainTabPane.getSelectedIndex() == 0) {
+        if (mainTabPane.getSelectedIndex() == 0) {
             profilHracaPane1.refresh();
         }
     }//GEN-LAST:event_mainTabPaneStateChanged
+
+    private void editInfo() {
+        if (this.controller.getPrihlasenyHrac().isFirstLogin()) {
+            EditovatHracaDialog dialog = new EditovatHracaDialog(this, true, this.controller.getPrihlasenyHrac());
+            dialog.showDialog();
+            profilHracaPane1.refresh();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -117,7 +127,7 @@ public class HracFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HracFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Color c = new Color(0,118,121);
+        Color c = new Color(0, 118, 121);
         javax.swing.UIManager.put("TabbedPane.selected", c);
 
         /* Create and display the form */

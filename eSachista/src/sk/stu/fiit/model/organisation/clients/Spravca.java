@@ -31,10 +31,4 @@ public class Spravca extends Pouzivatel {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Override
-    public String toString() {
-        return "Správca\n" + "Meno: " + meno + "\nLogin: " + login + "\n";
-    }
-
 }

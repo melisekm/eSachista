@@ -2,7 +2,6 @@ package sk.stu.fiit.model.organisation.clients;
 
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.ImageIcon;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
@@ -12,25 +11,39 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  */
 public class Hrac extends Pouzivatel {
 
+    private boolean firstLogin = true;
     private int ELO;
     private ArrayList<Turnaj> turnaje;
     private String mesto;
     private String stat;
     private Date datumNarodenia;
-    private javax.swing.ImageIcon avatar;
-    private Date datumRegistracie;
-    private String pohlavie;
-    
+    private Pohlavie pohlavie;
+
     public Hrac(Organizacia org, String meno, String login, char[] heslo) {
         super(org, meno, login, heslo);
         this.turnaje = new ArrayList<>();
+    }
+
+    public void updateDetails(Hrac other) {
+        super.updateDetails(other);
+        this.mesto = other.mesto;
+        this.stat = other.stat;
+        this.datumNarodenia = other.datumNarodenia;
+        this.pohlavie = other.pohlavie;
+    }
+
+    public boolean isFirstLogin() {
+        return firstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        this.firstLogin = firstLogin;
     }
 
     @Override
     public String toString() {
         return meno;
     }
-    
 
     public int getELO() {
         return ELO;
@@ -72,32 +85,12 @@ public class Hrac extends Pouzivatel {
         this.datumNarodenia = datumNarodenia;
     }
 
-    public ImageIcon getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(ImageIcon avatar) {
-        this.avatar = avatar;
-    }
-
-    public Date getDatumRegistracie() {
-        return datumRegistracie;
-    }
-
-    public void setDatumRegistracie(Date datumRegistracie) {
-        this.datumRegistracie = datumRegistracie;
-    }
-
-    public String getPohlavie() {
+    public Pohlavie getPohlavie() {
         return pohlavie;
     }
 
-    public void setPohlavie(String pohlavie) {
+    public void setPohlavie(Pohlavie pohlavie) {
         this.pohlavie = pohlavie;
     }
-    
-    
-    
-    
 
 }

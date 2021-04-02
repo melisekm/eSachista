@@ -15,8 +15,7 @@ import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
-import sk.stu.fiit.utils.ViewUtils;
-import sk.stu.fiit.view.IViewRefresh;
+import sk.stu.fiit.view.ViewUtils;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
 /**
@@ -224,7 +223,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private void setTurnajInfo() {
         Turnaj t = listTurnaje.getSelectedValue();
         if (listTurnaje.getModel().getSize() == 0) {
-            ViewUtils.clearFields(turnajLabels);
+            ViewUtils.clearLabels(turnajLabels);
             labelZiadneTurnaje.setVisible(true);
             return;
         }

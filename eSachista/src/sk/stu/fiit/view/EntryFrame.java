@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.EntryController;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
-import sk.stu.fiit.utils.ViewUtils;
 
 /**
  *
@@ -107,7 +106,7 @@ public class EntryFrame extends javax.swing.JFrame {
         panelPripojit.add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         fieldLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        fieldLogin.setText("test");
+        fieldLogin.setText("aa");
         panelPripojit.add(fieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, -1));
 
         labelPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

@@ -1,4 +1,4 @@
-package sk.stu.fiit.view;
+package sk.stu.fiit.view.panes;
 
 /**
  *

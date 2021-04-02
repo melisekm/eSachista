@@ -7,7 +7,7 @@ package sk.stu.fiit.view.panes;
 
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.SpravcaController;
-import sk.stu.fiit.model.organisation.clients.Pouzivatel;
+import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.view.EntryFrame;
 
@@ -17,8 +17,8 @@ import sk.stu.fiit.view.EntryFrame;
  */
 public class SpravcaPrehladPane extends javax.swing.JPanel {
 
-    SpravcaController controller;
-    
+    private SpravcaController controller;
+
     public SpravcaPrehladPane(SpravcaController controller) {
         this.controller = controller;
         initComponents();
@@ -27,13 +27,14 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
     public SpravcaPrehladPane() {
         initComponents();
     }
-    
+
     private void setSpravcaInfo() {
-        Pouzivatel p = this.controller.getUserLoggedIn();
-        labelNazovOrgPrehlad.setText(p.getOrg().getNazov());
-        
+        Spravca s = this.controller.getPrihlasenySpravca();
+        Organizacia o = this.controller.getOrgLoggedIn();
+        labelNazovOrgPrehlad.setText(o.getNazov());
+
     }
-    
+
     public void refresh() {
         this.setSpravcaInfo();
     }

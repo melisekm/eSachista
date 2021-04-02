@@ -5,7 +5,7 @@
  */
 package sk.stu.fiit.view.panes;
 
-import sk.stu.fiit.utils.ViewUtils;
+import sk.stu.fiit.view.ViewUtils;
 
 /**
  *
