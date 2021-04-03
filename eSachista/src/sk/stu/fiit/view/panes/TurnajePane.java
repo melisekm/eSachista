@@ -188,14 +188,9 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             return;
         }
         this.controller.saveTurnaj(novy);
-        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).addElement(novy);
-        logger.info(novy.getNazov() + " bol ulozeny do listu Turnajov");
+        this.updateList(novy);
 
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
-
-    private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
-        this.setTurnajInfo();
-    }//GEN-LAST:event_listTurnajeMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
         Turnaj povodny = listTurnaje.getSelectedValue();
@@ -210,10 +205,18 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             return;
         }
         this.controller.upravTurnaj(povodny, novy);
-        ((DefaultListModel<Turnaj>) listTurnaje.getModel()).setElementAt(povodny, listTurnaje.getSelectedIndex());
-        logger.info(novy.getNazov() + " bol upraveny v zozname turnajov");
-        this.setTurnajInfo();
+        this.updateList(povodny);
+
     }//GEN-LAST:event_btnUpravitMouseReleased
+    private void updateList(Turnaj t) {
+        logger.info(t.getNazov() + " bol ulozeny do listu Turnajov");
+        this.refresh();
+        listTurnaje.setSelectedValue(t, true);
+        this.setTurnajInfo();
+    }
+    private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
+        this.setTurnajInfo();
+    }//GEN-LAST:event_listTurnajeMouseReleased
 
     private void naplnTurnajList() {
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();

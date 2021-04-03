@@ -1,6 +1,7 @@
 package sk.stu.fiit.controller;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.TimeZone;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class TurnajController extends Controller {
             this.org = this.entryService.getOrgLoggedIn();
         }
     }
-    
+
     public void vytvorTurnaj(TurnajFormat format, String nazov, String miestoKonania,
             Date datum, int casZaciatkuHrs, int casZaciatkuMin,
             int limitMin, int limitSec, int increment, String popis, int minRating,
@@ -44,9 +45,9 @@ public class TurnajController extends Controller {
         cal.set(Calendar.HOUR_OF_DAY, casZaciatkuHrs);
         cal.set(Calendar.MINUTE, casZaciatkuMin);
         cal.set(Calendar.SECOND, 0);
-        
+
         Date datumKonania = cal.getTime();
-        if(new Date().after(datumKonania)){
+        if (new Date().after(datumKonania)) {
             logger.info("Spravca zadal zaciatok turnaja v minulosti");
             throw new InvalidDateException();
         }
@@ -55,13 +56,15 @@ public class TurnajController extends Controller {
         Turnaj turnaj = new Turnaj(format, nazov, miestoKonania, datumKonania, popis, tempoHry, obmedzenia);
         this.novyTurnaj = turnaj;
     }
-    
-    public void saveTurnaj(Turnaj novy){
+
+    public void saveTurnaj(Turnaj novy) {
         this.org.getTurnaje().add(novy);
+        Collections.sort(this.org.getTurnaje());
     }
-    
-    public void upravTurnaj(Turnaj povodny, Turnaj novy){
+
+    public void upravTurnaj(Turnaj povodny, Turnaj novy) {
         povodny.updateDetails(novy);
+        Collections.sort(this.org.getTurnaje());
     }
 
     public Turnaj getNovyTurnaj() {

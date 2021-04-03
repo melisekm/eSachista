@@ -8,7 +8,7 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
  *
  * @author Martin Melisek
  */
-public class Turnaj {
+public class Turnaj implements Comparable<Turnaj> {
 
     private TurnajFormat format;
     private String nazov;
@@ -19,6 +19,14 @@ public class Turnaj {
     private TurnajTempoHry tempoHry;
     private TurnajObmedzenia obmedzenia;
     private boolean finished = false; // TODO dopisat do panelov
+
+    @Override
+    public int compareTo(Turnaj o) {
+        if (this.datumKonania == null || o.getDatumKonania() == null) {
+            return 0;
+        }
+        return this.datumKonania.compareTo(o.getDatumKonania());
+    }
 
     public Turnaj(TurnajFormat format, String nazov, String miestoKonania, Date datumKonania, String popis, TurnajTempoHry tempoHry, TurnajObmedzenia obmedzenia) {
         this.format = format;
