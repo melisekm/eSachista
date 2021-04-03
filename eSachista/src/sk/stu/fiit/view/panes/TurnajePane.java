@@ -6,9 +6,11 @@
 package sk.stu.fiit.view.panes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -197,6 +199,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
         Turnaj povodny = listTurnaje.getSelectedValue();
+        boolean turnajUzPrebieha = new Date().after(povodny.getDatumKonania());
+        if(turnajUzPrebieha){
+            JOptionPane.showMessageDialog(this, "Tento Turnaj nieje mozne editovat pretoze uz prebieha.","TURNAJ IN PROGRESS", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, povodny);
         Turnaj novy = dialog.showDialog();
         if (novy == null) {

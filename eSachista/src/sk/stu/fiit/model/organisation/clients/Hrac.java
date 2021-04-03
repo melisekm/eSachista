@@ -18,6 +18,7 @@ public class Hrac extends Pouzivatel {
     private String stat;
     private Date datumNarodenia;
     private Pohlavie pohlavie;
+    private int vek;
 
     public Hrac(Organizacia org, String meno, String login, char[] heslo) {
         super(org, meno, login, heslo);
@@ -30,6 +31,14 @@ public class Hrac extends Pouzivatel {
         this.stat = other.stat;
         this.datumNarodenia = other.datumNarodenia;
         this.pohlavie = other.pohlavie;
+    }
+
+    public int getVek() {
+        return vek;
+    }
+
+    public void setVek(int vek) {
+        this.vek = vek;
     }
 
     public boolean isFirstLogin() {

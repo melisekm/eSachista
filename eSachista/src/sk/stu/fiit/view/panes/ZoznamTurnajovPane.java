@@ -6,12 +6,15 @@
 package sk.stu.fiit.view.panes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.utils.PlatformConstants;
 import sk.stu.fiit.view.ViewUtils;
 
 /**
@@ -151,6 +154,11 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         btnPrihlasitSa.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         btnPrihlasitSa.setForeground(new java.awt.Color(255, 255, 255));
         btnPrihlasitSa.setText("Prihl·siù sa na turnaj");
+        btnPrihlasitSa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPrihlasitSaMouseReleased(evt);
+            }
+        });
         add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,17 +167,47 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         ViewUtils.showDialog(dialogTurnaj);
     }//GEN-LAST:event_tableTurnajeMouseClicked
 
+    private void btnPrihlasitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitSaMouseReleased
+        int index = tableTurnaje.getSelectedRow();
+        if(index == -1){
+            JOptionPane.showMessageDialog(this, "ProsÌm vyberte turnaj.");
+            return;
+        }
+        Turnaj t = (Turnaj) tableTurnaje.getValueAt(index, 0);
+        int prihlasenieStatus = this.controller.prihlasHracaNaTurnaj(t);
+        switch (prihlasenieStatus) {
+            case PlatformConstants.HRAC_PRILIS_STARY:
+                JOptionPane.showMessageDialog(this, "Tento turnaj je len pre hr·Ëov mladöÌch ako " + t.getObmedzenia().getMaxVek() + " rokov.", "AGE ISSUE", JOptionPane.ERROR_MESSAGE);
+                break;
+            case PlatformConstants.RATING_JE_MIMO_ROZSAH:
+                JOptionPane.showMessageDialog(this, "Vas rating je mimo povolen˝ turnajov˝ rozash.", "INVALID RATING", JOptionPane.ERROR_MESSAGE);
+                break;
+            case PlatformConstants.KAPACITA_TURNAJA_PREKROCENA:
+                JOptionPane.showMessageDialog(this, "Turnaj je pln˝.", "TURNAJ FULL", JOptionPane.ERROR_MESSAGE);
+                break;
+            case PlatformConstants.TURNAJ_PRIHLASENIE_OK:
+                JOptionPane.showMessageDialog(this, "Prihlasovanie prebehlo v poriadku", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                ((DefaultTableModel) tableTurnaje.getModel()).removeRow(index);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_btnPrihlasitSaMouseReleased
+
     private void vyplnTabulkuTurnajov() {
         DefaultTableModel model = (DefaultTableModel) tableTurnaje.getModel();
         model.setRowCount(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
         for (Turnaj t : turnaje) {
-            if(t.isFinished()){
+            boolean turnajJeDohraty = t.isFinished();
+            boolean turnajPrebieha = new Date().after(t.getDatumKonania());
+            boolean hracJePrihlaseny = this.controller.getPrihlasenyHrac().getTurnaje().contains(t);
+            if (turnajJeDohraty || turnajPrebieha || hracJePrihlaseny) {
                 continue;
             }
             model.addRow(new Object[]{
-                t,
-                t.getFormat().toString() + " " + t.getTempoHry().getLimitMins() + "+" + t.getTempoHry().getIncrement(),
+                t, // samotny objekt turnja ako prvy column, zapise sa .tostring()
+                t.getFormat().toString() + " " + t.getTempoHry().getLimitMins() + "+" + t.getTempoHry().getIncrement(), //format
                 t.getMiestoKonania(),
                 t.getObmedzenia().getRatingObmedzenie(),
                 t.getObmedzenia().getMaxVek(),
