@@ -31,7 +31,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         final String POST_HTML = "</p></html>";
         mainTabPane = new javax.swing.JTabbedPane();
         spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
-        clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane();
+        clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane(this.controller);
         turnajePane = new sk.stu.fiit.view.panes.TurnajePane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

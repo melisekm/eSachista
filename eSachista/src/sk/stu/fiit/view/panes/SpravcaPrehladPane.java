@@ -30,7 +30,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
 
     private void setSpravcaInfo() {
         Spravca s = this.controller.getPrihlasenySpravca();
-        Organizacia o = this.controller.getOrgLoggedIn();
+        Organizacia o = this.controller.getOrganizacia();
         labelNazovOrgPrehlad.setText(o.getNazov());
 
     }
@@ -186,7 +186,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
 
     private void btnUlozitSpravcaDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitSpravcaDialogMouseClicked
         Spravca s = this.controller.getPrihlasenySpravca();
-        Organizacia o = this.controller.getOrgLoggedIn();
+        Organizacia o = this.controller.getOrganizacia();
 
     }//GEN-LAST:event_btnUlozitSpravcaDialogMouseClicked
 

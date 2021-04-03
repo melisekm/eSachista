@@ -5,15 +5,28 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import sk.stu.fiit.controller.SpravcaController;
+import sk.stu.fiit.model.organisation.clients.Pouzivatel;
+import sk.stu.fiit.view.AutoCompleteJComboBoxer;
+
 /**
  *
  * @author lucia
+ * @author Martin Melisek
  */
 public class ClenoviaPane extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ClenoviaPane
-     */
+    private SpravcaController controller;
+
+    public ClenoviaPane(SpravcaController controller) {
+        this.controller = controller;
+        initComponents();
+        this.naplnComboBoxHracov();
+
+    }
+
     public ClenoviaPane() {
         initComponents();
     }
@@ -27,55 +40,59 @@ public class ClenoviaPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelClenovia = new javax.swing.JLabel();
+        labelPocetClenov = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        listClenovia = new javax.swing.JList<>();
+        btnUpravit = new javax.swing.JButton();
+        comboBoxClenovia = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("»lenovia");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        labelClenovia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelClenovia.setText("»lenovia");
+        add(labelClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        jLabel2.setText("poËet Ëlenov");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        labelPocetClenov.setText("poËet Ëlenov");
+        add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
-        jList1.setBackground(new java.awt.Color(153, 153, 153));
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listClenovia.setBackground(new java.awt.Color(153, 153, 153));
+        listClenovia.setForeground(new java.awt.Color(255, 255, 255));
+        listClenovia.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listClenovia);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 640, 240));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
-        jButton1.setText("jButton1");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, -1));
+        btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
+        btnUpravit.setText("Upraviù");
+        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "toto by mohlo fungovaù ako vyhæad·vanie", "look up jcombobox autocomplete", "neviem Ëi naozaj LUL", "moûno ûiadny regex " }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 170, -1));
-
-        jLabel3.setText("read me v");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
+        comboBoxClenovia.setModel(new DefaultComboBoxModel<Pouzivatel>());
+        add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 30));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void naplnComboBoxHracov() {
+        DefaultComboBoxModel<Pouzivatel> model = (DefaultComboBoxModel<Pouzivatel>) comboBoxClenovia.getModel();
+
+        ArrayList<Pouzivatel> pouzivatelia = this.controller.getOrganizacia().getPouzivatelia();
+        for (Pouzivatel pouzivatel : pouzivatelia) {
+            model.addElement(pouzivatel);
+        }
+        new AutoCompleteJComboBoxer(comboBoxClenovia);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btnUpravit;
+    private javax.swing.JComboBox<Pouzivatel> comboBoxClenovia;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelClenovia;
+    private javax.swing.JLabel labelPocetClenov;
+    private javax.swing.JList<String> listClenovia;
     // End of variables declaration//GEN-END:variables
 }

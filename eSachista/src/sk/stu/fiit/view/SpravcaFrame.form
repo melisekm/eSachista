@@ -76,6 +76,7 @@
         <Component class="sk.stu.fiit.view.panes.ClenoviaPane" name="clenoviaPane">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/group2.png&quot;)));&#xa;mainTabPane.setTitleAt(1, PRE_HTML + &quot;&#x10c;lenovia&quot; + POST_HTML);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new sk.stu.fiit.view.panes.ClenoviaPane(this.controller)"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">

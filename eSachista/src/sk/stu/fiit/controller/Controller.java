@@ -24,7 +24,7 @@ public abstract class Controller {
         return this.entryService.getUserLoggedIn();
     }
 
-    public Organizacia getOrgLoggedIn() {
+    protected Organizacia getOrgLoggedIn() {
         return entryService.getOrgLoggedIn();
     }
 

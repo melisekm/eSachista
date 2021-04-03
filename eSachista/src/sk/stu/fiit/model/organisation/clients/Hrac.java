@@ -33,6 +33,11 @@ public class Hrac extends Pouzivatel {
         this.pohlavie = other.pohlavie;
     }
 
+    @Override
+    public String toString() {
+        return meno;
+    }
+
     public int getVek() {
         return vek;
     }
@@ -47,11 +52,6 @@ public class Hrac extends Pouzivatel {
 
     public void setFirstLogin(boolean firstLogin) {
         this.firstLogin = firstLogin;
-    }
-
-    @Override
-    public String toString() {
-        return meno;
     }
 
     public int getELO() {

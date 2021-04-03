@@ -15,6 +15,13 @@ public class Spravca extends Pouzivatel {
         this.email = other.email;
     }
 
+    @Override
+    public String toString() {
+        return meno + " - Spravca";
+    }
+    
+    
+
     public Spravca(String meno, String login, char[] password) {
         super(meno, login, password);
     }
