@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
-import sk.stu.fiit.view.EntryFrame;
 import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 
 /**

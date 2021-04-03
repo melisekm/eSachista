@@ -7,8 +7,10 @@ package sk.stu.fiit.view.panes;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -16,6 +18,7 @@ import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.PlatformConstants;
 import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**
  *
@@ -25,6 +28,7 @@ import sk.stu.fiit.view.ViewUtils;
 public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefresh {
 
     private HracController controller;
+    private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
 
     public ZoznamTurnajovPane(HracController controller) {
         this.controller = controller;
@@ -44,74 +48,10 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dialogTurnaj = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         scrollPaneTurnaje = new javax.swing.JScrollPane();
         tableTurnaje = new javax.swing.JTable();
-        labelPopis = new javax.swing.JLabel();
         btnPrihlasitSa = new javax.swing.JButton();
-
-        dialogTurnaj.setBackground(new java.awt.Color(255, 255, 255));
-        dialogTurnaj.setMinimumSize(new java.awt.Dimension(660, 560));
-        dialogTurnaj.setModal(true);
-        dialogTurnaj.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess-chess-board-game-chessboard-icon-wrong.png"))); // NOI18N
-        dialogTurnaj.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("Názov turnaja ");
-        dialogTurnaj.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
-
-        jLabel4.setText("Zaèiatok: ");
-        dialogTurnaj.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setText("Time control");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel6.setText("Kapacita");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-
-        jLabel8.setText("Rating");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-
-        jLabel9.setText("Veková kategória");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
-
-        jLabel10.setText("Formát");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setEnabled(false);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, 150));
-
-        jLabel11.setText("Opis");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
-
-        dialogTurnaj.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 590, 220));
-
-        jLabel7.setText("Miesto konania:");
-        dialogTurnaj.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        btnDetaily = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 610));
@@ -137,18 +77,9 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             }
         });
         tableTurnaje.setGridColor(new java.awt.Color(51, 51, 51));
-        tableTurnaje.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableTurnajeMouseClicked(evt);
-            }
-        });
         scrollPaneTurnaje.setViewportView(tableTurnaje);
 
         add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
-
-        labelPopis.setForeground(new java.awt.Color(0, 0, 0));
-        labelPopis.setText("Kliknutím na turnaj zobrazíte možnosti a podrobné informácie");
-        add(labelPopis, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
         btnPrihlasitSa.setBackground(new java.awt.Color(118, 155, 108));
         btnPrihlasitSa.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -160,12 +91,18 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             }
         });
         add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void tableTurnajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTurnajeMouseClicked
-        int indexRow = tableTurnaje.getSelectedRow();
-        ViewUtils.showDialog(dialogTurnaj);
-    }//GEN-LAST:event_tableTurnajeMouseClicked
+        btnDetaily.setBackground(new java.awt.Color(153, 204, 255));
+        btnDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDetaily.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetaily.setText("DETAILY");
+        btnDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnDetailyMouseReleased(evt);
+            }
+        });
+        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrihlasitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitSaMouseReleased
         int index = tableTurnaje.getSelectedRow();
@@ -193,6 +130,16 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 throw new AssertionError();
         }
     }//GEN-LAST:event_btnPrihlasitSaMouseReleased
+
+    private void btnDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailyMouseReleased
+        int index = tableTurnaje.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(parent, "Prosím vyberte turnaj.", "CHOOSE TURNAJ", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        Turnaj t = (Turnaj) tableTurnaje.getValueAt(index, 0);
+        ViewUtils.showDialog(new TurnajInfoDialog(parent, true, t));
+    }//GEN-LAST:event_btnDetailyMouseReleased
 
     private void vyplnTabulkuTurnajov() {
         DefaultTableModel model = (DefaultTableModel) tableTurnaje.getModel();
@@ -254,22 +201,8 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetaily;
     private javax.swing.JButton btnPrihlasitSa;
-    private javax.swing.JDialog dialogTurnaj;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel labelPopis;
     private javax.swing.JScrollPane scrollPaneTurnaje;
     private javax.swing.JTable tableTurnaje;
     // End of variables declaration//GEN-END:variables

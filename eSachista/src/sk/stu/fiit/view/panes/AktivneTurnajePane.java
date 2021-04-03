@@ -5,7 +5,14 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**
  *
@@ -15,6 +22,7 @@ import sk.stu.fiit.controller.HracController;
 public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     private HracController controller;
+    private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
 
     public AktivneTurnajePane(HracController controller) {
         this.controller = controller;
@@ -34,58 +42,95 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelPrebiehajuciTurnaj = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        labelNaplanovaneTurnaje = new javax.swing.JLabel();
+        calendar = new com.toedter.calendar.JCalendar();
+        labelNadchadzaujceTurnaje = new javax.swing.JLabel();
+        scrollPaneTurnaje = new javax.swing.JScrollPane();
+        listTurnaje = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Momentálne neprebieha žiadny turnaj...");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        labelPrebiehajuciTurnaj.setText("Momentálne neprebieha žiadny turnaj...");
+        add(labelPrebiehajuciTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCalendar1.setBackground(new java.awt.Color(153, 153, 153));
-        jCalendar1.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 230));
+        labelNaplanovaneTurnaje.setBackground(new java.awt.Color(0, 0, 0));
+        labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelNaplanovaneTurnaje.setForeground(new java.awt.Color(0, 0, 0));
+        labelNaplanovaneTurnaje.setText("Nemáte naplánovaný žiadny turnaj...");
+        jPanel1.add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nadchádzajúce turnaje");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+        calendar.setBackground(new java.awt.Color(153, 153, 153));
+        calendar.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 230));
 
-        jList1.setBackground(new java.awt.Color(153, 153, 153));
-        jList1.setForeground(new java.awt.Color(0, 0, 0));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        labelNadchadzaujceTurnaje.setBackground(new java.awt.Color(0, 0, 0));
+        labelNadchadzaujceTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNadchadzaujceTurnaje.setForeground(new java.awt.Color(0, 0, 0));
+        labelNadchadzaujceTurnaje.setText("Nadchádzajúce turnaje");
+        jPanel1.add(labelNadchadzaujceTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+
+        listTurnaje.setBackground(new java.awt.Color(153, 153, 153));
+        listTurnaje.setForeground(new java.awt.Color(0, 0, 0));
+        listTurnaje.setModel(new DefaultListModel<Turnaj>());
+        listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listTurnaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listTurnajeMouseReleased(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
+        scrollPaneTurnaje.setViewportView(listTurnaje);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 370, 210));
+        jPanel1.add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 370, 210));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 370, 480));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
+        Turnaj t = (Turnaj) listTurnaje.getSelectedValue();
+        if (t == null) {
+            return;
+        }
+        ViewUtils.showDialog(new TurnajInfoDialog(parent, true, t));
+    }//GEN-LAST:event_listTurnajeMouseReleased
+
+    private void naplnListTurnajov() {
+        DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
+        model.setSize(0);
+        ArrayList<Turnaj> turnaje = this.controller.getPrihlasenyHrac().getTurnaje();
+        for (Turnaj t : turnaje) {
+            model.addElement(t);
+        }
+        if (model.getSize() == 0) {
+            labelNaplanovaneTurnaje.setVisible(true);
+        } else {
+            labelNaplanovaneTurnaje.setVisible(false);
+        }
+    }
+
+    private void zobrazPrebiehajuciTurnaj() {
+        // TODO
+    }
+
     @Override
     public void refresh() {
-        
+        this.naplnListTurnajov();
+        this.zobrazPrebiehajuciTurnaj();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JCalendar jCalendar1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
+    private com.toedter.calendar.JCalendar calendar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelNadchadzaujceTurnaje;
+    private javax.swing.JLabel labelNaplanovaneTurnaje;
+    private javax.swing.JLabel labelPrebiehajuciTurnaj;
+    private javax.swing.JList<Turnaj> listTurnaje;
+    private javax.swing.JScrollPane scrollPaneTurnaje;
     // End of variables declaration//GEN-END:variables
 }

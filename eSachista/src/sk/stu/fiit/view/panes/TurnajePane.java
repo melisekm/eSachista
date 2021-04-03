@@ -214,6 +214,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         listTurnaje.setSelectedValue(t, true);
         this.setTurnajInfo();
     }
+    
     private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
         this.setTurnajInfo();
     }//GEN-LAST:event_listTurnajeMouseReleased
