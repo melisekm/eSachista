@@ -200,8 +200,8 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
         Turnaj povodny = listTurnaje.getSelectedValue();
         boolean turnajUzPrebieha = new Date().after(povodny.getDatumKonania());
-        if(turnajUzPrebieha){
-            JOptionPane.showMessageDialog(this, "Tento Turnaj nieje mozne editovat pretoze uz prebieha.","TURNAJ IN PROGRESS", JOptionPane.ERROR_MESSAGE);
+        if (turnajUzPrebieha) {
+            JOptionPane.showMessageDialog(this, "Tento Turnaj nieje mozne editovat pretoze uz prebieha.", "TURNAJ IN PROGRESS", JOptionPane.ERROR_MESSAGE);
             return;
         }
         VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, povodny);
@@ -241,7 +241,13 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelNazovData.setText(t.getNazov());
         labelTempoData.setText(t.getTempoHry().toString());
         labelRatingData.setText(t.getObmedzenia().getRatingObmedzenie());
-        labelMaxVekData.setText(String.valueOf(t.getObmedzenia().getMaxVek()));
+        String maxVek;
+        if (t.getObmedzenia().getMaxVek() == Integer.MAX_VALUE) {
+            maxVek = "OPEN";
+        } else {
+            maxVek = String.valueOf(t.getObmedzenia().getMaxVek());
+        }
+        labelMaxVekData.setText(maxVek);
         this.naplnHracovTurnaja(t);
     }
 

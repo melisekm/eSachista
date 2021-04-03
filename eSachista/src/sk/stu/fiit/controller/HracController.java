@@ -33,7 +33,6 @@ public class HracController extends Controller {
         t.getHraci().add(prihlasenyHrac);
         prihlasenyHrac.getTurnaje().add(t);
         return PlatformConstants.TURNAJ_PRIHLASENIE_OK;
-
     }
 
     private int zvalidujPrihlasenie(Turnaj t) {
@@ -62,9 +61,9 @@ public class HracController extends Controller {
         int vek = this.prihlasenyHrac.getVek();
         if (vek > maxVek) {
             logger.info("Hrac narodeny v roku " + cal.get(Calendar.YEAR) + "(" + vek + ") je prilis stary. - Max vek: " + maxVek);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean checkRating(TurnajObmedzenia obmedzenie) {
@@ -73,9 +72,9 @@ public class HracController extends Controller {
         boolean isMaxRatingMimoRozsah = obmedzenie.getMaxRating() < hracRating;
         if (Boolean.logicalOr(isMinRatingMimoRozsah, isMaxRatingMimoRozsah)) {
             logger.info("Hracov rating " + hracRating + " je mimo rozsah. Rozsah - " + obmedzenie.getRatingObmedzenie());
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean checkKapacita(Turnaj t) {
@@ -83,9 +82,9 @@ public class HracController extends Controller {
         boolean jeKapacitaPrekrocena = t.getHraci().size() == maxHracovNaTurnaji;
         if (jeKapacitaPrekrocena) {
             logger.info("Turnajova kapacita je prekrocena.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public Hrac getPrihlasenyHrac() {

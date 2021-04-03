@@ -79,10 +79,10 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         labelOddelovac2 = new javax.swing.JLabel();
         spinnerMaxVek = new javax.swing.JSpinner();
         spinnerMinRating = new javax.swing.JSpinner();
+        checkBoxMaxVek = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nový turnaj");
-        setPreferredSize(new java.awt.Dimension(710, 480));
         setResizable(false);
 
         mainPane.setPreferredSize(new java.awt.Dimension(710, 480));
@@ -198,7 +198,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(labelVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, 30));
 
         spinnerMaxRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spinnerMaxRating.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5000, 1));
+        spinnerMaxRating.setModel(new javax.swing.SpinnerNumberModel(4000, 0, 5000, 1));
         mainPane.add(spinnerMaxRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 80, -1));
 
         labelOddelovac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -207,12 +207,21 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(labelOddelovac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 20, -1));
 
         spinnerMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spinnerMaxVek.setModel(new javax.swing.SpinnerNumberModel(0, 0, 99, 1));
-        mainPane.add(spinnerMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 80, -1));
+        spinnerMaxVek.setModel(new javax.swing.SpinnerNumberModel(99, 0, 99, 1));
+        spinnerMaxVek.setEnabled(false);
+        mainPane.add(spinnerMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 80, -1));
 
         spinnerMinRating.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        spinnerMinRating.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5000, 1));
+        spinnerMinRating.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5000, 1));
         mainPane.add(spinnerMinRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 80, -1));
+
+        checkBoxMaxVek.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkBoxMaxVek.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                checkBoxMaxVekMouseReleased(evt);
+            }
+        });
+        mainPane.add(checkBoxMaxVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 129, -1, 20));
 
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
 
@@ -248,7 +257,12 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Minimalny rating musi byt nizsi nez maximalny");
             return;
         }
-        int maxVek = (Integer) spinnerMaxVek.getValue();
+        int maxVek;
+        if (checkBoxMaxVek.isSelected()) {
+            maxVek = (Integer) spinnerMaxVek.getValue();
+        } else {
+            maxVek = Integer.MAX_VALUE;
+        }
         String popis = textAreaOpis.getText();
 
         try {
@@ -271,6 +285,14 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnUlozitMouseReleased
 
+    private void checkBoxMaxVekMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBoxMaxVekMouseReleased
+        if (checkBoxMaxVek.isSelected()) {
+            spinnerMaxVek.setEnabled(true);
+        } else {
+            spinnerMaxVek.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkBoxMaxVekMouseReleased
+
     private void setTurnajInfo(Turnaj povodny) {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Bratislava"));
         cal.setTime(povodny.getDatumKonania());
@@ -285,7 +307,15 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         spinnerLimitSec.setValue(povodny.getTempoHry().getLimitSec());
         spinnerMinRating.setValue(povodny.getObmedzenia().getMinRating());
         spinnerMaxRating.setValue(povodny.getObmedzenia().getMaxRating());
-        spinnerMaxVek.setValue(povodny.getObmedzenia().getMaxVek());
+        if (povodny.getObmedzenia().getMaxVek() == Integer.MAX_VALUE) {
+            checkBoxMaxVek.setSelected(false);
+            spinnerMaxVek.setValue(99);
+            spinnerMaxVek.setEnabled(false);
+        } else {
+            checkBoxMaxVek.setSelected(true);
+            spinnerMaxVek.setValue(povodny.getObmedzenia().getMaxVek());
+            spinnerMaxVek.setEnabled(true);
+        }
         comboboxFormat.setSelectedIndex(povodny.getFormat().ordinal());
     }
 
@@ -297,6 +327,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUlozit;
+    private javax.swing.JCheckBox checkBoxMaxVek;
     private javax.swing.JComboBox<String> comboboxFormat;
     private com.toedter.calendar.JDateChooser datePicker;
     private javax.swing.JTextField fieldMiestoKonania;

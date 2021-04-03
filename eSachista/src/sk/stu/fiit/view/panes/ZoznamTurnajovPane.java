@@ -169,7 +169,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
 
     private void btnPrihlasitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitSaMouseReleased
         int index = tableTurnaje.getSelectedRow();
-        if(index == -1){
+        if (index == -1) {
             JOptionPane.showMessageDialog(this, "Prosím vyberte turnaj.");
             return;
         }
@@ -205,12 +205,18 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             if (turnajJeDohraty || turnajPrebieha || hracJePrihlaseny) {
                 continue;
             }
+            String maxVek;
+            if (t.getObmedzenia().getMaxVek() == Integer.MAX_VALUE) {
+                maxVek = "OPEN";
+            } else {
+                maxVek = String.valueOf(t.getObmedzenia().getMaxVek());
+            }
             model.addRow(new Object[]{
                 t, // samotny objekt turnja ako prvy column, zapise sa .tostring()
                 t.getFormat().toString() + " " + t.getTempoHry().getLimitMins() + "+" + t.getTempoHry().getIncrement(), //format
                 t.getMiestoKonania(),
                 t.getObmedzenia().getRatingObmedzenie(),
-                t.getObmedzenia().getMaxVek(),
+                maxVek,
                 this.controller.getTurnajKapacita(t)
             });
         }
