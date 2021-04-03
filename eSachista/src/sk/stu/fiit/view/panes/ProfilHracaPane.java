@@ -6,11 +6,16 @@
 package sk.stu.fiit.view.panes;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.view.ViewUtils;
 import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
+import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**
  *
@@ -32,33 +37,6 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         initComponents();
     }
 
-    private void setHracInfo() {
-        Hrac h = this.controller.getPrihlasenyHrac();
-        if(h.isFirstLogin()){
-            return;
-        }
-        labelMeno.setText(h.getMeno());
-        labelPrezyvka.setText(h.getLogin());
-        labelMestoData.setText(h.getMesto());
-        labelStatData.setText(h.getStat());
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        labelDatumRegData.setText(sdf.format(h.getDatumRegistracie()));
-        labelDatumNarodeniaData.setText(sdf.format(h.getDatumNarodenia()));
-        
-        labelPohlavieData.setText(h.getPohlavie().toString());
-        labelOrgData.setText(h.getOrg().getNazov());
-        labelRatingData.setText(String.valueOf(h.getELO()));
-        iconAvatar.setIcon(h.getAvatar().getImage());
-        
-
-        //TODO vypocty zapasov z turnajov, dal by som to do controllera lebo to bude treba aj do listov
-    }
-
-    public void refresh() {
-        this.setHracInfo();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,6 +46,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelOdohrateTurnaje = new javax.swing.JLabel();
         labelMeno = new javax.swing.JLabel();
         labelPrezyvka = new javax.swing.JLabel();
         MestoLabel = new javax.swing.JLabel();
@@ -108,6 +87,12 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelOdohrateTurnaje.setBackground(new java.awt.Color(0, 0, 0));
+        labelOdohrateTurnaje.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelOdohrateTurnaje.setForeground(new java.awt.Color(0, 0, 0));
+        labelOdohrateTurnaje.setText("Nemáte žiaden odohratý turnaj...");
+        add(labelOdohrateTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
         labelMeno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelMeno.setForeground(new java.awt.Color(0, 0, 0));
@@ -159,10 +144,12 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         listTurnaje.setBackground(new java.awt.Color(204, 204, 204));
         listTurnaje.setForeground(new java.awt.Color(51, 51, 51));
-        listTurnaje.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Meltwater 2021" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        listTurnaje.setModel(new DefaultListModel<Turnaj>());
+        listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listTurnaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listTurnajeMouseReleased(evt);
+            }
         });
         jScrollPane2.setViewportView(listTurnaje);
 
@@ -291,6 +278,55 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         this.refresh();
     }//GEN-LAST:event_btnUpravitProfilMouseReleased
 
+    private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
+        Turnaj t = (Turnaj) listTurnaje.getSelectedValue();
+        if (t == null) {
+            return;
+        }
+        ViewUtils.showDialog(new TurnajInfoDialog(parent, true, t));
+    }//GEN-LAST:event_listTurnajeMouseReleased
+    private void setHracInfo() {
+        Hrac h = this.controller.getPrihlasenyHrac();
+        if (h.isFirstLogin()) {
+            return;
+        }
+        labelMeno.setText(h.getMeno());
+        labelPrezyvka.setText(h.getLogin());
+        labelMestoData.setText(h.getMesto());
+        labelStatData.setText(h.getStat());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        labelDatumRegData.setText(sdf.format(h.getDatumRegistracie()));
+        labelDatumNarodeniaData.setText(sdf.format(h.getDatumNarodenia()));
+
+        labelPohlavieData.setText(h.getPohlavie().toString());
+        labelOrgData.setText(h.getOrg().getNazov());
+        labelRatingData.setText(String.valueOf(h.getELO()));
+        iconAvatar.setIcon(h.getAvatar().getImage());
+
+        //TODO vypocty zapasov z turnajov, dal by som to do controllera lebo to bude treba aj do listov
+    }
+
+    public void naplnListTurnajov() {
+        DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
+        model.setSize(0);
+        ArrayList<Turnaj> turnaje = this.controller.getPrihlasenyHrac().getTurnaje();
+        for (Turnaj t : turnaje) {
+            if (t.isFinished()) {
+                model.addElement(t);
+            }
+        }
+        if (model.getSize() == 0) {
+            labelOdohrateTurnaje.setVisible(true);
+        } else {
+            labelOdohrateTurnaje.setVisible(false);
+        }
+    }
+
+    public void refresh() {
+        this.setHracInfo();
+        this.naplnListTurnajov();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MestoLabel;
@@ -306,6 +342,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
     private javax.swing.JLabel labelMeno;
     private javax.swing.JLabel labelMesto;
     private javax.swing.JLabel labelMestoData;
+    private javax.swing.JLabel labelOdohrateTurnaje;
     private javax.swing.JLabel labelOrg;
     private javax.swing.JLabel labelOrgData;
     private javax.swing.JLabel labelPocetZap;
@@ -327,7 +364,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
     private javax.swing.JLabel labelVyhry;
     private javax.swing.JLabel labelVyhryData;
     private javax.swing.JLabel labelZapasy;
-    private javax.swing.JList<String> listTurnaje;
+    private javax.swing.JList<Turnaj> listTurnaje;
     private javax.swing.JList<String> listZapasy;
     private javax.swing.JPanel paneStatistiky;
     // End of variables declaration//GEN-END:variables
