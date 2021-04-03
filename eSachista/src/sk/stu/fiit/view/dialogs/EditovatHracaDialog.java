@@ -325,9 +325,8 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         imageAvatar.setIcon(h.getAvatar().getImage());
     }
 
-    public Hrac showDialog() {
+    public void showDialog() {
         ViewUtils.showDialog(this);
-        return this.controller.getEditovanyHrac();
     }
 
 

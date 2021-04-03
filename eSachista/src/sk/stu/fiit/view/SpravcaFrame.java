@@ -2,8 +2,12 @@ package sk.stu.fiit.view;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.SpravcaController;
+import sk.stu.fiit.view.panes.IViewRefresh;
 
 /**
  *
@@ -11,7 +15,15 @@ import sk.stu.fiit.controller.SpravcaController;
  */
 public class SpravcaFrame extends javax.swing.JFrame {
 
+    Logger logger = LoggerFactory.getLogger(SpravcaFrame.class);
+
     private SpravcaController controller;
+
+    private int PANE_COUNT = 3;
+    private int LOGOUT_ID = 3;
+
+    private IViewRefresh[] paneSwapContext = new IViewRefresh[PANE_COUNT];
+    private int tab = 0;
 
     public SpravcaFrame() {
         this.controller = new SpravcaController();
@@ -33,6 +45,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
         clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane(this.controller);
         turnajePane = new sk.stu.fiit.view.panes.TurnajePane();
+        logoutPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("eSachista - Spr·vca");
@@ -52,6 +65,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
                 return 45;
             }
         });
+        this.registerPanes();
         mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
         mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
         mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
@@ -70,22 +84,37 @@ public class SpravcaFrame extends javax.swing.JFrame {
         mainTabPane.addTab("Turnaje", turnajePane);
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "Turnaje" + POST_HTML);
+        mainTabPane.addTab("Odhl·siù sa", logoutPane);
 
         getContentPane().add(mainTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 670));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private void registerPanes() {
+        this.paneSwapContext[0] = spravcaPrehladPane;
+        this.paneSwapContext[1] = clenoviaPane;
+        this.paneSwapContext[2] = turnajePane;
+    }
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
-        if(mainTabPane.getSelectedIndex() == 0) {
-            spravcaPrehladPane.refresh();
+        int selectedPane = mainTabPane.getSelectedIndex();
+        if (selectedPane == LOGOUT_ID) {
+            mainTabPane.setSelectedIndex(this.tab);
+            int res = JOptionPane.showConfirmDialog(this, "Chcete sa odhl·siù?", "LOGOUT", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                this.logOut();
+            }
+        } else {
+            this.tab = selectedPane;
+            paneSwapContext[selectedPane].refresh();
         }
-        else if(mainTabPane.getSelectedIndex() == 2){
-            turnajePane.refresh();
-        }
-
     }//GEN-LAST:event_mainTabPaneStateChanged
+    private void logOut() {
+        logger.info("Hrac " + this.controller.getPrihlasenySpravca().getLogin() + " sa odhlasil.");
+        this.setVisible(false);
+        this.dispose();
+        EntryFrame.main();
+    }
 
     /**
      * @param args the command line arguments
@@ -114,7 +143,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        Color c = new Color(0,118,121);
+        Color c = new Color(0, 118, 121);
         javax.swing.UIManager.put("TabbedPane.selected", c);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -126,6 +155,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane;
+    private javax.swing.JPanel logoutPane;
     private javax.swing.JTabbedPane mainTabPane;
     private sk.stu.fiit.view.panes.SpravcaPrehladPane spravcaPrehladPane;
     private sk.stu.fiit.view.panes.TurnajePane turnajePane;

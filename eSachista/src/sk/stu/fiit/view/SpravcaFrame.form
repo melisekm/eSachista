@@ -50,7 +50,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="final String PRE_HTML = &quot;&lt;html&gt;&lt;p style=\&quot;text-align: left; width: 80px;\&quot;&gt;&quot;;&#xa;final String POST_HTML = &quot;&lt;/p&gt;&lt;/html&gt;&quot;;"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="mainTabPane.setUI(new BasicTabbedPaneUI(){&#xa;            @Override&#xa;            protected int calculateTabWidth(&#xa;                    int tabPlacement, int tabIndex, FontMetrics metrics) {&#xa;                return 150; &#xa;            }&#xa;&#xa;            @Override&#xa;            protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {&#xa;                return 45;&#xa;            }&#xa;        });"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="mainTabPane.setUI(new BasicTabbedPaneUI(){&#xa;            @Override&#xa;            protected int calculateTabWidth(&#xa;                    int tabPlacement, int tabIndex, FontMetrics metrics) {&#xa;                return 150; &#xa;            }&#xa;&#xa;            @Override&#xa;            protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {&#xa;                return 45;&#xa;            }&#xa;        });&#xa;this.registerPanes();"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -98,6 +98,17 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Container class="javax.swing.JPanel" name="logoutPane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Odhl&#xe1;si&#x165; sa">
+                <Property name="tabTitle" type="java.lang.String" value="Odhl&#xe1;si&#x165; sa"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

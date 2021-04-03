@@ -7,24 +7,31 @@ package sk.stu.fiit.view.panes;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.SpravcaController;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
+import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.view.AutoCompleteJComboBoxer;
+import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 
 /**
  *
  * @author lucia
  * @author Martin Melisek
  */
-public class ClenoviaPane extends javax.swing.JPanel {
+public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
 
     private SpravcaController controller;
+
+    private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
 
     public ClenoviaPane(SpravcaController controller) {
         this.controller = controller;
         initComponents();
-        this.naplnComboBoxHracov();
-
     }
 
     public ClenoviaPane() {
@@ -60,10 +67,12 @@ public class ClenoviaPane extends javax.swing.JPanel {
 
         listClenovia.setBackground(new java.awt.Color(153, 153, 153));
         listClenovia.setForeground(new java.awt.Color(255, 255, 255));
-        listClenovia.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        listClenovia.setModel(new DefaultListModel<Pouzivatel>());
+        listClenovia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listClenovia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listClenoviaMouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(listClenovia);
 
@@ -71,15 +80,40 @@ public class ClenoviaPane extends javax.swing.JPanel {
 
         btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravit.setText("Upraviù");
+        btnUpravit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUpravitMouseReleased(evt);
+            }
+        });
         add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, 30));
 
         comboBoxClenovia.setModel(new DefaultComboBoxModel<Pouzivatel>());
         add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 30));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listClenoviaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClenoviaMouseReleased
+        Pouzivatel p = (Pouzivatel) listClenovia.getSelectedValue();
+        this.editHracInfo(p);
+    }//GEN-LAST:event_listClenoviaMouseReleased
+
+    private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
+        Pouzivatel p = (Pouzivatel) comboBoxClenovia.getSelectedItem();
+        this.editHracInfo(p);
+    }//GEN-LAST:event_btnUpravitMouseReleased
+
+    private void editHracInfo(Pouzivatel p) {
+        if (p instanceof Spravca) {
+            JOptionPane.showMessageDialog(parent, "Spravcu nie je mozne editovat.");
+            return;
+        }
+        EditovatHracaDialog dialog = new EditovatHracaDialog(parent, true, (Hrac) p);
+        dialog.showDialog();
+        this.refresh();
+    }
+
     private void naplnComboBoxHracov() {
         DefaultComboBoxModel<Pouzivatel> model = (DefaultComboBoxModel<Pouzivatel>) comboBoxClenovia.getModel();
-
+        comboBoxClenovia.removeAllItems();
         ArrayList<Pouzivatel> pouzivatelia = this.controller.getOrganizacia().getPouzivatelia();
         for (Pouzivatel pouzivatel : pouzivatelia) {
             model.addElement(pouzivatel);
@@ -87,12 +121,28 @@ public class ClenoviaPane extends javax.swing.JPanel {
         new AutoCompleteJComboBoxer(comboBoxClenovia);
     }
 
+    private void naplnListHracov() {
+        DefaultListModel<Pouzivatel> model = (DefaultListModel<Pouzivatel>) listClenovia.getModel();
+        model.setSize(0);
+        ArrayList<Pouzivatel> pouzivatels = this.controller.getOrganizacia().getPouzivatelia();
+        for (Pouzivatel pouzivatel : pouzivatels) {
+            model.addElement(pouzivatel);
+        }
+    }
+
+    @Override
+    public void refresh() {
+        this.naplnComboBoxHracov();
+        this.naplnListHracov();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpravit;
     private javax.swing.JComboBox<Pouzivatel> comboBoxClenovia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelClenovia;
     private javax.swing.JLabel labelPocetClenov;
-    private javax.swing.JList<String> listClenovia;
+    private javax.swing.JList<Pouzivatel> listClenovia;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,7 @@ import sk.stu.fiit.view.EntryFrame;
  *
  * @author lucia
  */
-public class SpravcaPrehladPane extends javax.swing.JPanel {
+public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefresh {
 
     private SpravcaController controller;
 
@@ -65,7 +65,6 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         btnUpravitOrgPrehlad = new javax.swing.JButton();
         labelDatumRegOrg = new javax.swing.JLabel();
         labelPocetClenovOrg = new javax.swing.JLabel();
-        btnOdhlasitSpravcu = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -86,21 +85,15 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         jPanel1.add(btnUlozitSpravcaDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 140, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("N·zov organiz·cie:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Meno spr·vcu:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 155, -1, -1));
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, -1));
-
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, -1));
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
@@ -154,29 +147,12 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
         labelPocetClenovOrg.setText("jLabel6");
         add(labelPocetClenovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
-        btnOdhlasitSpravcu.setBackground(new java.awt.Color(204, 204, 204));
-        btnOdhlasitSpravcu.setForeground(new java.awt.Color(0, 0, 0));
-        btnOdhlasitSpravcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png"))); // NOI18N
-        btnOdhlasitSpravcu.setText("Odhl·siù sa");
-        btnOdhlasitSpravcu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnOdhlasitSpravcuMouseReleased(evt);
-            }
-        });
-        add(btnOdhlasitSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
-
         jLabel2.setText("Vitajte, ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         jLabel5.setText("jLabel5");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnOdhlasitSpravcuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOdhlasitSpravcuMouseReleased
-        this.controller.logOut();
-        SwingUtilities.getWindowAncestor(this).dispose();
-        EntryFrame.main();
-    }//GEN-LAST:event_btnOdhlasitSpravcuMouseReleased
 
     private void btnUpravitOrgPrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitOrgPrehladMouseClicked
         EditovatSpravcuDialog.pack();
@@ -193,7 +169,6 @@ public class SpravcaPrehladPane extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog EditovatSpravcuDialog;
-    private javax.swing.JButton btnOdhlasitSpravcu;
     private javax.swing.JButton btnUlozitSpravcaDialog;
     private javax.swing.JButton btnUpravitOrgPrehlad;
     private javax.swing.JButton jButton1;
