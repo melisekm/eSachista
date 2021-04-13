@@ -19,7 +19,7 @@ public class Main {
 
     private final static String testovaciaDB = "..\\demo\\demo.vava";
 
-    private static boolean loadDemoDB = false;
+    private static boolean loadDemoDB = true;
 
     static {
         if (loadDemoDB) {
