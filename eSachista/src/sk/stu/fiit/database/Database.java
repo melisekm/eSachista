@@ -21,7 +21,7 @@ public class Database implements Serializable {
     private ArrayList<Organizacia> organizacie = new ArrayList<>();
     private ArrayList<Balik> baliky = new ArrayList<>();
 
-    private String bundle = "sk/stu/fiit/view/resources/Bundle_sk_SK";
+    private String bundle = "Bundle_sk_SK";
 
     private Database() {
         this.baliky.add(new Balik(10, 2, 8));
@@ -67,7 +67,7 @@ public class Database implements Serializable {
     }
 
     public void setBundle(String loc) {
-        this.bundle = "sk/stu/fiit/view/resources/Bundle_" + loc;
+        this.bundle = "Bundle_" + loc;
     }
 
 }
