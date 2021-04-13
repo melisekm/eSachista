@@ -1,10 +1,12 @@
 package sk.stu.fiit.model.organisation.platform.turnaj;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Martin Melisek
  */
-public class TurnajObmedzenia {
+public class TurnajObmedzenia implements Serializable{
 
     private int minRating;
     private int maxRating;

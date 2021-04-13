@@ -11,7 +11,7 @@ import sk.stu.fiit.exceptions.InvalidDateException;
 import sk.stu.fiit.exceptions.MaxPocetTurnajovException;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
-import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.utils.ViewUtils;
 
 /**
  *

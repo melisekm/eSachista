@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
-import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**

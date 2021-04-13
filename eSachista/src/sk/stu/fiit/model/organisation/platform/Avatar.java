@@ -1,12 +1,13 @@
 package sk.stu.fiit.model.organisation.platform;
 
+import java.io.Serializable;
 import javax.swing.Icon;
 
 /**
  *
  * @author Martin Melisek
  */
-public class Avatar {
+public class Avatar implements Serializable{
 
     private Icon image;
 

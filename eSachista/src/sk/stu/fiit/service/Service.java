@@ -8,10 +8,11 @@ import sk.stu.fiit.database.Database;
  */
 public abstract class Service {
 
-    protected Database db;
-
     public Service() {
-        this.db = Database.getInstance();
     }
 
+    public Database getDb() {
+        return Database.getInstance();
+    }
+    
 }

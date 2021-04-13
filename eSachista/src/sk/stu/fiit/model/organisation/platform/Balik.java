@@ -1,10 +1,12 @@
 package sk.stu.fiit.model.organisation.platform;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Martin Melisek
  */
-public class Balik {
+public class Balik implements Serializable{
 
     private int kapacitaPouzivatelov;
     private int maxPocetTurnajov;

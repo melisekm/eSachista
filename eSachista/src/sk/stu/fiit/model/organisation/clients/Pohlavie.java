@@ -1,10 +1,12 @@
 package sk.stu.fiit.model.organisation.clients;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Martin Melisek
  */
-public enum Pohlavie {
+public enum Pohlavie implements Serializable{
     MUZ {
         @Override
         public String toString() {

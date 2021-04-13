@@ -1,12 +1,13 @@
 package sk.stu.fiit.model.organisation.clients;
 
+import java.io.Serializable;
 import sk.stu.fiit.model.organisation.Organizacia;
 
 /**
  *
  * @author Martin Melisek
  */
-public class Spravca extends Pouzivatel {
+public class Spravca extends Pouzivatel implements Serializable{
 
     private String email; // REGEX stuff
 

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
-import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
 /**

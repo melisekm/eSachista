@@ -1,5 +1,6 @@
 package sk.stu.fiit.model.organisation.clients;
 
+import java.io.Serializable;
 import java.util.Date;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.Avatar;
@@ -8,7 +9,7 @@ import sk.stu.fiit.model.organisation.platform.Avatar;
  *
  * @author Martin Melisek
  */
-public abstract class Pouzivatel {
+public abstract class Pouzivatel implements Serializable{
 
     protected Organizacia org;
     protected String meno;

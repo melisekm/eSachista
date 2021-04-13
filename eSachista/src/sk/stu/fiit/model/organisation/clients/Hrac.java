@@ -1,5 +1,6 @@
 package sk.stu.fiit.model.organisation.clients;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import sk.stu.fiit.model.organisation.Organizacia;
@@ -9,7 +10,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  *
  * @author Martin Melisek
  */
-public class Hrac extends Pouzivatel {
+public class Hrac extends Pouzivatel implements Serializable{
 
     private boolean firstLogin = true;
     private int ELO;

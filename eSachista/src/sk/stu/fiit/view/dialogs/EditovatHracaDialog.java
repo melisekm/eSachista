@@ -17,7 +17,7 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pohlavie;
 import sk.stu.fiit.model.organisation.platform.Avatar;
 import sk.stu.fiit.utils.PlatformConstants;
-import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.utils.ViewUtils;
 
 /**
  *

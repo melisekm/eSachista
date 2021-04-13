@@ -1,5 +1,6 @@
 package sk.stu.fiit.model.organisation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
@@ -10,7 +11,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  *
  * @author Martin Melisek
  */
-public class Organizacia {
+public class Organizacia implements Serializable{
 
     private String nazov;
     private String urlAdresa;

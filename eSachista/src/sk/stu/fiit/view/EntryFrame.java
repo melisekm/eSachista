@@ -1,15 +1,20 @@
 package sk.stu.fiit.view;
 
+import sk.stu.fiit.utils.ViewUtils;
 import java.util.Arrays;
 import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.EntryController;
+import sk.stu.fiit.database.Database;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.utils.EntryConstants;
+import sk.stu.fiit.view.dialogs.IOManagerDialog;
 
 /**
  *
@@ -88,6 +93,7 @@ public class EntryFrame extends javax.swing.JFrame {
         textAreaDetaily = new javax.swing.JTextArea();
         btnZavrietDetaily = new javax.swing.JButton();
         panelConnection = new javax.swing.JPanel();
+        btnIO = new javax.swing.JButton();
         labelAdresa = new javax.swing.JLabel();
         fieldAdresa = new javax.swing.JTextField();
         btnRegistrovatOrg = new javax.swing.JButton();
@@ -360,6 +366,15 @@ public class EntryFrame extends javax.swing.JFrame {
         panelConnection.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelConnection.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnIO.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnIO.setText("Naèítavanie a ukladanie údajov");
+        btnIO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnIOMouseReleased(evt);
+            }
+        });
+        panelConnection.add(btnIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, -1));
+
         labelAdresa.setBackground(new java.awt.Color(255, 255, 255));
         labelAdresa.setFont(new java.awt.Font("Candara", 0, 24)); // NOI18N
         labelAdresa.setForeground(new java.awt.Color(255, 255, 255));
@@ -529,6 +544,10 @@ public class EntryFrame extends javax.swing.JFrame {
         ViewUtils.showDialog(dialogPripojit);
     }//GEN-LAST:event_btnPripojitMouseReleased
 
+    private void btnIOMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIOMouseReleased
+        ViewUtils.showDialog(new IOManagerDialog(this, true));
+    }//GEN-LAST:event_btnIOMouseReleased
+
     public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -565,6 +584,7 @@ public class EntryFrame extends javax.swing.JFrame {
     }
     //<editor-fold defaultstate="collapsed" desc=" Variables declaration ">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIO;
     private javax.swing.JButton btnPrihlasitOK;
     private javax.swing.JButton btnPripojit;
     private javax.swing.JButton btnRegistraciaHracaOK;

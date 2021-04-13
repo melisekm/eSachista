@@ -1,10 +1,12 @@
 package sk.stu.fiit.model.organisation.platform.turnaj;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Martin Melisek
  */
-public class TurnajTempoHry {
+public class TurnajTempoHry implements Serializable{
 
     private int limitMins;
     private int limitSec;

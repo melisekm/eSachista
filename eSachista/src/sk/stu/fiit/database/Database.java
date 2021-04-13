@@ -1,6 +1,10 @@
 package sk.stu.fiit.database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.Balik;
 
@@ -8,11 +12,16 @@ import sk.stu.fiit.model.organisation.platform.Balik;
  *
  * @author Martin Melisek
  */
-public class Database {
+public class Database implements Serializable {
 
-    private static Database INSTANCE = new Database();
+    private static final Logger logger = LoggerFactory.getLogger(Database.class);
+
+    private Date appTime; // keby treba 
+    private static Database INSTANCE;
     private ArrayList<Organizacia> organizacie = new ArrayList<>();
     private ArrayList<Balik> baliky = new ArrayList<>();
+
+    private String bundle = "sk/stu/fiit/view/resources/Bundle_sk_SK";
 
     private Database() {
         this.baliky.add(new Balik(10, 2, 8));
@@ -20,7 +29,20 @@ public class Database {
         this.baliky.add(new Balik(100, 20, 64));
     }
 
+    public static void createDatabase(Database db) {
+        logger.info("Inicializujem existujucu databazu");
+        INSTANCE = db;
+    }
+
+    public static void createDatabase() {
+        logger.info("Inicializujem novu databazu");
+        INSTANCE = new Database();
+    }
+
     public static Database getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Database();
+        }
         return INSTANCE;
     }
 
@@ -30,6 +52,22 @@ public class Database {
 
     public ArrayList<Organizacia> getOrganizacie() {
         return organizacie;
+    }
+
+    public String getBundle() {
+        return bundle;
+    }
+
+    public Date getAppTime() {
+        return appTime;
+    }
+
+    public void setAppTime(Date appTime) {
+        this.appTime = appTime;
+    }
+
+    public void setBundle(String loc) {
+        this.bundle = "sk/stu/fiit/view/resources/Bundle_" + loc;
     }
 
 }

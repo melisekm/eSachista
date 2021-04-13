@@ -1,5 +1,6 @@
 package sk.stu.fiit.model.organisation.platform.turnaj;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import sk.stu.fiit.model.organisation.clients.Hrac;
@@ -8,7 +9,7 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
  *
  * @author Martin Melisek
  */
-public class Turnaj implements Comparable<Turnaj> {
+public class Turnaj implements Comparable<Turnaj>, Serializable{
 
     private TurnajFormat format;
     private String nazov;

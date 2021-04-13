@@ -17,7 +17,7 @@ import javax.swing.table.TableColumnModel;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.PlatformConstants;
-import sk.stu.fiit.view.ViewUtils;
+import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**

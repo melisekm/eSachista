@@ -45,11 +45,11 @@ public class EntryService extends Service{
     }
 
     public void registerOrg(String nazovOrg, String adresaOrg, int balikId) {
-        Balik b = this.db.getBaliky().get(balikId);
+        Balik b = this.getDb().getBaliky().get(balikId);
         Spravca organizator = new Spravca(this.spravcaTemp);
         Organizacia o = new Organizacia(nazovOrg, adresaOrg, organizator, b);
         organizator.setOrg(o);
-        this.db.getOrganizacie().add(o);
+        this.getDb().getOrganizacie().add(o);
     }
 
     public void registerSpravca(String meno, String login, char[] password) {
@@ -61,7 +61,7 @@ public class EntryService extends Service{
     }
 
     public boolean isOrgNameAvailable(String adresaOrg) {
-        for (Organizacia org : this.db.getOrganizacie()) {
+        for (Organizacia org : this.getDb().getOrganizacie()) {
             if (org.getUrlAdresa().equals(adresaOrg)) {
                 return false;
             }
@@ -70,7 +70,7 @@ public class EntryService extends Service{
     }
 
     public boolean pripojOrganizaciu(String adresa) {
-        for (Organizacia org : this.db.getOrganizacie()) {
+        for (Organizacia org : this.getDb().getOrganizacie()) {
             if (org.getUrlAdresa().equals(adresa)) {
                 this.orgLoggedIn = org;
                 return true;
@@ -89,7 +89,7 @@ public class EntryService extends Service{
      * Z databazy vrati balik na zaklade ID
      */
     public Balik getBalik(int index) {
-        return this.db.getBaliky().get(index);
+        return this.getDb().getBaliky().get(index);
     }
 
     public Organizacia getOrgLoggedIn() {
