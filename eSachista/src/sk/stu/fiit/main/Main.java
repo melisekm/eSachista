@@ -19,7 +19,7 @@ public class Main {
 
     private final static String testovaciaDB = "..\\demo\\demo.vava";
 
-    private static boolean loadDemoDB = true;
+    private static boolean loadDemoDB = false;
 
     static {
         if (loadDemoDB) {
@@ -42,7 +42,6 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("Spustam aplikaciu");
-        DataLoader.loadData();
         EntryFrame.main();
     }
 
