@@ -32,5 +32,7 @@ public class SpravcaController extends Controller {
     public void setOrganizacia(Organizacia organizacia) {
         this.organizacia = organizacia;
     }
+    
+    
 
 }
