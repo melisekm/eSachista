@@ -108,6 +108,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         }
         EditovatHracaDialog dialog = new EditovatHracaDialog(parent, true, (Hrac) p);
         dialog.showDialog();
+        this.controller.saveOrg();
         this.refresh();
     }
 

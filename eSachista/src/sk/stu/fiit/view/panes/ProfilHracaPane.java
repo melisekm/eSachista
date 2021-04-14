@@ -273,6 +273,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpravitProfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitProfilMouseReleased
+        this.controller.loadOrg();
         EditovatHracaDialog dialog = new EditovatHracaDialog(this.parent, true, this.controller.getPrihlasenyHrac());
         dialog.showDialog();
         this.controller.saveOrg();
