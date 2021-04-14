@@ -24,7 +24,11 @@ public class Main {
     static {
         if (loadDemoDB) {
             try {
-                new IOManager().loadDatabase(new File(testovaciaDB));
+//                new IOManager().loadDatabase(new File(testovaciaDB));
+//                new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
+                Database.createDatabase(); // prazdna DB
+
+                Database.getInstance().getOrganizacie().add(new IOManager().loadOrg());
             } catch (IOException ex) {
                 logger.error("Chyba pri nacitavani DB");
                 logger.error(ex.getClass().toString());

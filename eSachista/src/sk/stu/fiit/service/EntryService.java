@@ -40,6 +40,7 @@ public class EntryService extends Service{
             return false;
         }
         this.orgLoggedIn.getPouzivatelia().add(h);
+        
         return true;
     }
 

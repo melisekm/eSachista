@@ -21,7 +21,7 @@ public class EntryController extends Controller {
     }
 
     public int getPripojenyPouzivatel() {
-        Pouzivatel loggedIn = this.entryService.getUserLoggedIn();
+        Pouzivatel loggedIn = this.getUserLoggedIn();
         if (loggedIn instanceof Spravca) {
             return EntryConstants.LOGGED_IN_SPRAVCA;
         } else if (loggedIn instanceof Hrac) {
@@ -31,7 +31,7 @@ public class EntryController extends Controller {
     }
 
     public boolean pripojitHraca(String login, char[] password) {
-        ArrayList<Pouzivatel> userDb = this.entryService.getOrgLoggedIn().getPouzivatelia();
+        ArrayList<Pouzivatel> userDb = this.getPouzivatelia();
         Pouzivatel userLoggedIn = this.validator.checkUserLogin(userDb, login, password);
         if (userLoggedIn == null) {
             return false;
@@ -56,7 +56,7 @@ public class EntryController extends Controller {
         if (typRegistracie == EntryConstants.REGISTRUJ_SPRAVCU) {
             this.entryService.registerSpravca(meno, login, securedPassword);
         } else {
-            ArrayList<Pouzivatel> userDb = this.entryService.getOrgLoggedIn().getPouzivatelia();
+            ArrayList<Pouzivatel> userDb = this.getPouzivatelia();
             boolean usernameTaken = this.validator.checkUsernameAvailability(userDb, login);
             if (!usernameTaken) {
                 return EntryConstants.MENO_UZ_EXISTUJE;
@@ -66,7 +66,7 @@ public class EntryController extends Controller {
                 return EntryConstants.KAPACITA_PREKROCENA;
             }
         }
-
+        this.saveOrg();
         return EntryConstants.REGISTRACIA_OK;
     }
 

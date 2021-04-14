@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.exceptions.InvalidDateException;
 import sk.stu.fiit.exceptions.MaxPocetTurnajovException;
-import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
@@ -22,22 +21,18 @@ public class TurnajController extends Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(TurnajController.class);
 
-    private Organizacia org;
     private Turnaj novyTurnaj;
 
     public TurnajController() {
-        if (this.entryService != null) {
-            this.org = this.entryService.getOrgLoggedIn();
-        }
     }
 
     public void vytvorTurnaj(TurnajFormat format, String nazov, String miestoKonania,
             Date datum, int casZaciatkuHrs, int casZaciatkuMin,
             int limitMin, int limitSec, int increment, String popis, int minRating,
             int maxRating, int maxVek) throws MaxPocetTurnajovException, InvalidDateException {
-        boolean bolaPrekrocenaKapacita = this.org.getTurnaje().size() >= this.org.getBalik().getMaxPocetTurnajov();
+        boolean bolaPrekrocenaKapacita = this.getOrgLoggedIn().getTurnaje().size() >= this.getOrgLoggedIn().getBalik().getMaxPocetTurnajov();
         if (bolaPrekrocenaKapacita) {
-            logger.error("Bol presiahnuty maximalny pocet turnajov - " + this.org.getNazov() + " - " + this.org.getTurnaje().size());
+            logger.error("Bol presiahnuty maximalny pocet turnajov - " + this.getOrgLoggedIn().getNazov() + " - " + this.getOrgLoggedIn().getTurnaje().size());
             throw new MaxPocetTurnajovException();
         }
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Bratislava"));
@@ -58,13 +53,13 @@ public class TurnajController extends Controller {
     }
 
     public void saveTurnaj(Turnaj novy) {
-        this.org.getTurnaje().add(novy);
-        Collections.sort(this.org.getTurnaje());
+        this.getOrgLoggedIn().getTurnaje().add(novy);
+        Collections.sort(this.getOrgLoggedIn().getTurnaje());
     }
 
     public void upravTurnaj(Turnaj povodny, Turnaj novy) {
         povodny.updateDetails(novy);
-        Collections.sort(this.org.getTurnaje());
+        Collections.sort(this.getOrgLoggedIn().getTurnaje());
     }
 
     public Turnaj getNovyTurnaj() {

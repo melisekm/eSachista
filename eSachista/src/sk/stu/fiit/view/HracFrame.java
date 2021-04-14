@@ -19,10 +19,10 @@ public class HracFrame extends javax.swing.JFrame {
     Logger logger = LoggerFactory.getLogger(HracFrame.class);
 
     private HracController controller;
-    
+
     private int PANE_COUNT = 3;
     private int LOGOUT_ID = 3;
-    
+
     private IViewRefresh[] paneSwapContext = new IViewRefresh[PANE_COUNT];
     private int tab = 0;
 
@@ -144,6 +144,7 @@ public class HracFrame extends javax.swing.JFrame {
         if (this.controller.getPrihlasenyHrac().isFirstLogin()) {
             EditovatHracaDialog dialog = new EditovatHracaDialog(this, true, this.controller.getPrihlasenyHrac());
             dialog.showDialog();
+            this.controller.saveOrg();
             profilHracaPane.refresh();
         }
     }

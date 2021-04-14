@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.PlatformConstants;
 import sk.stu.fiit.utils.ViewUtils;
@@ -125,7 +126,6 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             case PlatformConstants.TURNAJ_PRIHLASENIE_OK:
                 JOptionPane.showMessageDialog(this, "Prihlasovanie prebehlo v poriadku", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                 ((DefaultTableModel) tableTurnaje.getModel()).removeRow(index);
-                this.controller.saveTurnaje();
                 break;
             default:
                 throw new AssertionError();
@@ -143,15 +143,21 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     }//GEN-LAST:event_btnDetailyMouseReleased
 
     private void vyplnTabulkuTurnajov() {
-        this.controller.loadTurnaje();
+        this.controller.loadOrg();
         DefaultTableModel model = (DefaultTableModel) tableTurnaje.getModel();
         model.setRowCount(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
         for (Turnaj t : turnaje) {
             boolean turnajJeDohraty = t.isFinished();
             boolean turnajPrebieha = new Date().after(t.getDatumKonania());
-            boolean hracJePrihlaseny = this.controller.getPrihlasenyHrac().getTurnaje().contains(t);
-            if (turnajJeDohraty || turnajPrebieha || hracJePrihlaseny) {
+            boolean hracJePrihlaseny = false;
+            for (Hrac hrac : t.getHraci()) {
+                if(hrac.getLogin().equals(this.controller.getPrihlasenyHrac().getLogin())){
+                    hracJePrihlaseny = true;
+                    break;
+                }
+            }
+            if (turnajJeDohraty || turnajPrebieha || hracJePrihlaseny ) {
                 continue;
             }
             String maxVek;

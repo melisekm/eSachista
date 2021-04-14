@@ -72,6 +72,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelMaxVek = new javax.swing.JLabel();
         labelMaxVekData = new javax.swing.JLabel();
         labelRatingData = new javax.swing.JLabel();
+        btnDeleteTurnaj = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -179,6 +180,14 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelRatingData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelRatingData.setText("--");
         add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 210, -1));
+
+        btnDeleteTurnaj.setText("Obnoviù ˙daje");
+        btnDeleteTurnaj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnDeleteTurnajMouseReleased(evt);
+            }
+        });
+        add(btnDeleteTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 550, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -188,8 +197,8 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             return;
         }
         this.controller.saveTurnaj(novy);
+        this.controller.saveOrg();
         this.updateList(novy);
-        this.controller.saveTurnaje();
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
@@ -205,8 +214,8 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             return;
         }
         this.controller.upravTurnaj(povodny, novy);
+        this.controller.saveOrg();
         this.updateList(povodny);
-        this.controller.saveTurnaje();
 
     }//GEN-LAST:event_btnUpravitMouseReleased
     private void updateList(Turnaj t) {
@@ -220,8 +229,24 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         this.setTurnajInfo();
     }//GEN-LAST:event_listTurnajeMouseReleased
 
+    private void btnDeleteTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteTurnajMouseReleased
+        this.refresh();
+        /*Turnaj t = listTurnaje.getSelectedValue();
+        if (t == null) {
+            JOptionPane.showMessageDialog(this, "Prosim vyberte turnaj.");
+            return;
+        }
+        int res = JOptionPane.showConfirmDialog(this, "Prajete si odstranit tento turnaj?", "Delete turnaj", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            this.controller.getTurnaje().remove(t);
+            this.controller.saveOrg();
+            this.refresh();
+        }*/
+
+    }//GEN-LAST:event_btnDeleteTurnajMouseReleased
+
     private void naplnTurnajList() {
-        this.controller.loadTurnaje();
+        this.controller.loadOrg();
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
         model.setSize(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
@@ -271,6 +296,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteTurnaj;
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JScrollPane jScrollPane1;

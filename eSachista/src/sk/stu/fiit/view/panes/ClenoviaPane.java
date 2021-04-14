@@ -114,7 +114,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
     private void naplnComboBoxHracov() {
         DefaultComboBoxModel<Pouzivatel> model = (DefaultComboBoxModel<Pouzivatel>) comboBoxClenovia.getModel();
         comboBoxClenovia.removeAllItems();
-        ArrayList<Pouzivatel> pouzivatelia = this.controller.getOrganizacia().getPouzivatelia();
+        ArrayList<Pouzivatel> pouzivatelia = this.controller.getOrgLoggedIn().getPouzivatelia();
         for (Pouzivatel pouzivatel : pouzivatelia) {
             model.addElement(pouzivatel);
         }
@@ -124,7 +124,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
     private void naplnListHracov() {
         DefaultListModel<Pouzivatel> model = (DefaultListModel<Pouzivatel>) listClenovia.getModel();
         model.setSize(0);
-        ArrayList<Pouzivatel> pouzivatels = this.controller.getOrganizacia().getPouzivatelia();
+        ArrayList<Pouzivatel> pouzivatels = this.controller.getOrgLoggedIn().getPouzivatelia();
         for (Pouzivatel pouzivatel : pouzivatels) {
             model.addElement(pouzivatel);
         }

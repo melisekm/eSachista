@@ -7,11 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.database.Database;
-import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.Organizacia;
 
 /**
  * Umozni ukladanie databazy do suboru a nasledne citanie - serializacia
@@ -23,7 +22,8 @@ public class IOManager {
 
     private static final Logger logger = LoggerFactory.getLogger(IOManager.class);
 
-    private String turnajePath = "C:\\Users\\melis\\Documents\\!VAVA\\esachista\\turnaje.vava";
+    private String turnajePath = "resources\\turnaje.vava";
+    private String orgPath = "resources\\org2.vava";
 
     public void saveDatabase(File file) throws FileNotFoundException, IOException {
         Database db = Database.getInstance();
@@ -42,22 +42,22 @@ public class IOManager {
         }
     }
 
-    public void saveTurnaje(ArrayList<Turnaj> turnaje) throws FileNotFoundException, IOException {
-        File file = new File(this.turnajePath);
-        if(!file.exists()){
+    public void saveOrg(Organizacia org) throws FileNotFoundException, IOException {
+        File file = new File(this.orgPath);
+        if (!file.exists()) {
             file.createNewFile();
         }
-        try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.turnajePath))) { // try with resources
-            logger.info("Ukladam turnaje do suboru.");
-            out.writeObject(turnaje); // ulozi databazu
-            logger.info("turnaje uspesene ulozene.");
+        try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.orgPath))) { // try with resources
+            logger.info("Ukladam org do suboru.");
+            out.writeObject(org);
+            logger.info("org uspesene ulozene.");
         }
     }
 
-    public ArrayList<Turnaj> loadTurnaje() throws FileNotFoundException, IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.turnajePath))) {
-            logger.info("Nacitavam turnaje zo suboru " + turnajePath);
-            return ((ArrayList<Turnaj>) in.readObject());
+    public Organizacia loadOrg() throws FileNotFoundException, IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.orgPath))) {
+            logger.info("Nacitavam org zo suboru " + orgPath);
+            return ((Organizacia) in.readObject());
         }
     }
 }

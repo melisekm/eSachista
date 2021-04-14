@@ -32,6 +32,7 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
     public EditovatHracaDialog(java.awt.Frame parent, boolean modal, Hrac editovanyHrac) {
         super(parent, modal);
         this.controller = new HracEditorController(editovanyHrac);
+        this.controller.loadOrg();
         initComponents();
         fieldMeno.setText(editovanyHrac.getMeno());
         if (editovanyHrac.isFirstLogin()) {
@@ -286,6 +287,7 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         this.controller.updateHrac(meno, mesto, stat, datumNarodenia, pohlavie, avatar);
         logger.info("Hrac " + this.controller.getEditovanyHrac().getMeno() + " ulozeny");
         this.controller.getEditovanyHrac().setFirstLogin(false);
+
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnUlozitUdajeMouseReleased
