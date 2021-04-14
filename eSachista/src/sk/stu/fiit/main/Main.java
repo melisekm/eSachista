@@ -3,7 +3,7 @@ package sk.stu.fiit.main;
 import java.io.File;
 import java.io.IOException;
 import org.slf4j.LoggerFactory;
-import sk.stu.fiit.controller.IOController;
+import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.database.Database;
 import sk.stu.fiit.utils.DataLoader;
 import sk.stu.fiit.view.EntryFrame;
@@ -24,7 +24,7 @@ public class Main {
     static {
         if (loadDemoDB) {
             try {
-                new IOController().loadDatabase(new File(testovaciaDB));
+                new IOManager().loadDatabase(new File(testovaciaDB));
             } catch (IOException ex) {
                 logger.error("Chyba pri nacitavani DB");
                 logger.error(ex.getClass().toString());

@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.stu.fiit.controller.IOController;
+import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
@@ -18,7 +18,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
 
     private static final Logger logger = LoggerFactory.getLogger(IOManagerDialog.class);
 
-    private IOController controller = new IOController();
+    private IOManager ioManager = new IOManager();
     private String pripona = ".vava";
 
     public IOManagerDialog(java.awt.Frame parent, boolean modal) {
@@ -147,7 +147,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
         File file = new File(fieldCesta.getText());
         try {
             if (radioBtnNacitat.isSelected()) {
-                this.controller.loadDatabase(file);
+                this.ioManager.loadDatabase(file);
                 JOptionPane.showMessageDialog(this, "Nacitanie bolo uspesne", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 if (!ViewUtils.validateFieldsNotBlank(this, fieldCesta, fieldNazov)) {
@@ -158,7 +158,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
                     logger.info("Prepisujem existujuci subor.");
                     file.createNewFile();
                 }
-                this.controller.saveDatabase(file);
+                this.ioManager.saveDatabase(file);
                 JOptionPane.showMessageDialog(this, "Ulozenie bolo uspesne", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
             }
             this.setVisible(false);

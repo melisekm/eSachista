@@ -52,10 +52,6 @@ public class HracController extends Controller {
     }
 
     private boolean checkVek(int maxVek) {
-        /*Date now = new Date();
-        cal.setTime(now);
-        int curVek = cal.get(Calendar.YEAR);
-        int vek = curVek - cal.get(Calendar.YEAR);*/
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Bratislava"));
         cal.setTime(this.prihlasenyHrac.getDatumNarodenia());
         int vek = this.prihlasenyHrac.getVek();

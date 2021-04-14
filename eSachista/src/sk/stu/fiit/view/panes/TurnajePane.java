@@ -189,7 +189,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }
         this.controller.saveTurnaj(novy);
         this.updateList(novy);
-
+        this.controller.saveTurnaje();
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
@@ -206,6 +206,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }
         this.controller.upravTurnaj(povodny, novy);
         this.updateList(povodny);
+        this.controller.saveTurnaje();
 
     }//GEN-LAST:event_btnUpravitMouseReleased
     private void updateList(Turnaj t) {
@@ -214,12 +215,13 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         listTurnaje.setSelectedValue(t, true);
         this.setTurnajInfo();
     }
-    
+
     private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
         this.setTurnajInfo();
     }//GEN-LAST:event_listTurnajeMouseReleased
 
     private void naplnTurnajList() {
+        this.controller.loadTurnaje();
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
         model.setSize(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
