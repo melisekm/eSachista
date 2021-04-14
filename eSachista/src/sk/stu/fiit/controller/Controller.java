@@ -20,6 +20,22 @@ public abstract class Controller {
         this.entryService.logOut();
     }
 
+    public boolean initClient() {
+        return this.entryService.initClient();
+    }
+
+    public void closeClient() {
+        this.entryService.closeClient();
+    }
+
+    public void initServer() {
+        this.entryService.initServer();
+    }
+
+    public void closeServer() {
+        this.entryService.closeServer();
+    }
+
     protected Pouzivatel getUserLoggedIn() {
         return this.entryService.getUserLoggedIn();
     }

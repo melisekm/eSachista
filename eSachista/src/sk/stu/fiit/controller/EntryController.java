@@ -20,6 +20,8 @@ public class EntryController extends Controller {
         this.validator = new EntryUserValidator();
     }
 
+  
+
     public int getPripojenyPouzivatel() {
         Pouzivatel loggedIn = this.entryService.getUserLoggedIn();
         if (loggedIn instanceof Spravca) {
