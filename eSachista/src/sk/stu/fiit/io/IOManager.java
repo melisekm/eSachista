@@ -22,7 +22,6 @@ public class IOManager {
 
     private static final Logger logger = LoggerFactory.getLogger(IOManager.class);
 
-    private String turnajePath = "resources\\turnaje.vava";
     private String orgPath = "resources\\org2.vava";
 
     public void saveDatabase(File file) throws FileNotFoundException, IOException {

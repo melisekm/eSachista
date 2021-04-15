@@ -1,9 +1,12 @@
 package sk.stu.fiit.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.utils.PlatformConstants;
@@ -78,6 +81,44 @@ public class HracController extends Controller {
             return true;
         }
         return false;
+    }
+
+    private boolean checkCiUzNiecoMa(Turnaj t) {
+        for (Turnaj turnaj : this.getPrihlasenyHrac().getTurnaje()) {
+            if (!t.isFinished()) {
+                if (isSameDay(turnaj.getDatumKonania(), t.getDatumKonania())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isSameDay(Date date1, Date date2) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        return fmt.format(date1).equals(fmt.format(date2));
+    }
+
+    private boolean checkCiJePrihlaseny(Turnaj t) {
+        for (Hrac hrac : t.getHraci()) {
+            if (hrac.getLogin().equals(this.getPrihlasenyHrac().getLogin())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * nezobrazi turnaj prihlasenemu hracovi ak<br>
+     * turnaj je dohrany<br>
+     * turnaj prebieha<br>
+     * hrac uz je prihlaseny na turnaj<br>
+     * hrac ma uz naplanovany iny turnaj na den konania turnaju t<br>
+     * @param t Turnaj ktory sa nema/ma zobrazit
+     * @return true ak sa nema, false ak sa ma
+     */
+    public boolean nezobrazitTurnaj(Turnaj t) {
+        return t.isFinished() || new Date().after(t.getDatumKonania()) || this.checkCiJePrihlaseny(t) || this.checkCiUzNiecoMa(t);
     }
 
 }
