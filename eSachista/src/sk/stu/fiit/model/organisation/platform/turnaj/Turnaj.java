@@ -22,7 +22,7 @@ public class Turnaj implements Comparable<Turnaj>, Serializable{
     private boolean finished = false; // TODO dopisat do panelov
 
     @Override
-    public int compareTo(Turnaj o) {
+    public int compareTo(Turnaj o) { // na zoradenie podla datumu
         if (this.datumKonania == null || o.getDatumKonania() == null) {
             return 0;
         }

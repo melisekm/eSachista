@@ -5,6 +5,7 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -34,6 +35,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     public ZoznamTurnajovPane(HracController controller) {
         this.controller = controller;
         initComponents();
+        this.nastavTabulkuTurnajov();
     }
 
     public ZoznamTurnajovPane() {
@@ -130,6 +132,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             default:
                 throw new AssertionError();
         }
+        this.refresh();
     }//GEN-LAST:event_btnPrihlasitSaMouseReleased
 
     private void btnDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailyMouseReleased
@@ -148,18 +151,10 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         model.setRowCount(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
         for (Turnaj t : turnaje) {
-            boolean turnajJeDohraty = t.isFinished();
-            boolean turnajPrebieha = new Date().after(t.getDatumKonania());
-            boolean hracJePrihlaseny = false;
-            for (Hrac hrac : t.getHraci()) {
-                if(hrac.getLogin().equals(this.controller.getPrihlasenyHrac().getLogin())){
-                    hracJePrihlaseny = true;
-                    break;
-                }
-            }
-            if (turnajJeDohraty || turnajPrebieha || hracJePrihlaseny ) {
+            if (this.controller.nezobrazitTurnaj(t)) {
                 continue;
             }
+
             String maxVek;
             if (t.getObmedzenia().getMaxVek() == Integer.MAX_VALUE) {
                 maxVek = "OPEN";
@@ -175,9 +170,21 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 this.controller.getTurnajKapacita(t)
             });
         }
-
     }
 
+    @Override
+    public void refresh() {
+        this.vyplnTabulkuTurnajov();
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetaily;
+    private javax.swing.JButton btnPrihlasitSa;
+    private javax.swing.JScrollPane scrollPaneTurnaje;
+    private javax.swing.JTable tableTurnaje;
+    // End of variables declaration//GEN-END:variables
+ 
     private void nastavTabulkuTurnajov() {
         TableColumnModel columnModel = tableTurnaje.getColumnModel();
         ((DefaultTableCellRenderer) tableTurnaje.getTableHeader().getDefaultRenderer())
@@ -201,17 +208,4 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         }
     }
 
-    @Override
-    public void refresh() {
-        this.nastavTabulkuTurnajov();
-        this.vyplnTabulkuTurnajov();
-    }
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDetaily;
-    private javax.swing.JButton btnPrihlasitSa;
-    private javax.swing.JScrollPane scrollPaneTurnaje;
-    private javax.swing.JTable tableTurnaje;
-    // End of variables declaration//GEN-END:variables
 }
