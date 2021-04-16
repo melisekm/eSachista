@@ -132,7 +132,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
                 btnUpravitOrgPrehladMouseClicked(evt);
             }
         });
-        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
+        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 100, -1));
 
         labelDatumRegOrg.setText("jLabel5");
         add(labelDatumRegOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));

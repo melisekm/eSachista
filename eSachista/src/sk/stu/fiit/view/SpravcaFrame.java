@@ -19,8 +19,8 @@ public class SpravcaFrame extends javax.swing.JFrame {
 
     private SpravcaController controller;
 
-    private int PANE_COUNT = 3;
-    private int LOGOUT_ID = 3;
+    private int PANE_COUNT = 4;
+    private int LOGOUT_ID = 4;
 
     private IViewRefresh[] paneSwapContext = new IViewRefresh[PANE_COUNT];
     private int tab = 0;
@@ -45,6 +45,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
         clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane(this.controller);
         turnajePane = new sk.stu.fiit.view.panes.TurnajePane();
+        aktivneTurnajeSpravcaPane1 = new sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane();
         logoutPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +67,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
             }
         });
         this.registerPanes();
-        mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
+        mainTabPane.setBackground(new java.awt.Color(42, 111, 151));
         mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
         mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 15));
@@ -84,7 +85,24 @@ public class SpravcaFrame extends javax.swing.JFrame {
         mainTabPane.addTab("Turnaje", turnajePane);
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "Turnaje" + POST_HTML);
+
+        javax.swing.GroupLayout aktivneTurnajeSpravcaPane1Layout = new javax.swing.GroupLayout(aktivneTurnajeSpravcaPane1);
+        aktivneTurnajeSpravcaPane1.setLayout(aktivneTurnajeSpravcaPane1Layout);
+        aktivneTurnajeSpravcaPane1Layout.setHorizontalGroup(
+            aktivneTurnajeSpravcaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 860, Short.MAX_VALUE)
+        );
+        aktivneTurnajeSpravcaPane1Layout.setVerticalGroup(
+            aktivneTurnajeSpravcaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 666, Short.MAX_VALUE)
+        );
+
+        mainTabPane.addTab("tab5", aktivneTurnajeSpravcaPane1);
+        mainTabPane.setIconAt(3, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
+        mainTabPane.setTitleAt(3, PRE_HTML + "AktÌvne turnaje" + POST_HTML);
         mainTabPane.addTab("Odhl·siù sa", logoutPane);
+        mainTabPane.setIconAt(4, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png")));
+        mainTabPane.setTitleAt(4, PRE_HTML + "Odhl·siù sa" + POST_HTML);
 
         getContentPane().add(mainTabPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 670));
 
@@ -95,6 +113,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         this.paneSwapContext[0] = spravcaPrehladPane;
         this.paneSwapContext[1] = clenoviaPane;
         this.paneSwapContext[2] = turnajePane;
+        this.paneSwapContext[3] = aktivneTurnajeSpravcaPane1;
     }
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         int selectedPane = mainTabPane.getSelectedIndex();
@@ -143,7 +162,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        Color c = new Color(0, 118, 121);
+        Color c = new Color(1, 73, 124);
         javax.swing.UIManager.put("TabbedPane.selected", c);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -154,6 +173,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane aktivneTurnajeSpravcaPane1;
     private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane;
     private javax.swing.JPanel logoutPane;
     private javax.swing.JTabbedPane mainTabPane;

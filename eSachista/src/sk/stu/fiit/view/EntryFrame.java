@@ -376,7 +376,7 @@ public class EntryFrame extends javax.swing.JFrame {
                 labelIconSK4MouseReleased(evt);
             }
         });
-        panelConnection.add(labelIconSK4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, -1, -1));
+        panelConnection.add(labelIconSK4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, -1, 40));
 
         labelIconUSA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelIconUSA.setForeground(new java.awt.Color(0, 0, 0));
@@ -386,16 +386,21 @@ public class EntryFrame extends javax.swing.JFrame {
                 labelIconUSAMouseReleased(evt);
             }
         });
-        panelConnection.add(labelIconUSA, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, -1));
+        panelConnection.add(labelIconUSA, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, -1, 40));
 
-        btnIO.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnIO.setBackground(new java.awt.Color(102, 102, 102));
+        btnIO.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnIO.setForeground(new java.awt.Color(255, 255, 255));
         btnIO.setText(bundle.getString("EntryFrame.btnIO.text")); // NOI18N
+        btnIO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnIO.setFocusPainted(false);
+        btnIO.setRequestFocusEnabled(false);
         btnIO.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnIOMouseReleased(evt);
             }
         });
-        panelConnection.add(btnIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, -1));
+        panelConnection.add(btnIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 475, 240, 30));
 
         labelAdresa.setBackground(new java.awt.Color(255, 255, 255));
         labelAdresa.setFont(new java.awt.Font("Candara", 0, 24)); // NOI18N
@@ -660,10 +665,6 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelBalikMaxPrihlHracovData;
     private javax.swing.JLabel labelBalikMaxTurnajov;
     private javax.swing.JLabel labelBalikMaxTurnajovData;
-    private javax.swing.JLabel labelIconSK;
-    private javax.swing.JLabel labelIconSK1;
-    private javax.swing.JLabel labelIconSK2;
-    private javax.swing.JLabel labelIconSK3;
     private javax.swing.JLabel labelIconSK4;
     private javax.swing.JLabel labelIconUSA;
     private javax.swing.JLabel labelLogin;

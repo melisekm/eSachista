@@ -61,7 +61,7 @@ public class HracFrame extends javax.swing.JFrame {
             }
         });
         this.registerPanes();
-        mainTabPane.setBackground(new java.awt.Color(0, 166, 172));
+        mainTabPane.setBackground(new java.awt.Color(42,111,151));
         mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
         mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 15));
@@ -92,6 +92,8 @@ public class HracFrame extends javax.swing.JFrame {
         );
 
         mainTabPane.addTab("Odhl·senie", logoutPane);
+        mainTabPane.setIconAt(3, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/logout.png")));
+        mainTabPane.setTitleAt(3, PRE_HTML + "Odhl·siù sa" + POST_HTML);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +170,7 @@ public class HracFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HracFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Color c = new Color(0, 118, 121);
+        Color c = new Color(1, 73, 124);
         javax.swing.UIManager.put("TabbedPane.selected", c);
 
         /* Create and display the form */

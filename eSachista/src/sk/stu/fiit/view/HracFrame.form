@@ -37,7 +37,7 @@
     <Container class="javax.swing.JTabbedPane" name="mainTabPane">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new java.awt.Color(0, 166, 172)" type="code"/>
+          <Connection code="new java.awt.Color(42,111,151)" type="code"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new java.awt.Color(0, 0, 0)" type="code"/>
@@ -97,6 +97,9 @@
           </Constraints>
         </Component>
         <Container class="javax.swing.JPanel" name="logoutPane">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="mainTabPane.setIconAt(3, new javax.swing.ImageIcon(getClass().getResource(&quot;/sk/stu/fiit/obrazky/logout.png&quot;)));&#xa;mainTabPane.setTitleAt(3, PRE_HTML + &quot;Odhl&#xe1;si&#x165; sa&quot; + POST_HTML);"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Odhl&#xe1;senie">

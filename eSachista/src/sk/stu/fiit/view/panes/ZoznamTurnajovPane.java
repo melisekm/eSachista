@@ -93,7 +93,12 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 btnPrihlasitSaMouseReleased(evt);
             }
         });
-        add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 50));
+        btnPrihlasitSa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrihlasitSaActionPerformed(evt);
+            }
+        });
+        add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 30));
 
         btnDetaily.setBackground(new java.awt.Color(153, 204, 255));
         btnDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -104,7 +109,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 btnDetailyMouseReleased(evt);
             }
         });
-        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
+        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrihlasitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitSaMouseReleased
@@ -144,6 +149,10 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         Turnaj t = (Turnaj) tableTurnaje.getValueAt(index, 0);
         ViewUtils.showDialog(new TurnajInfoDialog(parent, true, t));
     }//GEN-LAST:event_btnDetailyMouseReleased
+
+    private void btnPrihlasitSaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrihlasitSaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrihlasitSaActionPerformed
 
     private void vyplnTabulkuTurnajov() {
         this.controller.loadOrg();

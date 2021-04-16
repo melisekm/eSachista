@@ -62,10 +62,11 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         labelClenovia.setText("»lenovia");
         add(labelClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
+        labelPocetClenov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelPocetClenov.setText("poËet Ëlenov");
         add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
-        listClenovia.setBackground(new java.awt.Color(153, 153, 153));
+        listClenovia.setBackground(new java.awt.Color(169, 214, 229));
         listClenovia.setForeground(new java.awt.Color(255, 255, 255));
         listClenovia.setModel(new DefaultListModel<Pouzivatel>());
         listClenovia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -78,6 +79,8 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 640, 240));
 
+        btnUpravit.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravit.setText("Upraviù");
         btnUpravit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,6 +90,8 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         });
         add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, 30));
 
+        comboBoxClenovia.setBackground(new java.awt.Color(137, 194, 217));
+        comboBoxClenovia.setForeground(new java.awt.Color(1, 42, 74));
         comboBoxClenovia.setModel(new DefaultComboBoxModel<Pouzivatel>());
         add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 30));
     }// </editor-fold>//GEN-END:initComponents
