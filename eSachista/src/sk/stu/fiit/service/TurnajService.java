@@ -76,9 +76,10 @@ public class TurnajService extends Service {
             logger.info("Uz bolo odohrane posledne kolo. " + stage.getKolo() + "/" + stage.getPocetKol());
             return false;
         }
+        stage.getZapasy().clear();
         int hracIdx = stage.getKolo() % stage.getPocetHracov();
         stage.getZapasy().put(stage.getZoznamHracov().get(hracIdx), 0);
-        for (int idx = 0; idx < stage.getPolCas(); idx++) {
+        for (int idx = 1; idx < stage.getPolCas(); idx++) {
             int prvyHrac = (stage.getKolo() + idx) % stage.getPocetHracov();
             int druhyHrac = (stage.getKolo() + stage.getPocetHracov() - idx) % stage.getPocetHracov();
             stage.getZapasy().put(prvyHrac, druhyHrac);

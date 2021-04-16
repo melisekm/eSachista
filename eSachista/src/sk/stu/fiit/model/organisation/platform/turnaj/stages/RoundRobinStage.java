@@ -16,7 +16,7 @@ public class RoundRobinStage extends Stage {
 
     public RoundRobinStage(Turnaj turnaj) {
         super(turnaj, turnaj.getHraci().size() - 1);
-        this.polCas = this.getPocetKol() / 2;
+        this.polCas = turnaj.getHraci().size() / 2;
     }
 
 

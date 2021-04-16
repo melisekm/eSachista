@@ -196,7 +196,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
         calendar.setBackground(new java.awt.Color(153, 153, 153));
         calendar.setForeground(new java.awt.Color(51, 51, 51));
-        mainPane.add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 370, 230));
+        mainPane.add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 230));
 
         labelNadchadzaujceTurnaje.setBackground(new java.awt.Color(0, 0, 0));
         labelNadchadzaujceTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
