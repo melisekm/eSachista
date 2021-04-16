@@ -23,7 +23,7 @@ public class Main {
 
     private static boolean loadDemoDB = true;
 
-    private static boolean saveDefaultDB = false;
+    private static boolean saveDefaultDB = true;
 
     static {
         if (loadDemoDB) {

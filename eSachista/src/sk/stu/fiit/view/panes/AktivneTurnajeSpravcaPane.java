@@ -6,6 +6,7 @@
 package sk.stu.fiit.view.panes;
 
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -181,13 +182,12 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
-        System.out.println("finished = " + this.controller.getPrebiehajuciTurnaj().isFinished());
-        System.out.println("hashcode = " + this.controller.getPrebiehajuciTurnaj().hashCode());
-        if(this.controller.getPrebiehajuciTurnaj().isFinished()){
-            logger.info("Turnaj je dohrany.");
-            JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
-            this.zobrazVysledky(this.controller.getPrebiehajuciTurnaj());
-            return;
+        if (this.controller.getPrebiehajuciTurnaj().getDatumKonania().after(new Date())) {
+            long diff = ChronoUnit.MINUTES.between(new Date().toInstant(), this.controller.getPrebiehajuciTurnaj().getDatumKonania().toInstant());
+            if (diff > 10) {
+                JOptionPane.showMessageDialog(this, "Rozpis k turnaju sa da vygenerovat az 10 min pred zaciatkom");
+                return;
+            }
         }
         boolean turnajZacal = this.controller.getPrebiehajuciTurnaj().getStage() != null;
         boolean vysledkyNeboliZadane = this.controller.getPocetZadanychVysledkov() < this.controller.getPrebiehajuciTurnaj().getHraci().size() / 2;
@@ -196,6 +196,12 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             return;
         }
         this.controller.vygenerujHarmonogram();
+        if (this.controller.getPrebiehajuciTurnaj().isFinished()) {
+            logger.info("Turnaj je dohrany.");
+            JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
+            this.zobrazVysledky(this.controller.getPrebiehajuciTurnaj());
+            return;
+        }
         this.controller.setPocetZadanychVysledkov(0);
         JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
         this.controller.saveOrg();
@@ -203,7 +209,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
 
     private void btnZapisatVysledokMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZapisatVysledokMouseReleased
-        this.controller.setPocetZadanychVysledkov(this.controller.getPocetZadanychVysledkov()+1);
+        this.controller.setPocetZadanychVysledkov(this.controller.getPocetZadanychVysledkov() + 1);
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
 
     private void btnArchivovatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchivovatMouseReleased
@@ -231,7 +237,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText(turnaj.getMiestoKonania());
         labelDataPocetHracov.setText(String.valueOf(turnaj.getHraci().size()));
 
-        
         this.naplnTabulkuHracov(turnaj); // Precitaj Tabulku zo stage
         this.naplnHarmonogram(turnaj); // PrecitajXML
 
