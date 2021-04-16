@@ -1,7 +1,5 @@
 package sk.stu.fiit.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
@@ -14,11 +12,13 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
 
     private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajeSpravcaController.class);
     private Turnaj prebiehajuciTurnaj;
-    
-    
+
+    private int pocetZadanychVysledkov;
+
     public Turnaj getNadchadzajuciTurnaj() {
         logger.info("Hladam turnaj.");
         for (Turnaj turnaj : this.getTurnaje()) {
+            System.out.println("turnaj = " + turnaj.hashCode());
             if (!turnaj.isFinished()) {
                 logger.info("nasiel som turnaj.");
                 return turnaj;
@@ -28,24 +28,24 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
         return null;
     }
 
-    public boolean vygenerujHarmonogram(Turnaj t) {
+    public boolean vygenerujHarmonogram() {
         logger.info("Zacinam generovat turnaj");
         int idx = 0;
         for (Turnaj turnaj : this.getTurnaje()) {
-            if (turnaj.getNazov().equals(t.getNazov())) {
+            if (turnaj.getNazov().equals(this.prebiehajuciTurnaj.getNazov())) {
                 break;
             }
             idx++;
         }
         logger.info("id turnaja je id=" + idx);
-        boolean jeTurnajSkonceny = this.turnajService.advanceTurnaj(t) == false;
+        boolean jeTurnajSkonceny = this.turnajService.advanceTurnaj(this.prebiehajuciTurnaj) == false;
         if (jeTurnajSkonceny) {
-            t.setFinished(true);
             logger.info("negenerujem nic lebo turnaj uz bol skoneceny");
+            this.saveOrg();
             return false;
         }
         logger.info("generujem harmonogram.");
-        this.turnajService.vygenerujHarmonogram(t, idx);
+        this.turnajService.vygenerujHarmonogram(this.prebiehajuciTurnaj, idx);
         return true;
     }
 
@@ -59,6 +59,14 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
 
     public void setPrebiehajuciTurnaj(Turnaj prebiehajuciTurnaj) {
         this.prebiehajuciTurnaj = prebiehajuciTurnaj;
+    }
+
+    public int getPocetZadanychVysledkov() {
+        return pocetZadanychVysledkov;
+    }
+
+    public void setPocetZadanychVysledkov(int pocetZadanychVysledkov) {
+        this.pocetZadanychVysledkov = pocetZadanychVysledkov;
     }
 
 }

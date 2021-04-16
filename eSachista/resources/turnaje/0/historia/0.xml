@@ -4,14 +4,14 @@
         <zapasy>
             <zapas>
                 <datum>23:41</datum>
-                <biely>3</biely>
+                <biely>1</biely>
                 <cierny>0</cierny>
                 <vyherca>-1</vyherca>
             </zapas>
             <zapas>
                 <datum>23:41</datum>
-                <biely>1</biely>
-                <cierny>2</cierny>
+                <biely>2</biely>
+                <cierny>3</cierny>
                 <vyherca>-1</vyherca>
             </zapas>
         </zapasy>

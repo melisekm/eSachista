@@ -73,6 +73,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelMaxVekData = new javax.swing.JLabel();
         labelRatingData = new javax.swing.JLabel();
         btnRefresh = new javax.swing.JButton();
+        cbDohrany = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -189,6 +190,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             }
         });
         add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 110, -1));
+
+        cbDohrany.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbDohrany.setText("Dohraný");
+        cbDohrany.setEnabled(false);
+        add(cbDohrany, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -283,6 +289,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         } else {
             maxVek = String.valueOf(t.getObmedzenia().getMaxVek());
         }
+        if(t.isFinished()){
+            cbDohrany.setSelected(true);
+        }else{
+            cbDohrany.setSelected(false);
+        }
         labelMaxVekData.setText(maxVek);
         this.naplnHracovTurnaja(t);
     }
@@ -304,6 +315,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
+    private javax.swing.JCheckBox cbDohrany;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFormat;

@@ -7,8 +7,11 @@ package sk.stu.fiit.view.panes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.AktivneTurnajeSpravcaController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
@@ -21,11 +24,13 @@ import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
  */
 public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IViewRefresh {
 
+    private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajeSpravcaPane.class);
+
     private AktivneTurnajeSpravcaController controller;
 
     public AktivneTurnajeSpravcaPane() {
         initComponents();
-        this.controller = controller;
+        this.controller = new AktivneTurnajeSpravcaController();
     }
 
     @SuppressWarnings("unchecked")
@@ -99,7 +104,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         ));
         scrollPaneHarmonogram.setViewportView(tableHarmonogram);
 
-        prebiehajuciTurnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 380, 280));
+        prebiehajuciTurnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, 280));
 
         labelHaromonogram.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelHaromonogram.setForeground(new java.awt.Color(1, 42, 74));
@@ -127,12 +132,12 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         ));
         scrollPaneTabulka.setViewportView(tableHraci);
 
-        prebiehajuciTurnajPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 380, 280));
+        prebiehajuciTurnajPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 350, 280));
 
         labelHraci.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelHraci.setForeground(new java.awt.Color(1, 42, 74));
         labelHraci.setText("Hr·Ëi");
-        prebiehajuciTurnajPane.add(labelHraci, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
+        prebiehajuciTurnajPane.add(labelHraci, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
 
         btnArchivovat.setBackground(new java.awt.Color(118, 155, 108));
         btnArchivovat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -143,7 +148,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
                 btnArchivovatMouseReleased(evt);
             }
         });
-        prebiehajuciTurnajPane.add(btnArchivovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 190, -1));
+        prebiehajuciTurnajPane.add(btnArchivovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 520, 190, -1));
 
         labelDataFormat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelDataFormat.setText("Format");
@@ -176,28 +181,29 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
-        this.controller.loadOrg();
-        Turnaj t = listTurnaje.getSelectedValue();
-        //if (t.getDatumKonania().before(new Date())) {
-        //TODO pridat kontrolu ci su vsetky vysledky zadane. a celkovo pridat zadavanie vysledkov
-        logger.info("Generujem harmonogram pre turnaj.");
-        boolean jeTurnajSkonceny = this.controller.vygenerujHarmonogram(t) == false;
-        if (jeTurnajSkonceny) {
+        System.out.println("finished = " + this.controller.getPrebiehajuciTurnaj().isFinished());
+        System.out.println("hashcode = " + this.controller.getPrebiehajuciTurnaj().hashCode());
+        if(this.controller.getPrebiehajuciTurnaj().isFinished()){
             logger.info("Turnaj je dohrany.");
             JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
-            this.controller.saveOrg();
-            this.zobrazVysledky(t);
+            this.zobrazVysledky(this.controller.getPrebiehajuciTurnaj());
             return;
         }
+        boolean turnajZacal = this.controller.getPrebiehajuciTurnaj().getStage() != null;
+        boolean vysledkyNeboliZadane = this.controller.getPocetZadanychVysledkov() < this.controller.getPrebiehajuciTurnaj().getHraci().size() / 2;
+        if (vysledkyNeboliZadane && turnajZacal) {
+            JOptionPane.showMessageDialog(this, "prosim zadajte vsetky vysledky.");
+            return;
+        }
+        this.controller.vygenerujHarmonogram();
+        this.controller.setPocetZadanychVysledkov(0);
         JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
         this.controller.saveOrg();
-        /* } else {
-            JOptionPane.showMessageDialog(this, "Turnaj este nezacal");
-        }*/
+        this.refresh();
     }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
 
     private void btnZapisatVysledokMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZapisatVysledokMouseReleased
-        // TODO add your handling code here:
+        this.controller.setPocetZadanychVysledkov(this.controller.getPocetZadanychVysledkov()+1);
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
 
     private void btnArchivovatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchivovatMouseReleased
@@ -225,25 +231,30 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText(turnaj.getMiestoKonania());
         labelDataPocetHracov.setText(String.valueOf(turnaj.getHraci().size()));
 
+        
         this.naplnTabulkuHracov(turnaj); // Precitaj Tabulku zo stage
-        this.naplnHarmonogram(); // PrecitajXML
+        this.naplnHarmonogram(turnaj); // PrecitajXML
 
     }
 
     private void naplnTabulkuHracov(Turnaj t) {
+        if (t.getStage() == null) {
+            logger.info("Harmonogram este nebol vygenerovany.");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) tableHraci.getModel();
         model.setRowCount(0);
         switch (t.getFormat()) {
             case ROUND_ROBIN:
-                int tabulka[][] = ((RoundRobinStage) t.getStage()).getTabulka();
-                int idx = 0;
-                for (Hrac hrac : t.getHraci()) {
+                RoundRobinStage stage = ((RoundRobinStage) t.getStage());
+                for (Map.Entry<Hrac, int[]> en : stage.getTabulka().entrySet()) {
+                    Hrac hrac = en.getKey();
+                    int[] tab = en.getValue();
                     model.addRow(new Object[]{
                         hrac,
-                        tabulka[idx][0],
-                        tabulka[idx][1]
+                        tab[0],
+                        tab[1]
                     });
-                    idx++;
                 }
                 break;
             default:
@@ -251,12 +262,16 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         }
     }
 
-    private void naplnHarmonogram() {
-        // TODO
+    private void naplnHarmonogram(Turnaj t) {
+        if (t.getStage() == null) {
+            logger.info("Harmonogram este nebol vygenerovany.");
+            return;
+        }
     }
 
     @Override
     public void refresh() {
+        this.controller.setPrebiehajuciTurnaj(null);
         this.zobrazPrebiehajuciTurnaj();
     }
 
@@ -284,5 +299,9 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     private javax.swing.JTable tableHarmonogram;
     private javax.swing.JTable tableHraci;
     // End of variables declaration//GEN-END:variables
+
+    private void zobrazVysledky(Turnaj t) {
+        System.out.println("TATO METODA NIEJE IMPLEMENTOVANA"); //TODO
+    }
 
 }

@@ -13,18 +13,14 @@ public class RoundRobinStage extends Stage {
     private int polCas;
     private int pocetHracov;
 
-    private HashMap<Hrac, int[][]> tabulka;
+    private HashMap<Hrac, int[]> tabulka;
 
     public RoundRobinStage(Turnaj turnaj) {
         super(turnaj, turnaj.getHraci().size() - 1);
         this.polCas = turnaj.getHraci().size() / 2;
         this.tabulka = new HashMap<>();
         for (Hrac hrac : turnaj.getHraci()) {
-            int[][] tab = new int[turnaj.getHraci().size()][2];
-            for (int i = 0; i < tab.length; i++) {
-                tab[i][0] = tab[i][1] = 0;
-            }
-            this.tabulka.put(hrac, tab);
+            this.tabulka.put(hrac, new int[turnaj.getHraci().size()]);
         }
     }
 
@@ -44,11 +40,11 @@ public class RoundRobinStage extends Stage {
         this.pocetHracov = pocetHracov;
     }
 
-    public HashMap<Hrac, int[][]> getTabulka() {
+    public HashMap<Hrac, int[]> getTabulka() {
         return tabulka;
     }
 
-    public void setTabulka(HashMap<Hrac, int[][]> tabulka) {
+    public void setTabulka(HashMap<Hrac, int[]> tabulka) {
         this.tabulka = tabulka;
     }
 

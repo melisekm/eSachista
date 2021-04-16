@@ -72,6 +72,7 @@ public class TurnajService extends Service {
         logger.info("posuvam roundrobin turnaj do dalsieho kola");
         RoundRobinStage stage = (RoundRobinStage) turnaj.getStage();
         if (stage.getKolo() == stage.getPocetKol()) {
+            turnaj.setFinished(true);
             logger.info("Uz bolo odohrane posledne kolo. " + stage.getKolo() + "/" + stage.getPocetKol());
             return false;
         }

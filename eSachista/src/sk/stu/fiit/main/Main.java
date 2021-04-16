@@ -23,7 +23,7 @@ public class Main {
 
     private static boolean loadDemoDB = true;
 
-    private static boolean saveDefaultDB = true;
+    private static boolean saveDefaultDB = false;
 
     static {
         if (loadDemoDB) {
@@ -40,6 +40,7 @@ public class Main {
                     cal.add(Calendar.MINUTE, 10);
 
                     Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setDatumKonania(cal.getTime());
+                    Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
                     Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setFinished(false);
                     new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
                 }

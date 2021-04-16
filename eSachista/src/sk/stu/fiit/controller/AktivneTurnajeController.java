@@ -21,16 +21,5 @@ public abstract class AktivneTurnajeController extends Controller {
 
     }
 
-    public Turnaj getZacatyTurnaj(ArrayList<Turnaj> turnaje) {
-        logger.info("Kontrolujem ci prave teraz bezi nejaky turnaj.");
-        for (Turnaj turnaj : turnaje) {
-            if (!turnaj.isFinished() && turnaj.getDatumKonania().before(new Date())) {
-                logger.info("nasiel som turnaj.");
-                return turnaj;
-            }
-        }
-        logger.info("Nenasiel som ziadny turnaj");
-        return null;
-    }
 
 }
