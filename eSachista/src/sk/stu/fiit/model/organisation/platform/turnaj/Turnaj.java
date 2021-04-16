@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
  *
  * @author Martin Melisek
  */
-public class Turnaj implements Comparable<Turnaj>, Serializable{
+public class Turnaj implements Comparable<Turnaj>, Serializable {
 
     private TurnajFormat format;
     private String nazov;
@@ -20,6 +21,7 @@ public class Turnaj implements Comparable<Turnaj>, Serializable{
     private TurnajTempoHry tempoHry;
     private TurnajObmedzenia obmedzenia;
     private boolean finished = false; // TODO dopisat do panelov
+    private Stage stage;
 
     @Override
     public int compareTo(Turnaj o) { // na zoradenie podla datumu
@@ -125,6 +127,14 @@ public class Turnaj implements Comparable<Turnaj>, Serializable{
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
 }

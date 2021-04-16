@@ -12,6 +12,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
+import sk.stu.fiit.service.TurnajService;
 
 /**
  *
@@ -22,8 +23,11 @@ public class TurnajController extends Controller {
     private static final Logger logger = LoggerFactory.getLogger(TurnajController.class);
 
     private Turnaj novyTurnaj;
+    
+    private TurnajService turnajService;
 
     public TurnajController() {
+        this.turnajService = new TurnajService();
     }
 
     public void vytvorTurnaj(TurnajFormat format, String nazov, String miestoKonania,
@@ -61,6 +65,11 @@ public class TurnajController extends Controller {
         povodny.updateDetails(novy);
         Collections.sort(this.getOrgLoggedIn().getTurnaje());
     }
+    
+    public void vygenerujHarmonogram(Turnaj t) {
+        this.turnajService.advanceTurnaj(t);
+        this.turnajService.vygenerujHarmonogram(t);
+    }
 
     public Turnaj getNovyTurnaj() {
         return novyTurnaj;
@@ -69,5 +78,7 @@ public class TurnajController extends Controller {
     public void setNovyTurnaj(Turnaj novyTurnaj) {
         this.novyTurnaj = novyTurnaj;
     }
+
+    
 
 }

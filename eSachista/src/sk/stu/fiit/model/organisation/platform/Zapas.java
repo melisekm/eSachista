@@ -16,12 +16,42 @@ public class Zapas implements Serializable {
     private Hrac hrac2;
     private Date casZaciatku;
     private Hrac vyherca;
-
-    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku) {
+    private FarbaFiguriek hrac1Figurky;
+    private FarbaFiguriek hrac2Figurky;
+    
+    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {
         this.turnaj = turnaj;
         this.hrac1 = hrac1;
         this.hrac2 = hrac2;
         this.casZaciatku = casZaciatku;
+        this.hrac1Figurky = hrac1Figurky;
+        this.hrac2Figurky = hrac2Figurky;
+    }
+
+    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky, Hrac vyherca) {
+        this.turnaj = turnaj;
+        this.hrac1 = hrac1;
+        this.hrac2 = hrac2;
+        this.casZaciatku = casZaciatku;
+        this.hrac1Figurky = hrac1Figurky;
+        this.hrac2Figurky = hrac2Figurky;
+        this.vyherca = vyherca;
+    }
+
+    public FarbaFiguriek getHrac1Figurky() {
+        return hrac1Figurky;
+    }
+
+    public void setHrac1Figurky(FarbaFiguriek hrac1Figurky) {
+        this.hrac1Figurky = hrac1Figurky;
+    }
+
+    public FarbaFiguriek getHrac2Figurky() {
+        return hrac2Figurky;
+    }
+
+    public void setHrac2Figurky(FarbaFiguriek hrac2Figurky) {
+        this.hrac2Figurky = hrac2Figurky;
     }
 
     public Turnaj getTurnaj() {
@@ -63,6 +93,5 @@ public class Zapas implements Serializable {
     public void setVyherca(Hrac vyherca) {
         this.vyherca = vyherca;
     }
-    
 
 }

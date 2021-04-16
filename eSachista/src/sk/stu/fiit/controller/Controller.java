@@ -68,6 +68,16 @@ public abstract class Controller {
         return this.entryService.getOrgLoggedIn().getPouzivatelia();
     }
 
+    public ArrayList<Hrac> getHraci() {
+        ArrayList<Hrac> hraci = new ArrayList<>();
+        for (Pouzivatel pouzivatel : this.getPouzivatelia()) {
+            if (pouzivatel instanceof Hrac) {
+                hraci.add((Hrac) pouzivatel);
+            }
+        }
+        return hraci;
+    }
+
     public String getTurnajKapacita(Turnaj t) {
         return String.format("%d/%d", t.getHraci().size(), this.entryService.getOrgLoggedIn().getBalik().getMaxHracovTurnaja());
     }

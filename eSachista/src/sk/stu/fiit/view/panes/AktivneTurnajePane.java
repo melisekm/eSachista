@@ -5,14 +5,23 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sk.stu.fiit.controller.AktivneTurnajeController;
 import sk.stu.fiit.controller.HracController;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
+import sk.stu.fiit.view.dialogs.ZapasDialog;
 
 /**
  *
@@ -21,11 +30,15 @@ import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
  */
 public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
-    private HracController controller;
+    private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajePane.class);
+
+    private AktivneTurnajeController controller;
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
 
+    private Turnaj prebiehajuciTurnaj;
+
     public AktivneTurnajePane(HracController controller) {
-        this.controller = controller;
+        this.controller = new AktivneTurnajeController();
         initComponents();
     }
 
@@ -38,21 +51,22 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     private void initComponents() {
 
         turnajPane = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        labelPrebiehajuciTurnaj = new javax.swing.JLabel();
+        labelDataPocetHracov = new javax.swing.JLabel();
+        labelPravePrebiehaTurnaj = new javax.swing.JLabel();
+        labelDataNazovTurnaju = new javax.swing.JLabel();
+        labelDataDatumTurnaja = new javax.swing.JLabel();
+        labelDataMiestoKonania = new javax.swing.JLabel();
+        labelNazovTurnaja = new javax.swing.JLabel();
+        labelZaciatokTurnaja = new javax.swing.JLabel();
+        labelDataFormatTurnaja = new javax.swing.JLabel();
+        labelPocetTurnajov = new javax.swing.JLabel();
+        scrollPaneHarmonogram = new javax.swing.JScrollPane();
+        tableHarmonogram = new javax.swing.JTable();
+        labelMiestoKonania = new javax.swing.JLabel();
+        labelFormat = new javax.swing.JLabel();
+        btnZobrazitZapas = new javax.swing.JButton();
+        btnPrevziatHarmonogram = new javax.swing.JButton();
+        labelNeprebiehaTurnaj = new javax.swing.JLabel();
         mainPane = new javax.swing.JPanel();
         labelNaplanovaneTurnaje = new javax.swing.JLabel();
         calendar = new com.toedter.calendar.JCalendar();
@@ -67,43 +81,43 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         turnajPane.setBackground(new java.awt.Color(0, 0, 0));
         turnajPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("8");
-        turnajPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        labelDataPocetHracov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataPocetHracov.setText("8");
+        turnajPane.add(labelDataPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Pr·ve prebieha turnaj:");
-        turnajPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        labelPravePrebiehaTurnaj.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelPravePrebiehaTurnaj.setText("Pr·ve prebieha turnaj:");
+        turnajPane.add(labelPravePrebiehaTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Dekanov");
-        turnajPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
+        labelDataNazovTurnaju.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataNazovTurnaju.setText("Dekanov");
+        turnajPane.add(labelDataNazovTurnaju, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("15.3.2021");
-        turnajPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        labelDataDatumTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataDatumTurnaja.setText("15.3.2021");
+        turnajPane.add(labelDataDatumTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("FIIT STu");
-        turnajPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        labelDataMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataMiestoKonania.setText("FIIT STu");
+        turnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("N·zov turnaja:");
-        turnajPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        labelNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNazovTurnaja.setText("N·zov turnaja:");
+        turnajPane.add(labelNazovTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("ZaËiatok:");
-        turnajPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        labelZaciatokTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelZaciatokTurnaja.setText("ZaËiatok:");
+        turnajPane.add(labelZaciatokTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("SINGLE ELIMINATION");
-        turnajPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        labelDataFormatTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataFormatTurnaja.setText("SINGLE ELIMINATION");
+        turnajPane.add(labelDataFormatTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("PoËet hr·Ëov:");
-        turnajPane.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelPocetTurnajov.setText("PoËet hr·Ëov:");
+        turnajPane.add(labelPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableHarmonogram.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -114,26 +128,40 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
                 "Hr·Ë 1", "Hr·Ë 2", "»as", "V˝herca"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrollPaneHarmonogram.setViewportView(tableHarmonogram);
 
-        turnajPane.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 400, 190));
+        turnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 400, 190));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setText("Miesto konania:");
-        turnajPane.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMiestoKonania.setText("Miesto konania:");
+        turnajPane.add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Form·t:");
-        turnajPane.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFormat.setText("Form·t:");
+        turnajPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Prevziaù harmonogram");
-        turnajPane.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        btnZobrazitZapas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnZobrazitZapas.setText("ZOBRAZIç Z¡PAS");
+        btnZobrazitZapas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnZobrazitZapasMouseReleased(evt);
+            }
+        });
+        turnajPane.add(btnZobrazitZapas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
-        add(turnajPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 440, 510));
+        btnPrevziatHarmonogram.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPrevziatHarmonogram.setText("Prevziaù harmonogram");
+        btnPrevziatHarmonogram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPrevziatHarmonogramMouseReleased(evt);
+            }
+        });
+        turnajPane.add(btnPrevziatHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
 
-        labelPrebiehajuciTurnaj.setText("Moment·lne neprebieha ûiadny turnaj...");
-        add(labelPrebiehajuciTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        add(turnajPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 440, 550));
+
+        labelNeprebiehaTurnaj.setText("Moment·lne neprebieha ûiadny turnaj...");
+        add(labelNeprebiehaTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         mainPane.setBackground(new java.awt.Color(204, 204, 204));
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -142,7 +170,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         labelNaplanovaneTurnaje.setForeground(new java.awt.Color(0, 0, 0));
         labelNaplanovaneTurnaje.setText("Nem·te napl·novan˝ ûiadny turnaj...");
-        mainPane.add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
+        mainPane.add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, -1));
 
         calendar.setBackground(new java.awt.Color(153, 153, 153));
         calendar.setForeground(new java.awt.Color(51, 51, 51));
@@ -165,9 +193,9 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         });
         scrollPaneTurnaje.setViewportView(listTurnaje);
 
-        mainPane.add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 370, 230));
+        mainPane.add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 370, 270));
 
-        add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 370, 510));
+        add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 370, 550));
     }// </editor-fold>//GEN-END:initComponents
 
     private void listTurnajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTurnajeMouseReleased
@@ -177,6 +205,49 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         }
         ViewUtils.showDialog(new TurnajInfoDialog(parent, true, t));
     }//GEN-LAST:event_listTurnajeMouseReleased
+
+    private void btnPrevziatHarmonogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevziatHarmonogramMouseReleased
+        int turnajId = this.controller.getTurnajId(this.prebiehajuciTurnaj);
+        if (turnajId != -1) {
+            this.naplnTabulkuRozpisov(turnajId);
+            JOptionPane.showMessageDialog(this, "Harmonogram uspesne prevzaty.");
+        } else {
+            logger.info("Harmonogram nebol vygenerovany.");
+            JOptionPane.showMessageDialog(this, "Harmonogram este nebol vygenerovany");
+        }
+    }//GEN-LAST:event_btnPrevziatHarmonogramMouseReleased
+
+    private void btnZobrazitZapasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZobrazitZapasMouseReleased
+        // TODO pridat zapas hracovi do historie. aj turnaj SPRAVI SPRAVCA pri generovani harmonogramu.
+        Zapas zapas = this.controller.najdiZapasHraca();
+        if (zapas == null) {
+            logger.info("Zapas pre hraca nebol najdeny.");
+            JOptionPane.showMessageDialog(this, "Zapas pre vas nebol najdeny");
+            return;
+        }
+        ViewUtils.showDialog(new ZapasDialog(this.parent, true, zapas));
+    }//GEN-LAST:event_btnZobrazitZapasMouseReleased
+
+    private void naplnTabulkuRozpisov(int turnajId) {
+        this.controller.parseTurnaj(turnajId);
+        ArrayList<Zapas> harmonogram = this.controller.getHarmonogram();
+        DefaultTableModel model = (DefaultTableModel) tableHarmonogram.getModel();
+        model.setRowCount(0);
+        for (Zapas zapas : harmonogram) {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            Hrac vyherca = zapas.getVyherca();
+            String vyhercaTxt = "-";
+            if (vyherca != null) {
+                vyhercaTxt = vyherca.toString();
+            }
+            model.addRow(new Object[]{
+                zapas.getHrac1(),
+                zapas.getHrac2(),
+                sdf.format(zapas.getCasZaciatku()),
+                vyhercaTxt
+            });
+        }
+    }
 
     private void naplnListTurnajov() {
         this.controller.loadOrg();
@@ -196,8 +267,26 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     }
 
     private void zobrazPrebiehajuciTurnaj() {
-        // TODO
-        
+        this.prebiehajuciTurnaj = this.controller.isTurnajOn();
+        if (this.prebiehajuciTurnaj == null) {
+            turnajPane.setVisible(false);
+            labelNeprebiehaTurnaj.setVisible(true);
+            return;
+        }
+        this.naplnTurnajPane(this.prebiehajuciTurnaj);
+        turnajPane.setVisible(true);
+        labelNeprebiehaTurnaj.setVisible(false);
+
+    }
+
+    private void naplnTurnajPane(Turnaj turnaj) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        labelDataNazovTurnaju.setText(turnaj.getNazov());
+        labelDataDatumTurnaja.setText(sdf.format(turnaj.getDatumKonania()));
+        labelDataFormatTurnaja.setText(turnaj.getFormat().toString());
+        labelDataMiestoKonania.setText(turnaj.getMiestoKonania());
+        labelDataPocetHracov.setText(String.valueOf(turnaj.getHraci().size()));
+
     }
 
     @Override
@@ -207,27 +296,29 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPrevziatHarmonogram;
+    private javax.swing.JButton btnZobrazitZapas;
     private com.toedter.calendar.JCalendar calendar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelDataDatumTurnaja;
+    private javax.swing.JLabel labelDataFormatTurnaja;
+    private javax.swing.JLabel labelDataMiestoKonania;
+    private javax.swing.JLabel labelDataNazovTurnaju;
+    private javax.swing.JLabel labelDataPocetHracov;
+    private javax.swing.JLabel labelFormat;
+    private javax.swing.JLabel labelMiestoKonania;
     private javax.swing.JLabel labelNadchadzaujceTurnaje;
     private javax.swing.JLabel labelNaplanovaneTurnaje;
-    private javax.swing.JLabel labelPrebiehajuciTurnaj;
+    private javax.swing.JLabel labelNazovTurnaja;
+    private javax.swing.JLabel labelNeprebiehaTurnaj;
+    private javax.swing.JLabel labelPocetTurnajov;
+    private javax.swing.JLabel labelPravePrebiehaTurnaj;
+    private javax.swing.JLabel labelZaciatokTurnaja;
     private javax.swing.JList<Turnaj> listTurnaje;
     private javax.swing.JPanel mainPane;
+    private javax.swing.JScrollPane scrollPaneHarmonogram;
     private javax.swing.JScrollPane scrollPaneTurnaje;
+    private javax.swing.JTable tableHarmonogram;
     private javax.swing.JPanel turnajPane;
     // End of variables declaration//GEN-END:variables
+
 }

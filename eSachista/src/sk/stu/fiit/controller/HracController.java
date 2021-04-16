@@ -1,12 +1,16 @@
 package sk.stu.fiit.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.stu.fiit.io.XMLTurnajReader;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.utils.PlatformConstants;
@@ -18,6 +22,7 @@ import sk.stu.fiit.utils.PlatformConstants;
 public class HracController extends Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(HracController.class);
+
 
     public HracController() {
     }
@@ -114,11 +119,14 @@ public class HracController extends Controller {
      * turnaj prebieha<br>
      * hrac uz je prihlaseny na turnaj<br>
      * hrac ma uz naplanovany iny turnaj na den konania turnaju t<br>
+     *
      * @param t Turnaj ktory sa nema/ma zobrazit
      * @return true ak sa nema, false ak sa ma
      */
     public boolean nezobrazitTurnaj(Turnaj t) {
         return t.isFinished() || new Date().after(t.getDatumKonania()) || this.checkCiJePrihlaseny(t) || this.checkCiUzNiecoMa(t);
     }
+
+    
 
 }

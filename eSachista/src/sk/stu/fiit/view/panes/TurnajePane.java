@@ -73,6 +73,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelMaxVekData = new javax.swing.JLabel();
         labelRatingData = new javax.swing.JLabel();
         btnDeleteTurnaj = new javax.swing.JButton();
+        btnGenerujHarmnogram = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -187,7 +188,15 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
                 btnDeleteTurnajMouseReleased(evt);
             }
         });
-        add(btnDeleteTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 550, -1, -1));
+        add(btnDeleteTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+
+        btnGenerujHarmnogram.setText("Vygeneruj harmonogram");
+        btnGenerujHarmnogram.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnGenerujHarmnogramMouseReleased(evt);
+            }
+        });
+        add(btnGenerujHarmnogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -245,6 +254,18 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     }//GEN-LAST:event_btnDeleteTurnajMouseReleased
 
+    private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
+        Turnaj t = listTurnaje.getSelectedValue();
+        if (t.getDatumKonania().after(new Date())) {
+            logger.info("Generujem harmonogram pre turnaj.");
+            this.controller.vygenerujHarmonogram(t);
+            JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
+        } else {
+            JOptionPane.showConfirmDialog(this, "Turnaj este nezacal");
+        }
+        this.controller.saveOrg();
+    }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
+
     private void naplnTurnajList() {
         this.controller.loadOrg();
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
@@ -297,6 +318,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteTurnaj;
+    private javax.swing.JButton btnGenerujHarmnogram;
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JScrollPane jScrollPane1;
