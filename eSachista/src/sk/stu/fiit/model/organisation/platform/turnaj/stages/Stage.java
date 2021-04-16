@@ -1,6 +1,8 @@
 package sk.stu.fiit.model.organisation.platform.turnaj.stages;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
@@ -9,10 +11,27 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  */
 public class Stage implements Serializable {
 
+    private int kolo;
+    private int pocetKol;
+    private ArrayList<Integer> zoznamHracov;
     private Turnaj turnaj;
+    private LinkedHashMap<Integer, Integer> zapasy;
 
-    public Stage(Turnaj turnaj) {
+    public Stage(Turnaj turnaj, int pocetKol) {
         this.turnaj = turnaj;
+        this.kolo = 0;
+        this.pocetKol = pocetKol;
+        this.zoznamHracov = new ArrayList<>();
+        this.zapasy = new LinkedHashMap<>();
+
+    }
+
+    public ArrayList<Integer> getZoznamHracov() {
+        return zoznamHracov;
+    }
+
+    public void setZoznamHracov(ArrayList<Integer> zoznamHracov) {
+        this.zoznamHracov = zoznamHracov;
     }
 
     public Turnaj getTurnaj() {
@@ -21,6 +40,30 @@ public class Stage implements Serializable {
 
     public void setTurnaj(Turnaj turnaj) {
         this.turnaj = turnaj;
+    }
+
+    public int getKolo() {
+        return kolo;
+    }
+
+    public void setKolo(int kolo) {
+        this.kolo = kolo;
+    }
+
+    public int getPocetKol() {
+        return pocetKol;
+    }
+
+    public void setPocetKol(int pocetKol) {
+        this.pocetKol = pocetKol;
+    }
+
+    public LinkedHashMap<Integer, Integer> getZapasy() {
+        return zapasy;
+    }
+
+    public void setZapasy(LinkedHashMap<Integer, Integer> zapasy) {
+        this.zapasy = zapasy;
     }
 
 }

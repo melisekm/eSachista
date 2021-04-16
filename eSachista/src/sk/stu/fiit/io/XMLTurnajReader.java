@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -22,15 +24,15 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  *
  * @author Martin Melisek
  */
-public class XMLTurnajReader {
+public class XMLTurnajReader extends XMLTurnajHandler {
 
-    private String xmlPath;
+    private static final Logger logger = LoggerFactory.getLogger(XMLTurnajReader.class);
 
     public XMLTurnajReader(String path) {
-        this.xmlPath = path;
+        super(path);
     }
 
-    public ArrayList<Zapas> parseTurnaj(ArrayList<Hrac> hraci, Turnaj prebiehajuciTurnaj) {
+    public ArrayList<Zapas> parseTurnaj(Turnaj prebiehajuciTurnaj) {
         File xmlFile = new File(this.xmlPath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
@@ -40,15 +42,16 @@ public class XMLTurnajReader {
             doc.getDocumentElement().normalize();
             NodeList zapasyXML = doc.getElementsByTagName("zapas");
 
-            return this.parseZapasy(zapasyXML, hraci, prebiehajuciTurnaj);
+            return this.parseZapasy(zapasyXML, prebiehajuciTurnaj);
 
         } catch (SAXException | ParserConfigurationException | IOException e1) {
-            e1.printStackTrace();
+            logger.error("CHYBA PRI ZAPISOVANI DO XML");
+            logger.error(e1.getMessage());
         }
         return null;
     }
 
-    private ArrayList<Zapas> parseZapasy(NodeList zapasyXML, ArrayList<Hrac> hraci, Turnaj prebiehajuciTurnaj) {
+    private ArrayList<Zapas> parseZapasy(NodeList zapasyXML, Turnaj prebiehajuciTurnaj) {
         ArrayList<Zapas> zapasy = new ArrayList<>();
 
         for (int xmlID = 0; xmlID < zapasyXML.getLength(); xmlID++) {
@@ -58,28 +61,28 @@ public class XMLTurnajReader {
                 continue;
             }
             Element zapasElement = (Element) zapasXML;
-            Zapas z = parseZapas(zapasElement, hraci, prebiehajuciTurnaj);
+            Zapas z = parseZapas(zapasElement, prebiehajuciTurnaj);
             zapasy.add(z);
 
         }
         return zapasy;
     }
 
-    private Zapas parseZapas(Element zapasElement, ArrayList<Hrac> hraci, Turnaj prebiehajuciTurnaj) {
+    private Zapas parseZapas(Element zapasElement, Turnaj prebiehajuciTurnaj) {
         Date casZaciatku = this.getCasZaciatku(zapasElement, prebiehajuciTurnaj.getDatumKonania());
 
         int hrac1Id = Integer.parseInt(zapasElement.getElementsByTagName("cierny").item(0).getTextContent());
-        Hrac h1 = hraci.get(hrac1Id);
+        Hrac h1 = prebiehajuciTurnaj.getHraci().get(hrac1Id);
         FarbaFiguriek h1Farba = FarbaFiguriek.CIERNA;
 
         int hrac2Id = Integer.parseInt(zapasElement.getElementsByTagName("biely").item(0).getTextContent());
-        Hrac h2 = hraci.get(hrac2Id);
+        Hrac h2 = prebiehajuciTurnaj.getHraci().get(hrac2Id);
         FarbaFiguriek h2Farba = FarbaFiguriek.BIELA;
 
         int vyhercaId = Integer.parseInt(zapasElement.getElementsByTagName("vyherca").item(0).getTextContent());
         Hrac vyherca = null;
         if (vyhercaId != -1) {
-            vyherca = hraci.get(vyhercaId);
+            vyherca = prebiehajuciTurnaj.getHraci().get(vyhercaId);
         }
 
         return new Zapas(prebiehajuciTurnaj, h1, h2, casZaciatku, h1Farba, h2Farba, vyherca);

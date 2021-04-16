@@ -66,9 +66,21 @@ public class TurnajController extends Controller {
         Collections.sort(this.getOrgLoggedIn().getTurnaje());
     }
     
-    public void vygenerujHarmonogram(Turnaj t) {
-        this.turnajService.advanceTurnaj(t);
-        this.turnajService.vygenerujHarmonogram(t);
+    public boolean vygenerujHarmonogram(Turnaj t) {
+        int idx = 0;
+        for (Turnaj turnaj : this.getTurnaje()) {
+            if(turnaj.getNazov().equals(t.getNazov())){
+                break;
+            }
+            idx++;
+        }
+        boolean jeTurnajSkonceny = this.turnajService.advanceTurnaj(t) == false;
+        if(jeTurnajSkonceny){
+            t.setFinished(true);
+            return false;
+        }
+        this.turnajService.vygenerujHarmonogram(t, idx);
+        return true;
     }
 
     public Turnaj getNovyTurnaj() {

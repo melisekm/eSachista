@@ -45,7 +45,7 @@ public class AktivneTurnajeController extends Controller {
 
     public void parseTurnaj(int turnajId) {
         XMLTurnajReader xmlReader = new XMLTurnajReader("resources/turnaje/" + turnajId + "/harmonogram.xml");
-        this.harmonogram = xmlReader.parseTurnaj(this.getHraci(), this.getTurnaje().get(turnajId));
+        this.harmonogram = xmlReader.parseTurnaj(this.getTurnaje().get(turnajId));
     }
 
     public Zapas najdiZapasHraca() {

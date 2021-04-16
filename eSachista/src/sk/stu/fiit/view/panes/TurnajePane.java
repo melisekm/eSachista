@@ -258,12 +258,19 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         Turnaj t = listTurnaje.getSelectedValue();
         if (t.getDatumKonania().after(new Date())) {
             logger.info("Generujem harmonogram pre turnaj.");
-            this.controller.vygenerujHarmonogram(t);
+            boolean jeTurnajSkonceny = this.controller.vygenerujHarmonogram(t) == false;
+            if (jeTurnajSkonceny) {
+                logger.info("Turnaj je dohrany.");
+                JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
+                this.controller.saveOrg();
+                this.zobrazVysledky(t);
+                return;
+            }
             JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
+            this.controller.saveOrg();
         } else {
             JOptionPane.showConfirmDialog(this, "Turnaj este nezacal");
         }
-        this.controller.saveOrg();
     }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
 
     private void naplnTurnajList() {
@@ -342,4 +349,8 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private javax.swing.JList<Hrac> listHraciNaTurnaji;
     private javax.swing.JList<Turnaj> listTurnaje;
     // End of variables declaration//GEN-END:variables
+
+    private void zobrazVysledky(Turnaj t) {
+        System.out.println("TATO METODA NIEJE IMPLEMENTOVANA"); //TODO
+    }
 }
