@@ -4,7 +4,6 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.io.XMLTurnajWriter;
-import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
@@ -82,7 +81,7 @@ public class TurnajService extends Service {
         for (int idx = 1; idx < stage.getPolCas(); idx++) {
             int prvyHrac = (stage.getKolo() + idx) % stage.getPocetHracov();
             int druhyHrac = (stage.getKolo() + stage.getPocetHracov() - idx) % stage.getPocetHracov();
-            stage.getZapasy().put(prvyHrac, druhyHrac);
+            stage.getZapasy().put(stage.getZoznamHracov().get(prvyHrac), stage.getZoznamHracov().get(druhyHrac));
         }
         logger.info("posunul som roundrobin kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);

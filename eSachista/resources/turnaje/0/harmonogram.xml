@@ -3,27 +3,15 @@
     <turnaj id="1">
         <zapasy>
             <zapas>
-                <datum>12:52</datum>
-                <cierny>1</cierny>
-                <biely>1</biely>
-                <vyherca>-1</vyherca>
-            </zapas>
-            <zapas>
-                <datum>12:52</datum>
+                <datum>20:44</datum>
+                <biely>3</biely>
                 <cierny>0</cierny>
-                <biely>0</biely>
                 <vyherca>-1</vyherca>
             </zapas>
             <zapas>
-                <datum>12:52</datum>
-                <biely>2</biely>
+                <datum>20:44</datum>
+                <biely>1</biely>
                 <cierny>2</cierny>
-                <vyherca>-1</vyherca>
-            </zapas>
-            <zapas>
-                <datum>12:52</datum>
-                <cierny>3</cierny>
-                <biely>0</biely>
                 <vyherca>-1</vyherca>
             </zapas>
         </zapasy>

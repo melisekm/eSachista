@@ -107,6 +107,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
     }//GEN-LAST:event_btnUpravitMouseReleased
 
     private void editHracInfo(Pouzivatel p) {
+        this.controller.loadOrg();
         if (p instanceof Spravca) {
             JOptionPane.showMessageDialog(parent, "Spravcu nie je mozne editovat.");
             return;

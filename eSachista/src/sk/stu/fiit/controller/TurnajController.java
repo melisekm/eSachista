@@ -24,10 +24,8 @@ public class TurnajController extends Controller {
 
     private Turnaj novyTurnaj;
 
-    private TurnajService turnajService;
-
     public TurnajController() {
-        this.turnajService = new TurnajService();
+        super();
     }
 
     public void vytvorTurnaj(TurnajFormat format, String nazov, String miestoKonania,
@@ -68,27 +66,6 @@ public class TurnajController extends Controller {
         Collections.sort(this.getOrgLoggedIn().getTurnaje());
         logger.info("ukladam a sortujem turnaje");
 
-    }
-
-    public boolean vygenerujHarmonogram(Turnaj t) {
-        logger.info("Zacinam generovat turnaj");
-        int idx = 0;
-        for (Turnaj turnaj : this.getTurnaje()) {
-            if (turnaj.getNazov().equals(t.getNazov())) {
-                break;
-            }
-            idx++;
-        }
-        logger.info("id turnaja je id=" + idx);
-        boolean jeTurnajSkonceny = this.turnajService.advanceTurnaj(t) == false;
-        if (jeTurnajSkonceny) {
-            t.setFinished(true);
-            logger.info("negenerujem nic lebo turnaj uz bol skoneceny");
-            return false;
-        }
-        logger.info("generujem harmonogram.");
-        this.turnajService.vygenerujHarmonogram(t, idx);
-        return true;
     }
 
     public Turnaj getNovyTurnaj() {

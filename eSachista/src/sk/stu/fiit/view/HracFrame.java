@@ -139,6 +139,7 @@ public class HracFrame extends javax.swing.JFrame {
     }
 
     private void editInfo() {
+        this.controller.loadOrg();
         if (this.controller.getPrihlasenyHrac().isFirstLogin()) {
             EditovatHracaDialog dialog = new EditovatHracaDialog(this, true, this.controller.getPrihlasenyHrac());
             dialog.showDialog();

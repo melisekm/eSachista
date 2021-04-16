@@ -1,10 +1,13 @@
 package sk.stu.fiit.utils;
 
+import java.util.Calendar;
 import java.util.Date;
 import sk.stu.fiit.database.Database;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.clients.Pohlavie;
 import sk.stu.fiit.model.organisation.clients.Spravca;
+import sk.stu.fiit.model.organisation.platform.Avatar;
 import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
@@ -20,9 +23,9 @@ public class DataLoader {
     public static void loadData() {
         Database db = Database.getInstance();
         vytvorOrganizaciu(db);
-        pridajHraca(db, 0);
-        //pridajTurnaj(db, 0);
-        //pridajHracaNaTurnaj(db, 0, 0, 1);
+        pridajHracov(db, 0);
+        pridajTurnaj(db, 0);
+        pridajHracovNaTurnaj(db, 0, 0);
     }
 
     private static void vytvorOrganizaciu(Database db) {
@@ -34,24 +37,55 @@ public class DataLoader {
         db.getOrganizacie().add(o);
     }
 
-    private static void pridajHraca(Database db, int orgId) {
+    private static void pridajHracov(Database db, int orgId) {
         Organizacia org = db.getOrganizacie().get(orgId);
-        org.getPouzivatelia().add(new Hrac(org, "Adam Novy", "aa", new char[]{'<', '=', '>'}));
+        org.getPouzivatelia().add(createHrac(org, "Adam Novy", "aa", 800, "Nové Zámky", Pohlavie.MUZ));
+        org.getPouzivatelia().add(createHrac(org, "Milan Prvy", "milan", 1000, "Kosice", Pohlavie.MUZ));
+        org.getPouzivatelia().add(createHrac(org, "Jakub Rychly", "jakub", 650, "Bratislava", Pohlavie.MUZ));
+        org.getPouzivatelia().add(createHrac(org, "Jana Fialova", "jana", 1500, "Praha", Pohlavie.ZENA));
+    }
+
+    private static Hrac createHrac(Organizacia org, String meno, String login, int ELO, String mesto, Pohlavie p) {
+        Hrac tmp = new Hrac(org, meno, login, new char[]{'<', '=', '>'});
+        tmp.setAvatar(new Avatar(new javax.swing.ImageIcon(DataLoader.class.getResource("/sk/stu/fiit/obrazky/user2.png"))));
+        tmp.setDatumNarodenia(new Date());
+        tmp.setDatumRegistracie(new Date());
+        tmp.setELO(ELO);
+        tmp.setFirstLogin(false);
+        tmp.setMesto(mesto);
+        tmp.setPohlavie(p);
+        tmp.setStat("Slovensko");
+        tmp.setVek(20);
+        return tmp;
     }
 
     private static void pridajTurnaj(Database db, int orgId) {
         Organizacia org = db.getOrganizacie().get(orgId);
-        TurnajObmedzenia turnajObmedzenia = new TurnajObmedzenia(800, 2000, 20);
+        TurnajObmedzenia turnajObmedzenia = new TurnajObmedzenia(1, 3500, 99);
         TurnajTempoHry turnajTempoHry = new TurnajTempoHry(10, 0, 5);
-        Turnaj t = new Turnaj(TurnajFormat.SWISS, 
-                "Turnaj Dekana", "Online", new Date(), "Turnaj na skole", turnajTempoHry, turnajObmedzenia);
+        Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+        cal.add(Calendar.MINUTE, 10);
+        Turnaj t = new Turnaj(TurnajFormat.ROUND_ROBIN,
+                "Turnaj Dekana", "Online", cal.getTime(), "Turnaj na skole", turnajTempoHry, turnajObmedzenia);
         org.getTurnaje().add(t);
     }
 
-    private static void pridajHracaNaTurnaj(Database db, int orgId, int turnajId, int hracId) {
+    private static void pridajHracovNaTurnaj(Database db, int orgId, int turnajId) {
         Organizacia org = db.getOrganizacie().get(orgId);
         Turnaj t = org.getTurnaje().get(turnajId);
-        Hrac h = (Hrac) org.getPouzivatelia().get(hracId);
+        Hrac h1 = (Hrac) org.getPouzivatelia().get(1);
+        Hrac h2 = (Hrac) org.getPouzivatelia().get(2);
+        Hrac h3 = (Hrac) org.getPouzivatelia().get(3);
+        Hrac h4 = (Hrac) org.getPouzivatelia().get(4);
+        pridajHracaNaTurnaj(t, h1);
+        pridajHracaNaTurnaj(t, h2);
+        pridajHracaNaTurnaj(t, h3);
+        pridajHracaNaTurnaj(t, h4);
+    }
+
+    private static void pridajHracaNaTurnaj(Turnaj t, Hrac h) {
         t.getHraci().add(h);
         h.getTurnaje().add(t);
     }

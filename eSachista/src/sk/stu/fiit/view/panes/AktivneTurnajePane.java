@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.stu.fiit.controller.AktivneTurnajeController;
+import sk.stu.fiit.controller.AktivneTurnajeHracController;
 import sk.stu.fiit.controller.HracController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
@@ -32,13 +32,13 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
     private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajePane.class);
 
-    private AktivneTurnajeController controller;
+    private AktivneTurnajeHracController controller;
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
 
     private Turnaj prebiehajuciTurnaj;
 
     public AktivneTurnajePane(HracController controller) {
-        this.controller = new AktivneTurnajeController();
+        this.controller = new AktivneTurnajeHracController();
         initComponents();
     }
 
@@ -162,13 +162,13 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         btnZobrazitZapas.setBackground(new java.awt.Color(118, 155, 108));
         btnZobrazitZapas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnZobrazitZapas.setForeground(new java.awt.Color(255, 255, 255));
-        btnZobrazitZapas.setText("Zobraziù z·pas");
+        btnZobrazitZapas.setText("Zobraziù mÙj z·pas");
         btnZobrazitZapas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnZobrazitZapasMouseReleased(evt);
             }
         });
-        turnajPane.add(btnZobrazitZapas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 200, -1));
+        turnajPane.add(btnZobrazitZapas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 220, -1));
 
         btnPrevziatHarmonogram.setBackground(new java.awt.Color(118, 155, 108));
         btnPrevziatHarmonogram.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -290,7 +290,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     }
 
     private void zobrazPrebiehajuciTurnaj() {
-        this.prebiehajuciTurnaj = this.controller.isTurnajOn();
+        this.prebiehajuciTurnaj = this.controller.getZacatyTurnaj(this.controller.getPrihlasenyHrac().getTurnaje());
         if (this.prebiehajuciTurnaj == null) {
             turnajPane.setVisible(false);
             labelNeprebiehaTurnaj.setVisible(true);
@@ -299,7 +299,6 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         this.naplnTurnajPane(this.prebiehajuciTurnaj);
         turnajPane.setVisible(true);
         labelNeprebiehaTurnaj.setVisible(false);
-
     }
 
     private void naplnTurnajPane(Turnaj turnaj) {

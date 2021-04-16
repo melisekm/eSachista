@@ -45,7 +45,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         spravcaPrehladPane = new sk.stu.fiit.view.panes.SpravcaPrehladPane(this.controller);
         clenoviaPane = new sk.stu.fiit.view.panes.ClenoviaPane(this.controller);
         turnajePane = new sk.stu.fiit.view.panes.TurnajePane();
-        aktivneTurnajeSpravcaPane1 = new sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane();
+        aktivneTurnajeSpravcaPane = new sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane();
         logoutPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +76,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
                 mainTabPaneStateChanged(evt);
             }
         });
-        mainTabPane.addTab("Profil", spravcaPrehladPane);
+        mainTabPane.addTab("Domov", spravcaPrehladPane);
         mainTabPane.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/user2.png")));
         mainTabPane.setTitleAt(0, PRE_HTML + "Profil" + POST_HTML);
         mainTabPane.addTab("»lenovia", clenoviaPane);
@@ -85,19 +85,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         mainTabPane.addTab("Turnaje", turnajePane);
         mainTabPane.setIconAt(2, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/trophy2.png")));
         mainTabPane.setTitleAt(2, PRE_HTML + "Turnaje" + POST_HTML);
-
-        javax.swing.GroupLayout aktivneTurnajeSpravcaPane1Layout = new javax.swing.GroupLayout(aktivneTurnajeSpravcaPane1);
-        aktivneTurnajeSpravcaPane1.setLayout(aktivneTurnajeSpravcaPane1Layout);
-        aktivneTurnajeSpravcaPane1Layout.setHorizontalGroup(
-            aktivneTurnajeSpravcaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
-        );
-        aktivneTurnajeSpravcaPane1Layout.setVerticalGroup(
-            aktivneTurnajeSpravcaPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 666, Short.MAX_VALUE)
-        );
-
-        mainTabPane.addTab("tab5", aktivneTurnajeSpravcaPane1);
+        mainTabPane.addTab("AktÌvne turnaje", aktivneTurnajeSpravcaPane);
         mainTabPane.setIconAt(3, new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess2.png")));
         mainTabPane.setTitleAt(3, PRE_HTML + "AktÌvne turnaje" + POST_HTML);
         mainTabPane.addTab("Odhl·siù sa", logoutPane);
@@ -113,7 +101,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         this.paneSwapContext[0] = spravcaPrehladPane;
         this.paneSwapContext[1] = clenoviaPane;
         this.paneSwapContext[2] = turnajePane;
-        this.paneSwapContext[3] = aktivneTurnajeSpravcaPane1;
+        this.paneSwapContext[3] = aktivneTurnajeSpravcaPane;
     }
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         int selectedPane = mainTabPane.getSelectedIndex();
@@ -173,7 +161,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane aktivneTurnajeSpravcaPane1;
+    private sk.stu.fiit.view.panes.AktivneTurnajeSpravcaPane aktivneTurnajeSpravcaPane;
     private sk.stu.fiit.view.panes.ClenoviaPane clenoviaPane;
     private javax.swing.JPanel logoutPane;
     private javax.swing.JTabbedPane mainTabPane;

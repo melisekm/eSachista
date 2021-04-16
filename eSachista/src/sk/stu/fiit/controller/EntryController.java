@@ -52,6 +52,7 @@ public class EntryController extends Controller {
     }
 
     public int registerPouzivatel(String meno, String login, char[] password, int typRegistracie) {
+        this.loadOrg();
         char[] securedPassword = this.validator.securePassword().stringToHash(password);
         if (typRegistracie == EntryConstants.REGISTRUJ_SPRAVCU) {
             this.entryService.registerSpravca(meno, login, securedPassword);

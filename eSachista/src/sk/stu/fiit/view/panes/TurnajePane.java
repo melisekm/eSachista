@@ -72,8 +72,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelMaxVek = new javax.swing.JLabel();
         labelMaxVekData = new javax.swing.JLabel();
         labelRatingData = new javax.swing.JLabel();
-        btnDeleteTurnaj = new javax.swing.JButton();
-        btnGenerujHarmnogram = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -100,7 +99,6 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         btnUpravit.setBackground(new java.awt.Color(204, 204, 204));
-        btnUpravit.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
         btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravit.setText("Upraviù turnaj");
@@ -109,7 +107,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
                 btnUpravitMouseReleased(evt);
             }
         });
-        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 160, 40));
+        add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 490, 160, 40));
 
         labelNazov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNazov.setText("N·zov turnaja:");
@@ -183,28 +181,18 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelRatingData.setText("--");
         add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 210, -1));
 
-        btnDeleteTurnaj.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnDeleteTurnaj.setForeground(new java.awt.Color(0, 0, 0));
-        btnDeleteTurnaj.setText("Obnoviù ˙daje");
-        btnDeleteTurnaj.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRefresh.setForeground(new java.awt.Color(0, 0, 0));
+        btnRefresh.setText("Obnoviù ˙daje");
+        btnRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnDeleteTurnajMouseReleased(evt);
+                btnRefreshMouseReleased(evt);
             }
         });
-        add(btnDeleteTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 110, -1));
-
-        btnGenerujHarmnogram.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnGenerujHarmnogram.setForeground(new java.awt.Color(0, 0, 0));
-        btnGenerujHarmnogram.setText("Vygeneruj harmonogram");
-        btnGenerujHarmnogram.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnGenerujHarmnogramMouseReleased(evt);
-            }
-        });
-        add(btnGenerujHarmnogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, 170, 40));
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
+        this.controller.loadOrg();
         VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, null);
         Turnaj novy = dialog.showDialog();
         if (novy == null) {
@@ -216,6 +204,9 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
+        int index = listTurnaje.getSelectedIndex();
+        this.refresh();
+        listTurnaje.setSelectedIndex(index);
         Turnaj povodny = listTurnaje.getSelectedValue();
         boolean turnajUzPrebieha = new Date().after(povodny.getDatumKonania());
         if (turnajUzPrebieha) {
@@ -243,7 +234,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         this.setTurnajInfo();
     }//GEN-LAST:event_listTurnajeMouseReleased
 
-    private void btnDeleteTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteTurnajMouseReleased
+    private void btnRefreshMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseReleased
         this.refresh();
         /*Turnaj t = listTurnaje.getSelectedValue();
         if (t == null) {
@@ -257,27 +248,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             this.refresh();
         }*/
 
-    }//GEN-LAST:event_btnDeleteTurnajMouseReleased
-
-    private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
-        Turnaj t = listTurnaje.getSelectedValue();
-        if (t.getDatumKonania().before(new Date())) {
-            //TODO pridat kontrolu ci su vsetky vysledky zadane. a celkovo pridat zadavanie vysledkov
-            logger.info("Generujem harmonogram pre turnaj.");
-            boolean jeTurnajSkonceny = this.controller.vygenerujHarmonogram(t) == false;
-            if (jeTurnajSkonceny) {
-                logger.info("Turnaj je dohrany.");
-                JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
-                this.controller.saveOrg();
-                this.zobrazVysledky(t);
-                return;
-            }
-            JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
-            this.controller.saveOrg();
-        } else {
-            JOptionPane.showMessageDialog(this, "Turnaj este nezacal");
-        }
-    }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
+    }//GEN-LAST:event_btnRefreshMouseReleased
 
     private void naplnTurnajList() {
         this.controller.loadOrg();
@@ -330,8 +301,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeleteTurnaj;
-    private javax.swing.JButton btnGenerujHarmnogram;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JScrollPane jScrollPane1;

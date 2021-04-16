@@ -44,12 +44,12 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
     }
 
     private void saveOldXML(int idx) {
-        File directory = new File("resources/turnaje/" + idx + "/historia/");
+        File directory = new File("resources\\turnaje\\" + idx + "\\historia\\");
         logger.info("ukladam kopiu stareho XML do suboru=" + directory.getPath());
         directory.mkdirs();
         int fileCount = directory.list().length; // zisti kolko je suborov v priecinku
 
-        String backupPath = "resources/turnaje/" + idx + "historia/" + fileCount + ".xml";
+        String backupPath = directory.getPath() + "\\" + fileCount + ".xml";
         logger.info("ukladam kopiu stareho XML s nazvom " + backupPath);
 
         try ( BufferedReader br = new BufferedReader(new FileReader(this.xmlPath))) {

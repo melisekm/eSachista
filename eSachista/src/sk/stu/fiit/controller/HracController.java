@@ -23,6 +23,7 @@ public class HracController extends Controller {
     }
 
     public int prihlasHracaNaTurnaj(Turnaj t) {
+        this.loadOrg();
         logger.info("Hrac " + this.getPrihlasenyHrac().getLogin() + " sa prihlasuje na turnaj " + t.getNazov());
         int validaciaKod = this.zvalidujPrihlasenie(t);
         if (validaciaKod != PlatformConstants.TURNAJ_PRIHLASENIE_OK) {
