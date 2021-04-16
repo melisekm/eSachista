@@ -4,17 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import sk.stu.fiit.model.organisation.Organizacia;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
  *
  * @author Martin Melisek
  */
-public class Hrac extends Pouzivatel implements Serializable{
+public class Hrac extends Pouzivatel implements Serializable {
 
     private boolean firstLogin = true;
     private int ELO;
     private ArrayList<Turnaj> turnaje;
+    private ArrayList<Zapas> zapasy;
     private String mesto;
     private String stat;
     private Date datumNarodenia;
@@ -24,6 +26,7 @@ public class Hrac extends Pouzivatel implements Serializable{
     public Hrac(Organizacia org, String meno, String login, char[] heslo) {
         super(org, meno, login, heslo);
         this.turnaje = new ArrayList<>();
+        this.zapasy = new ArrayList<>();
     }
 
     public void updateDetails(Hrac other) {
@@ -101,6 +104,14 @@ public class Hrac extends Pouzivatel implements Serializable{
 
     public void setPohlavie(Pohlavie pohlavie) {
         this.pohlavie = pohlavie;
+    }
+
+    public ArrayList<Zapas> getZapasy() {
+        return zapasy;
+    }
+
+    public void setZapasy(ArrayList<Zapas> zapasy) {
+        this.zapasy = zapasy;
     }
 
 }

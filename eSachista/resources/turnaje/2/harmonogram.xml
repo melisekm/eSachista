@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+    <turnaj id="1">
+        <zapasy>
+            <zapas>
+                <datum>4:22</datum>
+                <biely>1</biely>
+                <cierny>0</cierny>
+                <vyherca>-1</vyherca>
+            </zapas>
+        </zapasy>
+    </turnaj>
+</root>

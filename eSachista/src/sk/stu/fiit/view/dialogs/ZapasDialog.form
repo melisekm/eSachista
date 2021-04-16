@@ -47,7 +47,7 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="labelInformacie">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inform&#xe1;cie o z&#xe1;pase:"/>
           </Properties>
@@ -81,7 +81,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnPripojitSa">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6c" green="9b" red="76" type="rgb"/>
@@ -94,13 +94,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Pripoji&#x165; sa do hry"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPripojitSaMouseReleased"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="200" y="380" width="140" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelHrac1">
+        <Component class="javax.swing.JLabel" name="labelDataMenoHraca">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Meno hr&#xe1;&#x10d;a 1"/>
@@ -111,7 +114,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="labelCasZacaitku">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x10c;as za&#x10d;iatku:"/>
           </Properties>
@@ -121,7 +124,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="labelFormat">
           <Properties>
             <Property name="text" type="java.lang.String" value="Form&#xe1;t:"/>
           </Properties>
@@ -131,7 +134,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelHrac2">
+        <Component class="javax.swing.JLabel" name="labelDataMenoHraca2">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Meno hr&#xe1;&#x10d;a 2"/>
@@ -142,7 +145,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelCasZaciatku">
+        <Component class="javax.swing.JLabel" name="labelDataCasZaciatku">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel8"/>
           </Properties>
@@ -152,7 +155,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="labelTempoHry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tempo hry:"/>
           </Properties>
@@ -162,7 +165,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelFormat">
+        <Component class="javax.swing.JLabel" name="labelDataFormat">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel10"/>
           </Properties>
@@ -172,7 +175,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelTempo">
+        <Component class="javax.swing.JLabel" name="labelDataTempoHry">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel11"/>
           </Properties>
@@ -182,7 +185,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelElo1">
+        <Component class="javax.swing.JLabel" name="labelDataElo1">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="ELO hr&#xe1;&#x10d;a 1"/>
@@ -193,7 +196,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelElo2">
+        <Component class="javax.swing.JLabel" name="labelDataElo2">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="ELO hr&#xe1;&#x10d;a 2"/>
@@ -204,7 +207,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="iconHrac1Figurky">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/sk/stu/fiit/obrazky/blackking.png"/>
@@ -216,7 +219,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="iconHrac2Figurky">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/sk/stu/fiit/obrazky/whiteking.png"/>
@@ -228,7 +231,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="labelVS">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>

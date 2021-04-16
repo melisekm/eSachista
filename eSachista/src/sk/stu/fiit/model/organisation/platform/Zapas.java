@@ -18,6 +18,11 @@ public class Zapas implements Serializable {
     private Hrac vyherca;
     private FarbaFiguriek hrac1Figurky;
     private FarbaFiguriek hrac2Figurky;
+
+    public Zapas() {
+    }
+    
+    
     
     public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {
         this.turnaj = turnaj;

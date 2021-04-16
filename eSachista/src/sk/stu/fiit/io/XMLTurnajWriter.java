@@ -23,16 +23,20 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import sk.stu.fiit.model.organisation.platform.FarbaFiguriek;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Toto je bohuzial ten najneprehladnejsi kod aky som kedy napisal naraz sa tu
+ * vytvara a setuje zapas pre hracov lebo toto je z nejakeho dovodu <br>
+ * jediny moment ked mam v spravcoskom ucte k dispozii vsetky udaje naraz.
  *
  * @author Martin Melisek
  */
-public class XMLTurnajWriter extends XMLTurnajHandler{
+public class XMLTurnajWriter extends XMLTurnajHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(XMLTurnajWriter.class);
-
 
     public XMLTurnajWriter(String path, int idx) {
         super(path);
@@ -40,9 +44,14 @@ public class XMLTurnajWriter extends XMLTurnajHandler{
     }
 
     private void saveOldXML(int idx) {
-        File directory = new File("resources/turnaje/" + idx + "historia/");
+        File directory = new File("resources/turnaje/" + idx + "/historia/");
+        logger.info("ukladam kopiu stareho XML do suboru=" + directory.getPath());
+        directory.mkdirs();
         int fileCount = directory.list().length; // zisti kolko je suborov v priecinku
+
         String backupPath = "resources/turnaje/" + idx + "historia/" + fileCount + ".xml";
+        logger.info("ukladam kopiu stareho XML s nazvom " + backupPath);
+
         try ( BufferedReader br = new BufferedReader(new FileReader(this.xmlPath))) {
             String tmpText;
             try ( BufferedWriter objBW = new BufferedWriter(new FileWriter(backupPath))) {
@@ -59,6 +68,7 @@ public class XMLTurnajWriter extends XMLTurnajHandler{
 
     public void writeTurnaj(Turnaj turnaj) {
         try {
+            logger.info("Zacinam zapisovat turnajove informacie do XML=" + this.xmlPath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
@@ -74,11 +84,21 @@ public class XMLTurnajWriter extends XMLTurnajHandler{
             turnajElement.appendChild(zapasyElement);
 
             LinkedHashMap<Integer, Integer> zapasy = turnaj.getStage().getZapasy();
-            String casZacatiaZapasu = this.getCasZacatiaZapasu();
+            Zapas newZapas = new Zapas();
+            String casZacatiaZapasu = this.getCasZacatiaZapasu(newZapas);
+            
             for (Map.Entry<Integer, Integer> zapas : zapasy.entrySet()) {
                 String prvyHrac = String.valueOf(zapas.getKey());
                 String druhyHrac = String.valueOf(zapas.getValue());
-                zapasyElement.appendChild(createZapas(doc, casZacatiaZapasu, prvyHrac, druhyHrac, "-1"));
+
+                newZapas.setHrac1(turnaj.getHraci().get(zapas.getKey()));
+                newZapas.setHrac2(turnaj.getHraci().get(zapas.getValue()));
+                newZapas.setTurnaj(turnaj);
+
+                zapasyElement.appendChild(createZapas(doc, casZacatiaZapasu, prvyHrac, druhyHrac, "-1", newZapas));
+
+                turnaj.getHraci().get(zapas.getKey()).getZapasy().add(newZapas);
+                turnaj.getHraci().get(zapas.getValue()).getZapasy().add(newZapas);
             }
 
             // for output to file, console
@@ -100,21 +120,24 @@ public class XMLTurnajWriter extends XMLTurnajHandler{
 
     }
 
-    private Node createZapas(Document doc, String datum, String hrac1, String hrac2, String vyherca) {
-        Element zapas = doc.createElement("zapas");
+    private Node createZapas(Document doc, String datum, String hrac1, String hrac2, String vyherca, Zapas z) {
+        Element zapasElement = doc.createElement("zapas");
 
-        zapas.appendChild(createZapasDetails(doc, "datum", datum));
+        zapasElement.appendChild(createZapasDetails(doc, "datum", datum));
         if (Math.random() < 0.5) {
-            zapas.appendChild(createZapasDetails(doc, "cierny", hrac1));
-            zapas.appendChild(createZapasDetails(doc, "biely", hrac2));
+            zapasElement.appendChild(createZapasDetails(doc, "cierny", hrac1));
+            zapasElement.appendChild(createZapasDetails(doc, "biely", hrac2));
+            z.setHrac1Figurky(FarbaFiguriek.CIERNA);
+            z.setHrac1Figurky(FarbaFiguriek.BIELA);
         } else {
-            zapas.appendChild(createZapasDetails(doc, "biely", hrac1));
-            zapas.appendChild(createZapasDetails(doc, "cierny", hrac2));
-
+            zapasElement.appendChild(createZapasDetails(doc, "biely", hrac1));
+            zapasElement.appendChild(createZapasDetails(doc, "cierny", hrac2));
+            z.setHrac1Figurky(FarbaFiguriek.CIERNA);
+            z.setHrac1Figurky(FarbaFiguriek.BIELA);
         }
-        zapas.appendChild(createZapasDetails(doc, "vyherca", vyherca));
+        zapasElement.appendChild(createZapasDetails(doc, "vyherca", vyherca));
 
-        return zapas;
+        return zapasElement;
     }
 
     // utility method to create text node
@@ -124,10 +147,11 @@ public class XMLTurnajWriter extends XMLTurnajHandler{
         return node;
     }
 
-    private String getCasZacatiaZapasu() {
+    private String getCasZacatiaZapasu(Zapas newZapas) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.MINUTE, 5);
+        newZapas.setCasZaciatku(cal.getTime());
         return String.valueOf(cal.get(Calendar.HOUR_OF_DAY)) + ":" + String.valueOf(cal.get(Calendar.MINUTE));
     }
 }

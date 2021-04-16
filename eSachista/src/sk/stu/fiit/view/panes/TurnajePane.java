@@ -256,7 +256,8 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
         Turnaj t = listTurnaje.getSelectedValue();
-        if (t.getDatumKonania().after(new Date())) {
+        if (t.getDatumKonania().before(new Date())) {
+            //TODO pridat kontrolu ci su vsetky vysledky zadane. a celkovo pridat zadavanie vysledkov
             logger.info("Generujem harmonogram pre turnaj.");
             boolean jeTurnajSkonceny = this.controller.vygenerujHarmonogram(t) == false;
             if (jeTurnajSkonceny) {
@@ -269,7 +270,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
             JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
             this.controller.saveOrg();
         } else {
-            JOptionPane.showConfirmDialog(this, "Turnaj este nezacal");
+            JOptionPane.showMessageDialog(this, "Turnaj este nezacal");
         }
     }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
 

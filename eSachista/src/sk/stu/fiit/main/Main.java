@@ -23,6 +23,7 @@ public class Main {
 
     static {
         if (loadDemoDB) {
+            logger.info("DEMO DB je zapnuta");
             try {
 //                new IOManager().loadDatabase(new File(testovaciaDB));
 //                new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
@@ -39,6 +40,7 @@ public class Main {
                 DataLoader.loadData();
             }
         } else {
+            logger.info("DEMO DB je vypnuta.");
             Database.createDatabase(); // prazdna DB
             DataLoader.loadData();
         }

@@ -1,16 +1,12 @@
 package sk.stu.fiit.controller;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.stu.fiit.io.XMLTurnajReader;
 import sk.stu.fiit.model.organisation.clients.Hrac;
-import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.utils.PlatformConstants;
@@ -23,7 +19,6 @@ public class HracController extends Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(HracController.class);
 
-
     public HracController() {
     }
 
@@ -31,6 +26,7 @@ public class HracController extends Controller {
         logger.info("Hrac " + this.getPrihlasenyHrac().getLogin() + " sa prihlasuje na turnaj " + t.getNazov());
         int validaciaKod = this.zvalidujPrihlasenie(t);
         if (validaciaKod != PlatformConstants.TURNAJ_PRIHLASENIE_OK) {
+            logger.info("hracovi sa nepodarilo prihlasit " + validaciaKod);
             return validaciaKod;
         }
         logger.info("Prihlasovanie prebehlo uspesne.");
@@ -88,10 +84,12 @@ public class HracController extends Controller {
         return false;
     }
 
-    private boolean checkCiUzNiecoMa(Turnaj t) {
-        for (Turnaj turnaj : this.getPrihlasenyHrac().getTurnaje()) {
-            if (!t.isFinished()) {
-                if (isSameDay(turnaj.getDatumKonania(), t.getDatumKonania())) {
+    private boolean checkCiUzNiecoMa(Turnaj turnajZTabulky) {
+        for (Turnaj turnajHraca : this.getPrihlasenyHrac().getTurnaje()) {
+            if (!turnajHraca.isFinished()) {
+                if (isSameDay(turnajHraca.getDatumKonania(), turnajZTabulky.getDatumKonania())) {
+                    logger.info("pri kontrole ci hrac uz ma v den turnaja iny "
+                            + "turnaj som zistil ze uz ma t z tabulky=" + turnajZTabulky.getNazov() + " a t hraca=" + turnajHraca.getNazov());
                     return true;
                 }
             }
@@ -107,6 +105,7 @@ public class HracController extends Controller {
     private boolean checkCiJePrihlaseny(Turnaj t) {
         for (Hrac hrac : t.getHraci()) {
             if (hrac.getLogin().equals(this.getPrihlasenyHrac().getLogin())) {
+                logger.info("pri kontrole ci je hrac prihlaseny na turnaj som zistil ze uz je.");
                 return true;
             }
         }
@@ -126,7 +125,5 @@ public class HracController extends Controller {
     public boolean nezobrazitTurnaj(Turnaj t) {
         return t.isFinished() || new Date().after(t.getDatumKonania()) || this.checkCiJePrihlaseny(t) || this.checkCiUzNiecoMa(t);
     }
-
-    
 
 }

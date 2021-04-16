@@ -5,7 +5,10 @@
  */
 package sk.stu.fiit.view.dialogs;
 
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.FarbaFiguriek;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 
 /**
@@ -14,10 +17,13 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
  */
 public class ZapasDialog extends javax.swing.JDialog {
 
+    private Zapas zapas;
+
     public ZapasDialog(JFrame parent, boolean modal, Zapas zapas) {
         super(parent, modal);
         initComponents();
-        // TODO
+        this.zapas = zapas;
+        this.vyplnLabely();
     }
 
     public ZapasDialog(java.awt.Frame parent, boolean modal) {
@@ -30,23 +36,23 @@ public class ZapasDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelInformacie = new javax.swing.JLabel();
         AvatarHrac1 = new javax.swing.JLabel();
         AvatarHrac2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        labelHrac1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        labelHrac2 = new javax.swing.JLabel();
-        labelCasZaciatku = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        btnPripojitSa = new javax.swing.JButton();
+        labelDataMenoHraca = new javax.swing.JLabel();
+        labelCasZacaitku = new javax.swing.JLabel();
         labelFormat = new javax.swing.JLabel();
-        labelTempo = new javax.swing.JLabel();
-        labelElo1 = new javax.swing.JLabel();
-        labelElo2 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelDataMenoHraca2 = new javax.swing.JLabel();
+        labelDataCasZaciatku = new javax.swing.JLabel();
+        labelTempoHry = new javax.swing.JLabel();
+        labelDataFormat = new javax.swing.JLabel();
+        labelDataTempoHry = new javax.swing.JLabel();
+        labelDataElo1 = new javax.swing.JLabel();
+        labelDataElo2 = new javax.swing.JLabel();
+        iconHrac1Figurky = new javax.swing.JLabel();
+        iconHrac2Figurky = new javax.swing.JLabel();
+        labelVS = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,9 +60,8 @@ public class ZapasDialog extends javax.swing.JDialog {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel1.setText("Inform·cie o z·pase:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+        labelInformacie.setText("Inform·cie o z·pase:");
+        jPanel1.add(labelInformacie, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         AvatarHrac1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         jPanel1.add(AvatarHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
@@ -64,66 +69,61 @@ public class ZapasDialog extends javax.swing.JDialog {
         AvatarHrac2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         jPanel1.add(AvatarHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(118, 155, 108));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Pripojiù sa do hry");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 140, -1));
+        btnPripojitSa.setBackground(new java.awt.Color(118, 155, 108));
+        btnPripojitSa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPripojitSa.setForeground(new java.awt.Color(255, 255, 255));
+        btnPripojitSa.setText("Pripojiù sa do hry");
+        btnPripojitSa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPripojitSaMouseReleased(evt);
+            }
+        });
+        jPanel1.add(btnPripojitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 140, -1));
 
-        labelHrac1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelHrac1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelHrac1.setText("Meno hr·Ëa 1");
-        jPanel1.add(labelHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 230, 170, -1));
+        labelDataMenoHraca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataMenoHraca.setText("Meno hr·Ëa 1");
+        jPanel1.add(labelDataMenoHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 230, 170, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel5.setText("»as zaËiatku:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        labelCasZacaitku.setText("»as zaËiatku:");
+        jPanel1.add(labelCasZacaitku, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel6.setText("Form·t:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+        labelFormat.setText("Form·t:");
+        jPanel1.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
-        labelHrac2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelHrac2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelHrac2.setText("Meno hr·Ëa 2");
-        jPanel1.add(labelHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 230, 170, -1));
+        labelDataMenoHraca2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataMenoHraca2.setText("Meno hr·Ëa 2");
+        jPanel1.add(labelDataMenoHraca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 230, 170, -1));
 
-        labelCasZaciatku.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelCasZaciatku.setText("jLabel8");
-        jPanel1.add(labelCasZaciatku, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        labelDataCasZaciatku.setText("jLabel8");
+        jPanel1.add(labelDataCasZaciatku, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel9.setText("Tempo hry:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+        labelTempoHry.setText("Tempo hry:");
+        jPanel1.add(labelTempoHry, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
-        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelFormat.setText("jLabel10");
-        jPanel1.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+        labelDataFormat.setText("jLabel10");
+        jPanel1.add(labelDataFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
-        labelTempo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelTempo.setText("jLabel11");
-        jPanel1.add(labelTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
+        labelDataTempoHry.setText("jLabel11");
+        jPanel1.add(labelDataTempoHry, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
 
-        labelElo1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelElo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelElo1.setText("ELO hr·Ëa 1");
-        jPanel1.add(labelElo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 250, 160, -1));
+        labelDataElo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataElo1.setText("ELO hr·Ëa 1");
+        jPanel1.add(labelDataElo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 250, 160, -1));
 
-        labelElo2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        labelElo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelElo2.setText("ELO hr·Ëa 2");
-        jPanel1.add(labelElo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 246, 170, 20));
+        labelDataElo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataElo2.setText("ELO hr·Ëa 2");
+        jPanel1.add(labelDataElo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 246, 170, 20));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/blackking.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        iconHrac1Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/blackking.png"))); // NOI18N
+        jPanel1.add(iconHrac1Figurky, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/whiteking.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        iconHrac2Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/whiteking.png"))); // NOI18N
+        jPanel1.add(iconHrac2Figurky, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("vs.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 80, 60));
+        labelVS.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelVS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelVS.setText("vs.");
+        jPanel1.add(labelVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 80, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,25 +139,53 @@ public class ZapasDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPripojitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitSaMouseReleased
+        System.out.println("NOT YET IMPLEMENTED.");
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnPripojitSaMouseReleased
+
+    private void vyplnLabely() {
+        Hrac hrac1 = this.zapas.getHrac1();
+        Hrac hrac2 = this.zapas.getHrac2();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        labelDataCasZaciatku.setText(sdf.format(this.zapas.getCasZaciatku()));
+        labelDataElo1.setText(String.valueOf(hrac1.getELO()));
+        labelDataElo2.setText(String.valueOf(hrac2.getELO()));
+        labelDataFormat.setText(this.zapas.getTurnaj().getFormat().toString());
+        labelDataMenoHraca.setText(hrac1.getMeno());
+        labelDataMenoHraca2.setText(hrac2.getMeno());
+        labelDataTempoHry.setText(this.zapas.getTurnaj().getTempoHry().toString());
+        AvatarHrac1.setIcon(hrac1.getAvatar().getImage());
+        AvatarHrac2.setIcon(hrac2.getAvatar().getImage());
+        if (zapas.getHrac1Figurky() == FarbaFiguriek.BIELA) {
+            iconHrac1Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/whiteking.png")));
+            iconHrac2Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/blackking.png")));
+        } else {
+            iconHrac1Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/blackking.png")));
+            iconHrac2Figurky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/whiteking.png")));
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AvatarHrac1;
     private javax.swing.JLabel AvatarHrac2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton btnPripojitSa;
+    private javax.swing.JLabel iconHrac1Figurky;
+    private javax.swing.JLabel iconHrac2Figurky;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelCasZaciatku;
-    private javax.swing.JLabel labelElo1;
-    private javax.swing.JLabel labelElo2;
+    private javax.swing.JLabel labelCasZacaitku;
+    private javax.swing.JLabel labelDataCasZaciatku;
+    private javax.swing.JLabel labelDataElo1;
+    private javax.swing.JLabel labelDataElo2;
+    private javax.swing.JLabel labelDataFormat;
+    private javax.swing.JLabel labelDataMenoHraca;
+    private javax.swing.JLabel labelDataMenoHraca2;
+    private javax.swing.JLabel labelDataTempoHry;
     private javax.swing.JLabel labelFormat;
-    private javax.swing.JLabel labelHrac1;
-    private javax.swing.JLabel labelHrac2;
-    private javax.swing.JLabel labelTempo;
+    private javax.swing.JLabel labelInformacie;
+    private javax.swing.JLabel labelTempoHry;
+    private javax.swing.JLabel labelVS;
     // End of variables declaration//GEN-END:variables
 }

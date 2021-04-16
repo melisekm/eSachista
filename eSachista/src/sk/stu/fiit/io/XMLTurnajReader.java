@@ -33,6 +33,7 @@ public class XMLTurnajReader extends XMLTurnajHandler {
     }
 
     public ArrayList<Zapas> parseTurnaj(Turnaj prebiehajuciTurnaj) {
+        logger.info("zacinam parsovat turnaj zo suboru " + this.xmlPath + " je to turnaj " + prebiehajuciTurnaj.getNazov());
         File xmlFile = new File(this.xmlPath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
@@ -65,6 +66,7 @@ public class XMLTurnajReader extends XMLTurnajHandler {
             zapasy.add(z);
 
         }
+        logger.info("vraciam zapasy z precitaneho xml");
         return zapasy;
     }
 

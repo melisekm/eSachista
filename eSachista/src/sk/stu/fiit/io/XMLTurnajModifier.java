@@ -35,6 +35,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
     }
 
     public void modifyXML(String hracId, String vyherca) {
+        logger.info("spusam modifikaciu suboru " + this.xmlPath);
         File xmlFile = new File(this.xmlPath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
@@ -48,6 +49,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
             updateElementValue(doc, hracId, vyherca);
 
             // write the updated document to file or console
+            logger.info("Zapisujem zmodifikovany subor");
             writeXMLFile(doc);
 
         } catch (SAXException | ParserConfigurationException | IOException | TransformerException ex) {
@@ -66,6 +68,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
             if (hrac1.equals(hracId) || hrac2.equals(hracId)) { // cierny alebo biely
                 Node vyhercaXML = zapasElement.getElementsByTagName("vyherca").item(0).getFirstChild();
                 vyhercaXML.setNodeValue(vyherca);
+                logger.info("nasiel som zhodu ktoru budem modifikovat");
                 break;
             }
         }

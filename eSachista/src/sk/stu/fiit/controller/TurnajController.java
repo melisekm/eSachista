@@ -23,7 +23,7 @@ public class TurnajController extends Controller {
     private static final Logger logger = LoggerFactory.getLogger(TurnajController.class);
 
     private Turnaj novyTurnaj;
-    
+
     private TurnajService turnajService;
 
     public TurnajController() {
@@ -34,6 +34,7 @@ public class TurnajController extends Controller {
             Date datum, int casZaciatkuHrs, int casZaciatkuMin,
             int limitMin, int limitSec, int increment, String popis, int minRating,
             int maxRating, int maxVek) throws MaxPocetTurnajovException, InvalidDateException {
+        logger.info("Vytvaram turnaj");
         boolean bolaPrekrocenaKapacita = this.getOrgLoggedIn().getTurnaje().size() >= this.getOrgLoggedIn().getBalik().getMaxPocetTurnajov();
         if (bolaPrekrocenaKapacita) {
             logger.error("Bol presiahnuty maximalny pocet turnajov - " + this.getOrgLoggedIn().getNazov() + " - " + this.getOrgLoggedIn().getTurnaje().size());
@@ -59,26 +60,33 @@ public class TurnajController extends Controller {
     public void saveTurnaj(Turnaj novy) {
         this.getOrgLoggedIn().getTurnaje().add(novy);
         Collections.sort(this.getOrgLoggedIn().getTurnaje());
+        logger.info("ukladam a sortujem turnaje");
     }
 
     public void upravTurnaj(Turnaj povodny, Turnaj novy) {
         povodny.updateDetails(novy);
         Collections.sort(this.getOrgLoggedIn().getTurnaje());
+        logger.info("ukladam a sortujem turnaje");
+
     }
-    
+
     public boolean vygenerujHarmonogram(Turnaj t) {
+        logger.info("Zacinam generovat turnaj");
         int idx = 0;
         for (Turnaj turnaj : this.getTurnaje()) {
-            if(turnaj.getNazov().equals(t.getNazov())){
+            if (turnaj.getNazov().equals(t.getNazov())) {
                 break;
             }
             idx++;
         }
+        logger.info("id turnaja je id=" + idx);
         boolean jeTurnajSkonceny = this.turnajService.advanceTurnaj(t) == false;
-        if(jeTurnajSkonceny){
+        if (jeTurnajSkonceny) {
             t.setFinished(true);
+            logger.info("negenerujem nic lebo turnaj uz bol skoneceny");
             return false;
         }
+        logger.info("generujem harmonogram.");
         this.turnajService.vygenerujHarmonogram(t, idx);
         return true;
     }
@@ -90,7 +98,5 @@ public class TurnajController extends Controller {
     public void setNovyTurnaj(Turnaj novyTurnaj) {
         this.novyTurnaj = novyTurnaj;
     }
-
-    
 
 }
