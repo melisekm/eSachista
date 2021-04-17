@@ -51,6 +51,8 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         cbHrac1 = new javax.swing.JComboBox<>();
         cbHrac2 = new javax.swing.JComboBox<>();
         btnOK = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         labelNeprebiehaTurnaj = new javax.swing.JLabel();
         prebiehajuciTurnajPane = new javax.swing.JPanel();
         labelPravePrebiehaTurnaj = new javax.swing.JLabel();
@@ -80,36 +82,42 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelZadatVysledok.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelZadatVysledok.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelZadatVysledok.setText("Zadaù v˝sledok");
-        dialogMainPane.add(labelZadatVysledok, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 180, -1));
+        dialogMainPane.add(labelZadatVysledok, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 180, -1));
 
         labelDataHrac1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDataHrac1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDataHrac1.setText("Hr·Ë 1");
-        dialogMainPane.add(labelDataHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, -1));
+        dialogMainPane.add(labelDataHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 130, -1));
 
         labelDataHrac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDataHrac2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDataHrac2.setText("Hr·Ë 2");
-        dialogMainPane.add(labelDataHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 130, -1));
+        dialogMainPane.add(labelDataHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 130, -1));
 
         cbHrac1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbHrac1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
-        dialogMainPane.add(cbHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        dialogMainPane.add(cbHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
         cbHrac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbHrac2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
-        dialogMainPane.add(cbHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
+        dialogMainPane.add(cbHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
         btnOK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnOK.setText("OK");
+        btnOK.setText("Potvrdiù");
         btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnOKMouseReleased(evt);
             }
         });
-        dialogMainPane.add(btnOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
+        dialogMainPane.add(btnOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 180, -1));
 
-        dialogZadatVysledok.getContentPane().add(dialogMainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 190));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Magnus Carlsen", "Hikaru Nakamura" }));
+        dialogMainPane.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 180, -1));
+
+        jLabel1.setText("Vybraù vÌùaza z·pasu:");
+        dialogMainPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+
+        dialogZadatVysledok.getContentPane().add(dialogMainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(860, 590));
@@ -405,6 +413,8 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     private javax.swing.JComboBox<String> cbHrac2;
     private javax.swing.JPanel dialogMainPane;
     private javax.swing.JDialog dialogZadatVysledok;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelDataFormat;
     private javax.swing.JLabel labelDataHrac1;
     private javax.swing.JLabel labelDataHrac2;
