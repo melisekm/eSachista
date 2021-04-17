@@ -37,6 +37,9 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        scrollPaneTabulka = new javax.swing.JScrollPane();
+        tableHraci = new javax.swing.JTable();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Informácie o turnaji");
@@ -89,6 +92,24 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         jLabel7.setText("Miesto konania:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
 
+        tableHraci.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Meno hráèa", "Poèet zápasov", "Poèet bodov"
+            }
+        ));
+        scrollPaneTabulka.setViewportView(tableHraci);
+
+        getContentPane().add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 340, 160));
+
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Dohraný");
+        jCheckBox1.setEnabled(false);
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -97,6 +118,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -110,5 +132,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane scrollPaneTabulka;
+    private javax.swing.JTable tableHraci;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,12 +26,12 @@ import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
  * @author Martin Melisek
  */
 public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
-
+    
     private static final Logger logger = LoggerFactory.getLogger(TurnajePane.class);
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
     private TurnajController controller;
     private JLabel[] turnajLabels;
-
+    
     public TurnajePane() {
         initComponents();
         controller = new TurnajController();
@@ -74,6 +74,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelRatingData = new javax.swing.JLabel();
         btnRefresh = new javax.swing.JButton();
         cbDohrany = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -183,7 +184,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 210, -1));
 
         btnRefresh.setForeground(new java.awt.Color(0, 0, 0));
-        btnRefresh.setText("Obnoviù ˙daje");
+        btnRefresh.setText("Obnoviù");
         btnRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnRefreshMouseReleased(evt);
@@ -195,6 +196,9 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         cbDohrany.setText("Dohran˝");
         cbDohrany.setEnabled(false);
         add(cbDohrany, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
+
+        jButton1.setText("Zobraziù v˝sledky/if/dohrany");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -210,6 +214,10 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     }//GEN-LAST:event_btnVytvoritTurnajMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
+        if (listTurnaje.getSelectedValue().isFinished()) {
+            JOptionPane.showMessageDialog(this, "Turnaj uz bol dohran˝");
+            return;
+        }
         int index = listTurnaje.getSelectedIndex();
         this.refresh();
         listTurnaje.setSelectedIndex(index);
@@ -255,7 +263,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }*/
 
     }//GEN-LAST:event_btnRefreshMouseReleased
-
+    
     private void naplnTurnajList() {
         this.controller.loadOrg();
         DefaultListModel<Turnaj> model = (DefaultListModel<Turnaj>) listTurnaje.getModel();
@@ -266,9 +274,9 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }
         listTurnaje.setSelectedIndex(0);
         this.setTurnajInfo();
-
+        
     }
-
+    
     private void setTurnajInfo() {
         Turnaj t = listTurnaje.getSelectedValue();
         if (listTurnaje.getModel().getSize() == 0) {
@@ -297,7 +305,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelMaxVekData.setText(maxVek);
         this.naplnHracovTurnaja(t);
     }
-
+    
     private void naplnHracovTurnaja(Turnaj t) {
         DefaultListModel<Hrac> model = (DefaultListModel<Hrac>) listHraciNaTurnaji.getModel();
         model.setSize(0);
@@ -306,7 +314,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }
         listHraciNaTurnaji.setSelectedIndex(0);
     }
-
+    
     public void refresh() {
         this.naplnTurnajList();
     }
@@ -316,6 +324,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JCheckBox cbDohrany;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFormat;

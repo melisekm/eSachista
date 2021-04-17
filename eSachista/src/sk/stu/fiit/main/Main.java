@@ -20,9 +20,9 @@ public class Main {
 
     private final static String testovaciaDB = "..\\demo\\demo.vava";
 
-    private static boolean loadDemoDB = true;
+    private static boolean loadDemoDB = false;
 
-    private static boolean saveDefaultDB = false;
+    private static boolean saveDefaultDB = true;
 
     static {
         if (loadDemoDB) {
