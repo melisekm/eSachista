@@ -21,9 +21,12 @@ public class Zapas implements Serializable {
 
     public Zapas() {
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Zapas{" + "turnaj=" + turnaj + ", hrac1=" + hrac1 + ", hrac2=" + hrac2 + ", casZaciatku=" + casZaciatku + ", vyherca=" + vyherca + ", hrac1Figurky=" + hrac1Figurky + ", hrac2Figurky=" + hrac2Figurky + '}';
+    }
+
     public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {
         this.turnaj = turnaj;
         this.hrac1 = hrac1;

@@ -37,7 +37,7 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         int id = 0;
         for (Turnaj turnaj : this.getTurnaje()) {
             if (turnaj == prebiehajuciTurnaj) {
-                if (new File("resources/turnaje/" + id + "/harmonogram.xml").exists()) { // TODO STAGE
+                if (new File("resources/turnaje/" + id + "/harmonogram.xml").exists()) {
                     logger.info("podarilo sa mi sparovat turnaj a vraciam id " + id);
                     return id;
                 }

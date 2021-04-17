@@ -1,6 +1,5 @@
 package sk.stu.fiit.main;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,7 @@ public class Main {
 
     private static boolean loadDemoDB = true;
 
-    private static boolean saveDefaultDB = true;
+    private static boolean saveDefaultDB = false;
 
     static {
         if (loadDemoDB) {
@@ -32,18 +31,6 @@ public class Main {
 //                new IOManager().loadDatabase(new File(testovaciaDB));
                 Database.createDatabase(); // prazdna DB
                 Database.getInstance().getOrganizacie().add(new IOManager().loadOrg());
-
-                if (saveDefaultDB) {
-                    Date now = new Date();
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(now);
-                    cal.add(Calendar.MINUTE, 10);
-
-                    Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setDatumKonania(cal.getTime());
-                    Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
-                    Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setFinished(false);
-                    new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
-                }
 
             } catch (IOException ex) {
                 logger.error("Chyba pri nacitavani DB");
@@ -58,6 +45,22 @@ public class Main {
             logger.info("DEMO DB je vypnuta.");
             Database.createDatabase(); // prazdna DB
             DataLoader.loadData();
+        }
+        if (saveDefaultDB) {
+            Date now = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(now);
+            cal.add(Calendar.MINUTE, 10);
+
+            Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setDatumKonania(cal.getTime());
+            Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
+            Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setFinished(false);
+            try {
+                new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
+            } catch (IOException ex) {
+                logger.error("Chyba pri nacitavani DB");
+                logger.error(ex.getClass().toString());
+            }
         }
     }
 

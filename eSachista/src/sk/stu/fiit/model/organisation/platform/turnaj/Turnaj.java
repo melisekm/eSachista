@@ -3,7 +3,9 @@ package sk.stu.fiit.model.organisation.platform.turnaj;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
@@ -17,6 +19,7 @@ public class Turnaj implements Comparable<Turnaj>, Serializable {
     private String miestoKonania;
     private Date datumKonania;
     private ArrayList<Hrac> hraci;
+    private HashMap<Zapas, Integer> zapasy;
     private String popis;
     private TurnajTempoHry tempoHry;
     private TurnajObmedzenia obmedzenia;
@@ -40,6 +43,7 @@ public class Turnaj implements Comparable<Turnaj>, Serializable {
         this.tempoHry = tempoHry;
         this.obmedzenia = obmedzenia;
         this.hraci = new ArrayList<>();
+        this.zapasy = new HashMap<>();
     }
 
     public void updateDetails(Turnaj other) {
@@ -50,6 +54,14 @@ public class Turnaj implements Comparable<Turnaj>, Serializable {
         this.popis = other.popis;
         this.tempoHry = other.tempoHry;
         this.obmedzenia = other.obmedzenia;
+    }
+
+    public HashMap<Zapas, Integer> getZapasy() {
+        return zapasy;
+    }
+
+    public void setZapasy(HashMap<Zapas, Integer> zapasy) {
+        this.zapasy = zapasy;
     }
 
     @Override

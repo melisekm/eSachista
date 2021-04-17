@@ -28,13 +28,13 @@ import org.xml.sax.SAXException;
  */
 public class XMLTurnajModifier extends XMLTurnajHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(XMLTurnajReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(XMLTurnajModifier.class);
 
     public XMLTurnajModifier(String xmlPath) {
         super(xmlPath);
     }
 
-    public void modifyXML(String hracId, String vyherca) {
+    public void modifyXML(String vyherca) {
         logger.info("spusam modifikaciu suboru " + this.xmlPath);
         File xmlFile = new File(this.xmlPath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -46,7 +46,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
 
             doc.getDocumentElement().normalize();
             // update Element value
-            updateElementValue(doc, hracId, vyherca);
+            updateElementValue(doc, vyherca);
 
             // write the updated document to file or console
             logger.info("Zapisujem zmodifikovany subor");
@@ -57,7 +57,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
         }
     }
 
-    private void updateElementValue(Document doc, String hracId, String vyherca) {
+    private void updateElementValue(Document doc, String vyherca) {
         NodeList zapasyXML = doc.getElementsByTagName("zapas");
         Element zapasElement = null;
 
@@ -65,7 +65,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
             zapasElement = (Element) zapasyXML.item(i);
             String hrac1 = zapasElement.getElementsByTagName("cierny").item(0).getTextContent();
             String hrac2 = zapasElement.getElementsByTagName("biely").item(0).getTextContent();
-            if (hrac1.equals(hracId) || hrac2.equals(hracId)) { // cierny alebo biely
+            if (hrac1.equals(vyherca) || hrac2.equals(vyherca)) { // cierny alebo biely
                 Node vyhercaXML = zapasElement.getElementsByTagName("vyherca").item(0).getFirstChild();
                 vyhercaXML.setNodeValue(vyherca);
                 logger.info("nasiel som zhodu ktoru budem modifikovat");

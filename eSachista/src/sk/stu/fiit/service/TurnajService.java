@@ -3,7 +3,10 @@ package sk.stu.fiit.service;
 import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.stu.fiit.io.XMLTurnajModifier;
 import sk.stu.fiit.io.XMLTurnajWriter;
+import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
@@ -60,9 +63,6 @@ public class TurnajService extends Service {
 //                case SINGLE_ELIMINATION: TODO
 //                    t.setStage(new RoundRobinStage());
 //                    break;
-//                case SWISS:
-//                    t.setStage(new RoundRobinStage());
-//                    break;
             default:
                 throw new AssertionError();
         }
@@ -76,17 +76,37 @@ public class TurnajService extends Service {
             logger.info("Uz bolo odohrane posledne kolo. " + stage.getKolo() + "/" + stage.getPocetKol());
             return false;
         }
-        stage.getZapasy().clear();
+        stage.getParovanie().clear();
         int hracIdx = stage.getKolo() % stage.getPocetHracov();
-        stage.getZapasy().put(stage.getZoznamHracov().get(hracIdx), 0);
+        stage.getParovanie().put(stage.getZoznamHracov().get(hracIdx), 0);
         for (int idx = 1; idx < stage.getPolCas(); idx++) {
             int prvyHrac = (stage.getKolo() + idx) % stage.getPocetHracov();
             int druhyHrac = (stage.getKolo() + stage.getPocetHracov() - idx) % stage.getPocetHracov();
-            stage.getZapasy().put(stage.getZoznamHracov().get(prvyHrac), stage.getZoznamHracov().get(druhyHrac));
+            stage.getParovanie().put(stage.getZoznamHracov().get(prvyHrac), stage.getZoznamHracov().get(druhyHrac));
         }
         logger.info("posunul som roundrobin kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);
         return true;
 
+    }
+
+    public void modifikujVysledok(Turnaj turnaj, Zapas zapas, int turnajId) {
+        turnaj.getStage().getTabulka().get(zapas.getVyherca())[1]++;
+        turnaj.getStage().getTabulka().get(zapas.getHrac1())[0]++;
+        turnaj.getStage().getTabulka().get(zapas.getHrac2())[0]++;
+        String dir = "resources/turnaje/" + turnajId;
+        logger.info("Upravujem vysledok v harmonograme " + dir);
+        String path = dir + "/harmonogram.xml";
+        logger.info("cesta " + path);
+        int idx = 0;
+        for (Hrac hrac : turnaj.getHraci()) {
+            if (hrac == zapas.getVyherca()) {
+                break;
+            }
+            idx++;
+        }
+
+        XMLTurnajModifier xmlTurnajModifier = new XMLTurnajModifier(path);
+        xmlTurnajModifier.modifyXML(String.valueOf(idx));
     }
 }

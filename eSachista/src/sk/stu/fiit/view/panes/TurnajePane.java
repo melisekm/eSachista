@@ -289,9 +289,9 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         } else {
             maxVek = String.valueOf(t.getObmedzenia().getMaxVek());
         }
-        if(t.isFinished()){
+        if (t.isFinished()) {
             cbDohrany.setSelected(true);
-        }else{
+        } else {
             cbDohrany.setSelected(false);
         }
         labelMaxVekData.setText(maxVek);
@@ -338,7 +338,4 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     private javax.swing.JList<Turnaj> listTurnaje;
     // End of variables declaration//GEN-END:variables
 
-    private void zobrazVysledky(Turnaj t) {
-        System.out.println("TATO METODA NIEJE IMPLEMENTOVANA"); //TODO
-    }
 }

@@ -15,8 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.AktivneTurnajeSpravcaController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
+import sk.stu.fiit.utils.ViewUtils;
 
 /**
  *
@@ -32,12 +34,23 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     public AktivneTurnajeSpravcaPane() {
         initComponents();
         this.controller = new AktivneTurnajeSpravcaController();
+        tableHarmonogram.getColumnModel().getColumn(0).setResizable(false);
+        tableHarmonogram.getColumnModel().getColumn(0).setMinWidth(0);
+        tableHarmonogram.getColumnModel().getColumn(0).setMaxWidth(0);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogZadatVysledok = new javax.swing.JDialog();
+        dialogMainPane = new javax.swing.JPanel();
+        labelZadatVysledok = new javax.swing.JLabel();
+        labelDataHrac1 = new javax.swing.JLabel();
+        labelDataHrac2 = new javax.swing.JLabel();
+        cbHrac1 = new javax.swing.JComboBox<>();
+        cbHrac2 = new javax.swing.JComboBox<>();
+        btnOK = new javax.swing.JButton();
         labelNeprebiehaTurnaj = new javax.swing.JLabel();
         prebiehajuciTurnajPane = new javax.swing.JPanel();
         labelPravePrebiehaTurnaj = new javax.swing.JLabel();
@@ -59,6 +72,44 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         btnGenerujHarmnogram = new javax.swing.JButton();
         labelMiestoKonania = new javax.swing.JLabel();
         labelDataMiestoKonania = new javax.swing.JLabel();
+
+        dialogZadatVysledok.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        dialogMainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelZadatVysledok.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelZadatVysledok.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZadatVysledok.setText("Zadaù v˝sledok");
+        dialogMainPane.add(labelZadatVysledok, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 180, -1));
+
+        labelDataHrac1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataHrac1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataHrac1.setText("Hr·Ë 1");
+        dialogMainPane.add(labelDataHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, -1));
+
+        labelDataHrac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDataHrac2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDataHrac2.setText("Hr·Ë 2");
+        dialogMainPane.add(labelDataHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 130, -1));
+
+        cbHrac1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbHrac1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
+        dialogMainPane.add(cbHrac1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+
+        cbHrac2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbHrac2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1" }));
+        dialogMainPane.add(cbHrac2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
+
+        btnOK.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnOK.setText("OK");
+        btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnOKMouseReleased(evt);
+            }
+        });
+        dialogMainPane.add(btnOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
+
+        dialogZadatVysledok.getContentPane().add(dialogMainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 190));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(860, 590));
@@ -100,9 +151,17 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
 
             },
             new String [] {
-                "Hr·Ë 1", "Hr·Ë 2", "»as", "V˝herca"
+                "Zapas", "Hr·Ë 1", "Hr·Ë 2", "»as", "V˝herca"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPaneHarmonogram.setViewportView(tableHarmonogram);
 
         prebiehajuciTurnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 340, 280));
@@ -183,6 +242,8 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
         if (this.controller.getPrebiehajuciTurnaj().getDatumKonania().after(new Date())) {
+            ((DefaultTableModel) tableHarmonogram.getModel()).setRowCount(0);
+            ((DefaultTableModel) tableHraci.getModel()).setRowCount(0);
             long diff = ChronoUnit.MINUTES.between(new Date().toInstant(), this.controller.getPrebiehajuciTurnaj().getDatumKonania().toInstant());
             if (diff > 10) {
                 JOptionPane.showMessageDialog(this, "Rozpis k turnaju sa da vygenerovat az 10 min pred zaciatkom");
@@ -202,6 +263,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             this.zobrazVysledky(this.controller.getPrebiehajuciTurnaj());
             return;
         }
+        this.updateHarmonogramTable();
         this.controller.setPocetZadanychVysledkov(0);
         JOptionPane.showMessageDialog(this, "Harmonogram vygenerovany.");
         this.controller.saveOrg();
@@ -209,12 +271,71 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }//GEN-LAST:event_btnGenerujHarmnogramMouseReleased
 
     private void btnZapisatVysledokMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZapisatVysledokMouseReleased
-        this.controller.setPocetZadanychVysledkov(this.controller.getPocetZadanychVysledkov() + 1);
+        int row = tableHarmonogram.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Prosim vyberte zapas.");
+            return;
+        }
+        Zapas zapas = (Zapas) tableHarmonogram.getValueAt(row, 0);
+        if (zapas.getVyherca() != null) {
+            JOptionPane.showMessageDialog(this, "Vysledok uz bol zapisany.");
+            return;
+        }
+        labelDataHrac1.setText(zapas.getHrac1().getMeno());
+        labelDataHrac2.setText(zapas.getHrac2().getMeno());
+        cbHrac1.setSelectedIndex(0);
+        cbHrac2.setSelectedIndex(0);
+        ViewUtils.showDialog(dialogZadatVysledok);
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
 
     private void btnArchivovatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchivovatMouseReleased
-        // TODO add your handling code here:
+        // TODO asi nebude existovat
     }//GEN-LAST:event_btnArchivovatMouseReleased
+
+    private void btnOKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOKMouseReleased
+        boolean hrac1Vysledok = cbHrac1.getSelectedIndex() == 1;
+        boolean hrac2Vysledok = cbHrac2.getSelectedIndex() == 1;
+        if (hrac1Vysledok == hrac2Vysledok) {
+            JOptionPane.showMessageDialog(dialogZadatVysledok, "Zadali ste vysledok nespravne.");
+            return;
+        }
+        int row = tableHarmonogram.getSelectedRow();
+        Zapas zapas = (Zapas) tableHarmonogram.getValueAt(row, 0);
+        this.controller.zadajVysledok(zapas, hrac1Vysledok);
+        dialogZadatVysledok.setVisible(false);
+        this.controller.setPocetZadanychVysledkov(this.controller.getPocetZadanychVysledkov() + 1);
+        this.naplnTabulkuHracov();
+        (tableHarmonogram.getModel()).setValueAt(zapas.getVyherca().getMeno(), row, 4);
+    }//GEN-LAST:event_btnOKMouseReleased
+
+    private void updateHarmonogramTable() {
+        if (this.controller.getPrebiehajuciTurnaj().getStage() == null) {
+            logger.info("Harmonogram este nebol vygenerovany.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tableHarmonogram.getModel();
+        model.setRowCount(0);
+        for (Map.Entry<Zapas, Integer> entry : this.controller.getPrebiehajuciTurnaj().getZapasy().entrySet()) {
+            Zapas zapas = entry.getKey();
+            Integer kolo = entry.getValue();
+            if (kolo != this.controller.getPrebiehajuciTurnaj().getStage().getKolo() - 1) {
+                continue;
+            }
+            String vyherca = "-";
+            if (zapas.getVyherca() != null) {
+                vyherca = zapas.getVyherca().getMeno();
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            model.addRow(new Object[]{
+                zapas,
+                zapas.getHrac1().getMeno(),
+                zapas.getHrac2().getMeno(),
+                sdf.format(zapas.getCasZaciatku()),
+                vyherca
+            });
+
+        }
+    }
 
     private void zobrazPrebiehajuciTurnaj() {
         this.controller.setPrebiehajuciTurnaj(this.controller.getNadchadzajuciTurnaj());
@@ -224,12 +345,13 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             return;
         }
         this.controller.aktualizujTurnajUdaje();
-        this.naplnTurnajPane(this.controller.getPrebiehajuciTurnaj());
+        this.naplnTurnajPane();
         prebiehajuciTurnajPane.setVisible(true);
         labelNeprebiehaTurnaj.setVisible(false);
     }
 
-    private void naplnTurnajPane(Turnaj turnaj) {
+    private void naplnTurnajPane() {
+        Turnaj turnaj = this.controller.getPrebiehajuciTurnaj();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         labelDataNazovTurnaja.setText(turnaj.getNazov());
         labelDataZaciatokTurnaja.setText(sdf.format(turnaj.getDatumKonania()));
@@ -237,21 +359,21 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText(turnaj.getMiestoKonania());
         labelDataPocetHracov.setText(String.valueOf(turnaj.getHraci().size()));
 
-        this.naplnTabulkuHracov(turnaj); // Precitaj Tabulku zo stage
-        this.naplnHarmonogram(turnaj); // PrecitajXML
+        this.naplnTabulkuHracov(); // Precitaj Tabulku zo stage
+        this.updateHarmonogramTable();
 
     }
 
-    private void naplnTabulkuHracov(Turnaj t) {
-        if (t.getStage() == null) {
+    private void naplnTabulkuHracov() {
+        if (this.controller.getPrebiehajuciTurnaj().getStage() == null) {
             logger.info("Harmonogram este nebol vygenerovany.");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) tableHraci.getModel();
         model.setRowCount(0);
-        switch (t.getFormat()) {
+        switch (this.controller.getPrebiehajuciTurnaj().getFormat()) { // TODO zjednotit pre vsetky stage
             case ROUND_ROBIN:
-                RoundRobinStage stage = ((RoundRobinStage) t.getStage());
+                RoundRobinStage stage = ((RoundRobinStage) this.controller.getPrebiehajuciTurnaj().getStage());
                 for (Map.Entry<Hrac, int[]> en : stage.getTabulka().entrySet()) {
                     Hrac hrac = en.getKey();
                     int[] tab = en.getValue();
@@ -267,13 +389,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         }
     }
 
-    private void naplnHarmonogram(Turnaj t) {
-        if (t.getStage() == null) {
-            logger.info("Harmonogram este nebol vygenerovany.");
-            return;
-        }
-    }
-
     @Override
     public void refresh() {
         this.controller.setPrebiehajuciTurnaj(null);
@@ -284,8 +399,15 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArchivovat;
     private javax.swing.JButton btnGenerujHarmnogram;
+    private javax.swing.JButton btnOK;
     private javax.swing.JButton btnZapisatVysledok;
+    private javax.swing.JComboBox<String> cbHrac1;
+    private javax.swing.JComboBox<String> cbHrac2;
+    private javax.swing.JPanel dialogMainPane;
+    private javax.swing.JDialog dialogZadatVysledok;
     private javax.swing.JLabel labelDataFormat;
+    private javax.swing.JLabel labelDataHrac1;
+    private javax.swing.JLabel labelDataHrac2;
     private javax.swing.JLabel labelDataMiestoKonania;
     private javax.swing.JLabel labelDataNazovTurnaja;
     private javax.swing.JLabel labelDataPocetHracov;
@@ -298,6 +420,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     private javax.swing.JLabel labelPocetHracov;
     private javax.swing.JLabel labelPravePrebiehaTurnaj;
     private javax.swing.JLabel labelZaciatok;
+    private javax.swing.JLabel labelZadatVysledok;
     private javax.swing.JPanel prebiehajuciTurnajPane;
     private javax.swing.JScrollPane scrollPaneHarmonogram;
     private javax.swing.JScrollPane scrollPaneTabulka;

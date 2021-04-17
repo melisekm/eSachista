@@ -83,13 +83,14 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
             Element zapasyElement = doc.createElement("zapasy");
             turnajElement.appendChild(zapasyElement);
 
-            LinkedHashMap<Integer, Integer> zapasy = turnaj.getStage().getZapasy();
-            Zapas newZapas = new Zapas();
-            String casZacatiaZapasu = this.getCasZacatiaZapasu(newZapas);
-            
+            LinkedHashMap<Integer, Integer> zapasy = turnaj.getStage().getParovanie();
+
             for (Map.Entry<Integer, Integer> zapas : zapasy.entrySet()) {
                 String prvyHrac = String.valueOf(zapas.getKey());
                 String druhyHrac = String.valueOf(zapas.getValue());
+
+                Zapas newZapas = new Zapas();
+                String casZacatiaZapasu = this.getCasZacatiaZapasu(newZapas);
 
                 newZapas.setHrac1(turnaj.getHraci().get(zapas.getKey()));
                 newZapas.setHrac2(turnaj.getHraci().get(zapas.getValue()));
@@ -99,6 +100,13 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
 
                 turnaj.getHraci().get(zapas.getKey()).getZapasy().add(newZapas);
                 turnaj.getHraci().get(zapas.getValue()).getZapasy().add(newZapas);
+                turnaj.getZapasy().put(newZapas, turnaj.getStage().getKolo() - 1);
+            }
+            for (Map.Entry<Zapas, Integer> entry : turnaj.getZapasy().entrySet()) {
+                Zapas key = entry.getKey();
+                Integer value = entry.getValue();
+                logger.debug("KOLO: = " + key);
+                logger.debug("value = " + value);
             }
 
             // for output to file, console
@@ -128,12 +136,12 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
             zapasElement.appendChild(createZapasDetails(doc, "cierny", hrac1));
             zapasElement.appendChild(createZapasDetails(doc, "biely", hrac2));
             z.setHrac1Figurky(FarbaFiguriek.CIERNA);
-            z.setHrac1Figurky(FarbaFiguriek.BIELA);
+            z.setHrac2Figurky(FarbaFiguriek.BIELA);
         } else {
             zapasElement.appendChild(createZapasDetails(doc, "biely", hrac1));
             zapasElement.appendChild(createZapasDetails(doc, "cierny", hrac2));
             z.setHrac1Figurky(FarbaFiguriek.CIERNA);
-            z.setHrac1Figurky(FarbaFiguriek.BIELA);
+            z.setHrac2Figurky(FarbaFiguriek.BIELA);
         }
         zapasElement.appendChild(createZapasDetails(doc, "vyherca", vyherca));
 
