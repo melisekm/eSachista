@@ -20,7 +20,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
         sorter.setSortKeys(sortKeys);
         this.showTurnajInfo(vybratyTurnaj);
     }
@@ -107,7 +107,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Meno hráèa", "Poèet zápasov", "Poèet bodov"
+                "Meno hráèa", "ELO", "Poèet zápasov", "Poèet bodov"
             }
         ));
         scrollPaneTabulka.setViewportView(tableHraci);
