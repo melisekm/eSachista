@@ -6,7 +6,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.io.XMLTurnajReader;
-import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 

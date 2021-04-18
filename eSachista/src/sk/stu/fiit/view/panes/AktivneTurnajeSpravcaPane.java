@@ -44,7 +44,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         tableHarmonogram.getColumnModel().getColumn(0).setMaxWidth(0);
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
-        sorter.toggleSortOrder(4);
+        sorter.toggleSortOrder(2);
         btnArchivovat.setVisible(false);
     }
 
@@ -257,7 +257,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             logger.info("Turnaj je dohrany.");
             JOptionPane.showMessageDialog(this, "Turnaj je dohrany");
             btnArchivovat.setVisible(true);
-//            this.zobrazVysledky(this.controller.getPrebiehajuciTurnaj());
             return;
         }
         btnArchivovat.setVisible(false);

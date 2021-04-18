@@ -102,7 +102,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         ));
         scrollPaneTabulka.setViewportView(tableHraci);
 
-        getContentPane().add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 340, 160));
+        getContentPane().add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 340, 160));
 
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));

@@ -3,6 +3,7 @@ package sk.stu.fiit.main;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.database.Database;
@@ -18,17 +19,30 @@ public class Main {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(Main.class);
 
-    private final static String testovaciaDB = "..\\demo\\demo.vava";
-
     private static boolean loadDemoDB = false;
 
-    private static boolean saveDefaultDB = true;
+    private static boolean saveDefaultDB = false;
 
     static {
+        Database.createDatabase(); // prazdna DB
+
+    }
+
+    public static void main(String[] args) {
+        logger.info("Spustam aplikaciu");
+        int res = JOptionPane.showConfirmDialog(null, "Spravca?", "DEBUG", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            loadDemoDB = false;
+            saveDefaultDB = true;
+
+        } else {
+            loadDemoDB = true;
+            saveDefaultDB = false;
+
+        }
         if (loadDemoDB) {
-            logger.info("DEMO DB je zapnuta");
+            logger.info("DB ZO SUBORA");
             try {
-//                new IOManager().loadDatabase(new File(testovaciaDB));
                 Database.createDatabase(); // prazdna DB
                 Database.getInstance().getOrganizacie().add(new IOManager().loadOrg());
 
@@ -38,19 +52,17 @@ public class Main {
             } catch (ClassNotFoundException ex) {
                 logger.error("Nacitala sa nekompatibilna trieda");
                 logger.error(ex.getClass().toString());
-                Database.createDatabase(); // prazdna DB
                 DataLoader.loadData();
             }
         } else {
-            logger.info("DEMO DB je vypnuta.");
-            Database.createDatabase(); // prazdna DB
+            logger.info("DEFAULTNA DB.");
             DataLoader.loadData();
         }
         if (saveDefaultDB) {
             Date now = new Date();
             Calendar cal = Calendar.getInstance();
             cal.setTime(now);
-            cal.add(Calendar.MINUTE, 10);
+            cal.add(Calendar.MINUTE, 0);
 
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setDatumKonania(cal.getTime());
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
@@ -62,10 +74,6 @@ public class Main {
                 logger.error(ex.getClass().toString());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        logger.info("Spustam aplikaciu");
         EntryFrame.main();
     }
 

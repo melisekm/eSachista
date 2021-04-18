@@ -197,7 +197,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         cbDohrany.setEnabled(false);
         add(cbDohrany, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
-        jButton1.setText("Zobraziù v˝sledky/if/dohrany");
+        jButton1.setText("Zobraziù v˝sledky/if/dohranyTODo");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
