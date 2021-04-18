@@ -24,7 +24,16 @@ public class Zapas implements Serializable {
 
     @Override
     public String toString() {
-        return "Zapas{" + "turnaj=" + turnaj + ", hrac1=" + hrac1 + ", hrac2=" + hrac2 + ", casZaciatku=" + casZaciatku + ", vyherca=" + vyherca + ", hrac1Figurky=" + hrac1Figurky + ", hrac2Figurky=" + hrac2Figurky + '}';
+        String res = "0:0";
+        if (vyherca != null) {
+            if (vyherca.getLogin().equals(hrac1.getLogin())) {
+                res = "1:0";
+            } else if (vyherca.getLogin().equals(hrac2.getLogin())) {
+                res = "0:1";
+            }
+        }
+
+        return hrac1.getMeno() + " " + res + " " + hrac2.getMeno() + " " + casZaciatku;
     }
 
     public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {

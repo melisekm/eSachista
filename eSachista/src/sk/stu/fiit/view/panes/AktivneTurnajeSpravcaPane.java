@@ -7,10 +7,14 @@ package sk.stu.fiit.view.panes;
 
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -44,7 +48,9 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         tableHarmonogram.getColumnModel().getColumn(0).setMaxWidth(0);
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
-        sorter.toggleSortOrder(2);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sorter.setSortKeys(sortKeys);
         btnArchivovat.setVisible(false);
     }
 
@@ -182,9 +188,17 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
 
             },
             new String [] {
-                "Meno hráèa", "Poèet zápasov", "Poèet bodov"
+                "Meno hráèa", "ELO", "Poèet zápasov", "Poèet bodov"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         scrollPaneTabulka.setViewportView(tableHraci);
 
         prebiehajuciTurnajPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 350, 280));
@@ -370,6 +384,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
                     int[] tab = en.getValue();
                     model.addRow(new Object[]{
                         hrac,
+                        hrac.getELO(),
                         tab[0],
                         tab[1]
                     });

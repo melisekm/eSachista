@@ -10,12 +10,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.AktivneTurnajeHracController;
 import sk.stu.fiit.controller.HracController;
-import sk.stu.fiit.database.Database;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
@@ -55,7 +56,9 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         initComponents();
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
-        sorter.toggleSortOrder(2);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sorter.setSortKeys(sortKeys);
         labelArrow.setVisible(false);
         labelNovaVerzia.setVisible(false);
     }
@@ -109,9 +112,17 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
             },
             new String [] {
-                "Meno hráèa", "Poèet zápasov", "Poèet bodov"
+                "Meno hráèa", "ELO", "Poèet zápasov", "Poèet bodov"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         scrollPaneTabulka.setViewportView(tableHraci);
 
         vysledkyPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 280));
@@ -332,6 +343,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             int[] tab = en.getValue();
             model.addRow(new Object[]{
                 hrac,
+                hrac.getELO(),
                 tab[0],
                 tab[1]
             });
@@ -378,6 +390,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
     private void zobrazPrebiehajuciTurnaj() {
         this.prebiehajuciTurnaj = this.controller.getZacatyTurnaj(this.controller.getPrihlasenyHrac().getTurnaje());
+        this.nastavTimer();
         if (this.prebiehajuciTurnaj == null) {
             turnajPane.setVisible(false);
             labelNeprebiehaTurnaj.setVisible(true);
@@ -385,7 +398,6 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             vysledkyPane.setVisible(false);
             return;
         }
-        this.nastavTimer();
         this.naplnTurnajPane(this.prebiehajuciTurnaj);
         turnajPane.setVisible(true);
         labelNeprebiehaTurnaj.setVisible(false);
@@ -401,31 +413,37 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
     }
 
     private void nastavTimer() {
-        if (this.prebiehajuciTurnaj == null || this.harmonogramAktualizacia == null) {
-            labelArrow.setVisible(false);
-            labelNovaVerzia.setVisible(false);
-        } else {
-            if (this.timer != null) {
-                this.timer.stop();
-            }
-            this.timer = new Timer(2000, new TimeActionListener(this.harmonogramAktualizacia, this.controller.getTurnajId(prebiehajuciTurnaj)));
-            this.timer.setInitialDelay(0);
-            this.timer.start();
+        if (this.timer != null) {
+            this.timer.stop();
         }
+        this.timer = new Timer(2000, new TimeActionListener(this.controller.getTurnajId(prebiehajuciTurnaj)));
+        this.timer.setInitialDelay(0);
+        this.timer.start();
     }
 
     private class TimeActionListener implements ActionListener {
 
-        private Date time;
-        private File file;
+        private int id;
 
-        public TimeActionListener(Date time, int id) {
-            this.time = time;
-            this.file = new File("resources/turnaje/" + id + "/harmonogram.xml");
+        public TimeActionListener(int id) {
+            this.id = id;
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
-            if (file.exists() && file.lastModified() > time.getTime()) {
+            if (prebiehajuciTurnaj == null) {
+                return;
+            }
+            int id;
+            if (this.id != -1) {
+                id = this.id;
+            } else if (controller.getIdPrebiehajuciTurnaj() != -1) {
+                id = controller.getIdPrebiehajuciTurnaj();
+            } else {
+                id = controller.getTurnajId(prebiehajuciTurnaj);
+            }
+            File file = new File("resources/turnaje/" + id + "/harmonogram.xml");
+            if (file.exists() && (harmonogramAktualizacia == null || (file.lastModified() > harmonogramAktualizacia.getTime()))) {
                 labelArrow.setVisible(true);
                 labelNovaVerzia.setVisible(true);
             } else {

@@ -1,5 +1,11 @@
 package sk.stu.fiit.view.dialogs;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
@@ -8,10 +14,14 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
  */
 public class TurnajInfoDialog extends javax.swing.JDialog {
 
-    
     public TurnajInfoDialog(java.awt.Frame parent, boolean modal, Turnaj vybratyTurnaj) {
         super(parent, modal);
         initComponents();
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
+        tableHraci.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
         this.showTurnajInfo(vybratyTurnaj);
     }
 
@@ -113,7 +123,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showTurnajInfo(Turnaj t){
+    private void showTurnajInfo(Turnaj t) {
         //bla bla bla TODO
     }
 

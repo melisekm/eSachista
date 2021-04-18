@@ -18,6 +18,7 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
     private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajeHracController.class);
 
     private ArrayList<Zapas> harmonogram;
+    private int idPrebiehajuciTurnaj = -1;
 
     public Turnaj getZacatyTurnaj(ArrayList<Turnaj> turnaje) {
         logger.info("Kontrolujem ci prave teraz bezi nejaky turnaj.");
@@ -33,17 +34,23 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
 
     public int getTurnajId(Turnaj prebiehajuciTurnaj) {
         logger.info("Hladam id turnaja s id z databazy");
+        if (prebiehajuciTurnaj == null) {
+            logger.info("neprebieha ziadny turnaj.");
+            return -1;
+        }
         int id = 0;
         for (Turnaj turnaj : this.getTurnaje()) {
-            if (turnaj == prebiehajuciTurnaj) {
+            if (turnaj.getNazov().equals(prebiehajuciTurnaj.getNazov())) {
                 if (new File("resources/turnaje/" + id + "/harmonogram.xml").exists()) {
                     logger.info("podarilo sa mi sparovat turnaj a vraciam id " + id);
+                    this.idPrebiehajuciTurnaj = id;
                     return id;
                 }
             }
             id++;
         }
         logger.info("nenasiel som ziadny turnaj.");
+        this.idPrebiehajuciTurnaj = -1;
         return -1;
     }
 
@@ -61,8 +68,8 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
             return null;
         }
         for (Zapas zapas : this.harmonogram) {
-            boolean jeToHrac1 = zapas.getHrac1().getLogin() == this.getPrihlasenyHrac().getLogin();
-            boolean jeToHrac2 = zapas.getHrac2().getLogin() == this.getPrihlasenyHrac().getLogin();
+            boolean jeToHrac1 = zapas.getHrac1().getLogin().equals(this.getPrihlasenyHrac().getLogin());
+            boolean jeToHrac2 = zapas.getHrac2().getLogin().equals(this.getPrihlasenyHrac().getLogin());
             boolean figurujeHracVzapase = Boolean.logicalOr(jeToHrac1, jeToHrac2);
             if (figurujeHracVzapase) {
                 logger.info("Nasiel som prihlaseneho hraca ktory figuruje v zapase");
@@ -80,4 +87,13 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
     public void setHarmonogram(ArrayList<Zapas> harmonogram) {
         this.harmonogram = harmonogram;
     }
+
+    public int getIdPrebiehajuciTurnaj() {
+        return idPrebiehajuciTurnaj;
+    }
+
+    public void setIdPrebiehajuciTurnaj(int idPrebiehajuciTurnaj) {
+        this.idPrebiehajuciTurnaj = idPrebiehajuciTurnaj;
+    }
+
 }

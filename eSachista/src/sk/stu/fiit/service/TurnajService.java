@@ -94,6 +94,10 @@ public class TurnajService extends Service {
         turnaj.getStage().getTabulka().get(zapas.getVyherca())[1]++;
         turnaj.getStage().getTabulka().get(zapas.getHrac1())[0]++;
         turnaj.getStage().getTabulka().get(zapas.getHrac2())[0]++;
+
+        zapas.getHrac1().setELO(this.modifikujELO(zapas.getHrac1(), zapas.getHrac2(), zapas.getVyherca()));
+        zapas.getHrac2().setELO(this.modifikujELO(zapas.getHrac2(), zapas.getHrac1(), zapas.getVyherca()));
+
         String dir = "resources/turnaje/" + turnajId;
         logger.info("Upravujem vysledok v harmonograme " + dir);
         String path = dir + "/harmonogram.xml";
@@ -108,5 +112,30 @@ public class TurnajService extends Service {
 
         XMLTurnajModifier xmlTurnajModifier = new XMLTurnajModifier(path);
         xmlTurnajModifier.modifyXML(String.valueOf(idx));
+    }
+
+    /**
+     * @see
+     * https://github.com/radoneman/elo-rating-multiplayer/blob/master/src/com/elo/EloRating.java
+     */
+    private int modifikujELO(Hrac hrac1, Hrac hrac2, Hrac vyherca) {
+        double actualScore;
+        if (hrac1 == vyherca) {
+            actualScore = 1.0;
+        } else {
+            actualScore = 0;
+        }
+
+        // calculate expected outcome
+        double exponent = (double) (hrac2.getELO() - hrac1.getELO()) / 400;
+        double expectedOutcome = (1 / (1 + (Math.pow(10, exponent))));
+
+        // K-factor
+        int K = 32;
+
+        // calculate new rating
+        int newRating = (int) Math.round(hrac1.getELO() + K * (actualScore - expectedOutcome));
+
+        return newRating;
     }
 }

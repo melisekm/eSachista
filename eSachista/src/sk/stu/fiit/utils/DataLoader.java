@@ -22,10 +22,12 @@ public class DataLoader {
 
     public static void loadData() {
         Database db = Database.getInstance();
-        vytvorOrganizaciu(db);
-        pridajHracov(db, 0);
-        pridajTurnaj(db, 0);
-        pridajHracovNaTurnaj(db, 0, 0);
+//        vytvorOrganizaciu(db);
+//        pridajHracov(db, 0);
+//        pridajTurnaj(db, 0, "Turnaj dekana", "Online", "Turnaj online");
+        pridajTurnaj(db, 0, "FIITkarsky turnaj", "FIIT", "Turnaj na skole");
+//        pridajHracovNaTurnaj(db, 0, 0);
+        pridajHracovNaTurnaj(db, 0, 1);
     }
 
     private static void vytvorOrganizaciu(Database db) {
@@ -59,7 +61,7 @@ public class DataLoader {
         return tmp;
     }
 
-    private static void pridajTurnaj(Database db, int orgId) {
+    private static void pridajTurnaj(Database db, int orgId, String nazov, String miesto, String popis) {
         Organizacia org = db.getOrganizacie().get(orgId);
         TurnajObmedzenia turnajObmedzenia = new TurnajObmedzenia(1, 3500, 99);
         TurnajTempoHry turnajTempoHry = new TurnajTempoHry(10, 0, 5);
@@ -68,7 +70,7 @@ public class DataLoader {
         cal.setTime(now);
         cal.add(Calendar.MINUTE, 10);
         Turnaj t = new Turnaj(TurnajFormat.ROUND_ROBIN,
-                "Turnaj Dekana", "Online", cal.getTime(), "Turnaj na skole", turnajTempoHry, turnajObmedzenia);
+                nazov, miesto, cal.getTime(), popis, turnajTempoHry, turnajObmedzenia);
         org.getTurnaje().add(t);
     }
 
