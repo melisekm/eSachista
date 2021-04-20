@@ -106,7 +106,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
 
         EditovatSpravcuDialog.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 310));
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -114,6 +114,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         add(labelLogoOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 160));
 
         labelNazovOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelNazovOrgPrehlad.setForeground(new java.awt.Color(67, 106, 179));
         labelNazovOrgPrehlad.setText("Názov organizácie");
         add(labelNazovOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 

@@ -65,7 +65,7 @@ public class Main {
             cal.setTime(now);
             cal.add(Calendar.MINUTE, 5);
             
-//            DataLoader.loadData();
+            DataLoader.loadData();
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(1).setDatumKonania(cal.getTime());
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(1).setStage(null);
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(1).setFinished(false);

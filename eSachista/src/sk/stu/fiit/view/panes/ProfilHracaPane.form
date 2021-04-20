@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="f7" green="f3" red="f0" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -67,7 +67,7 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4a" green="2a" red="1" type="rgb"/>
+          <Color blue="ac" green="6b" red="36" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cpavok"/>
       </Properties>
@@ -80,7 +80,7 @@
     <Component class="javax.swing.JLabel" name="labelPrezyvka">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
+          <Color blue="5c" green="58" red="56" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Prezyvka"/>
       </Properties>
@@ -187,7 +187,7 @@
         <Component class="javax.swing.JList" name="listZapasy">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e5" green="d6" red="a9" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -218,7 +218,7 @@
         <Component class="javax.swing.JList" name="listTurnaje">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e5" green="d6" red="a9" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
@@ -274,7 +274,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4a" green="2a" red="1" type="rgb"/>
+          <Color blue="12" green="b0" red="ee" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Z&#xc1;PASY"/>
       </Properties>
@@ -290,7 +290,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4a" green="2a" red="1" type="rgb"/>
+          <Color blue="12" green="b0" red="ee" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="TURNAJE"/>
       </Properties>
@@ -319,7 +319,7 @@
     <Container class="javax.swing.JPanel" name="paneStatistiky">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e5" green="d6" red="a9" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -454,7 +454,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4a" green="2a" red="1" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x160;TATISTIKY"/>
           </Properties>

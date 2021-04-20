@@ -76,7 +76,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         cbDohrany = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

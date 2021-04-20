@@ -61,7 +61,7 @@ public class HracFrame extends javax.swing.JFrame {
             }
         });
         this.registerPanes();
-        mainTabPane.setBackground(new java.awt.Color(42,111,151));
+        mainTabPane.setBackground(new java.awt.Color(255,255,255));
         mainTabPane.setForeground(new java.awt.Color(0, 0, 0));
         mainTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         mainTabPane.setFont(new java.awt.Font("Segoe UI", 0, 15));
@@ -171,7 +171,7 @@ public class HracFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HracFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Color c = new Color(1, 73, 124);
+        Color c = new Color(59, 166, 235);
         javax.swing.UIManager.put("TabbedPane.selected", c);
 
         /* Create and display the form */

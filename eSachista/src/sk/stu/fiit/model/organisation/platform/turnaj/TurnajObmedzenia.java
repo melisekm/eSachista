@@ -21,7 +21,7 @@ public class TurnajObmedzenia implements Serializable{
     public String getRatingObmedzenie(){
         return String.format("%d - %d", this.minRating, this.maxRating);
     }
-
+    
     public int getMinRating() {
         return minRating;
     }

@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="f7" green="f3" red="f0" type="rgb"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[900, 560]"/>
@@ -71,7 +71,7 @@
     <Container class="javax.swing.JPanel" name="turnajPane">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="f7" green="f3" red="f0" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -112,7 +112,7 @@
               <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4a" green="2a" red="1" type="rgb"/>
+              <Color blue="ac" green="6b" red="36" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pr&#xe1;ve prebieha turnaj:"/>
           </Properties>
@@ -188,7 +188,7 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="N&#xe1;zov turnaja:"/>
           </Properties>
@@ -207,7 +207,7 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Za&#x10d;iatok:"/>
           </Properties>
@@ -245,7 +245,7 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Po&#x10d;et hr&#xe1;&#x10d;ov:"/>
           </Properties>
@@ -317,7 +317,7 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Miesto konania:"/>
           </Properties>
@@ -336,7 +336,7 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="b0" red="ee" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Form&#xe1;t:"/>
           </Properties>
@@ -446,7 +446,7 @@
     <Container class="javax.swing.JPanel" name="mainPane">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e5" green="d6" red="a9" type="rgb"/>
+          <Color blue="12" green="b0" red="ee" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -468,7 +468,7 @@
               <Font name="Segoe UI" size="14" style="2"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nem&#xe1;te napl&#xe1;novan&#xfd; &#x17e;iadny turnaj..."/>
           </Properties>
@@ -527,7 +527,7 @@
             <Component class="javax.swing.JList" name="listTurnaje">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d9" green="c2" red="89" type="rgb"/>
+                  <Color blue="ac" green="6b" red="36" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>

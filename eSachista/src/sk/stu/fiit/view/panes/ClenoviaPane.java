@@ -54,11 +54,12 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         btnUpravit = new javax.swing.JButton();
         comboBoxClenovia = new javax.swing.JComboBox<>();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelClenovia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelClenovia.setForeground(new java.awt.Color(67, 106, 179));
         labelClenovia.setText("Èlenovia");
         add(labelClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
@@ -66,8 +67,8 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         labelPocetClenov.setText("poèet èlenov");
         add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
-        listClenovia.setBackground(new java.awt.Color(169, 214, 229));
-        listClenovia.setForeground(new java.awt.Color(255, 255, 255));
+        listClenovia.setBackground(new java.awt.Color(255, 255, 255));
+        listClenovia.setForeground(new java.awt.Color(68, 68, 68));
         listClenovia.setModel(new DefaultListModel<Pouzivatel>());
         listClenovia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listClenovia.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,7 +91,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         });
         add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, 30));
 
-        comboBoxClenovia.setBackground(new java.awt.Color(137, 194, 217));
+        comboBoxClenovia.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxClenovia.setForeground(new java.awt.Color(1, 42, 74));
         comboBoxClenovia.setModel(new DefaultComboBoxModel<Pouzivatel>());
         add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 30));
