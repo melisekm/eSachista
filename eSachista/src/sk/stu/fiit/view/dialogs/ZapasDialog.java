@@ -5,8 +5,14 @@
  */
 package sk.stu.fiit.view.dialogs;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.FarbaFiguriek;
 import sk.stu.fiit.model.organisation.platform.Zapas;
@@ -17,6 +23,7 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
  */
 public class ZapasDialog extends javax.swing.JDialog {
 
+    private static final Logger logger = LoggerFactory.getLogger(ZapasDialog.class);
     private Zapas zapas;
 
     public ZapasDialog(JFrame parent, boolean modal, Zapas zapas) {
@@ -140,7 +147,13 @@ public class ZapasDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPripojitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitSaMouseReleased
-        System.out.println("NOT YET IMPLEMENTED.");
+        try {
+            Desktop.getDesktop().browse(new URI("http://www.chess.com"));
+        } catch (URISyntaxException ex) {
+            logger.error(ex.getMessage());
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnPripojitSaMouseReleased

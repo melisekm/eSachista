@@ -33,7 +33,6 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
     }
 
     public int getTurnajId(Turnaj prebiehajuciTurnaj) {
-        logger.info("Hladam id turnaja s id z databazy");
         if (prebiehajuciTurnaj == null) {
             logger.info("neprebieha ziadny turnaj.");
             return -1;
@@ -49,7 +48,6 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
             }
             id++;
         }
-        logger.info("nenasiel som ziadny turnaj.");
         this.idPrebiehajuciTurnaj = -1;
         return -1;
     }
