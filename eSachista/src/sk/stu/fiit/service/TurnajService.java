@@ -1,6 +1,9 @@
 package sk.stu.fiit.service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.io.XMLTurnajModifier;
@@ -9,6 +12,7 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
+import sk.stu.fiit.model.organisation.platform.turnaj.stages.SingleEliminationStage;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
@@ -29,6 +33,8 @@ public class TurnajService extends Service {
         switch (turnaj.getFormat()) {
             case ROUND_ROBIN:
                 return advanceRoundRobin(turnaj);
+            case SINGLE_ELIMINATION:
+                return advanceSingleElimination(turnaj);
             default:
                 throw new AssertionError();
         }
@@ -45,24 +51,26 @@ public class TurnajService extends Service {
         xmlTurnajWriter.writeTurnaj(t);
     }
 
-    private Stage vygenerujStage(Turnaj t) {
-        logger.info("generujem stage pre turnaj " + t.getNazov());
-        switch (t.getFormat()) {
+    private Stage vygenerujStage(Turnaj turnaj) {
+        logger.info("generujem stage pre turnaj " + turnaj.getNazov());
+        int pocetKol;
+        switch (turnaj.getFormat()) {
             case ROUND_ROBIN:
                 logger.info("jedna sa o RoundRobin Turnaj");
-                RoundRobinStage roundRobinStage = new RoundRobinStage(t);
-                for (int hracId = 0; hracId < t.getHraci().size(); hracId++) {
+                pocetKol = turnaj.getHraci().size() - 1;
+                RoundRobinStage roundRobinStage = new RoundRobinStage(turnaj, pocetKol);
+                for (int hracId = 0; hracId < turnaj.getHraci().size(); hracId++) {
                     roundRobinStage.getZoznamHracov().add(hracId);
                 }
-                if (t.getHraci().size() % 2 != 0) {
+                if (turnaj.getHraci().size() % 2 != 0) {
                     roundRobinStage.getZoznamHracov().add(-1);
                 }
                 roundRobinStage.getZoznamHracov().remove(0);
                 roundRobinStage.setPocetHracov(roundRobinStage.getZoznamHracov().size());
                 return roundRobinStage;
-//                case SINGLE_ELIMINATION: TODO
-//                    t.setStage(new RoundRobinStage());
-//                    break;
+            case SINGLE_ELIMINATION:
+                pocetKol = (int) (Math.log(turnaj.getHraci().size()) / Math.log(2));
+                return new SingleEliminationStage(turnaj, pocetKol);
             default:
                 throw new AssertionError();
         }
@@ -85,6 +93,51 @@ public class TurnajService extends Service {
             stage.getParovanie().put(stage.getZoznamHracov().get(prvyHrac), stage.getZoznamHracov().get(druhyHrac));
         }
         logger.info("posunul som roundrobin kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
+        stage.setKolo(stage.getKolo() + 1);
+        return true;
+
+    }
+
+    private boolean advanceSingleElimination(Turnaj turnaj) {
+        logger.info("posuvam single elimination turnaj do dalsieho kola");
+        SingleEliminationStage stage = (SingleEliminationStage) turnaj.getStage();
+        if (stage.getKolo() == stage.getPocetKol()) {
+            turnaj.setFinished(true);
+            logger.info("Uz bolo odohrane posledne kolo. " + stage.getKolo() + "/" + stage.getPocetKol());
+            return false;
+        }
+        stage.getParovanie().clear();
+        if (stage.getKolo() == 0) {
+            int pocetParov = najblizsiaMocnina2(turnaj.getHraci().size());
+            for (int i = 0; i < pocetParov; i += 2) {
+                if (i >= turnaj.getHraci().size()) {
+                    stage.getParovanie().put(-1, -1);
+                } else if (i + 1 >= turnaj.getHraci().size()) {
+                    stage.getParovanie().put(i, -1);
+                } else {
+                    stage.getParovanie().put(i, i + 1);
+                }
+            }
+        } else {
+            int i = 0;
+            Hrac vyherca1 = null;
+            Hrac vyherca2;
+            for (Map.Entry<Zapas, Integer> entry : turnaj.getZapasy().entrySet()) {
+                Zapas zapas = entry.getKey();
+                Integer kolo = entry.getValue();
+                if (kolo == stage.getKolo() - 1) {
+                    if (i % 2 == 0) {
+                        vyherca1 = zapas.getVyherca();
+                    } else {
+                        vyherca2 = zapas.getVyherca();
+                        stage.getParovanie().put(turnaj.getHraci().indexOf(vyherca1), turnaj.getHraci().indexOf(vyherca2));
+                    }
+                    i++;
+                }
+            }
+        }
+
+        logger.info("posunul som single elim kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);
         return true;
 
@@ -137,5 +190,13 @@ public class TurnajService extends Service {
         int newRating = (int) Math.round(hrac1.getELO() + K * (actualScore - expectedOutcome));
 
         return newRating;
+    }
+
+    private int najblizsiaMocnina2(int x) {
+        int power = 1;
+        while (power < x) {
+            power *= 2;
+        }
+        return power;
     }
 }

@@ -24,7 +24,7 @@ import sk.stu.fiit.controller.AktivneTurnajeSpravcaController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
-import sk.stu.fiit.model.organisation.platform.turnaj.stages.RoundRobinStage;
+import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
@@ -314,12 +314,12 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }//GEN-LAST:event_btnOKMouseReleased
 
     private void updateHarmonogramTable() {
+        DefaultTableModel model = (DefaultTableModel) tableHarmonogram.getModel();
+        model.setRowCount(0);
         if (this.controller.getPrebiehajuciTurnaj().getStage() == null) {
             logger.info("Harmonogram este nebol vygenerovany.");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel) tableHarmonogram.getModel();
-        model.setRowCount(0);
         for (Map.Entry<Zapas, Integer> entry : this.controller.getPrebiehajuciTurnaj().getZapasy().entrySet()) {
             Zapas zapas = entry.getKey();
             Integer kolo = entry.getValue();
@@ -370,28 +370,22 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }
 
     private void naplnTabulkuHracov() {
+        DefaultTableModel model = (DefaultTableModel) tableHraci.getModel();
+        model.setRowCount(0);
         if (this.controller.getPrebiehajuciTurnaj().getStage() == null) {
             logger.info("Harmonogram este nebol vygenerovany.");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel) tableHraci.getModel();
-        model.setRowCount(0);
-        switch (this.controller.getPrebiehajuciTurnaj().getFormat()) { // TODO zjednotit pre vsetky stage
-            case ROUND_ROBIN:
-                RoundRobinStage stage = ((RoundRobinStage) this.controller.getPrebiehajuciTurnaj().getStage());
-                for (Map.Entry<Hrac, int[]> en : stage.getTabulka().entrySet()) {
-                    Hrac hrac = en.getKey();
-                    int[] tab = en.getValue();
-                    model.addRow(new Object[]{
-                        hrac,
-                        hrac.getELO(),
-                        tab[0],
-                        tab[1]
-                    });
-                }
-                break;
-            default:
-                throw new AssertionError();
+        Stage stage = this.controller.getPrebiehajuciTurnaj().getStage();
+        for (Map.Entry<Hrac, int[]> en : stage.getTabulka().entrySet()) {
+            Hrac hrac = en.getKey();
+            int[] tab = en.getValue();
+            model.addRow(new Object[]{
+                hrac,
+                hrac.getELO(),
+                tab[0],
+                tab[1]
+            });
         }
 
     }

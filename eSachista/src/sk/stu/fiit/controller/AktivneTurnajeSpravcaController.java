@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 
 /**
  *
@@ -80,19 +81,17 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
 
     public boolean skontrolujZadanePocetVysledkov() {
         if (this.prebiehajuciTurnaj.getStage() == null) {
-            return false; // ak neexistuje stage tak este nic nebolo vygenerovane.
+            return true; // ak neexistuje stage tak este nic nebolo vygenerovane.
         }
-        int pocetVysledkov = 0;
         for (Map.Entry<Zapas, Integer> entry : this.prebiehajuciTurnaj.getZapasy().entrySet()) {
             Zapas zapas = entry.getKey();
             Integer kolo = entry.getValue();
             if (kolo == this.prebiehajuciTurnaj.getStage().getKolo() - 1) {
-                if (zapas.getVyherca() != null) { // hladame zapasy len tohto kola
-                    pocetVysledkov++; // vyherca bol zadany
+                if (zapas.getVyherca() == null) { // hladame zapasy len tohto kola
+                    return true;
                 }
             }
-        } // ak su 4 hraci tak sa 2x zadava vysledok.
-        return pocetVysledkov < this.prebiehajuciTurnaj.getHraci().size() / 2;
+        }
+        return false;
     }
-
 }

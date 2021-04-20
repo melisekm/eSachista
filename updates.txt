@@ -1,5 +1,1 @@
-- pridany button na serializaciu {treba upravit design}
-v maine je cesta odkial sa nacitava db - pridam tento subor do githubu a mozes si to prepisat
-da sa nacitat celu db, cize napr preskocenie vyplnovania tych prvotnych veci u usera a tak.
-
-internacionalizacia je opat fucked up
+TODO: FREE WINY že ked je -1 niekde zapisane čo sa zobrazi, čo sa stane a ako to moze spravca vyhodnotit

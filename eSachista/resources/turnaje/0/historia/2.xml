@@ -2,15 +2,15 @@
     <turnaj id="1">
         <zapasy>
             <zapas>
-                <datum>0:53</datum>
+                <datum>1:3</datum>
                 <biely>0</biely>
                 <cierny>1</cierny>
                 <vyherca>0</vyherca>
             </zapas>
             <zapas>
-                <datum>0:53</datum>
-                <biely>2</biely>
-                <cierny>3</cierny>
+                <datum>1:3</datum>
+                <cierny>2</cierny>
+                <biely>3</biely>
                 <vyherca>2</vyherca>
             </zapas>
         </zapasy>
