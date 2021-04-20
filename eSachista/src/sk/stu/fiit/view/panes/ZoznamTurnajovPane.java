@@ -56,12 +56,12 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
         btnPrihlasitSa = new javax.swing.JButton();
         btnDetaily = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 610));
         setPreferredSize(new java.awt.Dimension(900, 610));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tableTurnaje.setBackground(new java.awt.Color(204, 204, 204));
+        tableTurnaje.setBackground(new java.awt.Color(255, 255, 255));
         tableTurnaje.setForeground(new java.awt.Color(51, 51, 51));
         tableTurnaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

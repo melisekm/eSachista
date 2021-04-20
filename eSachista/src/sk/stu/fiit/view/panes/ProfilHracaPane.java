@@ -87,7 +87,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         labelDatumNarodeniaData = new javax.swing.JLabel();
         labelPohlavieData = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 243, 247));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelOdohrateZapasy.setBackground(new java.awt.Color(0, 0, 0));
@@ -103,11 +103,11 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         add(labelOdohrateTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
         labelMeno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelMeno.setForeground(new java.awt.Color(1, 42, 74));
+        labelMeno.setForeground(new java.awt.Color(54, 107, 172));
         labelMeno.setText("Cpavok");
         add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
 
-        labelPrezyvka.setForeground(new java.awt.Color(102, 102, 102));
+        labelPrezyvka.setForeground(new java.awt.Color(86, 88, 92));
         labelPrezyvka.setText("Prezyvka");
         add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
@@ -140,7 +140,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         labelRatingData.setText("2641");
         add(labelRatingData, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 70, -1));
 
-        listZapasy.setBackground(new java.awt.Color(169, 214, 229));
+        listZapasy.setBackground(new java.awt.Color(255, 255, 255));
         listZapasy.setForeground(new java.awt.Color(51, 51, 51));
         listZapasy.setModel(new DefaultListModel<Zapas>());
         listZapasy.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -148,7 +148,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, 270));
 
-        listTurnaje.setBackground(new java.awt.Color(169, 214, 229));
+        listTurnaje.setBackground(new java.awt.Color(255, 255, 255));
         listTurnaje.setForeground(new java.awt.Color(51, 51, 51));
         listTurnaje.setModel(new DefaultListModel<Turnaj>());
         listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -171,12 +171,12 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 880, 20));
 
         labelZapasy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelZapasy.setForeground(new java.awt.Color(1, 42, 74));
+        labelZapasy.setForeground(new java.awt.Color(238, 176, 18));
         labelZapasy.setText("ZÁPASY");
         add(labelZapasy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         labelTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelTurnaje.setForeground(new java.awt.Color(1, 42, 74));
+        labelTurnaje.setForeground(new java.awt.Color(238, 176, 18));
         labelTurnaje.setText("TURNAJE");
         add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
 
@@ -185,7 +185,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         labelDatumRegData.setText("12-3-2021");
         add(labelDatumRegData, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, -1));
 
-        paneStatistiky.setBackground(new java.awt.Color(169, 214, 229));
+        paneStatistiky.setBackground(new java.awt.Color(255, 255, 255));
         paneStatistiky.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTurnajeStat.setForeground(new java.awt.Color(0, 0, 0));
@@ -225,7 +225,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         paneStatistiky.add(labelTurnajeData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(1, 42, 74));
+        jLabel7.setForeground(new java.awt.Color(238, 176, 18));
         jLabel7.setText("ŠTATISTIKY");
         paneStatistiky.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
@@ -315,6 +315,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         labelPohlavieData.setText(h.getPohlavie().toString());
         labelOrgData.setText(h.getOrg().getNazov());
         labelRatingData.setText(String.valueOf(h.getELO()));
+        
         iconAvatar.setIcon(h.getAvatar().getImage());
 
         //TODO vypocty zapasov z turnajov, dal by som to do controllera lebo to bude treba aj do listov
