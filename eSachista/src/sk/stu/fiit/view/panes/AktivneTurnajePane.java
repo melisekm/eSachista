@@ -163,13 +163,13 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         turnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         labelNazovTurnaja.setBackground(new java.awt.Color(0, 0, 0));
-        labelNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelNazovTurnaja.setForeground(new java.awt.Color(238, 176, 18));
         labelNazovTurnaja.setText("Názov turnaja:");
         turnajPane.add(labelNazovTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         labelZaciatokTurnaja.setBackground(new java.awt.Color(0, 0, 0));
-        labelZaciatokTurnaja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelZaciatokTurnaja.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelZaciatokTurnaja.setForeground(new java.awt.Color(238, 176, 18));
         labelZaciatokTurnaja.setText("Zaèiatok:");
         turnajPane.add(labelZaciatokTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
@@ -181,7 +181,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         turnajPane.add(labelDataFormatTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         labelPocetTurnajov.setBackground(new java.awt.Color(0, 0, 0));
-        labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelPocetTurnajov.setForeground(new java.awt.Color(238, 176, 18));
         labelPocetTurnajov.setText("Poèet hráèov:");
         turnajPane.add(labelPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
@@ -199,13 +199,13 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         turnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 400, 190));
 
         labelMiestoKonania.setBackground(new java.awt.Color(0, 0, 0));
-        labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelMiestoKonania.setForeground(new java.awt.Color(238, 176, 18));
         labelMiestoKonania.setText("Miesto konania:");
         turnajPane.add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         labelFormat.setBackground(new java.awt.Color(0, 0, 0));
-        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFormat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelFormat.setForeground(new java.awt.Color(238, 176, 18));
         labelFormat.setText("Formát:");
         turnajPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));

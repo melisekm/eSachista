@@ -43,7 +43,7 @@ public class BarChart extends Chart {
         JFreeChart chart = ChartFactory.createBarChart(
                 nadpis,
                 "", //NOI18N
-                "LEFT TEXT",
+                "Poèet hráèov",
                 dataset,
                 PlotOrientation.VERTICAL,
                 false,
@@ -51,7 +51,7 @@ public class BarChart extends Chart {
                 false
         );
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
-        plot.setNoDataMessage(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NENASLI SA ZIADNE ZAZNAMY."));
+        //plot.setNoDataMessage(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NENASLI SA ZIADNE ZAZNAMY."));
         plot.getDomainAxis().setLabelFont(new Font("Dialog", Font.PLAIN, 8)); //NOI18N
 
         //farby

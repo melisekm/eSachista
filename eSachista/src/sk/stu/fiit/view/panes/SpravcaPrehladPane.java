@@ -5,9 +5,17 @@
  */
 package sk.stu.fiit.view.panes;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import javax.swing.JPanel;
 import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Spravca;
+import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.view.charts.BarPieChartFactory;
 
 /**
  *
@@ -15,15 +23,21 @@ import sk.stu.fiit.model.organisation.clients.Spravca;
  */
 public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefresh {
 
+    private JPanel SpravcaPanel;
+    private JPanel SpravcaDatumyPanel;
     private SpravcaController controller;
 
     public SpravcaPrehladPane(SpravcaController controller) {
         this.controller = controller;
         initComponents();
+        this.vyplnBarChart();
+        this.vyplnBarChartDatumy();
     }
 
     public SpravcaPrehladPane() {
         initComponents();
+        this.vyplnBarChart();
+        this.vyplnBarChartDatumy();
     }
 
     private void setSpravcaInfo() {
@@ -34,7 +48,44 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
     }
 
     public void refresh() {
+        this.remove(SpravcaPanel);
+        this.remove(SpravcaDatumyPanel);
+        this.revalidate();
         this.setSpravcaInfo();
+        this.vyplnBarChart();
+        this.vyplnBarChartDatumy();
+        this.repaint();
+    }
+
+    private void vyplnBarChart() {
+        LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
+        for (Turnaj t : this.controller.getTurnaje()) {
+            hraciTurnajeDataset.put(t.getNazov(), ((double) t.getHraci().size()));
+        }
+
+        BarPieChartFactory factory = new BarPieChartFactory();
+        SpravcaPanel = factory.createChart("BAR", "Poèet hráèov v jednotlivých turnajoch", hraciTurnajeDataset);
+        SpravcaPanel.setPreferredSize(new java.awt.Dimension(330, 300));
+        add(SpravcaPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 330, 300));
+    }
+
+    private void vyplnBarChartDatumy() {
+        LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
+        for (Turnaj t : this.controller.getTurnaje()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            String datum = sdf.format(t.getDatumKonania());
+            if (!hraciTurnajeDataset.containsKey(datum)) {
+                hraciTurnajeDataset.put(datum, ((double) t.getHraci().size()));
+            } else {
+                double prev_hraci = hraciTurnajeDataset.get(datum);
+                hraciTurnajeDataset.put(datum, prev_hraci += ((double) t.getHraci().size()));
+            }
+        }
+
+        BarPieChartFactory factory = new BarPieChartFactory();
+        SpravcaDatumyPanel = factory.createChart("BAR", "Poèet hráèov pod¾a dní konania turnajov", hraciTurnajeDataset);
+        SpravcaDatumyPanel.setPreferredSize(new java.awt.Dimension(330, 300));
+        add(SpravcaDatumyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 330, 300));
     }
 
     @SuppressWarnings("unchecked")
