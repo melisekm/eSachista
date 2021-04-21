@@ -52,17 +52,17 @@ public class BarChart extends Chart {
         );
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         //plot.setNoDataMessage(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NENASLI SA ZIADNE ZAZNAMY."));
-        plot.getDomainAxis().setLabelFont(new Font("Dialog", Font.PLAIN, 8)); //NOI18N
+        plot.getDomainAxis().setLabelFont(new Font("Segoe UI", Font.PLAIN, 8)); //NOI18N
 
         //farby
-        Color farbaPozadia = new Color(214, 217, 223);
+        Color farbaPozadia = new Color(255, 255, 255);
         plot.setBackgroundPaint(farbaPozadia);
         plot.setOutlinePaint(null);
         chart.setBackgroundPaint(farbaPozadia);
         final CategoryItemRenderer renderer = new CustomRenderer(
-                new Paint[]{new Color(215, 0, 0), Color.blue, Color.green,
-                    Color.yellow, Color.orange, Color.cyan,
-                    Color.magenta, Color.blue}
+                new Paint[]{new Color(59, 166, 235), new Color(97, 162, 16), new Color(191, 75, 53),
+                    new Color(229, 123, 0), new Color(59, 166, 235), new Color(14, 167, 144),
+                    }
         );
         plot.setRenderer(renderer);
         ((BarRenderer) plot.getRenderer()).setBarPainter(new StandardBarPainter()); // vypne gradient
