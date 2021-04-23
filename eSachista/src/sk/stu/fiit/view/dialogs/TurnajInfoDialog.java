@@ -2,11 +2,15 @@ package sk.stu.fiit.view.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
+import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
  *
@@ -23,37 +27,38 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
         sorter.setSortKeys(sortKeys);
         this.showTurnajInfo(vybratyTurnaj);
-        // TODO naplnit tabulku
+        this.naplnTabulku(vybratyTurnaj);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        taOpis = new javax.swing.JTextArea();
-        jLabel11 = new javax.swing.JLabel();
-        labelTimeC = new javax.swing.JLabel();
-        labelFormat = new javax.swing.JLabel();
-        labelKap = new javax.swing.JLabel();
+        mainPane = new javax.swing.JPanel();
+        infoPane = new javax.swing.JPanel();
+        labelTimeControl = new javax.swing.JLabel();
+        labelPocetHracov = new javax.swing.JLabel();
         labelRating = new javax.swing.JLabel();
-        labelVek = new javax.swing.JLabel();
+        labelVekovaKatMax = new javax.swing.JLabel();
+        labelFormat = new javax.swing.JLabel();
+        scrollPaneOpis = new javax.swing.JScrollPane();
+        textAreaDataOpis = new javax.swing.JTextArea();
+        labelOpis = new javax.swing.JLabel();
+        labelDataTimeControl = new javax.swing.JLabel();
+        labelDataFormat = new javax.swing.JLabel();
+        labelDataPocetHracov = new javax.swing.JLabel();
+        labelDataRating = new javax.swing.JLabel();
+        labelDataVek = new javax.swing.JLabel();
         scrollPaneTabulka = new javax.swing.JScrollPane();
         tableHraci = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelIcon = new javax.swing.JLabel();
+        cbUkonceny = new javax.swing.JCheckBox();
+        labelMiestoKonania = new javax.swing.JLabel();
         labelZaciatok = new javax.swing.JLabel();
-        labelMiesto = new javax.swing.JLabel();
-        labelNazovTurnaja = new javax.swing.JLabel();
+        labelDataZaciatok = new javax.swing.JLabel();
+        labelDataMiesto = new javax.swing.JLabel();
+        labelDataNazovTurnaja = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inform·cie o turnaji");
@@ -61,81 +66,80 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(240, 243, 247));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPane.setBackground(new java.awt.Color(240, 243, 247));
+        mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        infoPane.setBackground(new java.awt.Color(255, 255, 255));
+        infoPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel5.setText("Time control:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        labelTimeControl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelTimeControl.setForeground(new java.awt.Color(68, 68, 68));
+        labelTimeControl.setText("Time control:");
+        infoPane.add(labelTimeControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel6.setText("PoËet hr·Ëov");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel8.setText("Rating:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel9.setText("Vekov· kategÛria max:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel10.setText("Form·t:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        taOpis.setColumns(20);
-        taOpis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        taOpis.setLineWrap(true);
-        taOpis.setRows(5);
-        taOpis.setWrapStyleWord(true);
-        taOpis.setEnabled(false);
-        taOpis.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jScrollPane2.setViewportView(taOpis);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 270, 150));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel11.setText("Opis:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
-
-        labelTimeC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelTimeC.setForeground(new java.awt.Color(68, 68, 68));
-        labelTimeC.setText("jLabel1");
-        jPanel1.add(labelTimeC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
-
-        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelFormat.setForeground(new java.awt.Color(68, 68, 68));
-        labelFormat.setText("jLabel3");
-        jPanel1.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
-
-        labelKap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelKap.setForeground(new java.awt.Color(68, 68, 68));
-        labelKap.setText("jLabel12");
-        jPanel1.add(labelKap, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+        labelPocetHracov.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelPocetHracov.setForeground(new java.awt.Color(68, 68, 68));
+        labelPocetHracov.setText("PoËet hr·Ëov");
+        infoPane.add(labelPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         labelRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelRating.setForeground(new java.awt.Color(68, 68, 68));
-        labelRating.setText("jLabel13");
-        jPanel1.add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        labelRating.setText("Rating:");
+        infoPane.add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        labelVek.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelVek.setForeground(new java.awt.Color(68, 68, 68));
-        labelVek.setText("jLabel14");
-        jPanel1.add(labelVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        labelVekovaKatMax.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelVekovaKatMax.setForeground(new java.awt.Color(68, 68, 68));
+        labelVekovaKatMax.setText("Vekov· kategÛria max:");
+        infoPane.add(labelVekovaKatMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 700, 230));
+        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelFormat.setForeground(new java.awt.Color(68, 68, 68));
+        labelFormat.setText("Form·t:");
+        infoPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        tableHraci.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        textAreaDataOpis.setColumns(20);
+        textAreaDataOpis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textAreaDataOpis.setLineWrap(true);
+        textAreaDataOpis.setRows(5);
+        textAreaDataOpis.setWrapStyleWord(true);
+        textAreaDataOpis.setEnabled(false);
+        textAreaDataOpis.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        scrollPaneOpis.setViewportView(textAreaDataOpis);
+
+        infoPane.add(scrollPaneOpis, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 270, 150));
+
+        labelOpis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelOpis.setForeground(new java.awt.Color(68, 68, 68));
+        labelOpis.setText("Opis:");
+        infoPane.add(labelOpis, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+
+        labelDataTimeControl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataTimeControl.setForeground(new java.awt.Color(68, 68, 68));
+        labelDataTimeControl.setText("jLabel1");
+        infoPane.add(labelDataTimeControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+
+        labelDataFormat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataFormat.setForeground(new java.awt.Color(68, 68, 68));
+        labelDataFormat.setText("jLabel3");
+        infoPane.add(labelDataFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
+
+        labelDataPocetHracov.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataPocetHracov.setForeground(new java.awt.Color(68, 68, 68));
+        labelDataPocetHracov.setText("jLabel12");
+        infoPane.add(labelDataPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+
+        labelDataRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataRating.setForeground(new java.awt.Color(68, 68, 68));
+        labelDataRating.setText("jLabel13");
+        infoPane.add(labelDataRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+
+        labelDataVek.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataVek.setForeground(new java.awt.Color(68, 68, 68));
+        labelDataVek.setText("jLabel14");
+        infoPane.add(labelDataVek, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+
+        mainPane.add(infoPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 700, 230));
+
         tableHraci.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -146,82 +150,119 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         ));
         scrollPaneTabulka.setViewportView(tableHraci);
 
-        jPanel2.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 350, 160));
+        mainPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 350, 160));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess-chess-board-game-chessboard-icon-wrong.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/chess-chess-board-game-chessboard-icon-wrong.png"))); // NOI18N
+        mainPane.add(labelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("UkonËen˝");
-        jCheckBox1.setEnabled(false);
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, -1, -1));
+        cbUkonceny.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbUkonceny.setForeground(new java.awt.Color(255, 255, 255));
+        cbUkonceny.setText("UkonËen˝");
+        cbUkonceny.setEnabled(false);
+        mainPane.add(cbUkonceny, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(238, 176, 18));
-        jLabel7.setText("Miesto konania:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
+        labelMiestoKonania.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelMiestoKonania.setForeground(new java.awt.Color(238, 176, 18));
+        labelMiestoKonania.setText("Miesto konania:");
+        mainPane.add(labelMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(238, 176, 18));
-        jLabel4.setText("ZaËiatok: ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        labelZaciatok.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelZaciatok.setForeground(new java.awt.Color(238, 176, 18));
+        labelZaciatok.setText("ZaËiatok: ");
+        mainPane.add(labelZaciatok, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        labelZaciatok.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelZaciatok.setText("jLabel1");
-        jPanel2.add(labelZaciatok, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 640, -1));
+        labelDataZaciatok.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataZaciatok.setText("jLabel1");
+        mainPane.add(labelDataZaciatok, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 630, -1));
 
-        labelMiesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelMiesto.setText("jLabel3");
-        jPanel2.add(labelMiesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 160, -1));
+        labelDataMiesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDataMiesto.setText("jLabel3");
+        mainPane.add(labelDataMiesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 390, -1));
 
-        labelNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labelNazovTurnaja.setForeground(new java.awt.Color(54, 107, 172));
-        labelNazovTurnaja.setText("N·zov turnaja ");
-        jPanel2.add(labelNazovTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        labelDataNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelDataNazovTurnaja.setForeground(new java.awt.Color(54, 107, 172));
+        labelDataNazovTurnaja.setText("N·zov turnaja ");
+        mainPane.add(labelDataNazovTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 560));
+        btnClose.setBackground(new java.awt.Color(102, 102, 255));
+        btnClose.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 255, 255));
+        btnClose.setText("Zavrieù");
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCloseMouseReleased(evt);
+            }
+        });
+        mainPane.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, -1, -1));
+
+        getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCloseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseReleased
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCloseMouseReleased
+
     private void showTurnajInfo(Turnaj t) {
-        labelNazovTurnaja.setText(t.getNazov());
-        labelZaciatok.setText(t.getDatumKonania().toString());
-        labelMiesto.setText(t.getMiestoKonania());
-        labelTimeC.setText(t.getTempoHry().toString());
-        labelFormat.setText(t.getFormat().toString());
-        labelKap.setText(Integer.toString(t.getHraci().size()));
-        labelRating.setText(t.getObmedzenia().getRatingObmedzenie());
-        labelVek.setText(Integer.toString(t.getObmedzenia().getMaxVek()));
-        taOpis.setText(t.getPopis());
+        labelDataNazovTurnaja.setText(t.getNazov());
+        labelDataZaciatok.setText(t.getDatumKonania().toString());
+        labelDataMiesto.setText(t.getMiestoKonania());
+        labelDataTimeControl.setText(t.getTempoHry().toString());
+        labelDataFormat.setText(t.getFormat().toString());
+        labelDataPocetHracov.setText(Integer.toString(t.getHraci().size()));
+        labelDataRating.setText(t.getObmedzenia().getRatingObmedzenie());
+        labelDataVek.setText(t.getObmedzenia().getVekObmedzenie());
+        textAreaDataOpis.setText(t.getPopis());
+        cbUkonceny.setSelected(t.isFinished());
+    }
+
+    private void naplnTabulku(Turnaj t) {
+        if (t.getStage() == null) {
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tableHraci.getModel();
+        model.setRowCount(0);
+        Stage stage = t.getStage();
+        for (Map.Entry<Hrac, int[]> en : stage.getTabulka().entrySet()) {
+            Hrac hrac = en.getKey();
+            int[] tab = en.getValue();
+            model.addRow(new Object[]{
+                hrac,
+                hrac.getELO(),
+                tab[0],
+                tab[1]
+            });
+        }
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JCheckBox cbUkonceny;
+    private javax.swing.JPanel infoPane;
+    private javax.swing.JLabel labelDataFormat;
+    private javax.swing.JLabel labelDataMiesto;
+    private javax.swing.JLabel labelDataNazovTurnaja;
+    private javax.swing.JLabel labelDataPocetHracov;
+    private javax.swing.JLabel labelDataRating;
+    private javax.swing.JLabel labelDataTimeControl;
+    private javax.swing.JLabel labelDataVek;
+    private javax.swing.JLabel labelDataZaciatok;
     private javax.swing.JLabel labelFormat;
-    private javax.swing.JLabel labelKap;
-    private javax.swing.JLabel labelMiesto;
-    private javax.swing.JLabel labelNazovTurnaja;
+    private javax.swing.JLabel labelIcon;
+    private javax.swing.JLabel labelMiestoKonania;
+    private javax.swing.JLabel labelOpis;
+    private javax.swing.JLabel labelPocetHracov;
     private javax.swing.JLabel labelRating;
-    private javax.swing.JLabel labelTimeC;
-    private javax.swing.JLabel labelVek;
+    private javax.swing.JLabel labelTimeControl;
+    private javax.swing.JLabel labelVekovaKatMax;
     private javax.swing.JLabel labelZaciatok;
+    private javax.swing.JPanel mainPane;
+    private javax.swing.JScrollPane scrollPaneOpis;
     private javax.swing.JScrollPane scrollPaneTabulka;
-    private javax.swing.JTextArea taOpis;
     private javax.swing.JTable tableHraci;
+    private javax.swing.JTextArea textAreaDataOpis;
     // End of variables declaration//GEN-END:variables
 }

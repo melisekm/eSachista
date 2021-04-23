@@ -147,7 +147,7 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.add(labelCas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
 
         comboboxFormat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboboxFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Round Robin", "Swiss", "Single Elimination" }));
+        comboboxFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Round Robin", "Single Elimination" }));
         mainPane.add(comboboxFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 180, -1));
 
         spinnerLimitSec.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

@@ -94,4 +94,31 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
         }
         return false;
     }
+
+    public String vyhodnotTurnaj() {
+        StringBuilder sb = new StringBuilder();
+        int max = 0;
+        for (Map.Entry<Hrac, int[]> entry : this.prebiehajuciTurnaj.getStage().getTabulka().entrySet()) {
+            Hrac hrac = entry.getKey();
+            int[] vysledky = entry.getValue();
+            if (vysledky[1] > max) {
+                sb.setLength(0);
+                max = vysledky[1];
+            }
+            if (vysledky[1] == max) {
+                sb.append(hrac.getMeno()).append(" - ").append(vysledky[1]).append(this.formatBody(vysledky[1]));
+            }
+        }
+        return sb.toString();
+    }
+
+    private String formatBody(int body) {
+        if (body == 0 && body > 4) {
+            return " bodov\n";
+        }
+        if (body == 1) {
+            return " bod\n";
+        }
+        return " body\n";
+    }
 }

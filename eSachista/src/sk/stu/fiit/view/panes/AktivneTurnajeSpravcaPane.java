@@ -43,14 +43,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     public AktivneTurnajeSpravcaPane() {
         initComponents();
         this.controller = new AktivneTurnajeSpravcaController();
-        tableHarmonogram.getColumnModel().getColumn(0).setResizable(false);
-        tableHarmonogram.getColumnModel().getColumn(0).setMinWidth(0);
-        tableHarmonogram.getColumnModel().getColumn(0).setMaxWidth(0);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
-        tableHraci.setRowSorter(sorter);
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
-        sorter.setSortKeys(sortKeys);
+        this.nastavTabulkuHracov();
         btnArchivovat.setVisible(false);
     }
 
@@ -64,6 +57,13 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         btnOK = new javax.swing.JButton();
         cbVitaz = new javax.swing.JComboBox<>();
         labelVybratVitaza = new javax.swing.JLabel();
+        dialogVysledky = new javax.swing.JDialog();
+        paneDialogVysledky = new javax.swing.JPanel();
+        labelTurnajDohrany = new javax.swing.JLabel();
+        labelVysledky = new javax.swing.JLabel();
+        scrollPaneVyherci = new javax.swing.JScrollPane();
+        textAreaVyherci = new javax.swing.JTextArea();
+        btnZavriet = new javax.swing.JButton();
         labelNeprebiehaTurnaj = new javax.swing.JLabel();
         prebiehajuciTurnajPane = new javax.swing.JPanel();
         labelPravePrebiehaTurnaj = new javax.swing.JLabel();
@@ -111,6 +111,41 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         dialogMainPane.add(labelVybratVitaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
         dialogZadatVysledok.getContentPane().add(dialogMainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 210));
+
+        dialogVysledky.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogVysledky.setTitle("Vysledky turnaja");
+        dialogVysledky.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        paneDialogVysledky.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelTurnajDohrany.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelTurnajDohrany.setText("Turnaj bol dohran˝.");
+        paneDialogVysledky.add(labelTurnajDohrany, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        labelVysledky.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelVysledky.setText("V˝sledky:");
+        paneDialogVysledky.add(labelVysledky, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        textAreaVyherci.setEditable(false);
+        textAreaVyherci.setColumns(20);
+        textAreaVyherci.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textAreaVyherci.setLineWrap(true);
+        textAreaVyherci.setRows(5);
+        textAreaVyherci.setWrapStyleWord(true);
+        scrollPaneVyherci.setViewportView(textAreaVyherci);
+
+        paneDialogVysledky.add(scrollPaneVyherci, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+
+        btnZavriet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnZavriet.setText("Zavrieù");
+        btnZavriet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnZavrietMouseReleased(evt);
+            }
+        });
+        paneDialogVysledky.add(btnZavriet, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        dialogVysledky.getContentPane().add(paneDialogVysledky, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 330));
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(860, 590));
@@ -211,7 +246,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         btnArchivovat.setBackground(new java.awt.Color(118, 155, 108));
         btnArchivovat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnArchivovat.setForeground(new java.awt.Color(255, 255, 255));
-        btnArchivovat.setText("Archivovat/if/ukonecny");
+        btnArchivovat.setText("Archivovaù");
         btnArchivovat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnArchivovatMouseReleased(evt);
@@ -250,6 +285,10 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
+        if (this.controller.getPrebiehajuciTurnaj().getHraci().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Turnaj nie je moûnÈ zaËaù pretoûe nem· ûiadnych hr·Ëov.");
+            return;
+        }
         if (this.controller.getPrebiehajuciTurnaj().getDatumKonania().after(new Date())) {
             long diff = ChronoUnit.MINUTES.between(new Date().toInstant(), this.controller.getPrebiehajuciTurnaj().getDatumKonania().toInstant());
             if (diff > 10) {
@@ -300,7 +339,10 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
 
     private void btnArchivovatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchivovatMouseReleased
+        ViewUtils.showDialog(dialogVysledky);
+        textAreaVyherci.setText(this.controller.vyhodnotTurnaj());
         this.refresh();
+        btnArchivovat.setVisible(false);
     }//GEN-LAST:event_btnArchivovatMouseReleased
 
     private void btnOKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOKMouseReleased
@@ -312,6 +354,11 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         this.naplnTabulkuHracov();
         (tableHarmonogram.getModel()).setValueAt(zapas.getVyherca().getMeno(), row, this.VYHERCA_COLUMN);
     }//GEN-LAST:event_btnOKMouseReleased
+
+    private void btnZavrietMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietMouseReleased
+        dialogVysledky.setVisible(false);
+        dialogVysledky.dispose();
+    }//GEN-LAST:event_btnZavrietMouseReleased
 
     private void updateHarmonogramTable() {
         DefaultTableModel model = (DefaultTableModel) tableHarmonogram.getModel();
@@ -364,7 +411,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText(turnaj.getMiestoKonania());
         labelDataPocetHracov.setText(String.valueOf(turnaj.getHraci().size()));
 
-        this.naplnTabulkuHracov(); // Precitaj Tabulku zo stage
+        this.naplnTabulkuHracov();
         this.updateHarmonogramTable();
 
     }
@@ -387,7 +434,17 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
                 tab[1]
             });
         }
+    }
 
+    private void nastavTabulkuHracov() {
+        tableHarmonogram.getColumnModel().getColumn(0).setResizable(false);
+        tableHarmonogram.getColumnModel().getColumn(0).setMinWidth(0);
+        tableHarmonogram.getColumnModel().getColumn(0).setMaxWidth(0);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
+        tableHraci.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sorter.setSortKeys(sortKeys);
     }
 
     @Override
@@ -402,8 +459,10 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     private javax.swing.JButton btnGenerujHarmnogram;
     private javax.swing.JButton btnOK;
     private javax.swing.JButton btnZapisatVysledok;
+    private javax.swing.JButton btnZavriet;
     private javax.swing.JComboBox<Hrac> cbVitaz;
     private javax.swing.JPanel dialogMainPane;
+    private javax.swing.JDialog dialogVysledky;
     private javax.swing.JDialog dialogZadatVysledok;
     private javax.swing.JLabel labelDataFormat;
     private javax.swing.JLabel labelDataMiestoKonania;
@@ -417,14 +476,19 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     private javax.swing.JLabel labelNeprebiehaTurnaj;
     private javax.swing.JLabel labelPocetHracov;
     private javax.swing.JLabel labelPravePrebiehaTurnaj;
+    private javax.swing.JLabel labelTurnajDohrany;
     private javax.swing.JLabel labelVybratVitaza;
+    private javax.swing.JLabel labelVysledky;
     private javax.swing.JLabel labelZaciatok;
     private javax.swing.JLabel labelZadatVysledok;
+    private javax.swing.JPanel paneDialogVysledky;
     private javax.swing.JPanel prebiehajuciTurnajPane;
     private javax.swing.JScrollPane scrollPaneHarmonogram;
     private javax.swing.JScrollPane scrollPaneTabulka;
+    private javax.swing.JScrollPane scrollPaneVyherci;
     private javax.swing.JTable tableHarmonogram;
     private javax.swing.JTable tableHraci;
+    private javax.swing.JTextArea textAreaVyherci;
     // End of variables declaration//GEN-END:variables
 
 }

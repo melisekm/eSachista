@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.database.Database;
@@ -27,7 +26,7 @@ public class IOManager {
 
     public void saveDatabase(File file) throws FileNotFoundException, IOException {
         Database db = Database.getInstance();
-        try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) { // try with resources
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) { // try with resources
             logger.debug("Ukladam databazu.");
             out.writeObject(db); // ulozi databazu
             logger.debug("Databaza uspesene ulozena.");
@@ -35,7 +34,7 @@ public class IOManager {
     }
 
     public void loadDatabase(File file) throws FileNotFoundException, IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             logger.debug("Nacitavam databazu so suboru " + file.getName());
             Database.createDatabase((Database) in.readObject());
             logger.debug("Databaza uspesene nacitana.");
@@ -48,7 +47,7 @@ public class IOManager {
             orgFile.createNewFile();
         }
 
-        try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.orgPath))) { // try with resources
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.orgPath))) { // try with resources
             logger.debug("Ukladam org do suboru.");
             out.writeObject(org);
             logger.debug("org uspesene ulozene.");
@@ -56,7 +55,7 @@ public class IOManager {
     }
 
     public Organizacia loadOrg() throws FileNotFoundException, IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.orgPath))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.orgPath))) {
             logger.debug("Nacitavam org zo suboru " + orgPath);
             return ((Organizacia) in.readObject());
         }

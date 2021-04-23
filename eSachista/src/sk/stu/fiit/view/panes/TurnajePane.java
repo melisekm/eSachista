@@ -18,6 +18,7 @@ import sk.stu.fiit.controller.TurnajController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.utils.ViewUtils;
+import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
 /**
@@ -74,7 +75,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelRatingData = new javax.swing.JLabel();
         btnRefresh = new javax.swing.JButton();
         cbDohrany = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        btnDetaily = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -197,8 +198,15 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         cbDohrany.setEnabled(false);
         add(cbDohrany, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
-        jButton1.setText("Zobraziù v˝sledky/if/dohranyTODo");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
+        btnDetaily.setBackground(new java.awt.Color(102, 102, 255));
+        btnDetaily.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetaily.setText("Detaily");
+        btnDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnDetailyMouseReleased(evt);
+            }
+        });
+        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVytvoritTurnajMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVytvoritTurnajMouseReleased
@@ -224,7 +232,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         Turnaj povodny = listTurnaje.getSelectedValue();
         boolean turnajUzPrebieha = new Date().after(povodny.getDatumKonania());
         if (turnajUzPrebieha) {
-            JOptionPane.showMessageDialog(this, "Tento Turnaj nieje mozne editovat pretoze uz prebieha.", "TURNAJ IN PROGRESS", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Tento Turnaj nie je mozne editovat pretoze uz prebieha.", "TURNAJ IN PROGRESS", JOptionPane.ERROR_MESSAGE);
             return;
         }
         VytvoritTurnajDialog dialog = new VytvoritTurnajDialog(this.parent, true, this.controller, povodny);
@@ -263,6 +271,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         }*/
 
     }//GEN-LAST:event_btnRefreshMouseReleased
+
+    private void btnDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetailyMouseReleased
+        Turnaj t = listTurnaje.getSelectedValue();
+        ViewUtils.showDialog(new TurnajInfoDialog(this.parent, true, t));
+    }//GEN-LAST:event_btnDetailyMouseReleased
     
     private void naplnTurnajList() {
         this.controller.loadOrg();
@@ -291,18 +304,12 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         labelNazovData.setText(t.getNazov());
         labelTempoData.setText(t.getTempoHry().toString());
         labelRatingData.setText(t.getObmedzenia().getRatingObmedzenie());
-        String maxVek;
-        if (t.getObmedzenia().getMaxVek() == Integer.MAX_VALUE) {
-            maxVek = "OPEN";
-        } else {
-            maxVek = String.valueOf(t.getObmedzenia().getMaxVek());
-        }
         if (t.isFinished()) {
             cbDohrany.setSelected(true);
         } else {
             cbDohrany.setSelected(false);
         }
-        labelMaxVekData.setText(maxVek);
+        labelMaxVekData.setText(t.getObmedzenia().getVekObmedzenie());
         this.naplnHracovTurnaja(t);
     }
     
@@ -320,11 +327,11 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetaily;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpravit;
     private javax.swing.JButton btnVytvoritTurnaj;
     private javax.swing.JCheckBox cbDohrany;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFormat;

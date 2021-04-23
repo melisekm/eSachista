@@ -63,7 +63,7 @@ public class DataLoader {
 
     private static void pridajTurnaj(Database db, int orgId, String nazov, String miesto, String popis, TurnajFormat format) {
         Organizacia org = db.getOrganizacie().get(orgId);
-        TurnajObmedzenia turnajObmedzenia = new TurnajObmedzenia(1, 3500, 99);
+        TurnajObmedzenia turnajObmedzenia = new TurnajObmedzenia(1, 3500, Integer.MAX_VALUE);
         TurnajTempoHry turnajTempoHry = new TurnajTempoHry(10, 0, 5);
         Date now = new Date();
         Calendar cal = Calendar.getInstance();

@@ -17,7 +17,6 @@ import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import sk.stu.fiit.database.Database;
 
 /**
  *
@@ -34,7 +33,7 @@ public class BarChart extends Chart {
         for (Map.Entry<String, Double> entry : this.getRawDataset().entrySet()) {
             String datum = entry.getKey();
             Double hodnota = entry.getValue();
-            dataset.setValue(hodnota, "LEFT TEXT", datum);
+            dataset.setValue(hodnota, "Poèet hráèov", datum);
         }
         return dataset;
     }
@@ -51,7 +50,7 @@ public class BarChart extends Chart {
                 false
         );
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
-        //plot.setNoDataMessage(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NENASLI SA ZIADNE ZAZNAMY."));
+        plot.setNoDataMessage("NENASLI SA ZIADNE ZAZNAMY.");
         plot.getDomainAxis().setLabelFont(new Font("Segoe UI", Font.PLAIN, 8)); //NOI18N
 
         //farby

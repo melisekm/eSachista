@@ -11,7 +11,6 @@ import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import sk.stu.fiit.database.Database;
 
 /**
  *
@@ -42,7 +41,7 @@ public class PieChart extends Chart {
                 false // odkazy
         );
         PiePlot plot = (PiePlot) chart.getPlot();
-        plot.setNoDataMessage(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NENASLI SA ZIADNE ZAZNAMY."));
+        plot.setNoDataMessage("NENASLI SA ZIADNE ZAZNAMY.");
         plot.setSimpleLabels(true);
         plot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator("{0} - {1} ({2})")); // formatovanie legendy //NOI18N
         plot.setLabelGenerator(null); // nezobrazovať labely v grafe

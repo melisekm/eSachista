@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author Martin Melisek
  */
-public class TurnajObmedzenia implements Serializable{
+public class TurnajObmedzenia implements Serializable {
 
     private int minRating;
     private int maxRating;
@@ -17,11 +17,19 @@ public class TurnajObmedzenia implements Serializable{
         this.maxRating = maxRating;
         this.maxVek = maxVek;
     }
-    
-    public String getRatingObmedzenie(){
+
+    public String getRatingObmedzenie() {
         return String.format("%d - %d", this.minRating, this.maxRating);
     }
-    
+
+    public String getVekObmedzenie() {
+        if (this.maxVek == Integer.MAX_VALUE) {
+            return "OPEN";
+        } else {
+            return String.valueOf(this.maxVek);
+        }
+    }
+
     public int getMinRating() {
         return minRating;
     }
