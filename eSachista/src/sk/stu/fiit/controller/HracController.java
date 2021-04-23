@@ -7,6 +7,7 @@ import java.util.TimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.clients.Hrac;
+import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.utils.PlatformConstants;
@@ -125,6 +126,27 @@ public class HracController extends Controller {
      */
     public boolean nezobrazitTurnaj(Turnaj t) {
         return t.isFinished() || new Date().after(t.getDatumKonania()) || this.checkCiJePrihlaseny(t) || this.checkCiUzNiecoMa(t);
+    }
+
+    public String[] getStatistiky(Hrac h) {
+        String[] res = new String[4];
+        int vyhry, prehry;
+        vyhry = prehry = 0;
+        for (Zapas zapas : h.getZapasy()) {
+            if (zapas.getVyherca() == null) {
+                continue;
+            }
+            if (zapas.getVyherca().getLogin().equals(h.getLogin())) {
+                vyhry++;
+            } else {
+                prehry++;
+            }
+        }
+        res[0] = String.valueOf(h.getZapasy().size());
+        res[1] = String.valueOf(vyhry);
+        res[2] = String.valueOf(prehry);
+        res[3] = String.valueOf(h.getTurnaje().size());
+        return res;
     }
 
 }
