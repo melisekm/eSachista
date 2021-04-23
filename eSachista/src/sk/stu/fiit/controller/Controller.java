@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.stu.fiit.database.Database;
 import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Hrac;
@@ -48,6 +49,7 @@ public abstract class Controller {
     public void loadOrg() {
         try {
             this.entryService.setOrgLoggedIn(this.ioManager.loadOrg());
+            Database.getInstance().getOrganizacie().set(this.getOrgLoggedIn().getId(), this.getOrgLoggedIn());
             if (this.getUserLoggedIn() != null) {
                 for (Pouzivatel pouzivatel : this.getPouzivatelia()) {
                     if (pouzivatel.getLogin().equals(this.getUserLoggedIn().getLogin())) {
