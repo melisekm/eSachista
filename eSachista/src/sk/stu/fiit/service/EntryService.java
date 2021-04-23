@@ -1,7 +1,10 @@
 package sk.stu.fiit.service;
 
+import java.io.File;
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
@@ -50,13 +53,19 @@ public class EntryService extends Service {
         return true;
     }
 
-    public void registerOrg(String nazovOrg, String adresaOrg, int balikId) {
+    public void registerOrg(String nazovOrg, String adresaOrg, int balikId, String email) {
         logger.info("registrujem organizaciu");
         Balik b = this.getDb().getBaliky().get(balikId);
-        Spravca organizator = new Spravca(this.spravcaTemp);
+        Spravca organizator = new Spravca(this.spravcaTemp, email);
         Organizacia o = new Organizacia(nazovOrg, adresaOrg, organizator, b);
         organizator.setOrg(o);
         this.getDb().getOrganizacie().add(o);
+        new File("resources\\" + o.getNazov()).mkdirs();
+        try {
+            new IOManager(o.getNazov()).saveOrg(o);
+        } catch (IOException ex) {
+            logger.error("Chyba pri vytvarani novej org.");
+        }
     }
 
     public void registerSpravca(String meno, String login, char[] password) {

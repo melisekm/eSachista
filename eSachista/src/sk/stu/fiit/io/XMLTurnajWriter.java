@@ -38,13 +38,20 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(XMLTurnajWriter.class);
 
-    public XMLTurnajWriter(String path, int idx) {
-        super(path);
+    public XMLTurnajWriter(String nazovOrg, int idx) {
+        super(nazovOrg);
+        String turnajeDir = this.orgPath + "\\turnaje\\";
+        new File(turnajeDir).mkdirs();
+        String dir = turnajeDir + idx;
+        logger.info("Zacinam generovat harmonogram " + dir);
+        new File(dir).mkdirs();
+        this.filePath = dir + "\\harmonogram.xml";
+        logger.info("cesta " + this.filePath);
         this.saveOldXML(idx);
     }
 
     private void saveOldXML(int idx) {
-        File directory = new File("resources\\turnaje\\" + idx + "\\historia\\");
+        File directory = new File(this.orgPath + "\\turnaje\\" + idx + "\\historia\\");
         logger.info("ukladam kopiu stareho XML do suboru=" + directory.getPath());
         directory.mkdirs();
         int fileCount = directory.list().length; // zisti kolko je suborov v priecinku
@@ -52,7 +59,7 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
         String backupPath = directory.getPath() + "\\" + fileCount + ".xml";
         logger.info("ukladam kopiu stareho XML s nazvom " + backupPath);
 
-        try ( BufferedReader br = new BufferedReader(new FileReader(this.xmlPath))) {
+        try ( BufferedReader br = new BufferedReader(new FileReader(this.filePath))) {
             String tmpText;
             try ( BufferedWriter objBW = new BufferedWriter(new FileWriter(backupPath))) {
                 while ((tmpText = br.readLine()) != null) {
@@ -68,7 +75,7 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
 
     public void writeTurnaj(Turnaj turnaj) {
         try {
-            logger.info("Zacinam zapisovat turnajove informacie do XML=" + this.xmlPath);
+            logger.info("Zacinam zapisovat turnajove informacie do XML=" + this.filePath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
@@ -117,7 +124,7 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
             DOMSource source = new DOMSource(doc);
 
             // write to console or file
-            StreamResult file = new StreamResult(new File(this.xmlPath));
+            StreamResult file = new StreamResult(new File(this.filePath));
             // write data
             transformer.transform(source, file);
 

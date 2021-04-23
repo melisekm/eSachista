@@ -40,11 +40,10 @@ public class Main {
             saveDefaultDB = false;
 
         }
-        Database.createDatabase(); // prazdna DB
         if (loadDemoDB) {
             logger.info("DB ZO SUBORA");
             try {
-                Database.getInstance().getOrganizacie().add(new IOManager().loadOrg());
+                Database.getInstance().getOrganizacie().add(new IOManager("FIIT STUBA VAVA").loadOrg());
             } catch (ClassNotFoundException ex) {
                 logger.error("Nacitala sa nekompatibilna trieda");
                 logger.error(ex.getClass().toString());
@@ -67,9 +66,9 @@ public class Main {
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setDatumKonania(cal.getTime());
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setFinished(false);
-            new File("resources/turnaje/0/harmonogram.xml").delete();
+            new File("resources/FIIT STUBA VAVA/turnaje/0/harmonogram.xml").delete();
             try {
-                new IOManager().saveOrg(Database.getInstance().getOrganizacie().get(0));
+                new IOManager("FIIT STUBA VAVA").saveOrg(Database.getInstance().getOrganizacie().get(0));
             } catch (IOException ex) {
                 logger.error("Chyba pri nacitavani DB");
                 logger.error(ex.getClass().toString());

@@ -133,6 +133,7 @@ public class HracFrame extends javax.swing.JFrame {
 
     private void logOut() {
         logger.info("Hrac " + this.controller.getPrihlasenyHrac().getLogin() + " sa odhlasil.");
+        this.controller.logOut();
         this.setVisible(false);
         this.dispose();
         EntryFrame.main();

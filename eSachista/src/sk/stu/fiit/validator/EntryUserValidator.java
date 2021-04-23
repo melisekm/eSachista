@@ -2,6 +2,8 @@ package sk.stu.fiit.validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 
 /**
@@ -27,6 +29,22 @@ public class EntryUserValidator {
             }
         }
         return null;
+    }
+
+    /**
+     * Zvaliduje emailovu adresu podla nasledujuceho patternu<br>
+     * slovo sa zacina na: pismeno cislo . _ % + alebo -, ktore sa vyskytuje 1 a viac krat<br>
+     * nasleduje zavinac za nim jeden a viac krat pismeno cislo . -<br>
+     * nasleduje bodka za nou pismeno 2 az 6 krat a EOF.<br>
+     * nezalezi na velkosti pismen.<br>
+     * @param email ktory sa ma zvalidovat
+     * @return true ak je validny, false ak nie
+     */
+    public boolean validateEmail(String email) {
+        String regex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
     }
 
     public Hashable securePassword() {
@@ -55,5 +73,4 @@ public class EntryUserValidator {
         }
         return new Hash();
     }
-
 }

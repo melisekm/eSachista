@@ -114,14 +114,12 @@ public class SpravcaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mainTabPaneStateChanged
     private void logOut() {
         logger.info("Hrac " + this.controller.getPrihlasenySpravca().getLogin() + " sa odhlasil.");
+        this.controller.logOut();
         this.setVisible(false);
         this.dispose();
         EntryFrame.main();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

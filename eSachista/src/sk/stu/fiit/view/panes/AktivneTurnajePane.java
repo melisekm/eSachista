@@ -437,7 +437,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             } else {
                 id = controller.getTurnajId(prebiehajuciTurnaj);
             }
-            File file = new File("resources/turnaje/" + id + "/harmonogram.xml");
+            File file = new File("resources/" + controller.getOrgLoggedIn().getNazov() + "/turnaje/" + id + "/harmonogram.xml");
             if (file.exists() && (harmonogramAktualizacia == null || (file.lastModified() > harmonogramAktualizacia.getTime()))) {
                 labelArrow.setVisible(true);
                 labelNovaVerzia.setVisible(true);

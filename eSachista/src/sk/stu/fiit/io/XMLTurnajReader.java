@@ -27,14 +27,15 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 public class XMLTurnajReader extends XMLTurnajHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(XMLTurnajReader.class);
-
-    public XMLTurnajReader(String path) {
-        super(path);
+    
+    public XMLTurnajReader(String nazovOrg, int idx) {
+        super(nazovOrg);
+        this.filePath = this.orgPath + "turnaje\\" + idx + "\\harmonogram.xml";
     }
 
     public ArrayList<Zapas> parseTurnaj(Turnaj prebiehajuciTurnaj) {
-        logger.info("zacinam parsovat turnaj zo suboru " + this.xmlPath + " je to turnaj " + prebiehajuciTurnaj.getNazov());
-        File xmlFile = new File(this.xmlPath);
+        logger.info("zacinam parsovat turnaj zo suboru " + this.filePath + " je to turnaj " + prebiehajuciTurnaj.getNazov());
+        File xmlFile = new File(this.filePath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {

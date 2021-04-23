@@ -25,10 +25,14 @@ public abstract class Controller {
 
     protected EntryService entryService = EntryService.getInstance();
 
-    private IOManager ioManager;
+    protected IOManager ioManager;
 
     public Controller() {
-        this.ioManager = new IOManager();
+        if(this.getOrgLoggedIn() != null){
+            this.ioManager = new IOManager(this.getOrgLoggedIn().getNazov());
+        }else{
+            this.ioManager = new IOManager();
+        }
     }
 
     public void saveOrg() {

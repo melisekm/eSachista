@@ -30,13 +30,18 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(XMLTurnajModifier.class);
 
-    public XMLTurnajModifier(String xmlPath) {
-        super(xmlPath);
+    public XMLTurnajModifier(String nazovOrg, int idx) {
+        super(nazovOrg);
+        String dir = this.orgPath + "\\turnaje\\" + idx;
+        logger.info("Upravujem vysledok v harmonograme " + dir);
+        String path = dir + "\\harmonogram.xml";
+        logger.info("cesta " + path);
+        this.filePath = path;
     }
 
     public void modifyXML(String vyherca) {
-        logger.info("spusam modifikaciu suboru " + this.xmlPath);
-        File xmlFile = new File(this.xmlPath);
+        logger.info("spusam modifikaciu suboru " + this.filePath);
+        File xmlFile = new File(this.filePath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
@@ -81,7 +86,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource domSource = new DOMSource(doc);
 
-        StreamResult streamResult = new StreamResult(new File(this.xmlPath));
+        StreamResult streamResult = new StreamResult(new File(this.filePath));
         transformer.transform(domSource, streamResult);
     }
 

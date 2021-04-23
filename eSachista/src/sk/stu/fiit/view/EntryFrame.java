@@ -488,18 +488,18 @@ public class EntryFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(dialogPripojit, "Ucet neexistuje", "Invalid User", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        logger.info("PRIHLASENIE FAJNOVUCKE");
+        logger.info("Prihlasenie prebehlo v poriadku.");
         dialogPripojit.dispose();
         this.setVisible(false);
         this.dispose();
         int loggedInId = this.controller.getPripojenyPouzivatel();
         switch (loggedInId) {
             case EntryConstants.LOGGED_IN_SPRAVCA:
-                logger.info("loggedInId = " + loggedInId);
+                logger.info("Spravca prihlaseny.");
                 SpravcaFrame.main();
                 break;
             case EntryConstants.LOGGED_IN_HRAC:
-                logger.info("loggedInId = " + loggedInId);
+                logger.info("Hrac " + this.controller.getPrihlasenyHrac().getMeno() + " prihlaseny");
                 HracFrame.main();
                 break;
             default:
@@ -528,7 +528,8 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         String nazovOrg = fieldRegNazovOrg.getText();
         String adresaOrg = fieldRegDomenaOrg.getText();
-        int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId);
+        String email = fieldRegOrgEmail.getText();
+        int status = this.controller.registerOrg(nazovOrg, adresaOrg, balikId, email);
         if (!this.skontrolujStatusRegistracieOrg(status)) {
             return;
         }
@@ -712,6 +713,10 @@ public class EntryFrame extends javax.swing.JFrame {
     }
 
     private boolean skontrolujStatusRegistracieOrg(int status) {
+        if(status == EntryConstants.INVALID_EMAIL){
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "E-mail je zle zadaný", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
             JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Tato organizacia uz existuje", "Invalid input", JOptionPane.INFORMATION_MESSAGE);
             return false;

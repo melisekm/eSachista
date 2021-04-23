@@ -19,7 +19,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
     private static final Logger logger = LoggerFactory.getLogger(IOManagerDialog.class);
 
     private IOManager ioManager = new IOManager();
-    private String pripona = ".vava";
+    private String pripona = ".vavaDB";
 
     public IOManagerDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

@@ -22,7 +22,14 @@ public class IOManager {
 
     private static final Logger logger = LoggerFactory.getLogger(IOManager.class);
 
-    private String orgPath = "resources\\FIIT_ORG.vava";
+    private String orgPath;
+    public IOManager() {
+    }
+
+    public IOManager(String nazov) {
+        new File("resources\\" + nazov).mkdirs();
+        this.orgPath = "resources\\" + nazov + "\\" + nazov + ".vavaORG";
+    }
 
     public void saveDatabase(File file) throws FileNotFoundException, IOException {
         Database db = Database.getInstance();
@@ -56,7 +63,7 @@ public class IOManager {
 
     public Organizacia loadOrg() throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.orgPath))) {
-            logger.debug("Nacitavam org zo suboru " + orgPath);
+            logger.debug("Nacitavam org zo suboru " + this.orgPath);
             return ((Organizacia) in.readObject());
         }
     }

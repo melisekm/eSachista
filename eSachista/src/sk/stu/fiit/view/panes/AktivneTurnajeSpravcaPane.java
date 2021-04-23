@@ -391,7 +391,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             labelNeprebiehaTurnaj.setVisible(true);
             return;
         }
-        this.controller.aktualizujTurnajUdaje();
         this.naplnTurnajPane();
         prebiehajuciTurnajPane.setVisible(true);
         labelNeprebiehaTurnaj.setVisible(false);

@@ -10,9 +10,9 @@ public class Spravca extends Pouzivatel implements Serializable{
 
     private String email; // REGEX stuff
 
-    public Spravca(Spravca other) {
+    public Spravca(Spravca other, String email) {
         super(other.meno, other.login, other.getPassword());
-        this.email = other.email;
+        this.email = email;
     }
 
     @Override

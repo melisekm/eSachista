@@ -48,17 +48,13 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
             return false;
         }
         logger.info("generujem harmonogram.");
-        this.turnajService.vygenerujHarmonogram(this.prebiehajuciTurnaj, idx);
+        this.turnajService.vygenerujHarmonogram(this.getOrgLoggedIn(), this.prebiehajuciTurnaj, idx);
         return true;
-    }
-
-    public void aktualizujTurnajUdaje() {
-        // TODO ani neviem co som sem chcel dat
     }
 
     public void zadajVysledok(Zapas zapas, Hrac vyherca) {
         zapas.setVyherca(vyherca);
-        this.turnajService.modifikujVysledok(this.prebiehajuciTurnaj, zapas, this.turnajId);
+        this.turnajService.modifikujVysledok(this.getOrgLoggedIn(), this.prebiehajuciTurnaj, zapas, this.turnajId);
         this.saveOrg();
     }
 

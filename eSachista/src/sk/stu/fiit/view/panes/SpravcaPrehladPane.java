@@ -77,6 +77,8 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelNaplanovaneTurnaje = new javax.swing.JLabel();
         labelDataNaplanovaneTurnaje = new javax.swing.JLabel();
         labelBalik = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        labelDataEmail = new javax.swing.JLabel();
 
         dialogEditovatSpravcu.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -172,7 +174,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         labelDataMenoSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        labelDataMenoSpravcu.setText("jLabel5");
+        labelDataMenoSpravcu.setText("Admin");
         add(labelDataMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
         labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -222,6 +224,14 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelBalik.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelBalik.setText("Balík:");
         add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelEmail.setText("E-Mail:");
+        add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+
+        labelDataEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelDataEmail.setText("admin@org.sk");
+        add(labelDataEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVybratAvatarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVybratAvatarMouseReleased
@@ -270,6 +280,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelLogoOrg.setIcon(s.getAvatar().getImage());
         labelDataBalik.setText(o.getBalik().getNazov());
         labelDataMenoSpravcu.setText(s.getMeno());
+        labelDataEmail.setText(s.getEmail());
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         labelDataDatumReg.setText(sdf.format(s.getDatumRegistracie()));
         
@@ -280,6 +291,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelDataPocetZapasov.setText(turnajeStatistiky[3]);
         labelDataPocetClenov.setText(String.valueOf(this.controller.getHraci().size()));
         labelDataPriemerneELO.setText(this.controller.getPriemerneELO());
+        
     }
     
     private void setPoctyHracovTurnajeChart() {
@@ -318,6 +330,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
     private javax.swing.JLabel labelBalik;
     private javax.swing.JLabel labelDataBalik;
     private javax.swing.JLabel labelDataDatumReg;
+    private javax.swing.JLabel labelDataEmail;
     private javax.swing.JLabel labelDataMenoSpravcu;
     private javax.swing.JLabel labelDataNaplanovaneTurnaje;
     private javax.swing.JLabel labelDataNazovOrg;
@@ -327,6 +340,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
     private javax.swing.JLabel labelDataPriemerneELO;
     private javax.swing.JLabel labelDataUkonceneTurnaje;
     private javax.swing.JLabel labelDatumRegistracie;
+    private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelLogoOrg;
     private javax.swing.JLabel labelLogoOrgDialog;
     private javax.swing.JLabel labelMenoSpravcuDialog;

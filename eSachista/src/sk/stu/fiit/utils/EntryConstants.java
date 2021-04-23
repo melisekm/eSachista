@@ -14,6 +14,7 @@ public class EntryConstants {
     public static final int MENO_UZ_EXISTUJE = 1;
     public static final int REGISTRACIA_OK = 2;
     public static final int SPRAVCA_NEBOL_VYTVORENY = 3;
+    public static final int INVALID_EMAIL = 4;
     
     public static final int REGISTRUJ_SPRAVCU = 0;
     public static final int REGISTRUJ_HRACA = 1;

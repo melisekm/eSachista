@@ -6,10 +6,13 @@ package sk.stu.fiit.io;
  */
 public class XMLTurnajHandler {
 
-    protected String xmlPath;
+    private String baseDir = "resources\\";
+    protected String orgPath;
+    protected String filePath;
 
-    public XMLTurnajHandler(String xmlPath) {
-        this.xmlPath = xmlPath;
+
+    public XMLTurnajHandler(String nazov) {
+        this.orgPath = this.baseDir + nazov + "\\";
     }
 
 }

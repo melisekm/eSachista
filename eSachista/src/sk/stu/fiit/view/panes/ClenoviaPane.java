@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.model.organisation.clients.Hrac;
@@ -86,16 +87,18 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listClenoviaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClenoviaMouseReleased
-        Pouzivatel p = (Pouzivatel) listClenovia.getSelectedValue();
-        this.editHracInfo(p);
+        this.editHracInfo((Pouzivatel) comboBoxClenovia.getSelectedItem());
     }//GEN-LAST:event_listClenoviaMouseReleased
 
     private void btnUpravitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitMouseReleased
-        Pouzivatel p = (Pouzivatel) comboBoxClenovia.getSelectedItem();
-        this.editHracInfo(p);
+        this.editHracInfo((Pouzivatel) comboBoxClenovia.getSelectedItem());
     }//GEN-LAST:event_btnUpravitMouseReleased
 
     private void editHracInfo(Pouzivatel p) {
+        if (p == null) {
+            JOptionPane.showMessageDialog(this, "Prosim vyberte hraca.");
+            return;
+        }
         EditovatHracaDialog dialog = new EditovatHracaDialog(parent, true, (Hrac) p);
         dialog.showDialog();
         this.controller.saveOrg();

@@ -1,6 +1,7 @@
 package sk.stu.fiit.controller;
 
 import java.util.ArrayList;
+import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 import sk.stu.fiit.model.organisation.clients.Spravca;
@@ -40,19 +41,25 @@ public class EntryController extends Controller {
         return true;
     }
 
-    public int registerOrg(String nazovOrg, String adresaOrg, int balikId) {
+    public int registerOrg(String nazovOrg, String adresaOrg, int balikId, String email) {
+        if (!this.validator.validateEmail(email)) {
+            return EntryConstants.INVALID_EMAIL;
+        }
         if (!this.entryService.isSpravcaCreated()) {
             return EntryConstants.SPRAVCA_NEBOL_VYTVORENY;
         }
         if (!this.entryService.isOrgNameAvailable(adresaOrg)) {
             return EntryConstants.MENO_UZ_EXISTUJE;
         }
-        this.entryService.registerOrg(nazovOrg, adresaOrg, balikId);
+        this.entryService.registerOrg(nazovOrg, adresaOrg, balikId, email);
         return EntryConstants.REGISTRACIA_OK;
     }
 
     public int registerPouzivatel(String meno, String login, char[] password, int typRegistracie) {
-        this.loadOrg();
+        if (typRegistracie == EntryConstants.REGISTRUJ_HRACA) {
+            this.ioManager = new IOManager(this.getOrgLoggedIn().getNazov());
+            this.loadOrg();
+        }
         char[] securedPassword = this.validator.securePassword().stringToHash(password);
         if (typRegistracie == EntryConstants.REGISTRUJ_SPRAVCU) {
             this.entryService.registerSpravca(meno, login, securedPassword);
@@ -67,7 +74,9 @@ public class EntryController extends Controller {
                 return EntryConstants.KAPACITA_PREKROCENA;
             }
         }
-        this.saveOrg();
+        if (typRegistracie == EntryConstants.REGISTRUJ_HRACA) {
+            this.saveOrg();
+        }
         return EntryConstants.REGISTRACIA_OK;
     }
 

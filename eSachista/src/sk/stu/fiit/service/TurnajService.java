@@ -1,11 +1,11 @@
 package sk.stu.fiit.service;
 
-import java.io.File;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.io.XMLTurnajModifier;
 import sk.stu.fiit.io.XMLTurnajWriter;
+import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
@@ -39,13 +39,8 @@ public class TurnajService extends Service {
 
     }
 
-    public void vygenerujHarmonogram(Turnaj t, int turnajId) {
-        String dir = "resources/turnaje/" + turnajId;
-        logger.info("Zacinam generovat harmonogram " + dir);
-        new File(dir).mkdirs();
-        String path = dir + "/harmonogram.xml";
-        logger.info("cesta " + path);
-        XMLTurnajWriter xmlTurnajWriter = new XMLTurnajWriter(path, turnajId);
+    public void vygenerujHarmonogram(Organizacia org, Turnaj t, int turnajId) {
+        XMLTurnajWriter xmlTurnajWriter = new XMLTurnajWriter(org.getNazov(),turnajId);
         xmlTurnajWriter.writeTurnaj(t);
     }
 
@@ -134,14 +129,13 @@ public class TurnajService extends Service {
                 }
             }
         }
-
         logger.info("posunul som single elim kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);
         return true;
 
     }
 
-    public void modifikujVysledok(Turnaj turnaj, Zapas zapas, int turnajId) {
+    public void modifikujVysledok(Organizacia org,Turnaj turnaj, Zapas zapas, int turnajId) {
         turnaj.getStage().getTabulka().get(zapas.getVyherca())[1]++;
         turnaj.getStage().getTabulka().get(zapas.getHrac1())[0]++;
         turnaj.getStage().getTabulka().get(zapas.getHrac2())[0]++;
@@ -149,10 +143,6 @@ public class TurnajService extends Service {
         zapas.getHrac1().setELO(this.modifikujELO(zapas.getHrac1(), zapas.getHrac2(), zapas.getVyherca()));
         zapas.getHrac2().setELO(this.modifikujELO(zapas.getHrac2(), zapas.getHrac1(), zapas.getVyherca()));
 
-        String dir = "resources/turnaje/" + turnajId;
-        logger.info("Upravujem vysledok v harmonograme " + dir);
-        String path = dir + "/harmonogram.xml";
-        logger.info("cesta " + path);
         int idx = 0;
         for (Hrac hrac : turnaj.getHraci()) {
             if (hrac == zapas.getVyherca()) {
@@ -161,7 +151,7 @@ public class TurnajService extends Service {
             idx++;
         }
 
-        XMLTurnajModifier xmlTurnajModifier = new XMLTurnajModifier(path);
+        XMLTurnajModifier xmlTurnajModifier = new XMLTurnajModifier(org.getNazov(), turnajId);
         xmlTurnajModifier.modifyXML(String.valueOf(idx));
     }
 

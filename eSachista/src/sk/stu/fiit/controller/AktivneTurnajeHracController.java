@@ -40,7 +40,7 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         int id = 0;
         for (Turnaj turnaj : this.getTurnaje()) {
             if (turnaj.getNazov().equals(prebiehajuciTurnaj.getNazov())) {
-                if (new File("resources/turnaje/" + id + "/harmonogram.xml").exists()) {
+                if (new File("resources/" + this.getOrgLoggedIn().getNazov() + "/turnaje/" + id + "/harmonogram.xml").exists()) {
                     logger.info("podarilo sa mi sparovat turnaj a vraciam id " + id);
                     this.idPrebiehajuciTurnaj = id;
                     return id;
@@ -54,7 +54,7 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
 
     public void parseTurnaj(int turnajId) {
         logger.info("idem citat zo subora xml pre turnaj s id " + turnajId);
-        XMLTurnajReader xmlReader = new XMLTurnajReader("resources/turnaje/" + turnajId + "/harmonogram.xml");
+        XMLTurnajReader xmlReader = new XMLTurnajReader(this.getOrgLoggedIn().getNazov(), turnajId);
         this.harmonogram = xmlReader.parseTurnaj(this.getTurnaje().get(turnajId));
         logger.info("skoncil som citanie.");
     }
