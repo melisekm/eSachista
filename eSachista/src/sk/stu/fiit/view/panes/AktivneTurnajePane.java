@@ -41,6 +41,8 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
     private AktivneTurnajeHracController controller;
     private JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+    
+    private int BODY_STLPEC = 3;
 
     private Turnaj prebiehajuciTurnaj;
     private Date harmonogramAktualizacia;
@@ -52,10 +54,11 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sortKeys.add(new RowSorter.SortKey(BODY_STLPEC, SortOrder.DESCENDING));
         sorter.setSortKeys(sortKeys);
         labelArrow.setVisible(false);
         labelNovaVerzia.setVisible(false);
+        vysledkyPane.setVisible(false);
     }
 
     public AktivneTurnajePane() {
