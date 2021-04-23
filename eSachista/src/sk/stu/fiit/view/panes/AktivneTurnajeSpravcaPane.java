@@ -30,8 +30,9 @@ import sk.stu.fiit.utils.ViewUtils;
 public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IViewRefresh {
 
     private static final Logger logger = LoggerFactory.getLogger(AktivneTurnajeSpravcaPane.class);
+    private int BODY_STLPEC = 3;
 
-    int VYHERCA_COLUMN = 4;
+    private int VYHERCA_COLUMN = 4;
 
     private AktivneTurnajeSpravcaController controller;
 
@@ -347,7 +348,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         this.controller.zadajVysledok(zapas, vyherca);
         dialogZadatVysledok.setVisible(false);
         this.naplnTabulkuHracov();
-        (tableHarmonogram.getModel()).setValueAt(zapas.getVyherca().getMeno(), row, this.VYHERCA_COLUMN);
+        (tableHarmonogram.getModel()).setValueAt(zapas.getVyherca().getMeno(), row, VYHERCA_COLUMN);
     }//GEN-LAST:event_btnOKMouseReleased
 
     private void btnZavrietMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietMouseReleased
@@ -437,7 +438,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sortKeys.add(new RowSorter.SortKey(BODY_STLPEC, SortOrder.DESCENDING));
         sorter.setSortKeys(sortKeys);
     }
 

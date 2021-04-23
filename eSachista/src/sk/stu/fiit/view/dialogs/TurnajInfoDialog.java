@@ -17,6 +17,8 @@ import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
  * @author Martin Melisek
  */
 public class TurnajInfoDialog extends javax.swing.JDialog {
+    
+    private int BODY_STLPEC = 3;
 
     public TurnajInfoDialog(java.awt.Frame parent, boolean modal, Turnaj vybratyTurnaj) {
         super(parent, modal);
@@ -24,7 +26,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableHraci.getModel());
         tableHraci.setRowSorter(sorter);
         List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING));
+        sortKeys.add(new RowSorter.SortKey(BODY_STLPEC, SortOrder.DESCENDING));
         sorter.setSortKeys(sortKeys);
         this.showTurnajInfo(vybratyTurnaj);
         this.naplnTabulku(vybratyTurnaj);
