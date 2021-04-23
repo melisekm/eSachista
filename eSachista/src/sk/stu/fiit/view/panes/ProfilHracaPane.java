@@ -113,7 +113,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
                 btnUpravitProfilMouseReleased(evt);
             }
         });
-        add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 100, -1));
+        add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 150, 40));
 
         iconAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         add(iconAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 170));

@@ -24,9 +24,9 @@ public class Database implements Serializable {
     private String bundle = "Bundle_sk_SK";
 
     private Database() {
-        this.baliky.add(new Balik(10, 2, 8));
-        this.baliky.add(new Balik(50, 10, 32));
-        this.baliky.add(new Balik(100, 20, 64));
+        this.baliky.add(new Balik("Malý", 10, 2, 8));
+        this.baliky.add(new Balik("Stredný", 50, 10, 32));
+        this.baliky.add(new Balik("Ve¾ký", 100, 20, 64));
     }
 
     public static void createDatabase(Database db) {

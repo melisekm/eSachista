@@ -54,7 +54,7 @@ public class BarChart extends Chart {
         plot.getDomainAxis().setLabelFont(new Font("Segoe UI", Font.PLAIN, 8)); //NOI18N
 
         //farby
-        Color farbaPozadia = new Color(255, 255, 255);
+        Color farbaPozadia = new Color(240, 243, 247);
         plot.setBackgroundPaint(farbaPozadia);
         plot.setOutlinePaint(null);
         chart.setBackgroundPaint(farbaPozadia);

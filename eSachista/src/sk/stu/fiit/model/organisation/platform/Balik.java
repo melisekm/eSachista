@@ -6,22 +6,32 @@ import java.io.Serializable;
  *
  * @author Martin Melisek
  */
-public class Balik implements Serializable{
+public class Balik implements Serializable {
 
+    private String nazov;
     private int kapacitaPouzivatelov;
     private int maxPocetTurnajov;
     private int maxHracovTurnaja;
 
-    public Balik(int kapacitaPouzivatelov, int maxPocetTurnajov, int MaxPocetPrihlasenych) {
+    public Balik(String nazov, int kapacitaPouzivatelov, int maxPocetTurnajov, int maxPocetPrihlasenych) {
         this.kapacitaPouzivatelov = kapacitaPouzivatelov;
         this.maxPocetTurnajov = maxPocetTurnajov;
-        this.maxHracovTurnaja = MaxPocetPrihlasenych;
+        this.maxHracovTurnaja = maxPocetPrihlasenych;
+        this.nazov = nazov;
     }
 
     @Override
     public String toString() {
         return "Balik\n" + "Kapacita hr·Ëov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
                 + "\nMaximum hr·Ëov na turnaji: " + maxHracovTurnaja;
+    }
+
+    public String getNazov() {
+        return nazov;
+    }
+
+    public void setNazov(String nazov) {
+        this.nazov = nazov;
     }
 
     public int getKapacitaPouzivatelov() {

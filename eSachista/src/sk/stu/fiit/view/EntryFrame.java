@@ -2,7 +2,6 @@ package sk.stu.fiit.view;
 
 import sk.stu.fiit.utils.ViewUtils;
 import java.util.Arrays;
-import java.util.ResourceBundle;
 import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;

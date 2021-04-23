@@ -32,7 +32,7 @@ public class DataLoader {
 
     private static void vytvorOrganizaciu(Database db) {
         char[] pw = new char[]{'<', '=', '>'}; // "123"
-        Balik b = new Balik(20, 10, 10);
+        Balik b = new Balik("Umelý", 20, 10, 10);
         Spravca organizator = new Spravca("Martin Melisek", "test", pw, "x@x.sk");
         Organizacia o = new Organizacia("FIIT STUBA VAVA", "sk.stu.fiit.vava", organizator, b);
         organizator.setOrg(o);
