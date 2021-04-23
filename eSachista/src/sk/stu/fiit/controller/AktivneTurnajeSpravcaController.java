@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
-import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 
 /**
  *

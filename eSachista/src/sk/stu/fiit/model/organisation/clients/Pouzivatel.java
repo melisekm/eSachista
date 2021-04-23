@@ -2,6 +2,7 @@ package sk.stu.fiit.model.organisation.clients;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.Avatar;
 
@@ -9,7 +10,7 @@ import sk.stu.fiit.model.organisation.platform.Avatar;
  *
  * @author Martin Melisek
  */
-public abstract class Pouzivatel implements Serializable{
+public abstract class Pouzivatel implements Serializable {
 
     protected Organizacia org;
     protected String meno;
@@ -22,6 +23,7 @@ public abstract class Pouzivatel implements Serializable{
         this.meno = meno;
         this.login = login;
         this.password = password;
+        this.avatar = new Avatar(new ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png")));
     }
 
     public Pouzivatel(Organizacia org, String meno, String login, char[] password) {

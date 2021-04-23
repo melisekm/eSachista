@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.labels.StandardCategoryToolTipGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -51,7 +53,9 @@ public class BarChart extends Chart {
         );
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setNoDataMessage("NENASLI SA ZIADNE ZAZNAMY.");
-        plot.getDomainAxis().setLabelFont(new Font("Segoe UI", Font.PLAIN, 8)); //NOI18N
+        plot.getDomainAxis().setLabelFont(new Font("Segoe UI", Font.PLAIN, 8)); //velkost fontu si to riesi interne
+        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setTickUnit(new NumberTickUnit(1));
 
         //farby
         Color farbaPozadia = new Color(240, 243, 247);
@@ -60,8 +64,7 @@ public class BarChart extends Chart {
         chart.setBackgroundPaint(farbaPozadia);
         final CategoryItemRenderer renderer = new CustomRenderer(
                 new Paint[]{new Color(59, 166, 235), new Color(97, 162, 16), new Color(191, 75, 53),
-                    new Color(229, 123, 0), new Color(59, 166, 235), new Color(14, 167, 144),
-                    }
+                    new Color(229, 123, 0), new Color(59, 166, 235), new Color(14, 167, 144),}
         );
         plot.setRenderer(renderer);
         ((BarRenderer) plot.getRenderer()).setBarPainter(new StandardBarPainter()); // vypne gradient

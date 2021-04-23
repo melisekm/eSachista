@@ -49,7 +49,6 @@ public class Main {
                 logger.error("Nacitala sa nekompatibilna trieda");
                 logger.error(ex.getClass().toString());
                 System.exit(1);
-//                DataLoader.loadData();
             } catch (IOException ex) {
                 logger.error("Chyba pri nacitavani DB");
                 logger.error(ex.getClass().toString());

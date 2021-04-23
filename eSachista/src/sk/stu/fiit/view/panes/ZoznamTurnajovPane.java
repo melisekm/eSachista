@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sk.stu.fiit.view.panes;
 
 import java.util.ArrayList;
@@ -32,7 +27,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     public ZoznamTurnajovPane(HracController controller) {
         this.controller = controller;
         initComponents();
-        this.nastavTabulkuTurnajov();
+        this.refresh();
     }
 
     public ZoznamTurnajovPane() {
@@ -117,6 +112,9 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             case PlatformConstants.KAPACITA_TURNAJA_PREKROCENA:
                 JOptionPane.showMessageDialog(this, "Turnaj je plný.", "TURNAJ FULL", JOptionPane.ERROR_MESSAGE);
                 break;
+            case PlatformConstants.INA_CHYBA:
+                JOptionPane.showConfirmDialog(this, "Nastala neoèakávaná chyba, prosím skúste to znovu.");
+                break;
             case PlatformConstants.TURNAJ_PRIHLASENIE_OK:
                 JOptionPane.showMessageDialog(this, "Prihlasovanie prebehlo v poriadku", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                 ((DefaultTableModel) tableTurnaje.getModel()).removeRow(index);
@@ -138,7 +136,6 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
     }//GEN-LAST:event_btnDetailyMouseReleased
 
     private void vyplnTabulkuTurnajov() {
-        this.controller.loadOrg();
         DefaultTableModel model = (DefaultTableModel) tableTurnaje.getModel();
         model.setRowCount(0);
         ArrayList<Turnaj> turnaje = this.controller.getTurnaje();
@@ -159,6 +156,7 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
 
     @Override
     public void refresh() {
+        this.controller.loadOrg();
         this.vyplnTabulkuTurnajov();
     }
 

@@ -16,7 +16,6 @@ public class SpravcaController extends Controller {
     }
 
     public LinkedHashMap<String, Double> getDniKonaniaDataset() {
-
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
         for (Turnaj t : this.getTurnaje()) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");

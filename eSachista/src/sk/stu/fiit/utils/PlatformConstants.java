@@ -26,6 +26,7 @@ public class PlatformConstants {
     public static final int HRAC_PRILIS_STARY = 1;
     public static final int RATING_JE_MIMO_ROZSAH = 2;
     public static final int KAPACITA_TURNAJA_PREKROCENA = 3;
+    public static final int INA_CHYBA = 255;
     
 
     private PlatformConstants() {

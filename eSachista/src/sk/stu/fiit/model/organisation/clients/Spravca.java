@@ -1,7 +1,6 @@
 package sk.stu.fiit.model.organisation.clients;
 
 import java.io.Serializable;
-import sk.stu.fiit.model.organisation.Organizacia;
 
 /**
  *

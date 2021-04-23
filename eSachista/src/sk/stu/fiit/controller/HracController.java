@@ -25,6 +25,12 @@ public class HracController extends Controller {
 
     public int prihlasHracaNaTurnaj(Turnaj t) {
         this.loadOrg();
+        t = this.reloadTurnaj(t);
+        if (t == null) {
+            logger.error("Nebolo mozne najst turnaj, na ktory sa chcel hrac prihlasit po nacitani Org zo suboru.");
+            return PlatformConstants.INA_CHYBA;
+        }
+
         logger.info("Hrac " + this.getPrihlasenyHrac().getLogin() + " sa prihlasuje na turnaj " + t.getNazov());
         int validaciaKod = this.zvalidujPrihlasenie(t);
         if (validaciaKod != PlatformConstants.TURNAJ_PRIHLASENIE_OK) {

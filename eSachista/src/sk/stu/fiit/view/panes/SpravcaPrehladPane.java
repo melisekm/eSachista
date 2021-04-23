@@ -1,12 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sk.stu.fiit.view.panes;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.clients.Spravca;
@@ -18,38 +23,39 @@ import sk.stu.fiit.view.charts.BarPieChartFactory;
  * @author lucia
  */
 public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefresh {
-
+    
+    private static final Logger logger = LoggerFactory.getLogger(SpravcaPrehladPane.class);
+    
     private JPanel SpravcaPanel;
     private JPanel SpravcaDatumyPanel;
     private SpravcaController controller;
-
+    
     public SpravcaPrehladPane(SpravcaController controller) {
         this.controller = controller;
         initComponents();
         this.setPoctyHracovTurnajeChart();
         this.setPoctyHracovDniChart();
     }
-
+    
     public SpravcaPrehladPane() {
         initComponents();
-        this.setPoctyHracovTurnajeChart();
-        this.setPoctyHracovDniChart();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EditovatSpravcuDialog = new javax.swing.JDialog();
+        dialogEditovatSpravcu = new javax.swing.JDialog();
         paneDialogEditovat = new javax.swing.JPanel();
         btnUlozitSpravcaDialog = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        labelNazovOrgDialog = new javax.swing.JLabel();
+        labelMenoSpravcuDialog = new javax.swing.JLabel();
+        fieldNazovOrg = new javax.swing.JTextField();
+        fieldMenoSpravcu = new javax.swing.JTextField();
+        labelUpravitUdaje = new javax.swing.JLabel();
+        btnVybratAvatar = new javax.swing.JButton();
+        labelLogoOrgDialog = new javax.swing.JLabel();
+        imgChooser = new javax.swing.JFileChooser();
         labelLogoOrg = new javax.swing.JLabel();
         labelDataNazovOrg = new javax.swing.JLabel();
         labelDatumRegistracie = new javax.swing.JLabel();
@@ -72,7 +78,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelDataNaplanovaneTurnaje = new javax.swing.JLabel();
         labelBalik = new javax.swing.JLabel();
 
-        EditovatSpravcuDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        dialogEditovatSpravcu.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paneDialogEditovat.setBackground(new java.awt.Color(255, 255, 255));
         paneDialogEditovat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,40 +88,45 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         btnUlozitSpravcaDialog.setForeground(new java.awt.Color(255, 255, 255));
         btnUlozitSpravcaDialog.setText("Uloûiù");
         btnUlozitSpravcaDialog.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUlozitSpravcaDialogMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUlozitSpravcaDialogMouseReleased(evt);
             }
         });
         paneDialogEditovat.add(btnUlozitSpravcaDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 140, -1));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("N·zov organiz·cie:");
-        paneDialogEditovat.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        labelNazovOrgDialog.setBackground(new java.awt.Color(0, 0, 0));
+        labelNazovOrgDialog.setForeground(new java.awt.Color(0, 0, 0));
+        labelNazovOrgDialog.setText("N·zov organiz·cie:");
+        paneDialogEditovat.add(labelNazovOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Meno spr·vcu:");
-        paneDialogEditovat.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 155, -1, -1));
-        paneDialogEditovat.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, -1));
-        paneDialogEditovat.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, -1));
+        labelMenoSpravcuDialog.setBackground(new java.awt.Color(0, 0, 0));
+        labelMenoSpravcuDialog.setForeground(new java.awt.Color(0, 0, 0));
+        labelMenoSpravcuDialog.setText("Meno spr·vcu:");
+        paneDialogEditovat.add(labelMenoSpravcuDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 155, -1, -1));
+        paneDialogEditovat.add(fieldNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, -1));
+        paneDialogEditovat.add(fieldMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, -1));
 
-        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Upraviù ˙daje");
-        paneDialogEditovat.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
+        labelUpravitUdaje.setBackground(new java.awt.Color(0, 0, 0));
+        labelUpravitUdaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelUpravitUdaje.setForeground(new java.awt.Color(0, 0, 0));
+        labelUpravitUdaje.setText("Upraviù ˙daje");
+        paneDialogEditovat.add(labelUpravitUdaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Vybraù avatar");
-        paneDialogEditovat.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
+        btnVybratAvatar.setBackground(new java.awt.Color(102, 102, 102));
+        btnVybratAvatar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVybratAvatar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVybratAvatar.setText("Vybraù avatar");
+        btnVybratAvatar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVybratAvatarMouseReleased(evt);
+            }
+        });
+        paneDialogEditovat.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        paneDialogEditovat.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 160, 140));
+        labelLogoOrgDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
+        paneDialogEditovat.add(labelLogoOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 160, 140));
 
-        EditovatSpravcuDialog.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 310));
+        dialogEditovatSpravcu.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 310));
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -142,8 +153,8 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviù");
         btnUpravitOrgPrehlad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpravitOrgPrehladMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnUpravitOrgPrehladMouseReleased(evt);
             }
         });
         add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 166, 150, 40));
@@ -213,23 +224,55 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpravitOrgPrehladMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitOrgPrehladMouseClicked
-        ViewUtils.showDialog(EditovatSpravcuDialog);
-    }//GEN-LAST:event_btnUpravitOrgPrehladMouseClicked
+    private void btnVybratAvatarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVybratAvatarMouseReleased
+        FileFilter ff = new FileNameExtensionFilter("images", "jpg", "jpeg", "png");
+        imgChooser.setFileFilter(ff);
+        int open = imgChooser.showOpenDialog(this);
+        if (open == JFileChooser.APPROVE_OPTION) {
+            File file = imgChooser.getSelectedFile();
+            BufferedImage bi;
+            try {
+                bi = ImageIO.read(file); // path is your file or image path
+                labelLogoOrgDialog.setIcon(new ImageIcon(bi));
+            } catch (Exception ex) {
+                logger.warn("Pouzivatel vybral nepodporany typ obrazku");
+                JOptionPane.showMessageDialog(this, "Nepodporovany typ obrazku.", "INVALID IMAGE", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnVybratAvatarMouseReleased
 
-    private void btnUlozitSpravcaDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitSpravcaDialogMouseClicked
-        Spravca s = this.controller.getPrihlasenySpravca();
-        Organizacia o = this.controller.getOrgLoggedIn();
-    }//GEN-LAST:event_btnUlozitSpravcaDialogMouseClicked
+    private void btnUlozitSpravcaDialogMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitSpravcaDialogMouseReleased
+        if (!ViewUtils.validateFieldsNotBlank(dialogEditovatSpravcu, fieldMenoSpravcu, fieldNazovOrg)) {
+            return;
+        }
+        String menoSpravcu = fieldMenoSpravcu.getText();
+        String nazovOrg = fieldNazovOrg.getText();
+        this.controller.getOrgLoggedIn().setNazov(nazovOrg);
+        this.controller.getPrihlasenySpravca().setMeno(menoSpravcu);
+        this.controller.getPrihlasenySpravca().getAvatar().setImage(labelLogoOrgDialog.getIcon());
+        this.controller.saveOrg();
+        dialogEditovatSpravcu.setVisible(false);
+        dialogEditovatSpravcu.dispose();
+        this.refresh();
+    }//GEN-LAST:event_btnUlozitSpravcaDialogMouseReleased
+
+    private void btnUpravitOrgPrehladMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpravitOrgPrehladMouseReleased
+        fieldMenoSpravcu.setText(this.controller.getPrihlasenySpravca().getMeno());
+        fieldNazovOrg.setText(this.controller.getOrgLoggedIn().getNazov());
+        labelLogoOrgDialog.setIcon(this.controller.getPrihlasenySpravca().getAvatar().getImage());
+        ViewUtils.showDialog(dialogEditovatSpravcu);
+    }//GEN-LAST:event_btnUpravitOrgPrehladMouseReleased
+    
     private void setSpravcaInfo() {
         Spravca s = this.controller.getPrihlasenySpravca();
         Organizacia o = this.controller.getOrgLoggedIn();
         labelDataNazovOrg.setText(o.getNazov());
+        labelLogoOrg.setIcon(s.getAvatar().getImage());
         labelDataBalik.setText(o.getBalik().getNazov());
         labelDataMenoSpravcu.setText(s.getMeno());
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         labelDataDatumReg.setText(sdf.format(s.getDatumRegistracie()));
-
+        
         String[] turnajeStatistiky = this.controller.getTurnajeStatistiky(o);
         labelDataPocetTurnajov.setText(turnajeStatistiky[0]);
         labelDataNaplanovaneTurnaje.setText(turnajeStatistiky[1]);
@@ -237,23 +280,22 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelDataPocetZapasov.setText(turnajeStatistiky[3]);
         labelDataPocetClenov.setText(String.valueOf(this.controller.getHraci().size()));
         labelDataPriemerneELO.setText(this.controller.getPriemerneELO());
-
     }
-
+    
     private void setPoctyHracovTurnajeChart() {
         BarPieChartFactory factory = new BarPieChartFactory();
         SpravcaPanel = factory.createChart("BAR", "PoËet hr·Ëov v jednotliv˝ch turnajoch", this.controller.getHraciDataset());
         SpravcaPanel.setPreferredSize(new java.awt.Dimension(330, 300));
         add(SpravcaPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 330, 300));
     }
-
+    
     private void setPoctyHracovDniChart() {
         BarPieChartFactory factory = new BarPieChartFactory();
         SpravcaDatumyPanel = factory.createChart("BAR", "PoËet hr·Ëov podæa dnÌ konania turnajov", this.controller.getDniKonaniaDataset());
         SpravcaDatumyPanel.setPreferredSize(new java.awt.Dimension(330, 300));
         add(SpravcaDatumyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 330, 300));
     }
-
+    
     public void refresh() {
         this.remove(SpravcaPanel);
         this.remove(SpravcaDatumyPanel);
@@ -266,16 +308,13 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog EditovatSpravcuDialog;
     private javax.swing.JButton btnUlozitSpravcaDialog;
     private javax.swing.JButton btnUpravitOrgPrehlad;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton btnVybratAvatar;
+    private javax.swing.JDialog dialogEditovatSpravcu;
+    private javax.swing.JTextField fieldMenoSpravcu;
+    private javax.swing.JTextField fieldNazovOrg;
+    private javax.swing.JFileChooser imgChooser;
     private javax.swing.JLabel labelBalik;
     private javax.swing.JLabel labelDataBalik;
     private javax.swing.JLabel labelDataDatumReg;
@@ -289,12 +328,16 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
     private javax.swing.JLabel labelDataUkonceneTurnaje;
     private javax.swing.JLabel labelDatumRegistracie;
     private javax.swing.JLabel labelLogoOrg;
+    private javax.swing.JLabel labelLogoOrgDialog;
+    private javax.swing.JLabel labelMenoSpravcuDialog;
     private javax.swing.JLabel labelNaplanovaneTurnaje;
+    private javax.swing.JLabel labelNazovOrgDialog;
     private javax.swing.JLabel labelPocetClenov;
     private javax.swing.JLabel labelPocetTurnajov;
     private javax.swing.JLabel labelPocetZapasov;
     private javax.swing.JLabel labelPriemerneELO;
     private javax.swing.JLabel labelUkonceneTurnaje;
+    private javax.swing.JLabel labelUpravitUdaje;
     private javax.swing.JLabel labelVitajte;
     private javax.swing.JPanel paneDialogEditovat;
     // End of variables declaration//GEN-END:variables

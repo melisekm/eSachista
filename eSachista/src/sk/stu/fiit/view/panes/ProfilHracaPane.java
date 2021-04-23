@@ -92,11 +92,11 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         labelMeno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelMeno.setForeground(new java.awt.Color(54, 107, 172));
-        labelMeno.setText("Cpavok");
-        add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 220, 20));
+        labelMeno.setText("Ivan Druhý");
+        add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 200, -1));
 
         labelPrezyvka.setForeground(new java.awt.Color(86, 88, 92));
-        labelPrezyvka.setText("Prezyvka");
+        labelPrezyvka.setText("xxIvan");
         add(labelPrezyvka, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         MestoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -226,7 +226,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         labelOrg.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelOrg.setForeground(new java.awt.Color(0, 0, 0));
-        labelOrg.setText("Organizacia:");
+        labelOrg.setText("Organizácia:");
         add(labelOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, -1));
 
         labelStat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -241,15 +241,15 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
 
         labelDataOrg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelDataOrg.setForeground(new java.awt.Color(0, 0, 0));
-        labelDataOrg.setText("Orga");
+        labelDataOrg.setText("FIIT STU");
         add(labelDataOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
 
         labelDataMesto.setForeground(new java.awt.Color(0, 0, 0));
-        labelDataMesto.setText("Dolné Èpavkovce");
+        labelDataMesto.setText("Bratislava");
         add(labelDataMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
         labelDataStat.setForeground(new java.awt.Color(0, 0, 0));
-        labelDataStat.setText("Európa");
+        labelDataStat.setText("Slovenská republika");
         add(labelDataStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         labelDataDatumNarodenia.setForeground(new java.awt.Color(0, 0, 0));
@@ -257,7 +257,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         add(labelDataDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
 
         labelDataPohlavie.setForeground(new java.awt.Color(0, 0, 0));
-        labelDataPohlavie.setText("Dog");
+        labelDataPohlavie.setText("Muž");
         add(labelDataPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

@@ -44,9 +44,11 @@ public abstract class Controller {
     public void loadOrg() {
         try {
             this.entryService.setOrgLoggedIn(this.ioManager.loadOrg());
-            for (Pouzivatel pouzivatel : this.getPouzivatelia()) {
-                if (pouzivatel.getLogin().equals(this.getUserLoggedIn().getLogin())) {
-                    this.entryService.setUserLoggedIn(pouzivatel);
+            if (this.getUserLoggedIn() != null) {
+                for (Pouzivatel pouzivatel : this.getPouzivatelia()) {
+                    if (pouzivatel.getLogin().equals(this.getUserLoggedIn().getLogin())) {
+                        this.entryService.setUserLoggedIn(pouzivatel);
+                    }
                 }
             }
         } catch (IOException ex) {
@@ -76,6 +78,21 @@ public abstract class Controller {
             }
         }
         return hraci;
+    }
+
+    /**
+     * Po obnoveni najnovsej verzie org obnovi referenciu
+     *
+     * @param povodnyTurnaj turnaj ktoreho referencia sa ma obnovit
+     * @return referenciu na turanj z najnovsieho suboru ak existuje inak null
+     */
+    protected Turnaj reloadTurnaj(Turnaj povodnyTurnaj) {
+        for (Turnaj turnaj : this.getTurnaje()) {
+            if (turnaj.getNazov().equals(povodnyTurnaj.getNazov())) {
+                return turnaj;
+            }
+        }
+        return null;
     }
 
     public String getTurnajKapacita(Turnaj t) {
