@@ -21,7 +21,7 @@ import sk.stu.fiit.view.dialogs.IOManagerDialog;
 public class EntryFrame extends javax.swing.JFrame {
 
     Logger logger = LoggerFactory.getLogger(EntryFrame.class);
-    
+
     private final EntryController controller;
     private JTextField[] registraciaHracaFields;
     private JTextField[] registraciaOrgFields;
@@ -582,12 +582,6 @@ public class EntryFrame extends javax.swing.JFrame {
         this.reInternationalize();
     }//GEN-LAST:event_labelIconUSAMouseReleased
 
-      private void reInternationalize() {
-        this.dispose();
-        this.setVisible(false);
-        this.main();
-    }
-    
     public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -713,7 +707,7 @@ public class EntryFrame extends javax.swing.JFrame {
     }
 
     private boolean skontrolujStatusRegistracieOrg(int status) {
-        if(status == EntryConstants.INVALID_EMAIL){
+        if (status == EntryConstants.INVALID_EMAIL) {
             JOptionPane.showMessageDialog(dialogRegistrovatOrg, "E-mail je zle zadaný", "Invalid input", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -752,5 +746,11 @@ public class EntryFrame extends javax.swing.JFrame {
             fieldRegNazovOrg,
             fieldRegDomenaOrg
         };
+    }
+
+    private void reInternationalize() {
+        this.dispose();
+        this.setVisible(false);
+        this.main();
     }
 }

@@ -308,6 +308,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         add(SpravcaDatumyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 330, 300));
     }
     
+    @Override
     public void refresh() {
         this.remove(SpravcaPanel);
         this.remove(SpravcaDatumyPanel);

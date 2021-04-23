@@ -46,6 +46,11 @@ public class IOManager {
             Database.createDatabase((Database) in.readObject());
             logger.debug("Databaza uspesene nacitana.");
         }
+        for (Organizacia organizacia : Database.getInstance().getOrganizacie()) {
+            if(!(new File("resources/" + organizacia.getNazov()).exists())){
+                logger.warn("Do databazy bola nacitana organizacia, ktorej domovsky subor neexistuje.");
+            }
+        }
     }
 
     public void saveOrg(Organizacia org) throws FileNotFoundException, IOException {

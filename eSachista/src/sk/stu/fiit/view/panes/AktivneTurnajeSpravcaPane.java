@@ -280,8 +280,8 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerujHarmnogramMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerujHarmnogramMouseReleased
-        if (this.controller.getPrebiehajuciTurnaj().getHraci().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Turnaj nie je moûnÈ zaËaù pretoûe nem· ûiadnych hr·Ëov.");
+        if (this.controller.getPrebiehajuciTurnaj().getHraci().size() < 2) {
+            JOptionPane.showMessageDialog(this, "Turnaj mÙûe zaËaù, len ak m· aspoÚ 2 hr·Ëov.");
             return;
         }
         if (this.controller.getPrebiehajuciTurnaj().getDatumKonania().after(new Date())) {
