@@ -426,6 +426,10 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(controller.getOrgLoggedIn() == null){
+                timer.stop();
+                return;
+            }
             if (prebiehajuciTurnaj == null) {
                 return;
             }
