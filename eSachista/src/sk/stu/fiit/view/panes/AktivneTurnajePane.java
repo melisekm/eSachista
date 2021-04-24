@@ -314,6 +314,10 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             JOptionPane.showMessageDialog(this, "Zapas pre vas nebol najdeny");
             return;
         }
+        if(zapas.getHrac1() == null || zapas.getHrac2() == null){
+            JOptionPane.showMessageDialog(this, "Vyhravate automaticky, lebo ste dostali FreeWin.");
+            return;
+        }
         ViewUtils.showDialog(new ZapasDialog(this.parent, true, zapas));
     }//GEN-LAST:event_btnZobrazitZapasMouseReleased
 
@@ -360,9 +364,11 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             if (vyherca != null) {
                 vyhercaTxt = vyherca.toString();
             }
+            String hrac1 = zapas.getHrac1() != null ? zapas.getHrac1().getMeno() : "FreeWin";
+            String hrac2 = zapas.getHrac2() != null ? zapas.getHrac2().getMeno() : "FreeWin";
             model.addRow(new Object[]{
-                zapas.getHrac1(),
-                zapas.getHrac2(),
+                hrac1,
+                hrac2,
                 sdf.format(zapas.getCasZaciatku()),
                 vyhercaTxt
             });
@@ -394,6 +400,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
             labelNeprebiehaTurnaj.setVisible(true);
             mainPane.setVisible(true);
             vysledkyPane.setVisible(false);
+            ((DefaultTableModel) tableHarmonogram.getModel()).setRowCount(0);
             return;
         }
         this.naplnTurnajPane(this.prebiehajuciTurnaj);

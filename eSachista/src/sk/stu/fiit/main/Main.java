@@ -67,6 +67,7 @@ public class Main {
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setStage(null);
             Database.getInstance().getOrganizacie().get(0).getTurnaje().get(0).setFinished(false);
             new File("resources/FIIT STUBA VAVA/turnaje/0/harmonogram.xml").delete();
+            new File("resources/FIIT STUBA VAVA/turnaje/1/harmonogram.xml").delete();
             try {
                 new IOManager("FIIT STUBA VAVA").saveOrg(Database.getInstance().getOrganizacie().get(0));
             } catch (IOException ex) {

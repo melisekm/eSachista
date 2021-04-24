@@ -24,7 +24,7 @@ public class DataLoader {
         Database db = Database.getInstance();
         vytvorOrganizaciu(db);
         pridajHracov(db, 0);
-        pridajTurnaj(db, 0, "FIITkarsky turnaj", "FIIT", "Turnaj na skole", TurnajFormat.ROUND_ROBIN);
+        pridajTurnaj(db, 0, "FIITkarsky turnaj", "FIIT", "Turnaj na skole", TurnajFormat.SINGLE_ELIMINATION);
         pridajTurnaj(db, 0, "Turnaj dekana", "Online", "Turnaj online", TurnajFormat.ROUND_ROBIN);
         pridajHracovNaTurnaj(db, 0, 0);
         pridajHracovNaTurnaj(db, 0, 1);
@@ -81,14 +81,14 @@ public class DataLoader {
         Hrac h1 = (Hrac) org.getPouzivatelia().get(1);
         Hrac h2 = (Hrac) org.getPouzivatelia().get(2);
         Hrac h3 = (Hrac) org.getPouzivatelia().get(3);
-        Hrac h4 = (Hrac) org.getPouzivatelia().get(4);
-        Hrac h5 = (Hrac) org.getPouzivatelia().get(5);
+//        Hrac h4 = (Hrac) org.getPouzivatelia().get(4);
+//        Hrac h5 = (Hrac) org.getPouzivatelia().get(5);
 
         pridajHracaNaTurnaj(t, h1);
         pridajHracaNaTurnaj(t, h2);
         pridajHracaNaTurnaj(t, h3);
-        pridajHracaNaTurnaj(t, h4);
-        pridajHracaNaTurnaj(t, h5);
+//        pridajHracaNaTurnaj(t, h4);
+//        pridajHracaNaTurnaj(t, h5);
     }
 
     private static void pridajHracaNaTurnaj(Turnaj t, Hrac h) {

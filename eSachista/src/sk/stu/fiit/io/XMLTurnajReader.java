@@ -27,7 +27,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 public class XMLTurnajReader extends XMLTurnajHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(XMLTurnajReader.class);
-    
+
     public XMLTurnajReader(String nazovOrg, int idx) {
         super(nazovOrg);
         this.filePath = this.orgPath + "turnaje\\" + idx + "\\harmonogram.xml";
@@ -75,11 +75,17 @@ public class XMLTurnajReader extends XMLTurnajHandler {
         Date casZaciatku = this.getCasZaciatku(zapasElement, prebiehajuciTurnaj.getDatumKonania());
 
         int hrac1Id = Integer.parseInt(zapasElement.getElementsByTagName("cierny").item(0).getTextContent());
-        Hrac h1 = prebiehajuciTurnaj.getHraci().get(hrac1Id);
+        Hrac h1 = null;
+        if (hrac1Id != -1) {
+            h1 = prebiehajuciTurnaj.getHraci().get(hrac1Id);
+        }
         FarbaFiguriek h1Farba = FarbaFiguriek.CIERNA;
 
+        Hrac h2 = null;
         int hrac2Id = Integer.parseInt(zapasElement.getElementsByTagName("biely").item(0).getTextContent());
-        Hrac h2 = prebiehajuciTurnaj.getHraci().get(hrac2Id);
+        if (hrac2Id != -1) {
+            h2 = prebiehajuciTurnaj.getHraci().get(hrac2Id);
+        }
         FarbaFiguriek h2Farba = FarbaFiguriek.BIELA;
 
         int vyhercaId = Integer.parseInt(zapasElement.getElementsByTagName("vyherca").item(0).getTextContent());

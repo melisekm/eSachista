@@ -66,8 +66,14 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
             return null;
         }
         for (Zapas zapas : this.harmonogram) {
-            boolean jeToHrac1 = zapas.getHrac1().getLogin().equals(this.getPrihlasenyHrac().getLogin());
-            boolean jeToHrac2 = zapas.getHrac2().getLogin().equals(this.getPrihlasenyHrac().getLogin());
+            boolean jeToHrac1 = false;
+            boolean jeToHrac2 = false;
+            if(zapas.getHrac1() != null){
+                jeToHrac1 = zapas.getHrac1().getLogin().equals(this.getPrihlasenyHrac().getLogin());
+            }
+            if(zapas.getHrac2() != null){
+                jeToHrac2 = zapas.getHrac2().getLogin().equals(this.getPrihlasenyHrac().getLogin());
+            }
             boolean figurujeHracVzapase = Boolean.logicalOr(jeToHrac1, jeToHrac2);
             if (figurujeHracVzapase) {
                 logger.info("Nasiel som prihlaseneho hraca ktory figuruje v zapase");
