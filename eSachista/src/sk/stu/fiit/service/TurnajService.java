@@ -58,6 +58,7 @@ public class TurnajService extends Service {
                 if (turnaj.getHraci().size() % 2 != 0) {
                     roundRobinStage.getZoznamHracov().add(-1);
                     roundRobinStage.setPolCas(roundRobinStage.getPolCas() + 1);
+                    roundRobinStage.setPocetKol(roundRobinStage.getPocetKol() + 1);
                 }
                 roundRobinStage.getZoznamHracov().remove(0);
                 roundRobinStage.setPocetHracov(roundRobinStage.getZoznamHracov().size());
