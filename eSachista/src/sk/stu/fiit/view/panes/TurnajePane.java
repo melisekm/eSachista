@@ -88,7 +88,7 @@ public class TurnajePane extends javax.swing.JPanel implements IViewRefresh {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 380, 410));
 
         labelTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelTurnaje.setText("Zoznam naplánovaných turnajov");
+        labelTurnaje.setText("Zoznam turnajov");
         add(labelTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         btnUpravit.setBackground(new java.awt.Color(204, 204, 204));
