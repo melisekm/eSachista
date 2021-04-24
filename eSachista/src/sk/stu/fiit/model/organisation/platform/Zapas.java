@@ -24,7 +24,18 @@ public class Zapas implements Serializable {
 
     @Override
     public String toString() {
-        String res = "0:0";
+        Hrac hrac1 = this.hrac1;
+        Hrac hrac2 = this.hrac2;
+        if (hrac1 == null && hrac2 == null) {
+            return "FreeWin X:X FreeWin " + casZaciatku;
+        }
+        if (hrac1 == null) {
+            return hrac2.getMeno() + " " + "1:0 FreeWin " + casZaciatku;
+        }
+        if (hrac2 == null) {
+            return hrac1.getMeno() + " " + "1:0 FreeWin " + casZaciatku;
+        }
+        String res = "X:X";
         if (vyherca != null) {
             if (vyherca.getLogin().equals(hrac1.getLogin())) {
                 res = "1:0";
@@ -32,7 +43,6 @@ public class Zapas implements Serializable {
                 res = "0:1";
             }
         }
-
         return hrac1.getMeno() + " " + res + " " + hrac2.getMeno() + " " + casZaciatku;
     }
 

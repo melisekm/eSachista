@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.FarbaFiguriek;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
@@ -52,7 +53,7 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
 
     private void saveOldXML(int idx) {
         File directory = new File(this.orgPath + "\\turnaje\\" + idx + "\\historia\\");
-        logger.info("ukladam kopiu stareho XML do suboru=" + directory.getPath());
+        logger.info("ukladam kopiu stareho XML do priecinku=" + directory.getPath());
         directory.mkdirs();
         int fileCount = directory.list().length; // zisti kolko je suborov v priecinku
 
@@ -93,27 +94,48 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
             LinkedHashMap<Integer, Integer> zapasy = turnaj.getStage().getParovanie();
 
             for (Map.Entry<Integer, Integer> zapas : zapasy.entrySet()) {
-                String prvyHrac = String.valueOf(zapas.getKey());
-                String druhyHrac = String.valueOf(zapas.getValue());
+                int prvyHracId = zapas.getKey();
+                int druhyHracId = zapas.getValue();
+                String prvyHracStr = String.valueOf(prvyHracId);
+                String druhyHracStr = String.valueOf(druhyHracId);
 
                 Zapas newZapas = new Zapas();
                 String casZacatiaZapasu = this.getCasZacatiaZapasu(newZapas);
 
-                newZapas.setHrac1(turnaj.getHraci().get(zapas.getKey()));
-                newZapas.setHrac2(turnaj.getHraci().get(zapas.getValue()));
+                boolean freeWinPreP2 = prvyHracId == -1;
+                boolean freeWinPreP1 = druhyHracId == -1;
+                boolean FWvsFW = Boolean.logicalAnd(freeWinPreP1, freeWinPreP2);
+                Hrac hrac1 = null;
+                Hrac hrac2 = null;
+                if (!FWvsFW) {
+                    if (freeWinPreP2) {
+                        hrac2 = turnaj.getHraci().get(druhyHracId);
+                    } else if (freeWinPreP1) {
+                        hrac1 = turnaj.getHraci().get(prvyHracId);
+                    } else {
+                        hrac1 = turnaj.getHraci().get(prvyHracId);
+                        hrac2 = turnaj.getHraci().get(druhyHracId);
+                    }
+                }
+                newZapas.setHrac1(hrac1);
+                newZapas.setHrac2(hrac2);
+
                 newZapas.setTurnaj(turnaj);
 
-                zapasyElement.appendChild(createZapas(doc, casZacatiaZapasu, prvyHrac, druhyHrac, "-1", newZapas));
-
-                turnaj.getHraci().get(zapas.getKey()).getZapasy().add(newZapas);
-                turnaj.getHraci().get(zapas.getValue()).getZapasy().add(newZapas);
+                zapasyElement.appendChild(createZapas(doc, casZacatiaZapasu, prvyHracStr, druhyHracStr, "-1", newZapas));
+                if (hrac1 != null) {
+                    turnaj.getHraci().get(prvyHracId).getZapasy().add(newZapas);
+                }
+                if (hrac2 != null) {
+                    turnaj.getHraci().get(druhyHracId).getZapasy().add(newZapas);
+                }
                 turnaj.getZapasy().put(newZapas, turnaj.getStage().getKolo() - 1);
             }
             for (Map.Entry<Zapas, Integer> entry : turnaj.getZapasy().entrySet()) {
                 Zapas key = entry.getKey();
                 Integer value = entry.getValue();
-                logger.debug("KOLO: = " + key);
-                logger.debug("value = " + value);
+                logger.debug("Zapas: = " + key);
+                logger.debug("Kolo = " + value);
             }
 
             // for output to file, console

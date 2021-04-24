@@ -328,8 +328,12 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         }
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbVitaz.getModel();
         model.removeAllElements();
-        model.addElement(zapas.getHrac1());
-        model.addElement(zapas.getHrac2());
+        if(zapas.getHrac1() != null){
+            model.addElement(zapas.getHrac1());
+        }
+        if(zapas.getHrac2() != null){
+            model.addElement(zapas.getHrac2());
+        }
 
         ViewUtils.showDialog(dialogZadatVysledok);
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
@@ -348,7 +352,11 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         this.controller.zadajVysledok(zapas, vyherca);
         dialogZadatVysledok.setVisible(false);
         this.naplnTabulkuHracov();
-        (tableHarmonogram.getModel()).setValueAt(zapas.getVyherca().getMeno(), row, VYHERCA_COLUMN);
+        String vyhercaStr = "FW";
+        if(zapas.getVyherca() != null){
+            vyhercaStr = zapas.getVyherca().getMeno();
+        }
+        (tableHarmonogram.getModel()).setValueAt(vyhercaStr, row, VYHERCA_COLUMN);
     }//GEN-LAST:event_btnOKMouseReleased
 
     private void btnZavrietMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietMouseReleased
@@ -373,11 +381,14 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
             if (zapas.getVyherca() != null) {
                 vyherca = zapas.getVyherca().getMeno();
             }
+            String hrac1 = zapas.getHrac1() != null ? zapas.getHrac1().getMeno() : "FreeWin";
+            String hrac2 = zapas.getHrac2() != null ? zapas.getHrac2().getMeno() : "FreeWin";
+
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             model.addRow(new Object[]{
                 zapas,
-                zapas.getHrac1().getMeno(),
-                zapas.getHrac2().getMeno(),
+                hrac1,
+                hrac2,
                 sdf.format(zapas.getCasZaciatku()),
                 vyherca
             });

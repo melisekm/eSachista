@@ -82,6 +82,9 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
             Zapas zapas = entry.getKey();
             Integer kolo = entry.getValue();
             if (kolo == this.prebiehajuciTurnaj.getStage().getKolo() - 1) {
+                if(zapas.getHrac1() == null && zapas.getHrac2() == null){
+                    continue;
+                }
                 if (zapas.getVyherca() == null) { // hladame zapasy len tohto kola
                     return true;
                 }
