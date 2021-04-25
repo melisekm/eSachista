@@ -1,6 +1,7 @@
 package sk.stu.fiit.controller;
 
 import java.util.ArrayList;
+import sk.stu.fiit.database.Database;
 import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
@@ -87,17 +88,17 @@ public class EntryController extends Controller {
         if (spravcaOrg != null) {
             sb.append(spravcaOrg.toString());
             if (spravcaOrg.getEmail() != null) {
-                sb.append("E-mail: ").append(spravcaOrg.getEmail()).append("\n");
+                sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("E-MAIL: ")).append(spravcaOrg.getEmail()).append("\n");
             }
         } else {
-            sb.append("Vyplòte údaje o správcovi\n");
+            sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("VYPLÒTE ÚDAJE O SPRÁVCOVI.")).append("\n");
         }
         if (!nazovOrg.isBlank() && !adresaOrg.isBlank()) {
-            sb.append("\nOrganizácia\n");
-            sb.append("Názov: ").append(nazovOrg).append("\n");
-            sb.append("Adresa: ").append(adresaOrg).append("\n\n");
+            sb.append("\n").append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("ORGANIZÁCIA")).append("\n");
+            sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NÁZOV: ")).append(nazovOrg).append("\n");
+            sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("ADRESA: ")).append(adresaOrg).append("\n\n");
         } else {
-            sb.append("\nVyplòte všetky údaje o organizácii­.\n");
+            sb.append("\n").append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("VYPLÒTE VŠETKY ÚDAJE O ORGANIZÁCII.")).append("\n");
         }
 
         Balik vybratyBalik = this.getBalik(balikId);

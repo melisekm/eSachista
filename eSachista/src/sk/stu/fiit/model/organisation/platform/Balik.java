@@ -1,6 +1,7 @@
 package sk.stu.fiit.model.organisation.platform;
 
 import java.io.Serializable;
+import sk.stu.fiit.database.Database;
 
 /**
  *
@@ -22,8 +23,12 @@ public class Balik implements Serializable {
 
     @Override
     public String toString() {
-        return "BalÌk\n" + "Kapacita hr·Ëov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
-                + "\nMaximum hr·Ëov na turnaji: " + maxHracovTurnaja;
+        StringBuilder sb = new StringBuilder();
+        sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("BALÕK")).append("\n");
+        sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("KAPACITA HR¡»OV: ")).append(kapacitaPouzivatelov).append("\n");
+        sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("MAXIMUM TURNAJOV: ")).append(maxPocetTurnajov).append("\n");
+        sb.append(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("MAXIMUM HR¡»OV NA TURNAJI: ")).append(maxHracovTurnaja).append("\n");
+        return sb.toString();
     }
 
     public String getNazov() {

@@ -488,7 +488,7 @@ public class EntryFrame extends javax.swing.JFrame {
         char[] password = fieldPassword.getPassword();
         fieldPassword.setText("");
         if (!this.controller.pripojitHraca(login, password)) {
-            JOptionPane.showMessageDialog(dialogPripojit, "Ucet neexistuje", "Invalid User", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(dialogPripojit, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("UCET NEEXISTUJE"), "Invalid User", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         logger.info("Prihlasenie prebehlo v poriadku.");
@@ -538,7 +538,7 @@ public class EntryFrame extends javax.swing.JFrame {
         }
         ViewUtils.clearFields(this.registraciaOrgFields);
         dialogRegistrovatOrg.dispose();
-        JOptionPane.showMessageDialog(this, "Registracia bola úspešná", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("REGISTRACIA BOLA ÚSPEŠNÁ"), "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnVytvoritOrgMouseReleased
 
     private void btnRegistraciaHracaZrusitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistraciaHracaZrusitMouseReleased
@@ -552,7 +552,7 @@ public class EntryFrame extends javax.swing.JFrame {
             return;
         }
         dialogRegistrovatHraca.dispose();
-        JOptionPane.showMessageDialog(dialogPripojit, "Registracia uspesna");
+        JOptionPane.showMessageDialog(dialogPripojit, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("REGISTRACIA USPESNA"));
     }//GEN-LAST:event_btnRegistraciaHracaOKMouseReleased
 
     private void btnZavrietDetailyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnZavrietDetailyMouseReleased
@@ -562,7 +562,7 @@ public class EntryFrame extends javax.swing.JFrame {
     private void btnPripojitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPripojitMouseReleased
         String orgAdresa = fieldAdresa.getText();
         if (!this.controller.pripojitOrganizaciu(orgAdresa)) {
-            JOptionPane.showMessageDialog(this, "Nepodarilo sa pripojit", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NEPODARILO SA PRIPOJIT"), "Invalid Input", JOptionPane.ERROR_MESSAGE);
             return;
         }
         labelPrihlasitOrgName.setText(this.controller.getOrgName());
@@ -696,7 +696,7 @@ public class EntryFrame extends javax.swing.JFrame {
         fieldRegistraciaHracaPasswordZnovu.setText("");
         // skontroluj pw
         if (!Arrays.equals(password, passwordZnovu)) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Hesla sa nezhoduju.", "Invalid password", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("HESLA SA NEZHODUJU."), "Invalid password", JOptionPane.ERROR_MESSAGE);
             return EntryConstants.FORM_ERROR;
         }
         return this.controller.registerPouzivatel(meno, login, password, registraciaType);
@@ -711,15 +711,15 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private boolean skontrolujStatusRegistracieOrg(int status) {
         if (status == EntryConstants.INVALID_EMAIL) {
-            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "E-mail je zle zadaný", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("E-MAIL JE ZLE ZADANÝ"), "Invalid input", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
-            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Tato organizacia uz existuje", "Invalid input", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("TATO ORGANIZACIA UZ EXISTUJE"), "Invalid input", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (status == EntryConstants.SPRAVCA_NEBOL_VYTVORENY) {
-            JOptionPane.showMessageDialog(dialogRegistrovatOrg, "Spravca organizacie nebol vytvoreny", "Invalid input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatOrg, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("SPRAVCA ORGANIZACIE NEBOL VYTVORENY"), "Invalid input", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -727,11 +727,11 @@ public class EntryFrame extends javax.swing.JFrame {
 
     private boolean skontrolujStatusRegistracieHrac(int status) {
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Tento pouzivatel uz existuje.", "Invalid Username", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("TENTO POUZIVATEL UZ EXISTUJE."), "Invalid Username", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (status == EntryConstants.KAPACITA_PREKROCENA) {
-            JOptionPane.showMessageDialog(dialogRegistrovatHraca, "Kapacita bola prekrocena.", "Prekrocena kapacita", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogRegistrovatHraca, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("KAPACITA BOLA PREKROCENA."), java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("PREKROCENA KAPACITA"), JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

@@ -5,6 +5,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
+import sk.stu.fiit.database.Database;
 
 /**
  * Library pre View
@@ -37,7 +38,7 @@ public class ViewUtils {
     public static boolean validateFieldsNotBlank(Component parent, JTextComponent... fields) {
         for (JTextComponent field : fields) {
             if (field.getText().isBlank()) {
-                JOptionPane.showMessageDialog(parent, "Vsetky polia musia byt vyplnene", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parent, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("VSETKY POLIA MUSIA BYT VYPLNENE"), "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
@@ -92,10 +93,10 @@ public class ViewUtils {
                 }
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(parent, "Neplatna hodnota v ciselnom poli.", "Invalid input.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NEPLATNA HODNOTA V CISELNOM POLI."), "Invalid input.", JOptionPane.ERROR_MESSAGE);
             return false;
         } catch (ArithmeticException ex) {
-            JOptionPane.showMessageDialog(parent, "Hodnota je mimo rozsah.", "Invalid input.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("HODNOTA JE MIMO ROZSAH."), "Invalid input.", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

@@ -1,6 +1,7 @@
 package sk.stu.fiit.model.organisation.clients;
 
 import java.io.Serializable;
+import sk.stu.fiit.database.Database;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Spravca extends Pouzivatel implements Serializable{
 
     @Override
     public String toString() {
-        return meno + " - Spravca";
+        return meno + java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(" - SPRAVCA");
     }
     
     
