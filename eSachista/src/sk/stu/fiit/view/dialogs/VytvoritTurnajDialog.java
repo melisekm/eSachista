@@ -83,14 +83,16 @@ public class VytvoritTurnajDialog extends javax.swing.JDialog {
         mainPane.setPreferredSize(new java.awt.Dimension(710, 480));
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnUlozit.setBackground(new java.awt.Color(118, 155, 108));
         btnUlozit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnUlozit.setForeground(new java.awt.Color(255, 255, 255));
         btnUlozit.setText("Uloûiù");
         btnUlozit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnUlozitMouseReleased(evt);
             }
         });
-        mainPane.add(btnUlozit, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+        mainPane.add(btnUlozit, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 220, -1));
 
         labelCasovyLimit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCasovyLimit.setText("»asov˝ limit:");

@@ -1,5 +1,6 @@
 package sk.stu.fiit.view.panes;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,12 +68,14 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
             }
         });
         tableTurnaje.setGridColor(new java.awt.Color(51, 51, 51));
+        tableTurnaje.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tableTurnaje.getTableHeader().setBackground(new java.awt.Color(59, 166, 235));
         scrollPaneTurnaje.setViewportView(tableTurnaje);
 
         add(scrollPaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 770, 450));
 
         btnPrihlasitSa.setBackground(new java.awt.Color(118, 155, 108));
-        btnPrihlasitSa.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        btnPrihlasitSa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnPrihlasitSa.setForeground(new java.awt.Color(255, 255, 255));
         btnPrihlasitSa.setText("Prihl·siù sa na turnaj");
         btnPrihlasitSa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,18 +83,18 @@ public class ZoznamTurnajovPane extends javax.swing.JPanel implements IViewRefre
                 btnPrihlasitSaMouseReleased(evt);
             }
         });
-        add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, 170, 30));
+        add(btnPrihlasitSa, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 220, 30));
 
-        btnDetaily.setBackground(new java.awt.Color(153, 204, 255));
+        btnDetaily.setBackground(new java.awt.Color(59, 166, 235));
         btnDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnDetaily.setForeground(new java.awt.Color(255, 255, 255));
-        btnDetaily.setText("DETAILY");
+        btnDetaily.setText("Detaily");
         btnDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnDetailyMouseReleased(evt);
             }
         });
-        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 170, 30));
+        add(btnDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 220, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrihlasitSaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrihlasitSaMouseReleased

@@ -22,7 +22,7 @@ public class Balik implements Serializable {
 
     @Override
     public String toString() {
-        return "Balik\n" + "Kapacita hr·Ëov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
+        return "BalÌk\n" + "Kapacita hr·Ëov: " + kapacitaPouzivatelov + "\nMaximum turnajov: " + maxPocetTurnajov
                 + "\nMaximum hr·Ëov na turnaji: " + maxHracovTurnaja;
     }
 

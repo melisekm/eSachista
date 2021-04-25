@@ -143,27 +143,34 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         mainPane.setBackground(new java.awt.Color(255, 255, 255));
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelUpravitUdaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelUpravitUdaje.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelUpravitUdaje.setForeground(new java.awt.Color(0, 0, 0));
+        labelUpravitUdaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelUpravitUdaje.setText("Upraviù ˙daje");
-        mainPane.add(labelUpravitUdaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 100, -1));
+        mainPane.add(labelUpravitUdaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 170, -1));
 
         labelMeno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMeno.setForeground(new java.awt.Color(0, 0, 0));
         labelMeno.setText("Meno:");
         mainPane.add(labelMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+
+        fieldMeno.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         mainPane.add(fieldMeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 130, -1));
 
         labelMesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelMesto.setForeground(new java.awt.Color(0, 0, 0));
         labelMesto.setText("Mesto:");
         mainPane.add(labelMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        fieldMesto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         mainPane.add(fieldMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 130, -1));
 
         labelStat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelStat.setForeground(new java.awt.Color(0, 0, 0));
         labelStat.setText("ät·t:");
         mainPane.add(labelStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+
+        fieldStat.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         mainPane.add(fieldStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 130, -1));
 
         labelDatumNarodenia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -181,6 +188,7 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
         labelPohlavie.setText("Pohlavie:");
         mainPane.add(labelPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
+        comboBoxPohlavie.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         comboBoxPohlavie.setModel(new DefaultComboBoxModel<>(Pohlavie.values()));
         mainPane.add(comboBoxPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 130, -1));
 

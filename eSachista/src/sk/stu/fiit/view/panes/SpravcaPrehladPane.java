@@ -94,25 +94,31 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
                 btnUlozitSpravcaDialogMouseReleased(evt);
             }
         });
-        paneDialogEditovat.add(btnUlozitSpravcaDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 140, -1));
+        paneDialogEditovat.add(btnUlozitSpravcaDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 140, -1));
 
         labelNazovOrgDialog.setBackground(new java.awt.Color(0, 0, 0));
+        labelNazovOrgDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelNazovOrgDialog.setForeground(new java.awt.Color(0, 0, 0));
         labelNazovOrgDialog.setText("N·zov organiz·cie:");
         paneDialogEditovat.add(labelNazovOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         labelMenoSpravcuDialog.setBackground(new java.awt.Color(0, 0, 0));
+        labelMenoSpravcuDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelMenoSpravcuDialog.setForeground(new java.awt.Color(0, 0, 0));
         labelMenoSpravcuDialog.setText("Meno spr·vcu:");
-        paneDialogEditovat.add(labelMenoSpravcuDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 155, -1, -1));
+        paneDialogEditovat.add(labelMenoSpravcuDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+
+        fieldNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         paneDialogEditovat.add(fieldNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, -1));
+
+        fieldMenoSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         paneDialogEditovat.add(fieldMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, -1));
 
         labelUpravitUdaje.setBackground(new java.awt.Color(0, 0, 0));
         labelUpravitUdaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelUpravitUdaje.setForeground(new java.awt.Color(0, 0, 0));
         labelUpravitUdaje.setText("Upraviù ˙daje");
-        paneDialogEditovat.add(labelUpravitUdaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
+        paneDialogEditovat.add(labelUpravitUdaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         btnVybratAvatar.setBackground(new java.awt.Color(102, 102, 102));
         btnVybratAvatar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -123,35 +129,36 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
                 btnVybratAvatarMouseReleased(evt);
             }
         });
-        paneDialogEditovat.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
+        paneDialogEditovat.add(btnVybratAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, -1));
 
         labelLogoOrgDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        paneDialogEditovat.add(labelLogoOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 160, 140));
+        paneDialogEditovat.add(labelLogoOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, 160));
 
-        dialogEditovatSpravcu.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 310));
+        dialogEditovatSpravcu.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 430));
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLogoOrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
-        add(labelLogoOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 160));
+        add(labelLogoOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 160, 170));
 
         labelDataNazovOrg.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelDataNazovOrg.setForeground(new java.awt.Color(67, 106, 179));
         labelDataNazovOrg.setText("N·zov organiz·cie");
-        add(labelDataNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        add(labelDataNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
-        labelDatumRegistracie.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelDatumRegistracie.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelDatumRegistracie.setText("D·tum registr·cie:");
-        add(labelDatumRegistracie, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
+        add(labelDatumRegistracie, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
-        labelPocetClenov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelPocetClenov.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelPocetClenov.setText("PoËet Ëlenov: ");
-        add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
+        add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
 
-        btnUpravitOrgPrehlad.setBackground(new java.awt.Color(204, 204, 204));
-        btnUpravitOrgPrehlad.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpravitOrgPrehlad.setBackground(new java.awt.Color(102, 102, 102));
+        btnUpravitOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnUpravitOrgPrehlad.setForeground(new java.awt.Color(255, 255, 255));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviù");
         btnUpravitOrgPrehlad.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,79 +166,79 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
                 btnUpravitOrgPrehladMouseReleased(evt);
             }
         });
-        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 166, 150, 40));
+        add(btnUpravitOrgPrehlad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 120, -1));
 
         labelDataDatumReg.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataDatumReg.setText("jLabel5");
-        add(labelDataDatumReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        add(labelDataDatumReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
         labelDataPocetClenov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataPocetClenov.setText("8");
-        add(labelDataPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
+        add(labelDataPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, -1, -1));
 
         labelVitajte.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        labelVitajte.setText("Vitajte ");
-        add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        labelVitajte.setText("Vitajte, ");
+        add(labelVitajte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         labelDataMenoSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataMenoSpravcu.setText("Admin");
-        add(labelDataMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
+        add(labelDataMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
 
-        labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelPocetTurnajov.setText("PoËet turnajov:");
-        add(labelPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
+        add(labelPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
         labelDataPocetTurnajov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataPocetTurnajov.setText("8");
-        add(labelDataPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
+        add(labelDataPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
 
         labelDataBalik.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataBalik.setText("Mal˝");
-        add(labelDataBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
+        add(labelDataBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
-        labelPocetZapasov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelPocetZapasov.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelPocetZapasov.setText("PoËet z·pasov:");
-        add(labelPocetZapasov, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
+        add(labelPocetZapasov, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
 
         labelDataPocetZapasov.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataPocetZapasov.setText("24");
-        add(labelDataPocetZapasov, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
+        add(labelDataPocetZapasov, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, -1, -1));
 
-        labelPriemerneELO.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelPriemerneELO.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelPriemerneELO.setText("PriemernÈ ELO:");
-        add(labelPriemerneELO, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
+        add(labelPriemerneELO, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, -1, -1));
 
         labelDataPriemerneELO.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataPriemerneELO.setText("1010");
-        add(labelDataPriemerneELO, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, -1, -1));
+        add(labelDataPriemerneELO, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, -1, -1));
 
-        labelUkonceneTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelUkonceneTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelUkonceneTurnaje.setText("UkonËenÈ:");
-        add(labelUkonceneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, -1));
+        add(labelUkonceneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
         labelDataUkonceneTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataUkonceneTurnaje.setText("4");
-        add(labelDataUkonceneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
+        add(labelDataUkonceneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, -1, -1));
 
-        labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelNaplanovaneTurnaje.setText("Napl·novanÈ:");
-        add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
         labelDataNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataNaplanovaneTurnaje.setText("4");
-        add(labelDataNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
+        add(labelDataNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, -1, -1));
 
-        labelBalik.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelBalik.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelBalik.setText("BalÌk:");
-        add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        add(labelBalik, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
-        labelEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         labelEmail.setText("E-Mail:");
-        add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+        add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 
         labelDataEmail.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelDataEmail.setText("admin@org.sk");
-        add(labelDataEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
+        add(labelDataEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVybratAvatarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVybratAvatarMouseReleased

@@ -104,8 +104,9 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         MestoLabel.setText("D·tum narodenia:");
         add(MestoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
-        btnUpravitProfil.setBackground(new java.awt.Color(204, 204, 204));
-        btnUpravitProfil.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpravitProfil.setBackground(new java.awt.Color(102, 102, 102));
+        btnUpravitProfil.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnUpravitProfil.setForeground(new java.awt.Color(255, 255, 255));
         btnUpravitProfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitProfil.setText("Upraviù");
         btnUpravitProfil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,7 +114,7 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
                 btnUpravitProfilMouseReleased(evt);
             }
         });
-        add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 150, 40));
+        add(btnUpravitProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 120, 30));
 
         iconAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         add(iconAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 170));
@@ -244,18 +245,22 @@ public class ProfilHracaPane extends javax.swing.JPanel implements IViewRefresh 
         labelDataOrg.setText("FIIT STU");
         add(labelDataOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
 
+        labelDataMesto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelDataMesto.setForeground(new java.awt.Color(0, 0, 0));
         labelDataMesto.setText("Bratislava");
-        add(labelDataMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        add(labelDataMesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
+        labelDataStat.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelDataStat.setForeground(new java.awt.Color(0, 0, 0));
         labelDataStat.setText("Slovensk· republika");
-        add(labelDataStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+        add(labelDataStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
+        labelDataDatumNarodenia.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelDataDatumNarodenia.setForeground(new java.awt.Color(0, 0, 0));
         labelDataDatumNarodenia.setText("01.04.2021");
         add(labelDataDatumNarodenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
 
+        labelDataPohlavie.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelDataPohlavie.setForeground(new java.awt.Color(0, 0, 0));
         labelDataPohlavie.setText("Muû");
         add(labelDataPohlavie, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));

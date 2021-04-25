@@ -42,6 +42,8 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         listClenovia = new javax.swing.JList<>();
         btnUpravit = new javax.swing.JButton();
         comboBoxClenovia = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -49,14 +51,16 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
 
         labelClenovia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelClenovia.setForeground(new java.awt.Color(67, 106, 179));
-        labelClenovia.setText("»lenovia");
+        labelClenovia.setText("PoËet Ëlenov:");
         add(labelClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
-        labelPocetClenov.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        labelPocetClenov.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPocetClenov.setForeground(new java.awt.Color(0, 0, 0));
         labelPocetClenov.setText("poËet Ëlenov");
-        add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, 20));
 
         listClenovia.setBackground(new java.awt.Color(255, 255, 255));
+        listClenovia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         listClenovia.setForeground(new java.awt.Color(68, 68, 68));
         listClenovia.setModel(new DefaultListModel<Pouzivatel>());
         listClenovia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -67,10 +71,11 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         });
         jScrollPane1.setViewportView(listClenovia);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 640, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 640, 440));
 
+        btnUpravit.setBackground(new java.awt.Color(102, 102, 102));
         btnUpravit.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnUpravit.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpravit.setForeground(new java.awt.Color(255, 255, 255));
         btnUpravit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravit.setText("Upraviù");
         btnUpravit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,9 +86,18 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         add(btnUpravit, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 140, 30));
 
         comboBoxClenovia.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxClenovia.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         comboBoxClenovia.setForeground(new java.awt.Color(1, 42, 74));
         comboBoxClenovia.setModel(new DefaultComboBoxModel<Pouzivatel>());
-        add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 180, 30));
+        add(comboBoxClenovia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 220, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel1.setText("Vyhæad·vanie Ëlenov");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Zoznam Ëlenov");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void listClenoviaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClenoviaMouseReleased
@@ -133,12 +147,15 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         this.controller.loadOrg();
         this.naplnComboBoxHracov();
         this.naplnListHracov();
+        labelPocetClenov.setText(Integer.toString(this.controller.getOrgLoggedIn().getPouzivatelia().size()));
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpravit;
     private javax.swing.JComboBox<Pouzivatel> comboBoxClenovia;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelClenovia;
     private javax.swing.JLabel labelPocetClenov;

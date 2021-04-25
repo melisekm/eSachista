@@ -107,7 +107,7 @@ public class EntryFrame extends javax.swing.JFrame {
         labelLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()); // NOI18N
         labelLogin.setText(bundle.getString("EntryFrame.labelLogin.text")); // NOI18N
-        panelPripojit.add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+        panelPripojit.add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
         fieldLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fieldLogin.setText(bundle.getString("EntryFrame.fieldLogin.text")); // NOI18N
@@ -115,7 +115,7 @@ public class EntryFrame extends javax.swing.JFrame {
 
         labelPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPassword.setText(bundle.getString("EntryFrame.labelPassword.text")); // NOI18N
-        panelPripojit.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        panelPripojit.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         fieldPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fieldPassword.setText(bundle.getString("EntryFrame.fieldPassword.text")); // NOI18N
@@ -335,6 +335,7 @@ public class EntryFrame extends javax.swing.JFrame {
 
         textAreaDetaily.setEditable(false);
         textAreaDetaily.setColumns(20);
+        textAreaDetaily.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         textAreaDetaily.setLineWrap(true);
         textAreaDetaily.setRows(5);
         textAreaDetaily.setWrapStyleWord(true);
@@ -342,7 +343,9 @@ public class EntryFrame extends javax.swing.JFrame {
 
         panelDetailyRegistracie.add(scrollPaneDetaily, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 210));
 
+        btnZavrietDetaily.setBackground(new java.awt.Color(102, 102, 102));
         btnZavrietDetaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnZavrietDetaily.setForeground(new java.awt.Color(255, 255, 255));
         btnZavrietDetaily.setText(bundle.getString("EntryFrame.btnZavrietDetaily.text")); // NOI18N
         btnZavrietDetaily.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {

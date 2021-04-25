@@ -1,5 +1,6 @@
 package sk.stu.fiit.view.dialogs;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -74,27 +75,27 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         infoPane.setBackground(new java.awt.Color(255, 255, 255));
         infoPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTimeControl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelTimeControl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelTimeControl.setForeground(new java.awt.Color(68, 68, 68));
         labelTimeControl.setText("Time control:");
         infoPane.add(labelTimeControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        labelPocetHracov.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelPocetHracov.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelPocetHracov.setForeground(new java.awt.Color(68, 68, 68));
         labelPocetHracov.setText("PoËet hr·Ëov");
         infoPane.add(labelPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        labelRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelRating.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelRating.setForeground(new java.awt.Color(68, 68, 68));
         labelRating.setText("Rating:");
         infoPane.add(labelRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        labelVekovaKatMax.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelVekovaKatMax.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelVekovaKatMax.setForeground(new java.awt.Color(68, 68, 68));
         labelVekovaKatMax.setText("Vekov· kategÛria max:");
         infoPane.add(labelVekovaKatMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
-        labelFormat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelFormat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelFormat.setForeground(new java.awt.Color(68, 68, 68));
         labelFormat.setText("Form·t:");
         infoPane.add(labelFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -150,6 +151,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
                 "Meno hr·Ëa", "ELO", "PoËet z·pasov", "PoËet bodov"
             }
         ));
+        tableHraci.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         scrollPaneTabulka.setViewportView(tableHraci);
 
         mainPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 350, 160));
@@ -186,7 +188,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
         labelDataNazovTurnaja.setText("N·zov turnaja ");
         mainPane.add(labelDataNazovTurnaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
-        btnClose.setBackground(new java.awt.Color(102, 102, 255));
+        btnClose.setBackground(new java.awt.Color(54, 107, 172));
         btnClose.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnClose.setForeground(new java.awt.Color(255, 255, 255));
         btnClose.setText("Zavrieù");
@@ -195,7 +197,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
                 btnCloseMouseReleased(evt);
             }
         });
-        mainPane.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, -1, -1));
+        mainPane.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 120, -1));
 
         getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 600));
 

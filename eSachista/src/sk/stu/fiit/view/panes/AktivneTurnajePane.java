@@ -1,5 +1,6 @@
 package sk.stu.fiit.view.panes;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -121,6 +122,8 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
                 return types [columnIndex];
             }
         });
+        tableHraci.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tableHraci.getTableHeader().setBackground(new java.awt.Color(59, 166, 235));
         scrollPaneTabulka.setViewportView(tableHraci);
 
         vysledkyPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 280));
@@ -134,7 +137,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         labelDataPocetHracov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDataPocetHracov.setForeground(new java.awt.Color(0, 0, 0));
         labelDataPocetHracov.setText("8");
-        turnajPane.add(labelDataPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        turnajPane.add(labelDataPocetHracov, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         labelPravePrebiehaTurnaj.setBackground(new java.awt.Color(0, 0, 0));
         labelPravePrebiehaTurnaj.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -158,7 +161,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         labelDataMiestoKonania.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDataMiestoKonania.setForeground(new java.awt.Color(0, 0, 0));
         labelDataMiestoKonania.setText("FIIT STu");
-        turnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        turnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         labelNazovTurnaja.setBackground(new java.awt.Color(0, 0, 0));
         labelNazovTurnaja.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -184,6 +187,9 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         labelPocetTurnajov.setText("PoËet hr·Ëov:");
         turnajPane.add(labelPocetTurnajov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
+        tableHarmonogram.setBackground(new java.awt.Color(255, 255, 255));
+        tableHarmonogram.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tableHarmonogram.setForeground(new java.awt.Color(0, 0, 0));
         tableHarmonogram.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -192,6 +198,8 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
                 "Hr·Ë 1", "Hr·Ë 2", "»as", "V˝herca"
             }
         ));
+        tableHarmonogram.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        tableHarmonogram.getTableHeader().setBackground(new java.awt.Color(59, 166, 235));
         scrollPaneHarmonogram.setViewportView(tableHarmonogram);
 
         turnajPane.add(scrollPaneHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 400, 190));
@@ -217,7 +225,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
                 btnZobrazitZapasMouseReleased(evt);
             }
         });
-        turnajPane.add(btnZobrazitZapas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 220, -1));
+        turnajPane.add(btnZobrazitZapas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 400, -1));
 
         btnPrevziatHarmonogram.setBackground(new java.awt.Color(118, 155, 108));
         btnPrevziatHarmonogram.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -228,20 +236,23 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
                 btnPrevziatHarmonogramMouseReleased(evt);
             }
         });
-        turnajPane.add(btnPrevziatHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        turnajPane.add(btnPrevziatHarmonogram, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 270, 390, -1));
 
         labelNovaVerzia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelNovaVerzia.setForeground(new java.awt.Color(51, 51, 255));
-        labelNovaVerzia.setText("K dispozÌciÌ je nov· verzia");
+        labelNovaVerzia.setForeground(new java.awt.Color(54, 107, 172));
+        labelNovaVerzia.setText("K dispozÌciÌ je nov· verzia!");
         turnajPane.add(labelNovaVerzia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
+        btnZobrazitVysledky.setBackground(new java.awt.Color(59, 166, 235));
+        btnZobrazitVysledky.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnZobrazitVysledky.setForeground(new java.awt.Color(255, 255, 255));
         btnZobrazitVysledky.setText("Zobraziù v˝sledky");
         btnZobrazitVysledky.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnZobrazitVysledkyMouseReleased(evt);
             }
         });
-        turnajPane.add(btnZobrazitVysledky, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        turnajPane.add(btnZobrazitVysledky, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
 
         labelArrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/arrow.png"))); // NOI18N
         turnajPane.add(labelArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 170, 50));
@@ -255,7 +266,7 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         mainPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNaplanovaneTurnaje.setBackground(new java.awt.Color(0, 0, 0));
-        labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelNaplanovaneTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelNaplanovaneTurnaje.setForeground(new java.awt.Color(255, 255, 255));
         labelNaplanovaneTurnaje.setText("Nem·te napl·novan˝ ûiadny turnaj...");
         mainPane.add(labelNaplanovaneTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, -1));
@@ -265,12 +276,13 @@ public class AktivneTurnajePane extends javax.swing.JPanel implements IViewRefre
         mainPane.add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 230));
 
         labelNadchadzaujceTurnaje.setBackground(new java.awt.Color(0, 0, 0));
-        labelNadchadzaujceTurnaje.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNadchadzaujceTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelNadchadzaujceTurnaje.setForeground(new java.awt.Color(0, 0, 0));
         labelNadchadzaujceTurnaje.setText("Nadch·dzaj˙ce turnaje");
         mainPane.add(labelNadchadzaujceTurnaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 245, -1, -1));
 
         listTurnaje.setBackground(new java.awt.Color(54, 107, 172));
+        listTurnaje.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         listTurnaje.setForeground(new java.awt.Color(0, 0, 0));
         listTurnaje.setModel(new DefaultListModel<Turnaj>());
         listTurnaje.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
