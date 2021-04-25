@@ -120,6 +120,7 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
     }
 
     private void naplnComboBoxHracov() {
+        labelPocetClenov.setText(String.valueOf(this.controller.getHraci().size()));
         DefaultComboBoxModel<Pouzivatel> model = (DefaultComboBoxModel<Pouzivatel>) comboBoxClenovia.getModel();
         comboBoxClenovia.removeAllItems();
         ArrayList<Pouzivatel> pouzivatelia = this.controller.getOrgLoggedIn().getPouzivatelia();
@@ -147,7 +148,6 @@ public class ClenoviaPane extends javax.swing.JPanel implements IViewRefresh {
         this.controller.loadOrg();
         this.naplnComboBoxHracov();
         this.naplnListHracov();
-        labelPocetClenov.setText(Integer.toString(this.controller.getOrgLoggedIn().getPouzivatelia().size()));
     }
 
 

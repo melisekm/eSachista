@@ -57,9 +57,6 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cbVitaz">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="0"/>
-                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new DefaultComboBoxModel&lt;Hrac&gt;()" type="code"/>
                 </Property>
@@ -75,9 +72,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="labelVybratVitaza">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="0"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Vybra&#x165; v&#xed;&#x165;aza z&#xe1;pasu:"/>
               </Properties>
               <Constraints>
@@ -407,7 +401,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="390" y="230" width="350" height="280"/>
+              <AbsoluteConstraints x="390" y="230" width="360" height="280"/>
             </Constraint>
           </Constraints>
 
@@ -563,9 +557,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelNeprebiehaTurnaj">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Moment&#xe1;lne neprebieha &#x17e;iadny turnaj..."/>
           </Properties>
           <Constraints>

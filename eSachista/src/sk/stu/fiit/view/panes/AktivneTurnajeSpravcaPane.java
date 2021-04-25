@@ -103,11 +103,9 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         });
         dialogMainPane.add(btnOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 180, -1));
 
-        cbVitaz.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         cbVitaz.setModel(new DefaultComboBoxModel<Hrac>());
         dialogMainPane.add(cbVitaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 180, -1));
 
-        labelVybratVitaza.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelVybratVitaza.setText("Vybraù vÌùaza z·pasu:");
         dialogMainPane.add(labelVybratVitaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
@@ -239,7 +237,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         tableHraci.getTableHeader().setBackground(new java.awt.Color(59, 166, 235));
         scrollPaneTabulka.setViewportView(tableHraci);
 
-        prebiehajuciTurnajPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 350, 280));
+        prebiehajuciTurnajPane.add(scrollPaneTabulka, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 360, 280));
 
         labelHraci.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelHraci.setForeground(new java.awt.Color(1, 42, 74));
@@ -284,7 +282,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText("FIIT STu");
         prebiehajuciTurnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
-        labelNeprebiehaTurnaj.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelNeprebiehaTurnaj.setText("Moment·lne neprebieha ûiadny turnaj...");
         prebiehajuciTurnajPane.add(labelNeprebiehaTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
 

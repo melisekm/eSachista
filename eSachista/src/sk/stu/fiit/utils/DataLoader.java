@@ -50,7 +50,7 @@ public class DataLoader {
 
     private static Hrac createHrac(Organizacia org, String meno, String login, int ELO, String mesto, Pohlavie p) {
         Hrac tmp = new Hrac(org, meno, login, new char[]{'<', '=', '>'});
-        tmp.setAvatar(new Avatar(new javax.swing.ImageIcon(DataLoader.class.getResource("/sk/stu/fiit/obrazky/user2.png"))));
+        tmp.setAvatar(new Avatar(new javax.swing.ImageIcon(DataLoader.class.getResource("/sk/stu/fiit/obrazky/default-avatar.png"))));
         tmp.setDatumNarodenia(new Date());
         tmp.setDatumRegistracie(new Date());
         tmp.setELO(ELO);
