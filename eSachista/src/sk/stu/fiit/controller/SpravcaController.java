@@ -18,6 +18,9 @@ public class SpravcaController extends Controller {
     public LinkedHashMap<String, Double> getDniKonaniaDataset() {
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
         for (Turnaj t : this.getTurnaje()) {
+            if (!t.isFinished()) {
+                continue;
+            }
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             String datum = sdf.format(t.getDatumKonania());
             if (!hraciTurnajeDataset.containsKey(datum)) {
@@ -33,6 +36,9 @@ public class SpravcaController extends Controller {
     public LinkedHashMap<String, Double> getHraciDataset() {
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
         for (Turnaj t : this.getTurnaje()) {
+            if (!t.isFinished()) {
+                continue;
+            }
             hraciTurnajeDataset.put(t.getNazov(), ((double) t.getHraci().size()));
         }
         return hraciTurnajeDataset;
@@ -58,6 +64,9 @@ public class SpravcaController extends Controller {
     }
 
     public String getPriemerneELO() {
+        if(this.getHraci().isEmpty()){
+            return "0";
+        }
         double sum = 0.0;
         for (Hrac hrac : this.getHraci()) {
             sum += hrac.getELO();

@@ -61,6 +61,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         scrollPaneVyherci = new javax.swing.JScrollPane();
         textAreaVyherci = new javax.swing.JTextArea();
         btnZavriet = new javax.swing.JButton();
+        labelNeprebiehaTurnaj = new javax.swing.JLabel();
         prebiehajuciTurnajPane = new javax.swing.JPanel();
         labelPravePrebiehaTurnaj = new javax.swing.JLabel();
         labelZaciatok = new javax.swing.JLabel();
@@ -81,7 +82,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         btnGenerujHarmnogram = new javax.swing.JButton();
         labelMiestoKonania = new javax.swing.JLabel();
         labelDataMiestoKonania = new javax.swing.JLabel();
-        labelNeprebiehaTurnaj = new javax.swing.JLabel();
 
         dialogZadatVysledok.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -113,6 +113,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
 
         dialogVysledky.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogVysledky.setTitle("Vysledky turnaja");
+        dialogVysledky.setModal(true);
         dialogVysledky.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paneDialogVysledky.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,6 +136,7 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
 
         paneDialogVysledky.add(scrollPaneVyherci, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
+        btnZavriet.setBackground(new java.awt.Color(102, 102, 255));
         btnZavriet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnZavriet.setForeground(new java.awt.Color(255, 255, 255));
         btnZavriet.setText("Zavrieù");
@@ -151,6 +153,9 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         setMinimumSize(new java.awt.Dimension(860, 590));
         setPreferredSize(new java.awt.Dimension(860, 590));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelNeprebiehaTurnaj.setText("Moment·lne neprebieha ûiadny turnaj...");
+        add(labelNeprebiehaTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         prebiehajuciTurnajPane.setBackground(new java.awt.Color(255, 255, 255));
         prebiehajuciTurnajPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -282,9 +287,6 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
         labelDataMiestoKonania.setText("FIIT STu");
         prebiehajuciTurnajPane.add(labelDataMiestoKonania, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
-        labelNeprebiehaTurnaj.setText("Moment·lne neprebieha ûiadny turnaj...");
-        prebiehajuciTurnajPane.add(labelNeprebiehaTurnaj, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
-
         add(prebiehajuciTurnajPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 630));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,8 +349,8 @@ public class AktivneTurnajeSpravcaPane extends javax.swing.JPanel implements IVi
     }//GEN-LAST:event_btnZapisatVysledokMouseReleased
 
     private void btnArchivovatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchivovatMouseReleased
-        ViewUtils.showDialog(dialogVysledky);
         textAreaVyherci.setText(this.controller.vyhodnotTurnaj());
+        ViewUtils.showDialog(dialogVysledky);
         this.refresh();
         btnArchivovat.setVisible(false);
     }//GEN-LAST:event_btnArchivovatMouseReleased

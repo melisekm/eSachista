@@ -92,7 +92,7 @@ public class TurnajInfoDialog extends javax.swing.JDialog {
 
         labelVekovaKatMax.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelVekovaKatMax.setForeground(new java.awt.Color(68, 68, 68));
-        labelVekovaKatMax.setText("Veková kategória max:");
+        labelVekovaKatMax.setText("Veková kategória:");
         infoPane.add(labelVekovaKatMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         labelFormat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

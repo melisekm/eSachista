@@ -97,21 +97,15 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         paneDialogEditovat.add(btnUlozitSpravcaDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 140, -1));
 
         labelNazovOrgDialog.setBackground(new java.awt.Color(0, 0, 0));
-        labelNazovOrgDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelNazovOrgDialog.setForeground(new java.awt.Color(0, 0, 0));
         labelNazovOrgDialog.setText("N·zov organiz·cie:");
         paneDialogEditovat.add(labelNazovOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         labelMenoSpravcuDialog.setBackground(new java.awt.Color(0, 0, 0));
-        labelMenoSpravcuDialog.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         labelMenoSpravcuDialog.setForeground(new java.awt.Color(0, 0, 0));
         labelMenoSpravcuDialog.setText("Meno spr·vcu:");
         paneDialogEditovat.add(labelMenoSpravcuDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-
-        fieldNazovOrg.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         paneDialogEditovat.add(fieldNazovOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, -1));
-
-        fieldMenoSpravcu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         paneDialogEditovat.add(fieldMenoSpravcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, -1));
 
         labelUpravitUdaje.setBackground(new java.awt.Color(0, 0, 0));
@@ -134,7 +128,7 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         labelLogoOrgDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/default-avatar.png"))); // NOI18N
         paneDialogEditovat.add(labelLogoOrgDialog, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, 160));
 
-        dialogEditovatSpravcu.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 430));
+        dialogEditovatSpravcu.getContentPane().add(paneDialogEditovat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 350));
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(900, 560));
@@ -157,7 +151,6 @@ public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefre
         add(labelPocetClenov, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
 
         btnUpravitOrgPrehlad.setBackground(new java.awt.Color(102, 102, 102));
-        btnUpravitOrgPrehlad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnUpravitOrgPrehlad.setForeground(new java.awt.Color(255, 255, 255));
         btnUpravitOrgPrehlad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/stu/fiit/obrazky/edit.png"))); // NOI18N
         btnUpravitOrgPrehlad.setText("Upraviù");
