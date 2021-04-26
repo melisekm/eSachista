@@ -23,7 +23,7 @@ public class Turnaj implements Comparable<Turnaj>, Serializable {
     private String popis;
     private TurnajTempoHry tempoHry;
     private TurnajObmedzenia obmedzenia;
-    private boolean finished = false; // TODO dopisat do panelov
+    private boolean finished = false;
     private Stage stage;
 
     @Override

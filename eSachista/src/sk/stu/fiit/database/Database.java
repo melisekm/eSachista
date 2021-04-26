@@ -15,8 +15,6 @@ import sk.stu.fiit.model.organisation.platform.Balik;
 public class Database implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(Database.class);
-    //TODO vyriesit databazy lebo to nezapisuje sem do araylistu ked sa nacita zo suboru
-    // bud to odstranit alebo vzdy to zapisovat aj sem
     private Date appTime; // keby treba 
     private static Database INSTANCE;
     private ArrayList<Organizacia> organizacie = new ArrayList<>();

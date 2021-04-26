@@ -115,14 +115,14 @@ public class IOManagerDialog extends javax.swing.JDialog {
     private void radioBtnNacitatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtnNacitatMouseReleased
         labelNazov.setVisible(false);
         fieldNazov.setVisible(false);
-        btnVykonat.setText("NaËÌtaù");
+        btnVykonat.setText(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NA»ÕTAç"));
         ViewUtils.clearFields(fieldNazov, fieldCesta);
     }//GEN-LAST:event_radioBtnNacitatMouseReleased
 
     private void radioBtnUlozitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtnUlozitMouseReleased
         labelNazov.setVisible(true);
         fieldNazov.setVisible(true);
-        btnVykonat.setText("Uloûiù");
+        btnVykonat.setText(java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("ULOéIç"));
         ViewUtils.clearFields(fieldNazov, fieldCesta);
 
     }//GEN-LAST:event_radioBtnUlozitMouseReleased
@@ -150,7 +150,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
         try {
             if (radioBtnNacitat.isSelected()) {
                 this.ioManager.loadDatabase(file);
-                JOptionPane.showMessageDialog(this, "Nacitanie bolo uspesne", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NACITANIE BOLO USPESNE"), "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 if (!ViewUtils.validateFieldsNotBlank(this, fieldCesta, fieldNazov)) {
                     logger.error("Neboli vyplnene vsetky polia");
@@ -161,23 +161,23 @@ public class IOManagerDialog extends javax.swing.JDialog {
                     file.createNewFile();
                 }
                 this.ioManager.saveDatabase(file);
-                JOptionPane.showMessageDialog(this, "Ulozenie bolo uspesne", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("ULOZENIE BOLO USPESNE"), "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
             }
             this.setVisible(false);
             this.dispose();
         } catch (FileNotFoundException ex) {
             logger.error(ex.getMessage());
             logger.error("SUBOR " + file.getName() + " NEEXISTUJE");
-            JOptionPane.showMessageDialog(this, "Subor neexistuje.", "SUBOR NEEXISTUJE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("SUBOR NEEXISTUJE."), java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("SUBOR NEEXISTUJE"), JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             logger.error("SUBOR PRAVDEPODOBNE NIE JE KOMPATIBILNY");
             logger.error(ex.getMessage());
             logger.error(ex.getStackTrace().toString());
-            JOptionPane.showMessageDialog(this, "Subor nie je kompatibilny. (code 1)", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("SUBOR NIE JE KOMPATIBILNY. (CODE 1)"), "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException ex) {
             logger.error(ex.getMessage());
             logger.error("Bola nahrata databasa, ktora nie je kompatibilna alebo uplne ina trieda.");
-            JOptionPane.showMessageDialog(this,"Neocakavana chyba. (code 2)", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NEOCAKAVANA CHYBA. (CODE 2)"), "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
 

@@ -99,13 +99,14 @@ public class EntryFrame extends javax.swing.JFrame {
         panelEsachista = new javax.swing.JPanel();
 
         dialogPripojit.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()); // NOI18N
+        dialogPripojit.setTitle(bundle.getString("EntryFrame.dialogPripojit.title")); // NOI18N
         dialogPripojit.setModal(true);
         dialogPripojit.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelPripojit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()); // NOI18N
         labelLogin.setText(bundle.getString("EntryFrame.labelLogin.text")); // NOI18N
         panelPripojit.add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
@@ -145,16 +146,17 @@ public class EntryFrame extends javax.swing.JFrame {
 
         labelPrihlasitName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPrihlasitName.setText(bundle.getString("EntryFrame.labelPrihlasitName.text")); // NOI18N
-        panelPripojit.add(labelPrihlasitName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+        panelPripojit.add(labelPrihlasitName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         labelPrihlasitOrgName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelPrihlasitOrgName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPrihlasitOrgName.setText(bundle.getString("EntryFrame.labelPrihlasitOrgName.text")); // NOI18N
         panelPripojit.add(labelPrihlasitOrgName, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 80, 230, -1));
 
-        dialogPripojit.getContentPane().add(panelPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        dialogPripojit.getContentPane().add(panelPripojit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 290));
 
         dialogRegistrovatOrg.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogRegistrovatOrg.setTitle(bundle.getString("EntryFrame.dialogRegistrovatOrg.title")); // NOI18N
         dialogRegistrovatOrg.setModal(true);
         dialogRegistrovatOrg.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -261,6 +263,7 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogRegistrovatOrg.getContentPane().add(panelRegistrovatOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 460));
 
         dialogRegistrovatHraca.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogRegistrovatHraca.setTitle(bundle.getString("EntryFrame.dialogRegistrovatHraca.title")); // NOI18N
         dialogRegistrovatHraca.setModal(true);
         dialogRegistrovatHraca.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -328,6 +331,7 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogRegistrovatHraca.getContentPane().add(panelRegistraciaHraca, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 300));
 
         dialogDetailyRegistracie.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogDetailyRegistracie.setTitle(bundle.getString("EntryFrame.dialogDetailyRegistracie.title")); // NOI18N
         dialogDetailyRegistracie.setModal(true);
         dialogDetailyRegistracie.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -335,7 +339,6 @@ public class EntryFrame extends javax.swing.JFrame {
 
         textAreaDetaily.setEditable(false);
         textAreaDetaily.setColumns(20);
-        textAreaDetaily.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         textAreaDetaily.setLineWrap(true);
         textAreaDetaily.setRows(5);
         textAreaDetaily.setWrapStyleWord(true);
