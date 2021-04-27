@@ -26,7 +26,6 @@ public class Main {
 
     static {
         Database.createDatabase(); // prazdna DB
-
     }
 
     public static void main(String[] args) {
