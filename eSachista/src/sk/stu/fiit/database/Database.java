@@ -2,7 +2,6 @@ package sk.stu.fiit.database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.stu.fiit.model.organisation.Organizacia;
@@ -15,7 +14,6 @@ import sk.stu.fiit.model.organisation.platform.Balik;
 public class Database implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(Database.class);
-    private Date appTime; // keby treba 
     private static Database INSTANCE;
     private ArrayList<Organizacia> organizacie = new ArrayList<>();
     private ArrayList<Balik> baliky = new ArrayList<>();
@@ -55,14 +53,6 @@ public class Database implements Serializable {
 
     public String getBundle() {
         return bundle;
-    }
-
-    public Date getAppTime() {
-        return appTime;
-    }
-
-    public void setAppTime(Date appTime) {
-        this.appTime = appTime;
     }
 
     public void setBundle(String loc) {

@@ -16,7 +16,7 @@ import sk.stu.fiit.view.panes.IViewRefresh;
  */
 public class HracFrame extends javax.swing.JFrame {
 
-    Logger logger = LoggerFactory.getLogger(HracFrame.class);
+    private static final Logger logger = LoggerFactory.getLogger(HracFrame.class);
 
     private HracController controller;
 

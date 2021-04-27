@@ -15,7 +15,7 @@ import sk.stu.fiit.view.panes.IViewRefresh;
  */
 public class SpravcaFrame extends javax.swing.JFrame {
 
-    Logger logger = LoggerFactory.getLogger(SpravcaFrame.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpravcaFrame.class);
 
     private SpravcaController controller;
 

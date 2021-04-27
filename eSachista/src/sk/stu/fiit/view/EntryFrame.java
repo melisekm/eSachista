@@ -20,7 +20,7 @@ import sk.stu.fiit.view.dialogs.IOManagerDialog;
  */
 public class EntryFrame extends javax.swing.JFrame {
 
-    Logger logger = LoggerFactory.getLogger(EntryFrame.class);
+    private static final Logger logger = LoggerFactory.getLogger(EntryFrame.class);
 
     private final EntryController controller;
     private JTextField[] registraciaHracaFields;
