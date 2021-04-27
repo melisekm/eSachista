@@ -13,6 +13,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.utils.PlatformConstants;
 
 /**
+ * Controller, ktory riadi niekolko obrazoviek a vracia info z databazy.
  *
  * @author Martin Melisek
  */
@@ -23,6 +24,13 @@ public class HracController extends Controller {
     public HracController() {
     }
 
+    /**
+     * prihlasi hraca na turnaj
+     *
+     * @param t turnaj na ktory sa hrac prihlasuje
+     * @see sk.stu.fiit.utils.PlatformConstants
+     * @return stav, ktory nastal na zaklade prihlasenia, chyba alebo uspech
+     */
     public int prihlasHracaNaTurnaj(Turnaj t) {
         this.loadOrg();
         t = this.reloadTurnaj(t);
@@ -44,6 +52,13 @@ public class HracController extends Controller {
         return PlatformConstants.TURNAJ_PRIHLASENIE_OK;
     }
 
+    /**
+     * zvaliduje prihlasenie hraca na turnaj
+     *
+     * @param t turnaj na ktory sa prihlasuje
+     * @see sk.stu.fiit.utils.PlatformConstants
+     * @return stav o chybe alebo uspechu
+     */
     private int zvalidujPrihlasenie(Turnaj t) {
         boolean isVekMimoRozsah = this.checkVek(t.getObmedzenia().getMaxVek());
         if (isVekMimoRozsah) {
@@ -60,6 +75,12 @@ public class HracController extends Controller {
         return PlatformConstants.TURNAJ_PRIHLASENIE_OK;
     }
 
+    /**
+     * zvaliduje vek prihlasovaneho hraca na turnaj
+     *
+     * @param maxVek maximalny vek turnaja
+     * @return true ak nesplna, false ak splna
+     */
     private boolean checkVek(int maxVek) {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Bratislava"));
         cal.setTime(this.getPrihlasenyHrac().getDatumNarodenia());
@@ -71,6 +92,13 @@ public class HracController extends Controller {
         return false;
     }
 
+    /**
+     * zvaliduje rating, ked sa hrac prihlasuje na turnaj
+     *
+     * @param obmedzenie turnajove obmedzenia,
+     * @see sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia
+     * @return true ak je mimo rozsah, false ak splna
+     */
     private boolean checkRating(TurnajObmedzenia obmedzenie) {
         int hracRating = this.getPrihlasenyHrac().getELO();
         boolean isMinRatingMimoRozsah = obmedzenie.getMinRating() > hracRating;
@@ -82,6 +110,12 @@ public class HracController extends Controller {
         return false;
     }
 
+    /**
+     * skontroluje ci je volne miesto v turnaji
+     *
+     * @param t turanaj ktoreho kapacita sa ma skontrolovat
+     * @return false ak sa da prihlasit, true ak sa neda
+     */
     private boolean checkKapacita(Turnaj t) {
         int maxHracovNaTurnaji = this.getOrgLoggedIn().getBalik().getMaxHracovTurnaja();
         boolean jeKapacitaPrekrocena = t.getHraci().size() == maxHracovNaTurnaji;
@@ -92,6 +126,12 @@ public class HracController extends Controller {
         return false;
     }
 
+    /**
+     * skontroluje ci dany den nieco uz ma
+     *
+     * @param turnajZTabulky vybraty turnaj kam sa hrac chce prihlasit
+     * @return true ak sa neda, false ak sa da
+     */
     private boolean checkCiUzNiecoMa(Turnaj turnajZTabulky) {
         for (Turnaj turnajHraca : this.getPrihlasenyHrac().getTurnaje()) {
             if (!turnajHraca.isFinished()) {

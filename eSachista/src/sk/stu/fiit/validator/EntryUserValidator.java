@@ -7,11 +7,19 @@ import java.util.regex.Pattern;
 import sk.stu.fiit.model.organisation.clients.Pouzivatel;
 
 /**
+ * zvaliduje prihlasenie a zahashuje heslo pri registracii
  *
  * @author Martin Melisek
  */
 public class EntryUserValidator {
 
+    /**
+     * ci sa pouzivatel uz nenachadza s takymto menom v organizacii
+     *
+     * @param userDatabase databaza vsetkych pouzivatelov
+     * @param login prihlasovacie meno pouzivatela
+     * @return true ak je meno dostupne, false inak
+     */
     public boolean checkUsernameAvailability(ArrayList<Pouzivatel> userDatabase, String login) {
         for (Pouzivatel p : userDatabase) {
             if (p.getLogin().equals(login)) {
@@ -21,6 +29,14 @@ public class EntryUserValidator {
         return true;
     }
 
+    /**
+     * sparuje prihlasovacie meno na vstupe s pouzivatelom v organizacii
+     *
+     * @param userDatabase databaza vsetkych pouzivatelov
+     * @param login prihlasovacie meno pouzivatela ktory sa chce prihlasit
+     * @param password heslo pouzivatela - nezahashovane
+     * @return pouzivatela, ktory sa prihlasil, null ak sa nesparovalo meno.
+     */
     public Pouzivatel checkUserLogin(ArrayList<Pouzivatel> userDatabase, String login, char[] password) {
         password = this.securePassword().stringToHash(password);
         for (Pouzivatel p : userDatabase) {
@@ -33,10 +49,12 @@ public class EntryUserValidator {
 
     /**
      * Zvaliduje emailovu adresu podla nasledujuceho patternu<br>
-     * slovo sa zacina na: pismeno cislo . _ % + alebo -, ktore sa vyskytuje 1 a viac krat<br>
+     * slovo sa zacina na: pismeno cislo . _ % + alebo -, ktore sa vyskytuje 1 a
+     * viac krat<br>
      * nasleduje zavinac za nim jeden a viac krat pismeno cislo . -<br>
      * nasleduje bodka za nou pismeno 2 az 6 krat a EOF.<br>
      * nezalezi na velkosti pismen.<br>
+     *
      * @param email ktory sa ma zvalidovat
      * @return true ak je validny, false ak nie
      */

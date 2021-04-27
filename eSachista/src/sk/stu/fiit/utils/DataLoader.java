@@ -17,7 +17,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
 
 /**
- *
+ * Nacita predefinovane demo organizacie
  * @author Martin Melisek
  */
 public class DataLoader {

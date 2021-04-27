@@ -1,10 +1,10 @@
 package sk.stu.fiit.io;
 
 /**
- *
+ * Abstraktna trieda pre XML citanie/zapisovanie/modifikovanie, vyuziva DOM
  * @author Martin Melisek
  */
-public class XMLTurnajHandler {
+public abstract class XMLTurnajHandler {
 
     private String baseDir = "resources\\";
     protected String orgPath;

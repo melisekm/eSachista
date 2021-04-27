@@ -20,7 +20,8 @@ import sk.stu.fiit.utils.PlatformConstants;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
- *
+ * Dialog, ktorym sa edituju data pouzivatela
+ * @author lucia
  * @author Martin Melisek
  */
 public class EditovatHracaDialog extends javax.swing.JDialog {
@@ -240,7 +241,9 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * po pociatocnom prihlaseni ulozi skill hraca
+     */
     private void labelUlozitSkillMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelUlozitSkillMouseReleased
         int index = comboBoxSkillSelect.getSelectedIndex();
         switch (index) {
@@ -268,7 +271,9 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowClosing
-
+    /**
+     * precita fieldy a ulozi udaje hraca
+     */
     private void btnUlozitUdajeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUlozitUdajeMouseReleased
         if (!ViewUtils.validateFieldsNotBlank(this, fieldMeno, fieldMesto, fieldStat)) {
             logger.warn("Neboli vyplnene vsetky fieldy");
@@ -297,7 +302,9 @@ public class EditovatHracaDialog extends javax.swing.JDialog {
     private void dialogSkillSelectWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogSkillSelectWindowClosing
         JOptionPane.showMessageDialog(this, "Na to aby sme vas mohli prihlasit, je potrebne zadat skill.", "ENTER SKILL", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_dialogSkillSelectWindowClosing
-
+    /**
+     * otvori file picker a nacita obrazok pre hraca
+     */
     private void btnVybratAvatarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVybratAvatarMouseReleased
         FileFilter ff = new FileNameExtensionFilter("images", "jpg", "jpeg", "png");
         imgChooser.setFileFilter(ff);

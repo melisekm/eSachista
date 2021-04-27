@@ -17,7 +17,7 @@ import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 import sk.stu.fiit.view.dialogs.VytvoritTurnajDialog;
 
 /**
- *
+ * Panel existujucich turnajov a ich vytvaranie
  * @author lucia
  * @author Martin Melisek
  */

@@ -9,7 +9,7 @@ import sk.stu.fiit.model.organisation.clients.Pohlavie;
 import sk.stu.fiit.model.organisation.platform.Avatar;
 
 /**
- *
+ * Controller, pre dialogove okno editovania hraca
  * @author Martin Melisek
  */
 public class HracEditorController extends Controller {
@@ -19,7 +19,10 @@ public class HracEditorController extends Controller {
     public HracEditorController(Hrac editovanyHrac) {
         this.editovanyHrac = editovanyHrac;
     }
-
+    /**
+     * zedituje detaily hraca
+     * @see sk.stu.fiit.model.organisation.clients.Hrac
+     */
     public void updateHrac(String meno, String mesto, String stat, Date datumNarodenia, Pohlavie pohlavie, Avatar avatar) {
         this.editovanyHrac.setMeno(meno);
         this.editovanyHrac.setMesto(mesto);

@@ -16,7 +16,7 @@ import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**
- *
+ * Panel, turnajov na ktore sa hrac moze prihlasit
  * @author lucia
  * @author Martin Melisek
  */

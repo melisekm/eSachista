@@ -15,8 +15,9 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.service.EntryService;
 
 /**
- * Pomocou <i> Service triedy </i> komunikuje s modelom vracia data pre view,
- * ktory ich zobrazuje
+ * Abstraktna trieda kontrollerov, komunikuje s modelom vracia data pre view,
+ * ktory ich zobrazuje. Navyse pouziva sluzby, ktore prihlasuju hraca/org a
+ * posuvaju turnaj dopredu.
  *
  * @author Martin Melisek
  */
@@ -24,18 +25,28 @@ public abstract class Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
+    /**
+     * service, z ktorej ziska prihlaseneho uzivatela a organizaciu
+     */
     protected EntryService entryService = EntryService.getInstance();
 
+    /**
+     * zapisuje udaje organizacie do suboru
+     */
     protected IOManager ioManager;
 
     public Controller() {
-        if(this.getOrgLoggedIn() != null){
+        if (this.getOrgLoggedIn() != null) {
             this.ioManager = new IOManager(this.getOrgLoggedIn().getNazov());
-        }else{
+        } else {
             this.ioManager = new IOManager();
         }
     }
 
+    /**
+     * delegovana metoda, ulozi prave prihlasenu organizaciu do korespondujuceho
+     * suboru
+     */
     public void saveOrg() {
         try {
             ioManager.saveOrg(this.getOrgLoggedIn());
@@ -46,6 +57,9 @@ public abstract class Controller {
         }
     }
 
+    /**
+     * nacita zo suboru prave prihlasenu org a nastavi ju pre sluzbu a DB.
+     */
     public void loadOrg() {
         try {
             this.entryService.setOrgLoggedIn(this.ioManager.loadOrg());

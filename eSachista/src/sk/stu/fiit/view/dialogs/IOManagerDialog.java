@@ -12,7 +12,7 @@ import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
- *
+ * Dialog, pomocou, ktoreho sa nacitava a uklada databaza z a do programu
  * @author Martin Melisek
  */
 public class IOManagerDialog extends javax.swing.JDialog {

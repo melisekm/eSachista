@@ -6,6 +6,8 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Zapas v turnaji medzi dvoma hracmi, ma svojho vyhercu, cas a farby figuriek
+ * hracov
  *
  * @author Martin Melisek
  */
@@ -20,6 +22,25 @@ public class Zapas implements Serializable {
     private FarbaFiguriek hrac2Figurky;
 
     public Zapas() {
+    }
+
+    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {
+        this.turnaj = turnaj;
+        this.hrac1 = hrac1;
+        this.hrac2 = hrac2;
+        this.casZaciatku = casZaciatku;
+        this.hrac1Figurky = hrac1Figurky;
+        this.hrac2Figurky = hrac2Figurky;
+    }
+
+    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky, Hrac vyherca) {
+        this.turnaj = turnaj;
+        this.hrac1 = hrac1;
+        this.hrac2 = hrac2;
+        this.casZaciatku = casZaciatku;
+        this.hrac1Figurky = hrac1Figurky;
+        this.hrac2Figurky = hrac2Figurky;
+        this.vyherca = vyherca;
     }
 
     @Override
@@ -44,25 +65,6 @@ public class Zapas implements Serializable {
             }
         }
         return hrac1.getMeno() + " " + res + " " + hrac2.getMeno() + " " + casZaciatku;
-    }
-
-    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky) {
-        this.turnaj = turnaj;
-        this.hrac1 = hrac1;
-        this.hrac2 = hrac2;
-        this.casZaciatku = casZaciatku;
-        this.hrac1Figurky = hrac1Figurky;
-        this.hrac2Figurky = hrac2Figurky;
-    }
-
-    public Zapas(Turnaj turnaj, Hrac hrac1, Hrac hrac2, Date casZaciatku, FarbaFiguriek hrac1Figurky, FarbaFiguriek hrac2Figurky, Hrac vyherca) {
-        this.turnaj = turnaj;
-        this.hrac1 = hrac1;
-        this.hrac2 = hrac2;
-        this.casZaciatku = casZaciatku;
-        this.hrac1Figurky = hrac1Figurky;
-        this.hrac2Figurky = hrac2Figurky;
-        this.vyherca = vyherca;
     }
 
     public FarbaFiguriek getHrac1Figurky() {

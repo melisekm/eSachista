@@ -32,7 +32,7 @@ import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 import sk.stu.fiit.view.dialogs.ZapasDialog;
 
 /**
- *
+ * Panel prave prebiehajuceho turnaja z pohladu hraca a kalendar nadchadzajucich
  * @author lucia
  * @author Martin Melisek
  */

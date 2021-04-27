@@ -8,6 +8,8 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Controller, ktory komunikuje so sluzbou a modelom, zapisuje a modifikuje XML
+ * na zaklade generovaneho rozpisu a zadavnia vysledkov
  *
  * @author Martin Melisek
  */
@@ -18,6 +20,12 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
 
     private int turnajId;
 
+    /**
+     * zo zoznamu vsetkych turnajov, pre spravcu vrati turnaj ktory bude
+     * najblizsie
+     *
+     * @return turnaj ktory bude najblizsie, null inak
+     */
     public Turnaj getNadchadzajuciTurnaj() {
         logger.info("Hladam turnaj.");
         for (Turnaj turnaj : this.getTurnaje()) {
@@ -30,6 +38,11 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
         return null;
     }
 
+    /**
+     * v prave prebiehajucom turnaji vygeneruje harmonogram a posunie ho dalej
+     *
+     * @return true ak je to mozne, false ak je turnaj skonceny
+     */
     public boolean vygenerujHarmonogram() {
         logger.info("Zacinam generovat turnaj");
         int idx = 0;
@@ -52,28 +65,24 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
         return true;
     }
 
+    /**
+     * zapisuje k zapasus vysledok
+     *
+     * @param zapas ku ktoremu treba zapisat vysledok
+     * @param vyherca Hrac, ktory zvitazil
+     */
     public void zadajVysledok(Zapas zapas, Hrac vyherca) {
         zapas.setVyherca(vyherca);
         this.turnajService.modifikujVysledok(this.getOrgLoggedIn(), this.prebiehajuciTurnaj, zapas, this.turnajId);
         this.saveOrg();
     }
 
-    public Turnaj getPrebiehajuciTurnaj() {
-        return prebiehajuciTurnaj;
-    }
-
-    public void setPrebiehajuciTurnaj(Turnaj prebiehajuciTurnaj) {
-        this.prebiehajuciTurnaj = prebiehajuciTurnaj;
-    }
-
-    public int getTurnajId() {
-        return turnajId;
-    }
-
-    public void setTurnajId(int turnajId) {
-        this.turnajId = turnajId;
-    }
-
+    /**
+     * skontroluje ci boli vsetky vysledky v prave prebiehajucom turnaji a kole
+     * zapisane
+     *
+     * @return true ak neboli, false ak boli
+     */
     public boolean skontrolujZadanePocetVysledkov() {
         if (this.prebiehajuciTurnaj.getStage() == null) {
             return true; // ak neexistuje stage tak este nic nebolo vygenerovane.
@@ -82,7 +91,7 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
             Zapas zapas = entry.getKey();
             Integer kolo = entry.getValue();
             if (kolo == this.prebiehajuciTurnaj.getStage().getKolo() - 1) {
-                if(zapas.getHrac1() == null && zapas.getHrac2() == null){
+                if (zapas.getHrac1() == null && zapas.getHrac2() == null) {
                     continue;
                 }
                 if (zapas.getVyherca() == null) { // hladame zapasy len tohto kola
@@ -93,6 +102,12 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
         return false;
     }
 
+    /**
+     * ak turnaj skoncil vrati formatovany zoznam vyhercov(hracov ktory maju
+     * najviac bodov, aj viac ako 1)
+     *
+     * @return formatovany string Hrac - {pocet} bodov
+     */
     public String vyhodnotTurnaj() {
         StringBuilder sb = new StringBuilder();
         int max = 0;
@@ -118,5 +133,21 @@ public class AktivneTurnajeSpravcaController extends AktivneTurnajeController {
             return " bod\n";
         }
         return " body\n";
+    }
+
+    public Turnaj getPrebiehajuciTurnaj() {
+        return prebiehajuciTurnaj;
+    }
+
+    public void setPrebiehajuciTurnaj(Turnaj prebiehajuciTurnaj) {
+        this.prebiehajuciTurnaj = prebiehajuciTurnaj;
+    }
+
+    public int getTurnajId() {
+        return turnajId;
+    }
+
+    public void setTurnajId(int turnajId) {
+        this.turnajId = turnajId;
     }
 }

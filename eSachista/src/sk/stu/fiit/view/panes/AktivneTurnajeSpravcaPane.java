@@ -24,7 +24,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
- *
+ * Panel prave prebiehajucecho turnaja z pohladu spravcu
  * @author lucia
  * @author Martin Melisek
  */

@@ -1,7 +1,7 @@
 package sk.stu.fiit.exceptions;
 
 /**
- *
+ * exception pre turnaje ktore su vytvorene v minulosti.
  * @author Martin Melisek
  */
 public class InvalidDateException extends Exception {

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import sk.stu.fiit.database.Database;
 
 /**
+ * Subscription balik pre organizacie, pozname tri druhy, kazdy ma svoje
+ * vlastnosti
  *
  * @author Martin Melisek
  */

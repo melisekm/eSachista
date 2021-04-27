@@ -15,8 +15,11 @@ import sk.stu.fiit.utils.EntryConstants;
 import sk.stu.fiit.view.dialogs.IOManagerDialog;
 
 /**
+ * Hlavny frame, pri registracii a prihlasovani pouzivatelov/organizacie,
+ * Vstupna obrazovka
  *
  * @author Martin Melisek
+ * @author lucia
  */
 public class EntryFrame extends javax.swing.JFrame {
 
@@ -686,7 +689,12 @@ public class EntryFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea textAreaDetaily;
     // End of variables declaration//GEN-END:variables
  //</editor-fold>
-
+    /**
+     * precita udaje z fieldov a zaregistruje pouzivatela
+     *
+     * @param registraciaType ci sa jenda o spracu alebo pouzivatela
+     * @return stav ci sa podarilo zaregistrovat, chyby ak nie, OK ak ano
+     */
     private int vykonajRegistraciu(int registraciaType) {
         if (!ViewUtils.validateFieldsNotBlank(dialogRegistrovatHraca, registraciaHracaFields)) {
             return EntryConstants.FORM_ERROR;
@@ -705,6 +713,11 @@ public class EntryFrame extends javax.swing.JFrame {
         return this.controller.registerPouzivatel(meno, login, password, registraciaType);
     }
 
+    /**
+     * aktualizuje na zaklade zvoleneho indexu balik info
+     *
+     * @param index id vybraneho balika, ktory sa sparuje s balikom v Db.
+     */
     public void updateBalikInfo(int index) {
         Balik b = this.controller.getBalik(index);
         labelBalikKapacitaData.setText(String.valueOf(b.getKapacitaPouzivatelov()));
@@ -712,6 +725,12 @@ public class EntryFrame extends javax.swing.JFrame {
         labelBalikMaxPrihlHracovData.setText(String.valueOf(b.getMaxHracovTurnaja()));
     }
 
+    /**
+     * vypise stav registracie
+     *
+     * @param status stav ktory vznikol z service a controllera
+     * @return true ak sa registracia podarila, false inak
+     */
     private boolean skontrolujStatusRegistracieOrg(int status) {
         if (status == EntryConstants.INVALID_EMAIL) {
             JOptionPane.showMessageDialog(dialogRegistrovatOrg, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("E-MAIL JE ZLE ZADANÝ"), "Invalid input", JOptionPane.ERROR_MESSAGE);
@@ -728,6 +747,12 @@ public class EntryFrame extends javax.swing.JFrame {
         return true;
     }
 
+    /**
+     * skontroluje navyse detaily pri registracii hraca
+     *
+     * @param status stav, ktory vznikol z service/controllera
+     * @return true ak sa registracia podarila, false inak
+     */
     private boolean skontrolujStatusRegistracieHrac(int status) {
         if (status == EntryConstants.MENO_UZ_EXISTUJE) {
             JOptionPane.showMessageDialog(dialogRegistrovatHraca, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("TENTO POUZIVATEL UZ EXISTUJE."), "Invalid Username", JOptionPane.ERROR_MESSAGE);

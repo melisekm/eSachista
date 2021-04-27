@@ -14,13 +14,21 @@ import sk.stu.fiit.model.organisation.platform.turnaj.stages.SingleEliminationSt
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
+ * Predstavuje sluzbu, ktora posuva turnaj dopredu, generuje stage pre turnaj,
+ * modifikuje vysledky a ELO.
  *
  * @author Martin Melisek
  */
 public class TurnajService extends Service {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(TurnajService.class);
-    
+
+    /**
+     * posunie kolo turnaja dopredu
+     *
+     * @param turnaj turnaj, ktoreho kolo sa ma posunut
+     * @return true ak sa to podarilo, false ak je turnaj ukoneceny.
+     */
     public boolean advanceTurnaj(Turnaj turnaj) {
         logger.info("Advancujem turnaj dalej");
         if (turnaj.getStage() == null) {
@@ -36,14 +44,27 @@ public class TurnajService extends Service {
             default:
                 throw new AssertionError();
         }
-        
+
     }
-    
+
+    /**
+     * zapise harmonogram do XML
+     *
+     * @param org organizacia, z ktorej turnaj pochadza
+     * @param t turnaj ktory sa ma zapisat
+     * @param turnajId id turnaja z organizacie
+     */
     public void vygenerujHarmonogram(Organizacia org, Turnaj t, int turnajId) {
         XMLTurnajWriter xmlTurnajWriter = new XMLTurnajWriter(org.getNazov(), turnajId);
         xmlTurnajWriter.writeTurnaj(t);
     }
-    
+
+    /**
+     * vygeneruje stage pre turnaj - RoundRobin, SingleElimination
+     *
+     * @param turnaj turnaj pre ktory sa ma stage vygenerovat
+     * @return vygenerovana Stage
+     */
     private Stage vygenerujStage(Turnaj turnaj) {
         logger.info("generujem stage pre turnaj " + turnaj.getNazov());
         int pocetKol;
@@ -70,7 +91,15 @@ public class TurnajService extends Service {
                 throw new AssertionError();
         }
     }
-    
+
+    /**
+     * posunie turnaj typu roundrobin dopredu o jedno kolo, vygeneruje nove
+     * parovanie zapasov pomocou roundrobin scheduling algoritmu drzim si prveho
+     * a ostatnych rotujem v smere hodinovych ruciciek
+     *
+     * @param turnaj turnaj, ktory je roundrobin a ma sa posunut dopredu
+     * @return true ak sa to podarilo, false ak turnaj skoncil
+     */
     private boolean advanceRoundRobin(Turnaj turnaj) {
         logger.info("posuvam roundrobin turnaj do dalsieho kola");
         RoundRobinStage stage = (RoundRobinStage) turnaj.getStage();
@@ -90,9 +119,18 @@ public class TurnajService extends Service {
         logger.info("posunul som roundrobin kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);
         return true;
-        
+
     }
-    
+
+    /**
+     * posunie turnaj typu single elimination o jedno kolo dopredu vygeneruje
+     * parovanie zapasov na zaklade predchadzajucich vyhercov v danom sub
+     * brackete
+     *
+     * @param turnaj ktory ma stage SingleElimination a ma byt posunuty o jedno
+     * kolo dopredu
+     * @return true ak sa to podarilo, false ak je turanj skonceny
+     */
     private boolean advanceSingleElimination(Turnaj turnaj) {
         logger.info("posuvam single elimination turnaj do dalsieho kola");
         SingleEliminationStage stage = (SingleEliminationStage) turnaj.getStage();
@@ -134,9 +172,17 @@ public class TurnajService extends Service {
         logger.info("posunul som single elim kolo z " + stage.getKolo() + " na " + String.valueOf((stage.getKolo() + 1)));
         stage.setKolo(stage.getKolo() + 1);
         return true;
-        
+
     }
-    
+
+    /**
+     * zapise vysledok zapasu a aj do XML
+     *
+     * @param org organizacia, ktorej turnajpatri
+     * @param turnaj turnaj, ktoremu zapas patri
+     * @param zapas samotny zapas, ktoreho vysledok sa ma zapisat
+     * @param turnajId id turnaja
+     */
     public void modifikujVysledok(Organizacia org, Turnaj turnaj, Zapas zapas, int turnajId) {
         if ((zapas.getHrac1() == null && zapas.getHrac2() == null) || zapas.getVyherca() == null) {
             return;
@@ -150,7 +196,7 @@ public class TurnajService extends Service {
             turnaj.getStage().getTabulka().get(zapas.getHrac2())[0]++;
             zapas.getHrac2().setELO(this.modifikujELO(zapas.getHrac2(), zapas.getHrac1(), zapas.getVyherca()));
         }
-        
+
         int idx = 0;
         for (Hrac hrac : turnaj.getHraci()) {
             if (hrac == zapas.getVyherca()) {
@@ -158,12 +204,15 @@ public class TurnajService extends Service {
             }
             idx++;
         }
-        
+
         XMLTurnajModifier xmlTurnajModifier = new XMLTurnajModifier(org.getNazov(), turnajId);
         xmlTurnajModifier.modifyXML(String.valueOf(idx));
     }
 
     /**
+     * Prevzata implementacia aktualizovania ELO ratingu na zaklade elo oboch
+     * hracov.
+     *
      * @see
      * https://github.com/radoneman/elo-rating-multiplayer/blob/master/src/com/elo/EloRating.java
      */
@@ -187,10 +236,10 @@ public class TurnajService extends Service {
 
         // calculate new rating
         int newRating = (int) Math.round(hrac1.getELO() + K * (actualScore - expectedOutcome));
-        
+
         return newRating;
     }
-    
+
     private int najblizsiaMocnina2(int x) {
         int power = 1;
         while (power < x) {

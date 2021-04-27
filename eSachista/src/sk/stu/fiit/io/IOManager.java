@@ -30,7 +30,12 @@ public class IOManager {
         new File("resources\\" + nazov).mkdirs();
         this.orgPath = "resources\\" + nazov + "\\" + nazov + ".vavaORG";
     }
-
+    /**
+     * ulozi celu databazu do suboru
+     * @param file subor kam sa ma ulozit
+     * @throws FileNotFoundException ak sa subor nenajde
+     * @throws IOException ak nastane ina chyba
+     */
     public void saveDatabase(File file) throws FileNotFoundException, IOException {
         Database db = Database.getInstance();
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) { // try with resources
@@ -39,7 +44,13 @@ public class IOManager {
             logger.debug("Databaza uspesene ulozena.");
         }
     }
-
+    /**
+     * nacita celu databazu zo suboru
+     * @param file subor z akeho nacitavat
+     * @throws FileNotFoundException ak sa nenajde subor
+     * @throws IOException ina chyba
+     * @throws ClassNotFoundException ak nacitana db je nekompatibilna 
+     */
     public void loadDatabase(File file) throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             logger.debug("Nacitavam databazu so suboru " + file.getName());
@@ -52,7 +63,12 @@ public class IOManager {
             }
         }
     }
-
+    /**
+     * ulozi prave prihlasenu org do suboru
+     * @param org organizacia ktora sa ma ulozit
+     * @throws FileNotFoundException ak sa subor nenajde
+     * @throws IOException ina chyba
+     */
     public void saveOrg(Organizacia org) throws FileNotFoundException, IOException {
         File orgFile = new File(this.orgPath);
         if (!orgFile.exists()) {
@@ -65,7 +81,13 @@ public class IOManager {
             logger.debug("org uspesene ulozene.");
         }
     }
-
+    /**
+     * nacita zo suboru organizaciu
+     * @return organizacia ak sa to podari inak exception
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public Organizacia loadOrg() throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.orgPath))) {
             logger.debug("Nacitavam org zo suboru " + this.orgPath);

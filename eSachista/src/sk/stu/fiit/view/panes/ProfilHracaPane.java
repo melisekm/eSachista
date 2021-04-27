@@ -14,7 +14,7 @@ import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 import sk.stu.fiit.view.dialogs.TurnajInfoDialog;
 
 /**
- *
+ * Domovsky panel hraca, udaje, zapasy, statistiky a turnaje
  * @author lucia
  * @author Martin Melisek
  */

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.swing.Icon;
 
 /**
- *
+ * Iconka organizacie/hraca
  * @author Martin Melisek
  */
 public class Avatar implements Serializable{

@@ -9,7 +9,7 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
- *
+ * Trieda jedneho turnaja, obsahuje cas zacatia, hracov, zapasy popis...
  * @author Martin Melisek
  */
 public class Turnaj implements Comparable<Turnaj>, Serializable {

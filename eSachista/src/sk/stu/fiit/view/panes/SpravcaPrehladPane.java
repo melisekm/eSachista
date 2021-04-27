@@ -19,8 +19,9 @@ import sk.stu.fiit.utils.ViewUtils;
 import sk.stu.fiit.view.charts.BarPieChartFactory;
 
 /**
- *
+ * Domovsky panel spravcu, udaje, statistiky a grafy
  * @author lucia
+ * @author Martin Melisek
  */
 public class SpravcaPrehladPane extends javax.swing.JPanel implements IViewRefresh {
     

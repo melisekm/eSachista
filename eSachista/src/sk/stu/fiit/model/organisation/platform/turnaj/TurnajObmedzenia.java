@@ -3,6 +3,8 @@ package sk.stu.fiit.model.organisation.platform.turnaj;
 import java.io.Serializable;
 
 /**
+ * Obmedzenia turnaja, range ratingov, ktore sa nan mozu prihlasit a maximalny
+ * vek, ktory prihlaseny hrac nesmie presiahnut.
  *
  * @author Martin Melisek
  */

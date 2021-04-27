@@ -13,6 +13,8 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 /**
+ * Kolacovy graf, dataset v podobe linked hashmapy, ktora mapuje label na
+ * hodnotu
  *
  * @author Martin Melisek
  */
@@ -22,6 +24,11 @@ public class PieChart extends Chart {
         super(dataset, nadpis);
     }
 
+    /**
+     * naplni dataset
+     *
+     * @return kolacovy dataset
+     */
     private PieDataset createDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
         for (Map.Entry<String, Double> entry : this.getRawDataset().entrySet()) {
@@ -32,6 +39,13 @@ public class PieChart extends Chart {
         return dataset;
     }
 
+    /**
+     * vytvori graf
+     *
+     * @param dataset kolacovy dataset
+     * @param nadpis nadpis grafu
+     * @return graf
+     */
     private JFreeChart createChart(PieDataset dataset, String nadpis) {
         JFreeChart chart = org.jfree.chart.ChartFactory.createPieChart(
                 nadpis, // nadpis
@@ -56,6 +70,11 @@ public class PieChart extends Chart {
         return chart;
     }
 
+    /**
+     * vytvori a naplni panel grafu
+     *
+     * @return Panel grafu
+     */
     public JPanel createPiePane() {
         JFreeChart chart = createChart(createDataset(), this.getNadpis());
         return new ChartPanel(chart);

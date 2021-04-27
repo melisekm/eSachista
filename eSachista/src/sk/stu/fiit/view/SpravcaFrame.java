@@ -10,8 +10,9 @@ import sk.stu.fiit.controller.SpravcaController;
 import sk.stu.fiit.view.panes.IViewRefresh;
 
 /**
- *
+ * hlavne okno spravcu, obsahuje udaje organizacie, statistiky a grafy
  * @author Martin Melisek
+ * @author lucia
  */
 public class SpravcaFrame extends javax.swing.JFrame {
 
@@ -93,12 +94,18 @@ public class SpravcaFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * zaregistruje panely pre spravcu
+     */
     private void registerPanes() {
         this.paneSwapContext[0] = spravcaPrehladPane;
         this.paneSwapContext[1] = clenoviaPane;
         this.paneSwapContext[2] = turnajePane;
         this.paneSwapContext[3] = aktivneTurnajeSpravcaPane;
     }
+    /**
+     * zavola refresh metodu pri zmene tabu
+     */
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
         int selectedPane = mainTabPane.getSelectedIndex();
         if (selectedPane == LOGOUT_ID) {
@@ -112,8 +119,11 @@ public class SpravcaFrame extends javax.swing.JFrame {
             paneSwapContext[selectedPane].refresh();
         }
     }//GEN-LAST:event_mainTabPaneStateChanged
+    /**
+     * odhlasi spravcu
+     */
     private void logOut() {
-        logger.info("Hrac " + this.controller.getPrihlasenySpravca().getLogin() + " sa odhlasil.");
+        logger.info("Spravca " + this.controller.getPrihlasenySpravca().getLogin() + " sa odhlasil.");
         this.controller.logOut();
         this.setVisible(false);
         this.dispose();

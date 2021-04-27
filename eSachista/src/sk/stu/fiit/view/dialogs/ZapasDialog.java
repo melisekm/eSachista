@@ -13,7 +13,8 @@ import sk.stu.fiit.model.organisation.platform.FarbaFiguriek;
 import sk.stu.fiit.model.organisation.platform.Zapas;
 
 /**
- *
+ * Dialog jedneho zapasu
+ * @author Martin Melisek
  * @author lucia
  */
 public class ZapasDialog extends javax.swing.JDialog {

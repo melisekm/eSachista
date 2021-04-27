@@ -13,7 +13,7 @@ import sk.stu.fiit.view.AutoCompleteJComboBoxer;
 import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 
 /**
- *
+ * Panel, kde moze spravca zobrazit hracov a editovat ich udaje
  * @author lucia
  * @author Martin Melisek
  */

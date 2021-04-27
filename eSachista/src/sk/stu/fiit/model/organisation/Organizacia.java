@@ -9,16 +9,29 @@ import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Predstavuje, organizaciu, ktora sa prihlasuje do aplikacie, ma pouzivatelov,
+ * turnaje, organizatora...
  *
  * @author Martin Melisek
  */
 public class Organizacia implements Serializable {
 
     private int id;
+    /**
+     * nazov organizacie
+     */
     private String nazov;
+    /**
+     * domenove meno
+     */
     private String urlAdresa;
-
+    /**
+     * balik ktory pouziva
+     */
     private Balik balik;
+    /**
+     * hlavny administrator
+     */
     private Spravca organizator;
     private ArrayList<Spravca> spravcovia;
     private ArrayList<Pouzivatel> pouzivatelia;

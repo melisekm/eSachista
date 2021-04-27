@@ -14,7 +14,8 @@ import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 import sk.stu.fiit.model.organisation.platform.turnaj.stages.Stage;
 
 /**
- *
+ * Dialog obsahujuci informacie o turnaji
+ * @author lucia
  * @author Martin Melisek
  */
 public class TurnajInfoDialog extends javax.swing.JDialog {

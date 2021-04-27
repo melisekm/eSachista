@@ -8,10 +8,12 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Abstraktna trieda stage pre turnaj, obashuje zoznam hracov, parovanie a
+ * tabulku
  *
  * @author Martin Melisek
  */
-public class Stage implements Serializable {
+public abstract class Stage implements Serializable {
 
     private int kolo;
     private int pocetKol;

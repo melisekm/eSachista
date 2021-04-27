@@ -4,7 +4,7 @@ import java.io.Serializable;
 import sk.stu.fiit.database.Database;
 
 /**
- *
+ * Administrator organizacie, moze ju upravovat vytvarat turnaje.
  * @author Martin Melisek
  */
 public class Spravca extends Pouzivatel implements Serializable{

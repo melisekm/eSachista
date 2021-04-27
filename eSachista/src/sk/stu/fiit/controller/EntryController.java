@@ -11,6 +11,8 @@ import sk.stu.fiit.utils.EntryConstants;
 import sk.stu.fiit.validator.EntryUserValidator;
 
 /**
+ * Controller pre EntryFrame, validuje, registruje a pripraja hraca
+ *
  * @see Controller
  * @author Martin Melisek
  */
@@ -22,6 +24,12 @@ public class EntryController extends Controller {
         this.validator = new EntryUserValidator();
     }
 
+    /**
+     * vrati typ pouzivatela
+     *
+     * @see sk.stu.fiit.utils.EntryConstants
+     * @return konstanta z EntryConstants, pre spravcu, hraca a chybu.
+     */
     public int getPripojenyPouzivatel() {
         Pouzivatel loggedIn = this.getUserLoggedIn();
         if (loggedIn instanceof Spravca) {
@@ -32,6 +40,13 @@ public class EntryController extends Controller {
         return EntryConstants.LOGGED_IN_NOBODY;
     }
 
+    /**
+     * pripoji hraca do aplikacie
+     *
+     * @param login prihlasovacie meno
+     * @param password nezahashovane heslo
+     * @return true ak sa podarilo, false inak
+     */
     public boolean pripojitHraca(String login, char[] password) {
         ArrayList<Pouzivatel> userDb = this.getPouzivatelia();
         Pouzivatel userLoggedIn = this.validator.checkUserLogin(userDb, login, password);
@@ -42,6 +57,17 @@ public class EntryController extends Controller {
         return true;
     }
 
+    /**
+     * zaregistruje organizaciu
+     *
+     * @param nazovOrg nazov organizacie
+     * @param adresaOrg domenova adresa organizacie
+     * @param balikId id balika, ktore si vybral spravca
+     * @param email email spravcu
+     * @see sk.stu.fiit.utils.EntryConstants
+     * @return konstanta z EntryConstants, ktora hovori bud o chybe, alebo o tom
+     * ze registracia prebehla uspesne
+     */
     public int registerOrg(String nazovOrg, String adresaOrg, int balikId, String email) {
         if (!this.validator.validateEmail(email)) {
             return EntryConstants.INVALID_EMAIL;
@@ -56,6 +82,15 @@ public class EntryController extends Controller {
         return EntryConstants.REGISTRACIA_OK;
     }
 
+    /**
+     * do oragnizacie zaregistruje hraca
+     * @param meno menohraca
+     * @param login prihlasovacie meno hraca
+     * @param password nezahashovany passwod
+     * @param typRegistracie ci sa registruje spravca alebo hrac, pochadza z entryConstants
+     * @see sk.stu.fiit.utils.EntryConstants
+     * @return stav z EntryConstants o chybe, alebo o tom, ze sa registracia podarila
+     */
     public int registerPouzivatel(String meno, String login, char[] password, int typRegistracie) {
         if (typRegistracie == EntryConstants.REGISTRUJ_HRACA) {
             this.ioManager = new IOManager(this.getOrgLoggedIn().getNazov());
@@ -81,6 +116,13 @@ public class EntryController extends Controller {
         return EntryConstants.REGISTRACIA_OK;
     }
 
+    /**
+     * vrati formatovane detaily pre view o registracie organizacie
+     * @param nazovOrg nazov, ktora org sa registruje
+     * @param adresaOrg domena organizacie
+     * @param balikId balik, ktory si zvolil spravca
+     * @return formatovany vystup oddeleny novymi riadkami
+     */
     public String getDetailyRegistracieOrg(String nazovOrg, String adresaOrg, int balikId) {
         Spravca spravcaOrg = this.entryService.getSpravcaTemp();
         StringBuilder sb = new StringBuilder();

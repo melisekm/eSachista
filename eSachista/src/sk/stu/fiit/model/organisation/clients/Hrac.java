@@ -8,11 +8,13 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
- *
+ * Predstavuje bezneho hraca, ktory je zaregistrovany do organizacie, moze sa prihlasit
  * @author Martin Melisek
  */
 public class Hrac extends Pouzivatel implements Serializable {
-
+    /**
+     * Boolean, ci sa prvy krat po zaregistrovani prihlasil
+     */
     private boolean firstLogin = true;
     private int ELO;
     private ArrayList<Turnaj> turnaje;

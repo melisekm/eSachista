@@ -10,6 +10,8 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Controller, ktory komunikuje so sluzbou a modelom, na zaklade citania XML
+ * zapisuje zapasy a turnaje, predava info do view.
  *
  * @author Martin Melisek
  */
@@ -20,6 +22,11 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
     private ArrayList<Zapas> harmonogram;
     private int idPrebiehajuciTurnaj = -1;
 
+    /**
+     * Skontroluje ci prave prebieha turnaj, na ktory je hrac prihlaseny
+     * @param turnaje zoznam turnajov na ktore je hrac prihlaseny
+     * @return turnaj ak pravep prebieha, null inak
+     */
     public Turnaj getZacatyTurnaj(ArrayList<Turnaj> turnaje) {
         logger.info("Kontrolujem ci prave teraz bezi nejaky turnaj.");
         for (Turnaj turnaj : turnaje) {
@@ -32,6 +39,11 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         return null;
     }
 
+    /**
+     * ziska z prebiehajuceho turnaja jeho id korespondujuce v  zozname turnajov danej organizacie
+     * @param prebiehajuciTurnaj turnaj ktory prave prebeieha
+     * @return id ak ho najde, -1 inak
+     */
     public int getTurnajId(Turnaj prebiehajuciTurnaj) {
         if (prebiehajuciTurnaj == null) {
             logger.info("neprebieha ziadny turnaj.");
@@ -51,7 +63,10 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         this.idPrebiehajuciTurnaj = -1;
         return -1;
     }
-
+    /**
+     * pomocou XMLTurnajReadera precira data turnaju z xml suboru
+     * @param turnajId aky turnaj ma hladat
+     */
     public void parseTurnaj(int turnajId) {
         logger.info("idem citat zo subora xml pre turnaj s id " + turnajId);
         XMLTurnajReader xmlReader = new XMLTurnajReader(this.getOrgLoggedIn().getNazov(), turnajId);
@@ -59,6 +74,10 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         logger.info("skoncil som citanie.");
     }
 
+    /**
+     * z precitaneho harmonogramu vrati zapas, ktory ma hrac hrat
+     * @return zapas ak nasiel, null inak
+     */
     public Zapas najdiZapasHraca() {
         logger.info("Hladam v harmonograme turnaja zapas pre prihlaseneho hraca");
         if (this.harmonogram == null) {
@@ -68,10 +87,10 @@ public class AktivneTurnajeHracController extends AktivneTurnajeController {
         for (Zapas zapas : this.harmonogram) {
             boolean jeToHrac1 = false;
             boolean jeToHrac2 = false;
-            if(zapas.getHrac1() != null){
+            if (zapas.getHrac1() != null) {
                 jeToHrac1 = zapas.getHrac1().getLogin().equals(this.getPrihlasenyHrac().getLogin());
             }
-            if(zapas.getHrac2() != null){
+            if (zapas.getHrac2() != null) {
                 jeToHrac2 = zapas.getHrac2().getLogin().equals(this.getPrihlasenyHrac().getLogin());
             }
             boolean figurujeHracVzapase = Boolean.logicalOr(jeToHrac1, jeToHrac2);

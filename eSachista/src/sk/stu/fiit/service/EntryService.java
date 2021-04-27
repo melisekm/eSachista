@@ -12,7 +12,8 @@ import sk.stu.fiit.model.organisation.clients.Spravca;
 import sk.stu.fiit.model.organisation.platform.Balik;
 
 /**
- * Služi ako middle man medzi model a controller
+ * Sluzi ako middle man medzi model a controller, obsahuje prihlasenu org a
+ * pouzivatela
  *
  * @author Martin Melisek
  */
@@ -36,9 +37,9 @@ public class EntryService extends Service {
     /**
      * Pokusi sa zaregistrovat pouzivatela do organizacie
      *
-     * @param meno
-     * @param login
-     * @param password
+     * @param meno meno hraca
+     * @param login prihlasovacie meno hraca
+     * @param password zahashovane heslo
      * @return true ak sa to podarilo, false ak nie je uz kapacita
      */
     public boolean registerHrac(String meno, String login, char[] password) {
@@ -53,6 +54,14 @@ public class EntryService extends Service {
         return true;
     }
 
+    /**
+     * zaregistruje organizaciu do databazy
+     *
+     * @param nazovOrg nazov organizacie
+     * @param adresaOrg domenove meno organizacie
+     * @param balikId id balika, ktory spravca vybral
+     * @param email email spravcu
+     */
     public void registerOrg(String nazovOrg, String adresaOrg, int balikId, String email) {
         logger.info("registrujem organizaciu");
         Balik b = this.getDb().getBaliky().get(balikId);
@@ -68,6 +77,13 @@ public class EntryService extends Service {
         }
     }
 
+    /**
+     * vytvori docasneho spravca pri registracii org.
+     *
+     * @param meno meno spravcu
+     * @param login prihlasovacie meno spravcu
+     * @param password zahashovane heslo spravcu
+     */
     public void registerSpravca(String meno, String login, char[] password) {
         logger.info("vytvaram TMP spravcu");
         this.spravcaTemp = new Spravca(meno, login, password);
@@ -78,6 +94,12 @@ public class EntryService extends Service {
         return true ? this.spravcaTemp != null : false;
     }
 
+    /**
+     * skontroluje ci je domenove meno organizacie k dispozcii
+     *
+     * @param adresaOrg domenove meno organizacie
+     * @return true ak je, false inak
+     */
     public boolean isOrgNameAvailable(String adresaOrg) {
         logger.info("Kontrolujem ci je meno org dostupne.");
         for (Organizacia org : this.getDb().getOrganizacie()) {
@@ -90,6 +112,12 @@ public class EntryService extends Service {
         return true;
     }
 
+    /**
+     * pokusi sa pripojit organizaciu do aplikacie
+     *
+     * @param adresa domenova adresa aplikacie
+     * @return true ak sa to podarilo, false ak tato org v aplikacii neexistuje
+     */
     public boolean pripojOrganizaciu(String adresa) {
         logger.info("pripajam pouzivatela z org na adrese " + adresa);
         for (Organizacia org : this.getDb().getOrganizacie()) {
@@ -103,6 +131,9 @@ public class EntryService extends Service {
         return false;
     }
 
+    /**
+     * odhlasi hraca/spravcu
+     */
     public void logOut() {
         logger.info("odhlasujem pouzivatela");
         this.orgLoggedIn = null;
@@ -111,7 +142,10 @@ public class EntryService extends Service {
     }
 
     /**
-     * Z databazy vrati balik na zaklade ID
+     * z databazy vrati id balika
+     *
+     * @param index id balika
+     * @return balik z databazy
      */
     public Balik getBalik(int index) {
         return this.getDb().getBaliky().get(index);

@@ -1,14 +1,7 @@
 package sk.stu.fiit.main;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import javax.swing.JOptionPane;
 import org.slf4j.LoggerFactory;
-import sk.stu.fiit.io.IOManager;
 import sk.stu.fiit.database.Database;
-import sk.stu.fiit.utils.DataLoader;
 import sk.stu.fiit.view.EntryFrame;
 
 /**

@@ -3,7 +3,7 @@ package sk.stu.fiit.view.charts;
 import java.util.LinkedHashMap;
 
 /**
- *
+ * Abstraktna trieda pre kolacovy a stlpcovy graf
  * @author Martin Melisek
  */
 public abstract class Chart {

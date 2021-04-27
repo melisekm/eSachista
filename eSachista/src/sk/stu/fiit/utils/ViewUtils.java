@@ -8,7 +8,7 @@ import javax.swing.text.JTextComponent;
 import sk.stu.fiit.database.Database;
 
 /**
- * Library pre View
+ * Stvrta iteracia knizice pre View, zobrazovanie dialogov, validacia
  *
  * @author Martin Melisek
  */
@@ -45,7 +45,7 @@ public class ViewUtils {
         return true;
     }
 
-   /**
+    /**
      * zvaliduje ci field(y) na vstupe sa daju konvertovat na double, vypise
      * chybu ak sa nedaju
      *

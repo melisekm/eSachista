@@ -29,11 +29,13 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
- * Toto je bohuzial ten najneprehladnejsi kod aky som kedy napisal naraz sa tu
- * vytvara a setuje zapas pre hracov lebo toto je z nejakeho dovodu <br>
- * jediny moment ked mam v spravcoskom ucte k dispozii vsetky udaje naraz.
+ * Zapise turnajove data do suboru
  *
- * @author Martin Melisek
+ * @author Martin Melisek 
+ * Toto je bohuzial ten najneprehladnejsi kod aky som
+ * kedy napisal naraz sa tu vytvara a setuje zapas pre hracov lebo toto je z
+ * nejakeho dovodu <br>
+ * jediny moment ked mam v spravcoskom ucte k dispozii vsetky udaje naraz.
  */
 public class XMLTurnajWriter extends XMLTurnajHandler {
 
@@ -50,7 +52,11 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
         logger.info("cesta " + this.filePath);
         this.saveOldXML(idx);
     }
-
+    /**
+     * ulozi existujuci turnaj do historie<br>
+     * cesta: resources/nazovORG/turnaje/turnajID/historia/IDKola.
+     * @param idx id turnaju ktory sa ma ulozit
+     */
     private void saveOldXML(int idx) {
         File directory = new File(this.orgPath + "\\turnaje\\" + idx + "\\historia\\");
         logger.info("ukladam kopiu stareho XML do priecinku=" + directory.getPath());
@@ -74,6 +80,11 @@ public class XMLTurnajWriter extends XMLTurnajHandler {
         }
     }
 
+    /**
+     * zapisuje harmonogram turnaju do XML<br>
+     * cesta: resources/nazovORG/turnaje/turnajID/harmonogram.xml.
+     * @param turnaj ktoreho harmonogram sa ma zapisat
+     */
     public void writeTurnaj(Turnaj turnaj) {
         try {
             logger.info("Zacinam zapisovat turnajove informacie do XML=" + this.filePath);

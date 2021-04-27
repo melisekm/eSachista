@@ -3,7 +3,7 @@ package sk.stu.fiit.model.organisation.platform.turnaj;
 import java.io.Serializable;
 
 /**
- *
+ * Format aky moze turnaj nadobudat, kazdy proti kazdemu alebo single elimination bracket
  * @author Martin Melisek
  */
 public enum TurnajFormat implements Serializable {

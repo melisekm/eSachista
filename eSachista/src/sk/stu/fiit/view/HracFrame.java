@@ -11,8 +11,10 @@ import sk.stu.fiit.view.dialogs.EditovatHracaDialog;
 import sk.stu.fiit.view.panes.IViewRefresh;
 
 /**
+ * hlavna obrazovka hraca, zobrazuje udaje, odohrane turnaje a zapasy
  *
  * @author Martin Melisek
+ * @author lucia
  */
 public class HracFrame extends javax.swing.JFrame {
 
@@ -110,14 +112,19 @@ public class HracFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * zaregistruje panely pre hraca
+     */
     private void registerPanes() {
         this.paneSwapContext[0] = profilHracaPane;
         this.paneSwapContext[1] = zoznamTurnajovPanel;
         this.paneSwapContext[2] = aktivneTurnajePanel;
     }
 
+    /**
+     * vola refresh metodu na zaklade zvoleneho panela
+     */
     private void mainTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabPaneStateChanged
-        // tu sa budu aktualizovat zaležitosti z panelov ak je to treba.
         int selectedPane = mainTabPane.getSelectedIndex();
         if (selectedPane == LOGOUT_ID) {
             mainTabPane.setSelectedIndex(this.tab);
@@ -130,7 +137,9 @@ public class HracFrame extends javax.swing.JFrame {
             paneSwapContext[selectedPane].refresh();
         }
     }//GEN-LAST:event_mainTabPaneStateChanged
-
+    /**
+     * odhlasi hraca
+     */
     private void logOut() {
         logger.info("Hrac " + this.controller.getPrihlasenyHrac().getLogin() + " sa odhlasil.");
         this.controller.logOut();
@@ -139,6 +148,9 @@ public class HracFrame extends javax.swing.JFrame {
         EntryFrame.main();
     }
 
+    /**
+     * zobrazi dialog editacie informacii hraca
+     */
     private void editInfo() {
         this.controller.loadOrg();
         if (this.controller.getPrihlasenyHrac().isFirstLogin()) {

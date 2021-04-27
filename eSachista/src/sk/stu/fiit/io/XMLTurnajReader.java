@@ -21,7 +21,7 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
- *
+ * XML reader
  * @author Martin Melisek
  */
 public class XMLTurnajReader extends XMLTurnajHandler {
@@ -32,7 +32,11 @@ public class XMLTurnajReader extends XMLTurnajHandler {
         super(nazovOrg);
         this.filePath = this.orgPath + "turnaje\\" + idx + "\\harmonogram.xml";
     }
-
+    /**
+     * precita zoznam zapasov pre prebiehajuci turnaj z korespondujuceho xml.
+     * @param prebiehajuciTurnaj turnaj, ktory prave prebieha
+     * @return zoznam zapasov
+     */
     public ArrayList<Zapas> parseTurnaj(Turnaj prebiehajuciTurnaj) {
         logger.info("zacinam parsovat turnaj zo suboru " + this.filePath + " je to turnaj " + prebiehajuciTurnaj.getNazov());
         File xmlFile = new File(this.filePath);
@@ -52,7 +56,9 @@ public class XMLTurnajReader extends XMLTurnajHandler {
         }
         return null;
     }
-
+    /**
+     * precita zapasy
+     */
     private ArrayList<Zapas> parseZapasy(NodeList zapasyXML, Turnaj prebiehajuciTurnaj) {
         ArrayList<Zapas> zapasy = new ArrayList<>();
 
@@ -70,7 +76,9 @@ public class XMLTurnajReader extends XMLTurnajHandler {
         logger.info("vraciam zapasy z precitaneho xml");
         return zapasy;
     }
-
+    /**
+     * precita jeden zapas
+     */
     private Zapas parseZapas(Element zapasElement, Turnaj prebiehajuciTurnaj) {
         Date casZaciatku = this.getCasZaciatku(zapasElement, prebiehajuciTurnaj.getDatumKonania());
 
@@ -96,7 +104,9 @@ public class XMLTurnajReader extends XMLTurnajHandler {
 
         return new Zapas(prebiehajuciTurnaj, h1, h2, casZaciatku, h1Farba, h2Farba, vyherca);
     }
-
+    /**
+     * formatuje cas zaciatku zapasu z xml
+     */
     private Date getCasZaciatku(Element element, Date datumTurnaja) {
         String datumString = element.getElementsByTagName("datum").item(0).getTextContent();
         Date casZaciatku = datumTurnaja;

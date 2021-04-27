@@ -14,7 +14,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.TurnajFormat;
 import sk.stu.fiit.utils.ViewUtils;
 
 /**
- *
+ * Dialog, vytvarania noveho turnaja
  * @author Martin Melisek
  */
 public class VytvoritTurnajDialog extends javax.swing.JDialog {

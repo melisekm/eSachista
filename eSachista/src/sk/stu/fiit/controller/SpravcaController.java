@@ -7,14 +7,23 @@ import sk.stu.fiit.model.organisation.clients.Hrac;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
+ * Hlavny controller pre spravcu, predava info z modelov a databazy pre domovsky
+ * panel spravcu
  *
  * @author Martin Melisek
+ * @author lucia
  */
 public class SpravcaController extends Controller {
 
     public SpravcaController() {
     }
 
+    /**
+     * vrati naformatovany dataset pre chart
+     *
+     * @return dataset mapujuci den konania a agregovany pocet hracov prihlaseny
+     * na turnaje v dany den
+     */
     public LinkedHashMap<String, Double> getDniKonaniaDataset() {
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
         for (Turnaj t : this.getTurnaje()) {
@@ -33,6 +42,12 @@ public class SpravcaController extends Controller {
         return hraciTurnajeDataset;
     }
 
+    /**
+     * vrati naformatovany dataset pre chart
+     *
+     * @return dataset mapujuci pocet hracov prihlasenych na ktory turnaj.
+     * @return
+     */
     public LinkedHashMap<String, Double> getHraciDataset() {
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();
         for (Turnaj t : this.getTurnaje()) {
@@ -44,6 +59,16 @@ public class SpravcaController extends Controller {
         return hraciTurnajeDataset;
     }
 
+    /**
+     * vrati formatovane statistiky o organizacii<br>
+     * 0 - pocet turnajov<br>
+     * 1 - pocet naplanovanych turnajov<br>
+     * 2 - pocet ukocnenych turnajov<br>
+     * 3 - pocet zapasov<br>
+     *
+     * @param o prihlasena organizacia
+     * @return pole retazcov - statistik
+     */
     public String[] getTurnajeStatistiky(Organizacia o) {
         String[] res = new String[4];
         int ukoncene, naplanovane, pocetZapasov;
@@ -63,8 +88,13 @@ public class SpravcaController extends Controller {
         return res;
     }
 
+    /**
+     * vypocita priemerne elo registrovanych hracov
+     *
+     * @return naformatovane priemerne elo, ak nie je ziadny hrac tak "0"
+     */
     public String getPriemerneELO() {
-        if(this.getHraci().isEmpty()){
+        if (this.getHraci().isEmpty()) {
             return "0";
         }
         double sum = 0.0;

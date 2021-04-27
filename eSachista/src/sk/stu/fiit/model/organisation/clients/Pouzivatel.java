@@ -7,6 +7,8 @@ import sk.stu.fiit.model.organisation.Organizacia;
 import sk.stu.fiit.model.organisation.platform.Avatar;
 
 /**
+ * Abstraktna trieda vsetkych pouzivatelov v aplikacii, ku ktorej org patria,
+ * meno heslo, avatar, datum registracie
  *
  * @author Martin Melisek
  */

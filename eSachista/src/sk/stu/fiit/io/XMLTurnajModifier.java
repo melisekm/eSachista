@@ -21,8 +21,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * toto teda potrebuje kontrolu XD malo by sa spustit ked zada Spravca zada
- * vysledok
+ * zedituje XML subor.
  *
  * @author Martin Melisek
  */
@@ -38,7 +37,10 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
         logger.info("cesta " + path);
         this.filePath = path;
     }
-
+    /**
+     * na zaklade vyhercu zapise vysledok do xml
+     * @param vyherca 
+     */
     public void modifyXML(String vyherca) {
         logger.info("spusam modifikaciu suboru " + this.filePath);
         File xmlFile = new File(this.filePath);
