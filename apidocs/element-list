@@ -1,0 +1,17 @@
+sk.stu.fiit.controller
+sk.stu.fiit.database
+sk.stu.fiit.exceptions
+sk.stu.fiit.io
+sk.stu.fiit.main
+sk.stu.fiit.model.organisation
+sk.stu.fiit.model.organisation.clients
+sk.stu.fiit.model.organisation.platform
+sk.stu.fiit.model.organisation.platform.turnaj
+sk.stu.fiit.model.organisation.platform.turnaj.stages
+sk.stu.fiit.service
+sk.stu.fiit.utils
+sk.stu.fiit.validator
+sk.stu.fiit.view
+sk.stu.fiit.view.dialogs
+sk.stu.fiit.view.charts
+sk.stu.fiit.view.panes
