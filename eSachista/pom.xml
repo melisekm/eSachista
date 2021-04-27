@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>sk.stu.fiit.eSachista</groupId>
     <artifactId>eSachista</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>eSachista</name>
     <description>Planovac turnajov</description>
     <build>

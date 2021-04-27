@@ -46,7 +46,6 @@ public class SpravcaController extends Controller {
      * vrati naformatovany dataset pre chart
      *
      * @return dataset mapujuci pocet hracov prihlasenych na ktory turnaj.
-     * @return
      */
     public LinkedHashMap<String, Double> getHraciDataset() {
         LinkedHashMap<String, Double> hraciTurnajeDataset = new LinkedHashMap<>();

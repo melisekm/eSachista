@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * zedituje XML subor.
+ * XML Modifier
  *
  * @author Martin Melisek
  */
@@ -39,7 +39,7 @@ public class XMLTurnajModifier extends XMLTurnajHandler {
     }
     /**
      * na zaklade vyhercu zapise vysledok do xml
-     * @param vyherca 
+     * @param vyherca id hraca ktory vyhral zapas
      */
     public void modifyXML(String vyherca) {
         logger.info("spusam modifikaciu suboru " + this.filePath);

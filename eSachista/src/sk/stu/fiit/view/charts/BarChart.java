@@ -21,7 +21,9 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
- * Stlpcovy graf, dataset v podobe linked hashmapy, ktora mapuje label na hodnotu
+ * Stlpcovy graf, dataset v podobe linked hashmapy, ktora mapuje label na
+ * hodnotu
+ *
  * @author Martin Melisek
  */
 public class BarChart extends Chart {
@@ -29,8 +31,10 @@ public class BarChart extends Chart {
     public BarChart(LinkedHashMap<String, Double> dataset, String nadpis) {
         super(dataset, nadpis);
     }
+
     /**
      * naplni dataset
+     *
      * @return stlpcovy dataset
      */
     private CategoryDataset createDataset() {
@@ -42,8 +46,10 @@ public class BarChart extends Chart {
         }
         return dataset;
     }
+
     /**
      * vytvori graf
+     *
      * @param dataset stlpcovy dataset
      * @param nadpis nadpis grafu
      * @return graf
@@ -80,6 +86,7 @@ public class BarChart extends Chart {
 
         return chart;
     }
+
     /**
      * vytvori a naplni panel grafu
      *
@@ -92,7 +99,6 @@ public class BarChart extends Chart {
 
     /**
      * prebrata trieda, ktora nastavuje farby grafu
-     * @see
      * http://www.java2s.com/Code/Java/Chart/JFreeChartBarChartDemo3differentcolorswithinaseries.htm
      */
     class CustomRenderer extends BarRenderer {

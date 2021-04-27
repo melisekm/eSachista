@@ -14,7 +14,7 @@ import sk.stu.fiit.model.organisation.platform.turnaj.TurnajObmedzenia;
 import sk.stu.fiit.model.organisation.platform.turnaj.TurnajTempoHry;
 
 /**
- * Controlle pre vytvaranie a editovanie turnajov
+ * Controller pre vytvaranie a editovanie turnajov
  * @author Martin Melisek
  */
 public class TurnajController extends Controller {
@@ -60,7 +60,7 @@ public class TurnajController extends Controller {
     }
     /**
      * ulozi turnaj do databazy a sortne ich poradie na zaklade datumu.
-     * @param novy 
+     * @param novy novovytvoreny turnaj
      */
     public void saveTurnaj(Turnaj novy) {
         this.getOrgLoggedIn().getTurnaje().add(novy);

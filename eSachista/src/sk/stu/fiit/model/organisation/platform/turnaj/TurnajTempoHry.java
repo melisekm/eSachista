@@ -3,7 +3,7 @@ package sk.stu.fiit.model.organisation.platform.turnaj;
 import java.io.Serializable;
 
 /**
- * Tempo hry pre turnaj -> cas v minutach a sekundach, kolko ma hrac k dispozcii
+ * Tempo hry pre turnaj - cas v minutach a sekundach, kolko ma hrac k dispozcii
  * a increment, ktory ziska po kazdom tahu
  *
  * @author Martin Melisek

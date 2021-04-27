@@ -21,7 +21,7 @@ import sk.stu.fiit.model.organisation.platform.Zapas;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
- * XML reader
+ * XML parser
  * @author Martin Melisek
  */
 public class XMLTurnajReader extends XMLTurnajHandler {

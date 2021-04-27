@@ -9,7 +9,7 @@ import sk.stu.fiit.model.organisation.platform.Balik;
 import sk.stu.fiit.model.organisation.platform.turnaj.Turnaj;
 
 /**
- * Predstavuje, organizaciu, ktora sa prihlasuje do aplikacie, ma pouzivatelov,
+ * Predstavuje organizaciu, ktora sa prihlasuje do aplikacie, ma pouzivatelov,
  * turnaje, organizatora...
  *
  * @author Martin Melisek
