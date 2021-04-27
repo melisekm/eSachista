@@ -28,8 +28,8 @@ public class DataLoader {
         pridajHracov(db, 0);
         pridajTurnaj(db, 0, 1, 30, 5, 3500, "FIITkarsky", "FIIT", "Turnaj na skole", TurnajFormat.SINGLE_ELIMINATION, new Date(1619202352000L), true);
         pridajTurnaj(db, 0, 5, 0, 20, 2500, "Dekansky", "Online", "Turnaj online", TurnajFormat.ROUND_ROBIN, new Date(), false);
-        pridajTurnaj(db, 0, 10, 0, 0, 2000, "BP", "Online", "Turnaj online", TurnajFormat.SINGLE_ELIMINATION, new Date(1619377252000L), false);
-        pridajTurnaj(db, 0, 20, 30, 0, 2500, "Ing", "Online", "Turnaj online", TurnajFormat.ROUND_ROBIN, new Date(1619377252000L), false);
+        pridajTurnaj(db, 0, 10, 0, 0, 2000, "BP", "Online", "Turnaj online", TurnajFormat.SINGLE_ELIMINATION, new Date(1619553600000L), false);
+        pridajTurnaj(db, 0, 20, 30, 0, 2500, "Ing", "Online", "Turnaj online", TurnajFormat.ROUND_ROBIN, new Date(1619559000000L), false);
         pridajHracovNaTurnaj(db, 0, 0, 4);
         pridajHracovNaTurnaj(db, 0, 1, 3);
         pridajHracovNaTurnaj(db, 0, 2, 5);
