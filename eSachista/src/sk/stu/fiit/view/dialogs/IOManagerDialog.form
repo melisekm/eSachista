@@ -12,6 +12,7 @@
     <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
       <ResourceString bundle="Bundle_sk_SK.properties" key="IOManagerDialog.title" replaceFormat="java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(&quot;{key}&quot;)"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

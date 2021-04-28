@@ -105,6 +105,7 @@ public class EntryFrame extends javax.swing.JFrame {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()); // NOI18N
         dialogPripojit.setTitle(bundle.getString("EntryFrame.dialogPripojit.title")); // NOI18N
         dialogPripojit.setModal(true);
+        dialogPripojit.setResizable(false);
         dialogPripojit.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelPripojit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -161,6 +162,7 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogRegistrovatOrg.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogRegistrovatOrg.setTitle(bundle.getString("EntryFrame.dialogRegistrovatOrg.title")); // NOI18N
         dialogRegistrovatOrg.setModal(true);
+        dialogRegistrovatOrg.setResizable(false);
         dialogRegistrovatOrg.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRegistrovatOrg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -268,6 +270,7 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogRegistrovatHraca.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogRegistrovatHraca.setTitle(bundle.getString("EntryFrame.dialogRegistrovatHraca.title")); // NOI18N
         dialogRegistrovatHraca.setModal(true);
+        dialogRegistrovatHraca.setResizable(false);
         dialogRegistrovatHraca.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogRegistrovatHracaWindowClosed(evt);
@@ -336,6 +339,7 @@ public class EntryFrame extends javax.swing.JFrame {
         dialogDetailyRegistracie.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogDetailyRegistracie.setTitle(bundle.getString("EntryFrame.dialogDetailyRegistracie.title")); // NOI18N
         dialogDetailyRegistracie.setModal(true);
+        dialogDetailyRegistracie.setResizable(false);
         dialogDetailyRegistracie.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelDetailyRegistracie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

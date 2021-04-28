@@ -49,6 +49,7 @@ public class SpravcaFrame extends javax.swing.JFrame {
         setTitle("eSachista - Správca");
         setMinimumSize(new java.awt.Dimension(935, 655));
         setPreferredSize(new java.awt.Dimension(935, 655));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainTabPane.setUI(new BasicTabbedPaneUI(){

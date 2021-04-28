@@ -13,6 +13,7 @@ import sk.stu.fiit.utils.ViewUtils;
 
 /**
  * Dialog, pomocou, ktoreho sa nacitava a uklada databaza z a do programu
+ *
  * @author Martin Melisek
  */
 public class IOManagerDialog extends javax.swing.JDialog {
@@ -46,6 +47,7 @@ public class IOManagerDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()); // NOI18N
         setTitle(bundle.getString("IOManagerDialog.title")); // NOI18N
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,13 +174,11 @@ public class IOManagerDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             logger.error("SUBOR PRAVDEPODOBNE NIE JE KOMPATIBILNY");
             logger.error(ex.getMessage());
-            logger.error(ex.getStackTrace().toString());
             JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("SUBOR NIE JE KOMPATIBILNY. (CODE 1)"), "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (ClassNotFoundException ex) {
+        } catch (Exception ex) {
             logger.error(ex.getMessage());
             logger.error("Bola nahrata databasa, ktora nie je kompatibilna alebo uplne ina trieda.");
-            JOptionPane.showMessageDialog(this,java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NEOCAKAVANA CHYBA. (CODE 2)"), "ERROR", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString("NEOCAKAVANA CHYBA. (CODE 2)"), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnVykonatMouseReleased

@@ -9,6 +9,7 @@
           <ResourceString bundle="resources/Bundle_sk_SK.properties" key="EntryFrame.dialogPripojit.title" replaceFormat="java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(&quot;{key}&quot;)"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -176,6 +177,7 @@
           <ResourceString bundle="resources/Bundle_sk_SK.properties" key="EntryFrame.dialogRegistrovatOrg.title" replaceFormat="java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(&quot;{key}&quot;)"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -496,6 +498,7 @@
           <ResourceString bundle="resources/Bundle_sk_SK.properties" key="EntryFrame.dialogRegistrovatHraca.title" replaceFormat="java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(&quot;{key}&quot;)"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="dialogRegistrovatHracaWindowClosed"/>
@@ -698,6 +701,7 @@
           <ResourceString bundle="resources/Bundle_sk_SK.properties" key="EntryFrame.dialogDetailyRegistracie.title" replaceFormat="java.util.ResourceBundle.getBundle(Database.getInstance().getBundle()).getString(&quot;{key}&quot;)"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
